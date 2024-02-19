@@ -51,7 +51,7 @@ import com.zrp200.scrollofdebug.ScrollOfDebug;
 
 import java.util.ArrayList;
 
-public class AdditionItem extends Item {
+public class AdditionItem extends Questionnaire {
     {
         image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
         unique = true;

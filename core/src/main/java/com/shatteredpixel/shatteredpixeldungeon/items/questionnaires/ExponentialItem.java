@@ -46,7 +46,7 @@ import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class ExponentialItem extends Item {
+public class ExponentialItem extends Questionnaire {
     {
         image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
         unique = true;

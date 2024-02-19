@@ -49,7 +49,7 @@ import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class DivisibilityItem extends Item {
+public class DivisibilityItem extends Questionnaire {
     {
         image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
         unique = true;

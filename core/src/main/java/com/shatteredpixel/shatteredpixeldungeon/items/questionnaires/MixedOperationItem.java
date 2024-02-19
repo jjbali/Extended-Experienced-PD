@@ -44,7 +44,7 @@ import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class MixedOperationItem extends Item {
+public class MixedOperationItem extends Questionnaire {
     {
         image = ItemSpriteSheet.TOKEN;
         unique = true;

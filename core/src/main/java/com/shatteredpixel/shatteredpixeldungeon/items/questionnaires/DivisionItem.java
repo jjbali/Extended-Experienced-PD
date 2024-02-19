@@ -44,7 +44,7 @@ import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class DivisionItem extends Item {
+public class DivisionItem extends Questionnaire {
     {
         image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
         unique = true;

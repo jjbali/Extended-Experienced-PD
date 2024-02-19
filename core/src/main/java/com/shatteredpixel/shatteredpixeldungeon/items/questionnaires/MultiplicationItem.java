@@ -44,7 +44,7 @@ import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
-public class MultiplicationItem extends Item {
+public class MultiplicationItem extends Questionnaire {
     {
         image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
         unique = true;

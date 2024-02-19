@@ -34,6 +34,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MixedOperat
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.OddEvenItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.QuestionaireItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.Questionnaire;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.RectangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.SubtractionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.TreasureBag;
@@ -53,11 +54,14 @@ public class TreasureHolder extends Bag {
 	@Override
 	public boolean canHold( Item item ) {
 		if (item instanceof TreasureBag || item instanceof QuestionaireItem
+				/*
 				|| item instanceof AdditionItem || item instanceof DivisionItem
 				|| item instanceof MultiplicationItem || item instanceof SubtractionItem
 				|| item instanceof ExponentialItem || item instanceof MixedOperationItem
 				|| item instanceof OddEvenItem || item instanceof DivisibilityItem
-				|| item instanceof BinaryItem || item instanceof RectangularItem){
+				|| item instanceof BinaryItem || item instanceof RectangularItem
+				*/ || item instanceof Questionnaire){
+
 			return super.canHold(item);
 		} else {
 			return false;
