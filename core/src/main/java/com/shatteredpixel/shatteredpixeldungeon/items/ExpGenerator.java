@@ -40,7 +40,7 @@ public class ExpGenerator extends Item {
 
     @Override
     public boolean isUpgradable() {
-        return level() <= 10L;
+        return true;
     }
 
 //    @Override
@@ -87,6 +87,6 @@ public class ExpGenerator extends Item {
 
     @Override
     public String desc() {
-        return Messages.get(this, "desc", Math.round((Dungeon.escalatingDepth()*5) * (1.5f * level())*Dungeon.IntRange(2, 10)) );
+        return Messages.get(this, "desc", 20 * level() );
     }
 }

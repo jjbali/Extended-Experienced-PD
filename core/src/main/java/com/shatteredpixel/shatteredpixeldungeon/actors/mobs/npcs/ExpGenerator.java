@@ -102,7 +102,7 @@ public class ExpGenerator extends Mob {
             //}
         }
         if (mobs) {
-            Dungeon.hero.earnExp( Math.round((Dungeon.escalatingDepth()*5) * (1.5f * level) * Dungeon.IntRange(2, 10)), this.getClass() );
+            Dungeon.hero.earnExp( 20 * level , this.getClass() );
             if (Dungeon.hero.fieldOfView[pos]) sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "exp", Math.round((Dungeon.escalatingDepth()*5) * (1.5f * level)*Dungeon.IntRange(2, 10)) ));
         }
         return super.act();
