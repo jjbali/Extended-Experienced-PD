@@ -1,0 +1,42 @@
+buildscript {
+    repositories {
+        maven { url 'https://jitpack.io'}
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        //FIXME the version of R8 coming with gradle plugin 4.0.0 causes serious problems
+        //noinspection GradleDependency
+        classpath 'com.android.tools.build:gradle:7.3.1'
+    }
+}
+
+allprojects {
+
+    ext {
+        appName = 'Extended Experienced Pixel Dungeon'
+        appPackageName = 'com.jjbali.experiencedpixeldungeon.extended'
+
+        appVersionCode = 475
+        appVersionName = 'EExpPD-4.4.0'
+
+        appJavaCompatibility = JavaVersion.VERSION_1_8
+
+        appAndroidCompileSDK = 33
+        appAndroidMinSDK = 15
+        appAndroidTargetSDK = 33
+
+        gdxVersion = '1.11.0'
+        gdxControllersVersion = '2.2.3-SNAPSHOT'
+        robovmVersion = '2.3.16'
+    }
+    version = appVersionName
+
+    repositories {
+        maven { url 'https://jitpack.io'}
+        google()
+        mavenCentral()
+        maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+    }
+
+}

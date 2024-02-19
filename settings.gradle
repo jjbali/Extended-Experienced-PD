@@ -1,0 +1,3 @@
+include ':core', ':SPD-classes', ':android', ':desktop', ':services',
+        ':services:updates:githubUpdates',
+        ':services:news:ingameNews'
