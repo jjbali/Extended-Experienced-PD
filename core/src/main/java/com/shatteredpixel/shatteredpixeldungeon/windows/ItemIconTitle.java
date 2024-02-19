@@ -24,7 +24,7 @@ public class ItemIconTitle extends IconTitle {
 
         if (Dungeon.hero.isAlive() && Dungeon.hero.belongings.contains(item)) {
             if (!(item instanceof WandOfUnstable || item instanceof ParallelUniverse)) {
-                renameButton = new IconButton(Icons.get( item.customName.isEmpty() && item.customName.equals(item.trueName()) ? Icons.RENAME_OFF : Icons.RENAME_ON)) {
+                renameButton = new IconButton(Icons.get( item.customName.isEmpty() ? Icons.RENAME_OFF : Icons.RENAME_ON)) {
                     @Override
                     protected void onClick() {
                         window.hide();

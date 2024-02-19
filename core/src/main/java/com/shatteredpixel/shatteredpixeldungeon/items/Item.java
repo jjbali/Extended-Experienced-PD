@@ -248,9 +248,8 @@ public class Item implements Bundlable {
 			@Override
 			public void onSelect( boolean positive, String text ) {
 				if (text != null && positive) {
-					curItem.customName = text;
-				} else if (!positive) {
-					curItem.customName = "";
+					if (text.equals(item.trueName())) curItem.customName = "";
+					else curItem.customName = text;
 				}
 			}
 
