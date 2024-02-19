@@ -4,6 +4,8 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.ParallelUniverse;
+import com.shatteredpixel.shatteredpixeldungeon.items.lottery.LotteryItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.Questionnaire;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfUnstable;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
@@ -23,7 +25,8 @@ public class ItemIconTitle extends IconTitle {
         super(item);
 
         if (Dungeon.hero.isAlive() && Dungeon.hero.belongings.contains(item)) {
-            if (!(item instanceof WandOfUnstable || item instanceof ParallelUniverse)) {
+            if (!(item instanceof WandOfUnstable || item instanceof ParallelUniverse || item instanceof Questionnaire
+                    || item instanceof LotteryItem)) {
                 renameButton = new IconButton(Icons.get( item.customName.isEmpty() ? Icons.RENAME_OFF : Icons.RENAME_ON)) {
                     @Override
                     protected void onClick() {
