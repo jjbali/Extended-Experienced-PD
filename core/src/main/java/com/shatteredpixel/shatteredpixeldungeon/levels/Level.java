@@ -482,6 +482,7 @@ public abstract class Level implements Bundlable {
 			Buff.affect(m, LifeLink.class, Integer.MAX_VALUE);
 			ChampionEnemy.rollForChampion(m);
 			ChampionEnemy.rollForChampion(m);
+			m.defenseSkill *= 5;
 		}
 
 		if (Dungeon.branch == Dungeon.DIMENSIONAL) {
@@ -493,6 +494,8 @@ public abstract class Level implements Bundlable {
 			m.HP = m.HT *= Dungeon.NormalIntRange(10, 50);
 			ChampionEnemy.rollForChampion(m);
 			ChampionEnemy.rollForChampion(m);
+			m.defenseSkill *= 10;
+			m.EXP *= 10;
 		}
 
 		assert m != null;
