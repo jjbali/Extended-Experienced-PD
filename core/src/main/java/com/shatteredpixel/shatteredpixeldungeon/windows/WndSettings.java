@@ -1127,34 +1127,6 @@ public class WndSettings extends WndTabbed {
 				chkWifi.checked(SPDSettings.WiFi());
 				add(chkWifi);
 			}
-
-			hpMod = new OptionSlider(
-					"Hero Health Multi",
-					"1",
-					"20",
-					1,
-					20
-			) {
-				@Override
-				protected void onChange() {
-					SPDSettings.healthMod(getSelectedValue());
-					Dungeon.hero.updateHT(false);
-				}
-			};
-			hpMod.setSelectedValue(SPDSettings.healthMod());
-			if (Dungeon.depth > 1) add(hpMod);
-
-
-
-			debuggable = new CheckBox("Debug Items"){
-				@Override
-				protected void onClick() {
-					super.onClick();
-					SPDSettings.debuggable(checked());
-				}
-			};
-			debuggable.checked(SPDSettings.debuggable());
-			add(debuggable);
 		}
 
 		@Override
