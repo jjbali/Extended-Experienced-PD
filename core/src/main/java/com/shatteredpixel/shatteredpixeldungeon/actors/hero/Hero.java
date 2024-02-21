@@ -187,7 +187,7 @@ public class Hero extends Char {
 	public Hero() {
 		super();
 
-		HP = HT = 250;
+		HP = HT = 20;
 		STR = STARTING_STR;
 		
 		belongings = new Belongings( this );
@@ -199,7 +199,7 @@ public class Hero extends Char {
 	public void updateHT( boolean boostHP ){
 		long curHT = HT;
 		
-		HT = 250 + 100 * (lvl-1) + HTBoost;
+		HT = 20 + 20L * (lvl-1) + HTBoost;
 		int multiplier = RingOfMight.HTMultiplier(this);
 		HT = Math.round(multiplier + HT);
 		
