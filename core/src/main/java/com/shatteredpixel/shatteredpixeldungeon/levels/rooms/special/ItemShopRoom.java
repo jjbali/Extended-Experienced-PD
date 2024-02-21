@@ -513,19 +513,19 @@ public class ItemShopRoom extends SpecialRoom {
 				itemsToSpawn.add( new StarlightSmasher());
 
 			//Spellbooks
-				itemsToSpawn.add( new BookOfBlast() );
-				itemsToSpawn.add( new BookOfCorruption() );
-				itemsToSpawn.add( new BookOfCorrosion() );
-				itemsToSpawn.add( new BookOfDisintegration() );
-				itemsToSpawn.add( new BookOfEarth() );
-				itemsToSpawn.add( new BookOfFire() );
-				itemsToSpawn.add( new BookOfFrost() );
-				itemsToSpawn.add( new BookOfLight() );
-				itemsToSpawn.add( new BookOfMagic() );
-				itemsToSpawn.add( new BookOfRegrowth() );
-				itemsToSpawn.add( new BookOfThunderBolt() );
-				itemsToSpawn.add( new BookOfTransfusion() );
-				itemsToSpawn.add( new BookOfWarding() );
+				//itemsToSpawn.add( new BookOfBlast() );
+				//itemsToSpawn.add( new BookOfCorruption() );
+				//itemsToSpawn.add( new BookOfCorrosion() );
+				//itemsToSpawn.add( new BookOfDisintegration() );
+				//itemsToSpawn.add( new BookOfEarth() );
+				//itemsToSpawn.add( new BookOfFire() );
+				//itemsToSpawn.add( new BookOfFrost() );
+				//itemsToSpawn.add( new BookOfLight() );
+				//itemsToSpawn.add( new BookOfMagic() );
+				//itemsToSpawn.add( new BookOfRegrowth() );
+				//itemsToSpawn.add( new BookOfThunderBolt() );
+				//itemsToSpawn.add( new BookOfTransfusion() );
+				//itemsToSpawn.add( new BookOfWarding() );
 
 
 
