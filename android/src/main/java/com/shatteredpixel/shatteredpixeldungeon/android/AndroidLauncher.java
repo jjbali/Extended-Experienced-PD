@@ -74,7 +74,7 @@ public class AndroidLauncher extends AndroidApplication {
 			return;
 		}
 
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+		//getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
 		new UCEHandler.Builder(this).setUCEHEnabled(true).build();
 
