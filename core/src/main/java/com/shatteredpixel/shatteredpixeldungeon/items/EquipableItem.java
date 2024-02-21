@@ -74,7 +74,7 @@ public abstract class EquipableItem extends Item {
 	public ArrayList<String> actions(Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
 		actions.add( isEquipped( hero ) ? AC_UNEQUIP : AC_EQUIP );
-		actions.add( AC_DISMANTLE );
+		//actions.add( AC_DISMANTLE );
 		if (DeviceCompat.isDebug()) {
 			if (isUpgradable()) actions.add( AC_UPGRADE );
 			if (this instanceof Weapon) actions.add( AC_ENCHANT );
