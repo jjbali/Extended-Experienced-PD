@@ -212,16 +212,6 @@ public class AdditionItem extends Questionnaire {
                     }
                 } else if (text.equals("")) {
                     GLog.w("You didn't answer the question.");
-                } else if (text.equals("debuggable") && !SPDSettings.debuggable()) {
-                    Dungeon.level.drop(new PotionOfDebug(), curUser.pos).sprite.drop();
-                    Dungeon.level.drop(new ScrollOfDebug(), curUser.pos).sprite.drop();
-                    GLog.h("Secret code activated.");
-                } else if (text.equals("tests") && !SPDSettings.debuggable()) {
-                    Dungeon.level.drop(new LevelTeleporter(), curUser.pos).sprite.drop();
-                    Dungeon.level.drop(new EnemyAttributeModifier(), curUser.pos).sprite.drop();
-                    Dungeon.level.drop(new TimeReverser(), curUser.pos).sprite.drop();
-                    Dungeon.level.drop(new ImmortalShieldAffecter(), curUser.pos).sprite.drop();
-                    GLog.h("Secret code activated.");
                 } else {
                     GameScene.flash(0xFFFF0000);
                     GLog.w("That answer is not equals as the given, try again.");
