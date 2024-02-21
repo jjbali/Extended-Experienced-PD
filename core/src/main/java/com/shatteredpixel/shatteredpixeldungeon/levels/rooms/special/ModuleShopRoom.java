@@ -215,7 +215,7 @@ public class ModuleShopRoom extends SpecialRoom {
 		itemsToSpawn.add(new RewardBoostModule());
 		itemsToSpawn.add(new StrengthModule());
 		itemsToSpawn.add(new TimeReverserModule());
-		itemsToSpawn.add(new ScreenshotModule());
+		//itemsToSpawn.add(new ScreenshotModule());
 		itemsToSpawn.add(new MagicalSightModule());
 
 
