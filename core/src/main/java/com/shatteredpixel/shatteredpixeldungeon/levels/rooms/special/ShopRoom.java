@@ -224,6 +224,7 @@ public class ShopRoom extends SpecialRoom {
 		}
 		//itemsToSpawn.add(new ExpGenerator());
 		//itemsToSpawn.add(new HealthGenerator());
+		itemsToSpawn.add(new RandomItemTicket());
 
 		if (Dungeon.depth == 1) {
 			//note added in the first shop
