@@ -222,8 +222,8 @@ public class ShopRoom extends SpecialRoom {
 			itemsToSpawn.add(new TicketToThirdArena());
 			itemsToSpawn.add(new TicketToFourthArena());
 		}
-		itemsToSpawn.add(new ExpGenerator());
-		itemsToSpawn.add(new HealthGenerator());
+		//itemsToSpawn.add(new ExpGenerator());
+		//itemsToSpawn.add(new HealthGenerator());
 
 		if (Dungeon.depth == 1) {
 			//note added in the first shop
