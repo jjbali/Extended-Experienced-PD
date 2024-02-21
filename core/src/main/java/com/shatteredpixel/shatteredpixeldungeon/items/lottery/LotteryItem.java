@@ -96,11 +96,11 @@ public class LotteryItem extends Item {
                     GLog.h("You give the set correctly.");
                     ANSWER = Arrays.toString(generateLotteryNumbers());
                     GameScene.flash(0xFF008000);
-                    switch (Random.Int(4)) {
+                    switch (Random.Int(6)) {
                         case 0:
                             updateQuickslot();
                             for (int i = 0; i < 50; i++) {
-                                Dungeon.level.drop(Generator.random(Generator.Category.MODULES), curUser.pos).sprite.drop();
+                                Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), curUser.pos).sprite.drop();
                             }
                             break;
                         case 1:
@@ -118,7 +118,19 @@ public class LotteryItem extends Item {
                         case 3:
                             updateQuickslot();
                             for (int i = 0; i < 50; i++) {
-                                Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), curUser.pos).sprite.drop();
+                                Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), curUser.pos).sprite.drop();
+                            }
+                            break;
+                        case 4:
+                            updateQuickslot();
+                            for (int i = 0; i < 50; i++) {
+                                Dungeon.level.drop(Generator.random(Generator.Category.DARTS), curUser.pos).sprite.drop();
+                            }
+                            break;
+                        case 5:
+                            updateQuickslot();
+                            for (int i = 0; i < 10; i++) {
+                                Dungeon.level.drop(Generator.random(Generator.Category.WEAPON), curUser.pos).sprite.drop();
                             }
                             break;
                     }
