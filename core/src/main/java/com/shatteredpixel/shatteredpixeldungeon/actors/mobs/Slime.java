@@ -119,7 +119,7 @@ public class Slime extends Mob {
 		MeleeWeapon w = (MeleeWeapon) Reflection.newInstance(c.classes[Random.chances(c.defaultProbs)]);
 		assert w != null;
 		w.random();
-		w.level(1);
+		w.level(0);
 		return w;
 	}
 }
