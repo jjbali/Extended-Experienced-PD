@@ -53,7 +53,7 @@ public class StormBomb extends Bomb {
 		PathFinder.buildDistanceMap( cell, BArray.not( Dungeon.level.solid, null ), 6 );
 		for (int i = 0; i < PathFinder.distance.length; i++) {
 			if (PathFinder.distance[i] < Integer.MAX_VALUE) {
-				Blob storm = Blob.seed( i, cell, StormGas.class );
+				Blob storm = Blob.seed( i, 50, StormGas.class );
 				((StormGas) storm).setStrength( 3 * Dungeon.hero.lvl/4);
 				GameScene.add( storm );
 				Char ch = Actor.findChar(i);
