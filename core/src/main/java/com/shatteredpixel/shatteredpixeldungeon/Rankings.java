@@ -30,12 +30,16 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Belongings;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.BinaryItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisibilityItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.ExponentialItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MixedOperationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.OddEvenItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.RectangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.SubtractionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
@@ -197,7 +201,9 @@ public enum Rankings {
 
 			Statistics.answeredQuestions += AdditionItem.totalAnswers_a + SubtractionItem.totalAnswers_b
 											+ MultiplicationItem.totalAnswers_c + DivisionItem.totalAnswers_d
-											+ MixedOperationItem.totalAnswers_f + OddEvenItem.totalAnswers_g;
+											+ MixedOperationItem.totalAnswers_f + OddEvenItem.totalAnswers_g
+											+ ExponentialItem.totalAnswers_e + RectangularItem.totalAnswers_j
+											+ BinaryItem.streak_i + DivisibilityItem.streak_h;
 
 			Statistics.totalBossScore = 0;
 			for (int i : Statistics.bossScores){
