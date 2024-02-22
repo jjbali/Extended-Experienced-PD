@@ -199,14 +199,14 @@ public class ShopRoom extends SpecialRoom {
 			case 3: itemsToSpawn.add(new AvaritiaFishingRod().upgrade(Random.Int(2, 15))); break;
 			case 4: default: itemsToSpawn.add(new ChaosFishingRod().upgrade(Random.Int(2, 15))); break;
 		}
-		itemsToSpawn.add(new GambleBag().quantity(Random.Int(2, 10)));
-		itemsToSpawn.add(new BiggerGambleBag().quantity(Random.Int(2, 10)));
-		itemsToSpawn.add(new AlchemyBag().quantity(Random.Int(2, 10)));
-		itemsToSpawn.add(new QualityBag().quantity(Random.Int(2, 10)));
-		itemsToSpawn.add(new SpellBag().quantity(Random.Int(2, 10)));
-		itemsToSpawn.add(new TippedDartBag().quantity(Random.Int(2, 10)));
-		itemsToSpawn.add(new ScrollBag().quantity(Random.Int(2, 10)));
-		itemsToSpawn.add(new PotionBag().quantity(Random.Int(2, 10)));
+		itemsToSpawn.add(new GambleBag());
+		itemsToSpawn.add(new BiggerGambleBag());
+		itemsToSpawn.add(new AlchemyBag());
+		itemsToSpawn.add(new QualityBag());
+		itemsToSpawn.add(new SpellBag());
+		itemsToSpawn.add(new TippedDartBag());
+		itemsToSpawn.add(new ScrollBag());
+		itemsToSpawn.add(new PotionBag());
 		itemsToSpawn.add(new Ankh());
 		itemsToSpawn.add(Generator.randomWeapon());
 		itemsToSpawn.add(Generator.randomMissile());
@@ -222,8 +222,6 @@ public class ShopRoom extends SpecialRoom {
 			itemsToSpawn.add(new TicketToThirdArena());
 			itemsToSpawn.add(new TicketToFourthArena());
 		}
-		//itemsToSpawn.add(new ExpGenerator());
-		//itemsToSpawn.add(new HealthGenerator());
 		itemsToSpawn.add(new RandomItemTicket());
 
 		if (Dungeon.depth == 1) {
