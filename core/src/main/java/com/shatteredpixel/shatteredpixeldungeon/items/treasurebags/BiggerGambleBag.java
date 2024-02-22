@@ -45,7 +45,7 @@ public class BiggerGambleBag extends TreasureBag {
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 1.5f;
         for(int i = 0; i < amount; i++) items.add(Generator.random());
         for (Item item: items){
-            if (item.stackable && Random.Float() < 0.33f) item.quantity(item.quantity()+1);
+            if (item.stackable && Random.Float() < 0.5f) item.quantity(item.quantity()+1);
         }
         return items;
     }
