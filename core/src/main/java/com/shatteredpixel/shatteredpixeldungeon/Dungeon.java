@@ -274,7 +274,7 @@ public class Dungeon {
 		fireDamage = 1;
 		luck = 1;
 		energy = 0L;
-		respawn_timer = 40;
+		respawn_timer = 10;
 		additionalMobs = 10;
 		gold = 500L;
 		bullet = 0;
