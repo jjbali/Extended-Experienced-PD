@@ -138,7 +138,7 @@ public class AdditionItem extends Questionnaire {
             @Override
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(ANSWER)) {
-                    Buff.affect(hero, CodeCooldown2.class).set(10);
+                    Buff.affect(hero, CodeCooldown2.class).set(3);
                     GLog.h("You answered the question correctly, +1DMG!");
                     if (streak_a < 11) {
                         CODE = Random.Int(100);

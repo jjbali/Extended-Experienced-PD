@@ -103,7 +103,7 @@ public class OddEvenItem extends Questionnaire {
             @Override
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(ANSWER)) {
-                    Buff.affect(hero, CodeCooldown8.class).set(10);
+                    Buff.affect(hero, CodeCooldown8.class).set(3);
                     GLog.h("You answered the question correctly.");
                     CODE = Random.Int(Integer.MAX_VALUE);
                     ANSWER = CODE % 2 == 0 ? "even" : "odd";

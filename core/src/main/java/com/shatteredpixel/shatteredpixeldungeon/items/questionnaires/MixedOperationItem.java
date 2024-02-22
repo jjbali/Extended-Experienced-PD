@@ -258,7 +258,7 @@ public class MixedOperationItem extends Questionnaire {
                                 Dungeon.level.drop(Generator.randomWeapon(), curUser.pos).sprite.drop();
                                 break;
                         }
-                        Buff.affect(hero, CodeCooldown7.class).set(10);
+                        Buff.affect(hero, CodeCooldown7.class).set(3);
                         totalAnswers_f += 1;
                         streak_f += 1;
                     }

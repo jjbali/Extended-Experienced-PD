@@ -108,7 +108,7 @@ public class BinaryItem extends Questionnaire {
             @Override
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(ANSWER)) {
-                    Buff.affect(hero, CodeCooldown10.class).set(10);
+                    Buff.affect(hero, CodeCooldown10.class).set(3);
                     GLog.h("You answered the question correctly.");
                     CODE = Random.Int(1000) + 1;
                     ANSWER = Integer.toBinaryString(CODE);

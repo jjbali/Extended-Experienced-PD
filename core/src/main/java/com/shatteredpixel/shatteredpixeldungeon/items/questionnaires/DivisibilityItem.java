@@ -110,7 +110,7 @@ public class DivisibilityItem extends Questionnaire {
             @Override
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(ANSWER)) {
-                    Buff.affect(hero, CodeCooldown9.class).set(10);
+                    Buff.affect(hero, CodeCooldown9.class).set(3);
                     GLog.h("You answered the question correctly.");
                     CODE = Random.Int(Integer.MAX_VALUE);
                     CODE2 = Random.Int(10) + 1;
