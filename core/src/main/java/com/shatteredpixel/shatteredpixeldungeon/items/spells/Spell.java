@@ -79,7 +79,7 @@ public abstract class Spell extends Item {
 
 	@Override
 	public Item random() {
-		quantity = (Dungeon.IntRange( 30 + Dungeon.escalatingDepth() * 300, 60 + Dungeon.escalatingDepth() * 300 ));
+		quantity = 1;
 		return this;
 	}
 	protected abstract void onCast(Hero hero );

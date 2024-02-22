@@ -202,7 +202,7 @@ public class Potion extends Item {
 
 	@Override
 	public Item random() {
-		quantity = Dungeon.IntRange( 2, 3 );
+		quantity = 1;
 		return this;
 	}
 	
