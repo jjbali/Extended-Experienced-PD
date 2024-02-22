@@ -484,7 +484,7 @@ public class ItemShopRoom extends SpecialRoom {
 					itemsToSpawn.add( new Pasty());
 					itemsToSpawn.add( new OverloadBeacon());
 				} else {
-					itemsToSpawn.add( new ExpGenerator());
+					//itemsToSpawn.add( new ExpGenerator());
 					itemsToSpawn.add( new Ankh());
 					itemsToSpawn.add( new ArcaneResin());
 					itemsToSpawn.add( new AlchemicalCatalyst());
