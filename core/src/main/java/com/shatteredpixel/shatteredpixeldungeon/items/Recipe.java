@@ -39,17 +39,6 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.ExoticPotion;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfBlast;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfCorrosion;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfCorruption;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfDisintegration;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfEarth;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfFire;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfLight;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfMagic;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfRegrowth;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfThunderBolt;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfWarding;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfEarthblast;
@@ -172,19 +161,7 @@ public abstract class Recipe {
 		new ExoticScroll.ScrollToExotic(),
 		new ArcaneResin.Recipe(),
 		new Alchemize.Recipe(),
-		new StewedMeat.oneMeat(),
-		new BookOfBlast.Recipe(),
-		new BookOfCorrosion.Recipe(),
-		new BookOfCorruption.Recipe(),
-		new BookOfDisintegration.Recipe(),
-		new BookOfEarth.Recipe(),
-		new BookOfFire.Recipe(),
-		new BookOfLight.Recipe(),
-		new BookOfMagic.Recipe(),
-		new BookOfRegrowth.Recipe(),
-		new BookOfThunderBolt.Recipe(),
-		new BookOfThunderBolt.Recipe(),
-		new BookOfWarding.Recipe()
+		new StewedMeat.oneMeat()
 	};
 	
 	private static Recipe[] twoIngredientRecipes = new Recipe[]{

@@ -125,20 +125,6 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPol
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPrismaticImage;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfSirensSong;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfBlast;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfCorrosion;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfCorruption;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfDisintegration;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfEarth;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfFire;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfFrost;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfLight;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfMagic;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfRegrowth;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfThunderBolt;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfTransfusion;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfWarding;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.SpellBook;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.Alchemize;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.AquaBlast;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
@@ -238,7 +224,6 @@ public class Generator {
 		SPELLS (0, 0, Spell.class),
 		BLACKSMITH (0, 0, BlacksmithWeapon.class),
 		MISCS(0, 0, Item.class),
-		SPELLBOOK(0, 0, SpellBook.class),
 		FISHINGROD(0, 0, FishingRod.class),
 		BOMB(0, 0, Bomb.class),
 		BREWS(0, 0, Brew.class),
@@ -377,22 +362,6 @@ public class Generator {
 					AvaritiaFishingRod.class,
 					NeutroniumFishingRod.class,
 					ChaosFishingRod.class
-			};
-
-			SPELLBOOK.classes = new Class<?>[]{
-					BookOfBlast.class,
-					BookOfCorrosion.class,
-					BookOfCorruption.class,
-					BookOfDisintegration.class,
-					BookOfEarth.class,
-					BookOfFire.class,
-					BookOfFrost.class,
-					BookOfLight.class,
-					BookOfMagic.class,
-					BookOfRegrowth.class,
-					BookOfThunderBolt.class,
-					BookOfTransfusion.class,
-					BookOfWarding.class
 			};
 
 			MISCS.classes = new Class<?>[]{
