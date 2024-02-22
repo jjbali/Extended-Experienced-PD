@@ -40,10 +40,6 @@ public class ChampionModule extends Module {
                     Buff.affect(hero, ChampionEnemy.Blessed.class);
                 case 3:
                     Buff.affect(hero, ChampionEnemy.Confused.class);
-                case 4:
-                    Buff.affect(hero, ChampionEnemy.Cruel.class);
-                case 5:
-                    Buff.affect(hero, ChampionEnemy.Frozen.class);
                 case 6:
                     Buff.affect(hero, ChampionEnemy.Giant.class);
                 case 7:
@@ -52,8 +48,6 @@ public class ChampionModule extends Module {
                     Buff.affect(hero, ChampionEnemy.Immunization.class);
                 case 9:
                     Buff.affect(hero, ChampionEnemy.Poisonous.class);
-                case 10:
-                    Buff.affect(hero, ChampionEnemy.Projecting.class);
             }
             detach(hero.belongings.backpack);
         }
