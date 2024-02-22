@@ -331,7 +331,7 @@ public abstract class ChampionEnemy extends Buff {
 
 		@Override
 		public boolean act() {
-			multiplier += 0.7f;
+			multiplier += 0.001f;
 			spend(0.5f);
 			return true;
 		}
@@ -448,12 +448,12 @@ public abstract class ChampionEnemy extends Buff {
 
 		@Override
 		public float evasionAndAccuracyFactor() {
-			return 2f * target.pos;
+			return 10f;
 		}
 
 		@Override
 		public float meleeDamageFactor() {
-			return Dungeon.Int(4, 7) * target.pos;
+			return Dungeon.Int(4, 7);
 		}
 
 		@Override
