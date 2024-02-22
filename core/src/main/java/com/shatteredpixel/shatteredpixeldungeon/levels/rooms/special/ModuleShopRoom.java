@@ -193,7 +193,7 @@ public class ModuleShopRoom extends SpecialRoom {
 		ArrayList<Item> itemsToSpawn = new ArrayList<>();
 
 		itemsToSpawn.add(new ChampionModule());
-		itemsToSpawn.add(new CycleModule());
+		//itemsToSpawn.add(new CycleModule());
 		if (hero.buff(SuperExp.class) == null) {
 			itemsToSpawn.add(new ExpBoostModule());
 		}
