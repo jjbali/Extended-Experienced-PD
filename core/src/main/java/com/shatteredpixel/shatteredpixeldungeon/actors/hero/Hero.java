@@ -1424,18 +1424,6 @@ public class Hero extends Char {
 				});
 			}
 		}
-		if (AdditionItem.streak_a >= 15) {
-			damage += Math.round((damage * 0.10f) + AdditionItem.s);
-		}
-		if (SubtractionItem.streak_b >= 15) {
-			damage += Math.round((damage * 0.10f) + SubtractionItem.s);
-		}
-		if (MultiplicationItem.streak_c >= 15) {
-			damage += Math.round((damage * 0.10f) + MultiplicationItem.s);
-		}
-		if (DivisionItem.streak_d >= 15) {
-			damage += Math.round((damage * 0.10f) + DivisionItem.s);
-		}
 		
 		return damage;
 	}

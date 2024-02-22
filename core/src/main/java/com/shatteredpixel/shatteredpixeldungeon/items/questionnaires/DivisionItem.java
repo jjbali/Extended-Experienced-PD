@@ -255,8 +255,6 @@ public class DivisionItem extends Questionnaire {
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
                 + "\n- (0) Accuracy +1"
-                + "\n- (10) Experience +10%"
-                + "\n- (15) Damage +10%"
                 + "\n- (25) More Loots [based on ring of wealth]";
     }
 

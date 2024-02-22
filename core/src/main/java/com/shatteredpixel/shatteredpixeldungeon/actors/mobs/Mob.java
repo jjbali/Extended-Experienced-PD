@@ -851,19 +851,6 @@ public abstract class Mob extends Char {
 		if (alignment == Alignment.ENEMY){
 			rollToDropLoot();
 
-			if (AdditionItem.streak_a >= 10) {
-				EXP += Math.round(EXP * 0.10f);
-			}
-			if (SubtractionItem.streak_b >= 10) {
-				EXP += Math.round(EXP * 0.10f);
-			}
-			if (MultiplicationItem.streak_c >= 10) {
-				EXP += Math.round(EXP * 0.10f);
-			}
-			if (DivisionItem.streak_d >= 10) {
-				EXP += Math.round(EXP * 0.10f);
-			}
-
 			if (cause == hero || cause instanceof Weapon || cause instanceof Weapon.Enchantment){
 				if (hero.hasTalent(Talent.LETHAL_MOMENTUM)
 						&& Random.Float() < 0.34f + 0.33f* hero.pointsInTalent(Talent.LETHAL_MOMENTUM)){
