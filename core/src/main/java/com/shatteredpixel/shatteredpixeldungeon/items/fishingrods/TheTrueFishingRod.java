@@ -42,6 +42,6 @@ public class TheTrueFishingRod extends FishingRod{
     }
     @Override
     public long value() {
-        return 150000 * Dungeon.depth;
+        return 150000L * Dungeon.depth;
     }
 }
