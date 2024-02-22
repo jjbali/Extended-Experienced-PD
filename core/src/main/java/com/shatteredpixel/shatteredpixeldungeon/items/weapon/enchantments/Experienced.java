@@ -33,6 +33,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Ankh;
 import com.shatteredpixel.shatteredpixeldungeon.items.ExpGenerator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
+import com.shatteredpixel.shatteredpixeldungeon.items.RandomItemTicket;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite.Glowing;
@@ -63,8 +64,8 @@ public class Experienced extends Weapon.Enchantment {
 			GLog.p("Ankh dropped with a 2% chance!");
 		}
 		if (Random.Int(20) == 0) {
-			Dungeon.level.drop(new ExpGenerator().upgrade(10L), attacker.pos).sprite.drop();
-			GLog.p("Power Plant dropped with a 5% chance!");
+			Dungeon.level.drop(new RandomItemTicket(), attacker.pos).sprite.drop();
+			GLog.p("Random Item Ticket dropped with a 5% chance!");
 		}
 		damage += damage * 0.10f;
 		return damage;
