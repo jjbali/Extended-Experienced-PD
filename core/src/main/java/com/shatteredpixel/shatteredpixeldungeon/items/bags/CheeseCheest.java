@@ -28,7 +28,6 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.SpellBook;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 
 public class CheeseCheest extends Bag {
@@ -39,7 +38,7 @@ public class CheeseCheest extends Bag {
 
 	@Override
 	public boolean canHold( Item item ) {
-		if (item instanceof Artifact || item instanceof Ring || item instanceof SpellBook){
+		if (item instanceof Artifact || item instanceof Ring){
 			return super.canHold(item);
 		} else {
 			return false;

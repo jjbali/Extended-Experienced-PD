@@ -119,20 +119,6 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPol
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPrismaticImage;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfSirensSong;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfBlast;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfCorrosion;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfCorruption;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfDisintegration;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfEarth;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfFire;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfFrost;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfLight;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfMagic;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfRegrowth;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfThunderBolt;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfTransfusion;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.BookOfWarding;
-import com.shatteredpixel.shatteredpixeldungeon.items.spellbook.SpellBook;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.Alchemize;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.AquaBlast;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
@@ -316,8 +302,6 @@ public class ItemShopRoom extends SpecialRoom {
 				} else {
 					level.drop(item.upgrade((Dungeon.NormalLongRange(50, 60) * depth) * (cycle + 1) ^ 2).identify(), cell).type = Heap.Type.FOR_SALE;
 				}
-			} else if (item instanceof SpellBook) {
-				level.drop( item, cell ).type = Heap.Type.FOR_SALE;
 			} else {
 				level.drop( item.quantity(Dungeon.NormalLongRange(2, 6) * depth), cell ).type = Heap.Type.FOR_ARENA_SALE;
 			}
