@@ -499,8 +499,6 @@ public abstract class Level implements Bundlable {
 		}
 
 		assert m != null;
-		m.EXP += 2L + (Dungeon.depth * 2L);
-
 		if (Dungeon.depth % 5 == 0 && !m.properties().contains(Char.Property.BOSS)) {
 			m.HP = m.HT *= Random.Int(2, 10) + 1;
 		}
