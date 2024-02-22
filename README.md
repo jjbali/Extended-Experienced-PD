@@ -19,7 +19,6 @@ Some features
 - Rename Heroes/Items
 - Aiming (Wands, Darts, etc..)
 - Modules
-- Exp and Health Generators
 
 Note that **this repository does not accept pull requests!** The code here is provided in hopes that others may find it useful for their own projects, not to allow community contribution. Issue reports of all kinds (bug reports, feature requests, etc.) are welcome. Also the project is on its debugging state, every possible bugs can be reported, send it to my mail: johnnollas5@gmail.com
 
