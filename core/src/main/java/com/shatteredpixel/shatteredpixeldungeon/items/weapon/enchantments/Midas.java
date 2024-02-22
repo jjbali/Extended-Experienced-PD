@@ -48,7 +48,7 @@ public class Midas extends Weapon.Enchantment {
 			Dungeon.level.drop(new Gold().quantity(goldValue), attacker.pos).sprite.drop();
 			Sample.INSTANCE.play(Assets.Sounds.GOLD);
 		} else if (Random.Int(level) >= 10) {
-			long goldValue = Random.LongRange(50000, 1500000);
+			long goldValue = Random.LongRange(5000, 15000);
 			Dungeon.level.drop(new Gold().quantity(goldValue), attacker.pos).sprite.drop();
 			Sample.INSTANCE.play(Assets.Sounds.GOLD);
 		}
