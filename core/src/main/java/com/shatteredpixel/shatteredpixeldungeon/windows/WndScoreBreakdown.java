@@ -65,7 +65,7 @@ public class WndScoreBreakdown extends Window {
 					num.format(Statistics.totalQuestScore), pos, Statistics.totalQuestScore >= 10_000);
 			pos = addInfo(this, Messages.get(this, "quests_desc"), pos);
 			pos = statSlot(this, Messages.get(this, "answered_questions"),
-					num.format(Statistics.totalQuestScore), pos, Statistics.totalQuestScore >= 50_000);
+					num.format(Statistics.answeredQuestions), pos, Statistics.answeredQuestions >= 500_000);
 			pos = addInfo(this, Messages.get(this, "answ_desc"), pos);
 		} else {
 			pos = statSlot(this, Messages.get(this, "progress_title"),
