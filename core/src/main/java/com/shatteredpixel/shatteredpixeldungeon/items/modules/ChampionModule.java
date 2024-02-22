@@ -31,7 +31,7 @@ public class ChampionModule extends Module {
     public void execute( Hero hero, String action ) {
         super.execute(hero, action);
         if (action.equals(AC_USE)) {
-            switch (Random.Int(11)) {
+            switch (Random.Int(10)) {
                 case 0:
                     Buff.affect(hero, ChampionEnemy.AntiMagic.class);
                 case 1:
