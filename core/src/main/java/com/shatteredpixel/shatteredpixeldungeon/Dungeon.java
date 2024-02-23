@@ -524,49 +524,49 @@ public class Dungeon {
 					level = new LastLevel();
 					break;
 				default:
-					level = new GlitchedLevel();
+					level = new DeadEndLevel();
 			}
 		} else if (branch == 1) {
 			if (depth <= 101) {
 				level = new MiningLevel();
 			} else {
-				level = new GlitchedLevel();
+				level = new DeadEndLevel();
 			}
 		} else if (branch == BRANCH_ARENA){
 			if (depth == 102) {
 				level = new ArenaLevel();
 			} else {
-				level = new GlitchedLevel();
+				level = new DeadEndLevel();
 			}
 		} else if (branch == BRANCH_BLACK){
 			if (depth == 103) {
 				level = new BlackMimicLevel();
 			} else {
-				level = new GlitchedLevel();
+				level = new DeadEndLevel();
 			}
 		} else if (branch == BRANCH_CUSTOM){
 			if (depth == 104) {
 				level = new SecondArenaLevel();
 			} else {
-				level = new GlitchedLevel();
+				level = new DeadEndLevel();
 			}
 		} else if (branch == BRANCH_THIRD){
 			if (depth == 105) {
 				level = new ThirdArenaLevel();
 			} else {
-				level = new GlitchedLevel();
+				level = new DeadEndLevel();
 			}
 		} else if (branch == BRANCH_FOURTH){
 			if (depth == 106) {
 				level = new FourthArenaLevel();
 			} else {
-				level = new GlitchedLevel();
+				level = new DeadEndLevel();
 			}
 		} else if (branch == 7){
 			if (depth == 107) {
 				level = new DimensionalLevel();
 			} else {
-				level = new GlitchedLevel();
+				level = new DeadEndLevel();
 			}
 		} else if (branch == DIMENSIONAL){
 			//TODO to bo used soon.
@@ -576,7 +576,7 @@ public class Dungeon {
 				level = new LastLevel();
 			}
 		} else {
-			level = new GlitchedLevel();
+			level = new DeadEndLevel();
 		}
 
 		//dead end levels get cleared, don't count as generated
