@@ -53,7 +53,7 @@ public class LotteryItem extends Item {
         int[] numbers = new int[4];
 
         for (int i = 0; i < 4; i++) {
-            numbers[i] = Random.Int(49) + 1; // Generating random numbers between 1 and 49
+            numbers[i] = Random.Int(24) + 1; // Generating random numbers between 1 and 24
         }
 
         return numbers;
