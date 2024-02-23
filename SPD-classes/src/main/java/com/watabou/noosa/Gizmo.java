@@ -101,4 +101,5 @@ public class Gizmo {
 			parent.remove( this );
 		}
 	}
+
 }

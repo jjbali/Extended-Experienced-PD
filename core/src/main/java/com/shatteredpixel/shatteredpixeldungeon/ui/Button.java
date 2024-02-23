@@ -27,6 +27,7 @@ package com.shatteredpixel.shatteredpixeldungeon.ui;
 import com.watabou.input.*;
 import com.watabou.noosa.Camera;
 import com.watabou.noosa.Game;
+import com.watabou.noosa.Group;
 import com.watabou.noosa.PointerArea;
 import com.watabou.noosa.ui.Component;
 import com.watabou.utils.Signal;
@@ -217,5 +218,5 @@ public class Button extends Component {
 	public void givePointerPriority(){
 		hotArea.givePointerPriority();
 	}
-	
+
 }

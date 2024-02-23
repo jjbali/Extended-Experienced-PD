@@ -312,4 +312,11 @@ public class Group extends Gizmo {
 			return null;
 		}
 	}
+
+	public void cancelClick() {
+		if (members == null) return;
+		for (Gizmo gizmo : new ArrayList<>(members)) {
+			if (gizmo instanceof Group) ((Group) gizmo).cancelClick();
+		}
+	}
 }
