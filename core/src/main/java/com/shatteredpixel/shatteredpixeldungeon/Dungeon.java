@@ -759,7 +759,7 @@ public class Dungeon {
 
 	public static int getAdditionalMobs() {
 		if (Dungeon.hero.buff(OverloadBeacon.TemporaryOverload.class) != null)
-			return 100;
+			return 50;
 		return additionalMobs;
 	}
 
