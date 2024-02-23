@@ -33,6 +33,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.bombs.StormBomb;
 import com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.*;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.Cheese;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.AlchemyBag;
@@ -232,6 +233,10 @@ public class ShopRoom extends SpecialRoom {
 			itemsToSpawn.add(new MagicalHolster());
 			itemsToSpawn.add(new TreasureHolder());
 			itemsToSpawn.add(new CheeseCheest());
+		}
+
+		if (Dungeon.Int(250) == 0) {
+			itemsToSpawn.add( new Cheese());
 		}
 
 		if (AdditionItem.streak_a >= 30) {

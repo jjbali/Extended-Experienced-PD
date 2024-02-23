@@ -463,7 +463,7 @@ public class ItemShopRoom extends SpecialRoom {
 			//MISCS (RANDOMIZED)
 				if (Dungeon.Int(2) == 0) {
 					itemsToSpawn.add( new RandomItemTicket());
-					//itemsToSpawn.add( new Cheese());
+
 					itemsToSpawn.add( new SmallRation());
 					itemsToSpawn.add( new Pasty());
 					itemsToSpawn.add( new OverloadBeacon());
@@ -474,6 +474,10 @@ public class ItemShopRoom extends SpecialRoom {
 					itemsToSpawn.add( new AlchemicalCatalyst());
 					itemsToSpawn.add( new StewedMeat());
 					itemsToSpawn.add( new MeatPie());
+				}
+
+				if (Dungeon.Int(100) == 0) {
+					itemsToSpawn.add( new Cheese() );
 				}
 
 			// RINGS
