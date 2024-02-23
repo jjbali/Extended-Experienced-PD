@@ -247,7 +247,7 @@ public class TitleScene extends PixelScene {
 
 		public ChangesButton( Chrome.Type type, String label ){
 			super(type, label);
-			//if (SPDSettings.updates()) Updates.checkForUpdate();
+			if (SPDSettings.updates()) Updates.checkForUpdate();
 		}
 
 		boolean updateShown = false;
