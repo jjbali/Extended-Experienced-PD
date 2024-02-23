@@ -79,7 +79,7 @@ public class SeedAnalysisScene extends PixelScene {
 				text = DungeonSeed.formatText(text);
 				long seed = DungeonSeed.convertFromText(text);
 				if (positive && seed > -1){
-					CreditsBlock txt = new CreditsBlock(true, Window.TITLE_COLOR, new String[]{new SeedFinder().logSeedItems(text, SPDSettings.seedfinderFloors())});
+					CreditsBlock txt = new CreditsBlock(true, Window.TITLE_COLOR, new String[]{String.valueOf(new SeedFinder().logSeedItems(text, SPDSettings.seedfinderFloors()))});
 					txt.setRect((Camera.main.width - colWidth)/2f, 12, colWidth, 0);
 					content.add(txt);
 					content.setSize( fullWidth, txt.bottom()+10 );

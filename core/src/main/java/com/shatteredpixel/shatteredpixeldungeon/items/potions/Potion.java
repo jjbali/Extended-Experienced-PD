@@ -129,7 +129,7 @@ public class Potion extends Item {
 	
 	protected static ItemStatusHandler<Potion> handler;
 	
-	protected String color;
+	public String color;
 	
 	{
 		stackable = true;

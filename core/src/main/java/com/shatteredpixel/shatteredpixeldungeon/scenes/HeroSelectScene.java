@@ -595,7 +595,7 @@ public class HeroSelectScene extends PixelScene {
 				StyledButton btnSeedTest = new StyledButton(Chrome.Type.BLANK, Messages.get(HeroSelectScene.class, "seed_find"), 6){
 					@Override
 					protected void onClick() {
-						ShatteredPixelDungeon.switchScene( SeedFindScene.class );
+						ShatteredPixelDungeon.switchScene( SeedFinderScene.class );
 					}
 				};
 				btnSeedTest.icon(Icons.get(Icons.MAGNIFY));

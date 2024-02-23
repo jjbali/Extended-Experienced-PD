@@ -70,6 +70,10 @@ public class Heap implements Bundlable {
 		TOMB,
 		SKELETON,
 		REMAINS,
+		STATUE,
+		MIMIC,
+		GOLDEN_MIMIC,
+		CRYSTAL_MIMIC,
 
 		FOR_ITEM_SALE,
 		FOR_ARENA_SALE;
@@ -405,6 +409,14 @@ public class Heap implements Bundlable {
 				return Messages.get(this, "skeleton");
 			case REMAINS:
 				return Messages.get(this, "remains");
+			case MIMIC:
+				return "mimic";
+			case GOLDEN_MIMIC:
+				return "golden mimic";
+			case CRYSTAL_MIMIC:
+				return "crystal mimic";
+			case STATUE:
+				return "statue";
 			default:
 				return peek().title();
 		}
