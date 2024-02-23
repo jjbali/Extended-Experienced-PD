@@ -343,7 +343,7 @@ public Map<String, String> logSeedItems(String seed, int floors) {
 				Embers.class, CeremonialCandle.class, Pickaxe.class);
 
 		String titleString = "\n\nItems for seed "+DungeonSeed.convertToCode(Dungeon.seed)+" ("+Dungeon.seed+")";
-		titleString += Options.runesOn ? "[Runes On]" : "[Runes Off]";
+		//titleString += Options.runesOn ? "[Runes On]" : "[Runes Off]";
 		titleString += "\n\n";
 		int noOfLines = 3;
 		noOfLines +=14; // For potion index
@@ -351,7 +351,7 @@ public Map<String, String> logSeedItems(String seed, int floors) {
 		noOfLines +=11; // for special items area, but that hardcoded. dynamically adding it doesn't work as it's mixed in with main pass and we need to know in advance so we can add to the floor title
 		// need to re-architect the whole thing.
 
-		titleString += "***** Special items before floor 10 *****\n";
+		titleString += "***** Special items before floor 20 *****\n";
 		String artifactString = "";
 		String ringString = "";
 		String wandString = "";
@@ -366,7 +366,7 @@ public Map<String, String> logSeedItems(String seed, int floors) {
 
 		for (int i = 0; i < floors; i++) {
 			// SJC
-			returnString += "\n--- floor "+Dungeon.depth+" ---"+noOfLines+"\n";
+			returnString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n";
 			noOfLines +=2; // one for the title, one for empty line after section.
 
 			Level l = Dungeon.newLevel();
@@ -450,23 +450,23 @@ public Map<String, String> logSeedItems(String seed, int floors) {
 					else {
 						others.add(new HeapItem(item, h));
 						noOfLines +=1;
-						if (i <= 9 && (item.name().contains("boomerang") || item.name().contains("shuriken"))) {
+						if (i <= 19 && (item.name().contains("boomerang") || item.name().contains("shuriken"))) {
 							otherString += "- " + item.name() + " +" + item.level() + " - floor " + (i+1);
 							otherString += item.cursed ? " (cursed)" : "";
 							otherString += "\n";
 						}
 					}
-					if (i <= 9 && item instanceof Ring) {
+					if (i <= 19 && item instanceof Ring) {
 						ringString += "- " + item.name() + " +" + item.level() + " - floor " + (i+1);
 						ringString += item.cursed ? " (cursed)" : "";
 						ringString += "\n";
 					}
-					if (i <= 9 && item instanceof Artifact) {
+					if (i <= 19 && item instanceof Artifact) {
 						artifactString += "- " + item.name() + " +" + item.level() + " - floor " + (i+1);
 						artifactString += item.cursed ? " (cursed)" : "";
 						artifactString += "\n";
 					}
-					if (i <= 9 && item instanceof Wand) {
+					if (i <= 19 && item instanceof Wand) {
 						wandString += "- " + item.name() + " +" + item.level() + " - floor " + (i+1);
 						wandString += item.cursed ? " (cursed)" : "";
 						wandString += "\n";
@@ -486,11 +486,11 @@ public Map<String, String> logSeedItems(String seed, int floors) {
 			//SJC
 //			out.print(builder.toString());
 			returnString += builder.toString();
-			if (i<=19) { sewersString += "\n--- floor "+Dungeon.depth+" ---"+noOfLines+"\n"+builder.toString(); }
-			else if (i>19 && i<=39) { prisonString += "\n--- floor "+Dungeon.depth+" ---"+noOfLines+"\n"+builder.toString(); }
-			else if (i>39 && i<=59) { cavesString += "\n--- floor "+Dungeon.depth+" ---"+noOfLines+"\n"+builder.toString(); }
-			else if (i>59 && i<=79) { metropolisString += "\n--- floor "+Dungeon.depth+" ---"+noOfLines+"\n"+builder.toString(); }
-			else if (i>79 && i<=99) { hallsString += "\n--- floor "+Dungeon.depth+" ---"+noOfLines+"\n"+builder.toString(); }
+			if (i<=19) { sewersString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
+			else if (i>19 && i<=39) { prisonString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
+			else if (i>39 && i<=59) { cavesString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
+			else if (i>59 && i<=79) { metropolisString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
+			else if (i>79 && i<=99) { hallsString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
 
 			Dungeon.depth++;
 		}

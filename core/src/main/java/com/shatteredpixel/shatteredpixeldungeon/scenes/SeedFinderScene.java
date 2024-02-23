@@ -362,12 +362,12 @@ public class SeedFinderScene extends PixelScene {
 			rightPanel.y = homeLink.bottom() + 6;
 			add(rightPanel);
 
-			changeTitle = new IconTitle(Icons.get(Icons.CHANGES), Messages.get(this, "right_title"));
+			changeTitle = new IconTitle(Icons.get(Icons.CHANGES), "Changes");
 			changeTitle.setPos(rightPanel.x + rightPanel.marginLeft(), rightPanel.y + rightPanel.marginTop());
 			changeTitle.setSize(pw, 20);
 			add(changeTitle);
 
-			String body = Messages.get(this, "right_body");
+			String body = "Changes here for this seed finder";
 			if (Messages.lang() != Languages.ENGLISH){
 				body += "\n\n_" + Messages.get(this, "lang_warn") + "_";
 			}
