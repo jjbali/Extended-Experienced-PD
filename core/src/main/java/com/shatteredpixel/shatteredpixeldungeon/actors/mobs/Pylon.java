@@ -115,7 +115,7 @@ public class Pylon extends Mob {
 
 		shockCells.add(pos + PathFinder.CIRCLE8[targetNeighbor]);
 
-		if (Random.Float() < 0.5f && Dungeon.depth > 26){
+		if (Random.Float() < 0.5f && Dungeon.depth > 101){
 			List<Class<? extends Blob>> blobs = Arrays.asList(ToxicGas.class, ConfusionGas.class, Blizzard.class, Inferno.class, Electricity.class, Web.class);
 			GameScene.add(Blob.seed(pos, 500, Random.element(blobs)));
 		}
@@ -232,8 +232,7 @@ public class Pylon extends Mob {
 	@Override
 	public void die(Object cause) {
 		super.die(cause);
-		if (Dungeon.depth == 15)
-		((CavesBossLevel)Dungeon.level).eliminatePylon();
+		if (Dungeon.depth == 60) ((CavesBossLevel)Dungeon.level).eliminatePylon();
 		else ((BlackMimicLevel)Dungeon.level).eliminatePylon();
 	}
 
