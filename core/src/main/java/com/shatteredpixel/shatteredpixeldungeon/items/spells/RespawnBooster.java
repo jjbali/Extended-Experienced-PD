@@ -42,7 +42,7 @@ public class RespawnBooster extends Spell{
     @Override
     protected void onCast(Hero hero) {
         if (Dungeon.respawn_timer > 1) {
-            Dungeon.respawn_timer = (int) GameMath.gate(1, Dungeon.respawn_timer - 2, 50);
+            Dungeon.respawn_timer = (int) GameMath.gate(1, Dungeon.respawn_timer - 1, 50);
         }
         else {
             Dungeon.respawn_timer = Dungeon.respawn_timer * 0.7f;
