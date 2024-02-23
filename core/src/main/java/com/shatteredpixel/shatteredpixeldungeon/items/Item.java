@@ -107,7 +107,7 @@ public class Item implements Bundlable {
     protected long quantity = 1;
 	public boolean dropsDownHeap = false;
 	
-	public long level = 0;
+	private long level = 0;
 
 	public boolean levelKnown = false;
 	
