@@ -42,7 +42,7 @@ public class StrengthModule extends Module {
 
     @Override
     public long value() {
-        return 7500 * quantity;
+        return 15000 * quantity;
     }
 
     @Override

@@ -39,7 +39,7 @@ public class ExpBoostModule extends Module {
 
     @Override
     public long value() {
-        return 150000 * Dungeon.depth;
+        return 150000000 * Dungeon.depth;
     }
 
     @Override
