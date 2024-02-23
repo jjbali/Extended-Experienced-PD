@@ -149,12 +149,12 @@ public class Food extends Item {
 	
 	@Override
 	public long value() {
-		return 10 * quantity;
+		return 150 * quantity;
 	}
 
 	@Override
 	public Item random() {
-		quantity = (Dungeon.IntRange( 1 + Dungeon.escalatingDepth() * 2, 2 + Dungeon.escalatingDepth() * 2 ));
+		quantity = 1;
 		return this;
 	}
 }

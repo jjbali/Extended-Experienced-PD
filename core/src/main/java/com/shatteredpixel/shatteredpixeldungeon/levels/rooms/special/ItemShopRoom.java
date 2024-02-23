@@ -296,7 +296,7 @@ public class ItemShopRoom extends SpecialRoom {
 			}
 
 			int cell = level.pointToCell(curItemPlace);
-			if (item instanceof Ring || item instanceof Wand || item instanceof BlacksmithWeapon) {
+			if (item instanceof Ring || item instanceof Wand) {
 				if (cycle == 0) {
 					level.drop(item.upgrade(Dungeon.NormalLongRange(2, 11) * depth).identify(), cell).type = Heap.Type.FOR_SALE;
 				} else {
@@ -463,7 +463,7 @@ public class ItemShopRoom extends SpecialRoom {
 			//MISCS (RANDOMIZED)
 				if (Dungeon.Int(2) == 0) {
 					itemsToSpawn.add( new RandomItemTicket());
-					itemsToSpawn.add( new Cheese());
+					//itemsToSpawn.add( new Cheese());
 					itemsToSpawn.add( new SmallRation());
 					itemsToSpawn.add( new Pasty());
 					itemsToSpawn.add( new OverloadBeacon());
@@ -490,11 +490,11 @@ public class ItemShopRoom extends SpecialRoom {
 				itemsToSpawn.add( new RingOfTenacity());
 
 			//Blacksmith Items
-				itemsToSpawn.add( new FantasmalStabber());
-				itemsToSpawn.add( new FiringSnapper());
-				itemsToSpawn.add( new GleamingStaff());
-				itemsToSpawn.add( new RegrowingSlasher());
-				itemsToSpawn.add( new StarlightSmasher());
+				//itemsToSpawn.add( new FantasmalStabber());
+				//itemsToSpawn.add( new FiringSnapper());
+				//itemsToSpawn.add( new GleamingStaff());
+				//itemsToSpawn.add( new RegrowingSlasher());
+				//itemsToSpawn.add( new StarlightSmasher());
 
 			//Spellbooks
 				//itemsToSpawn.add( new BookOfBlast() );
