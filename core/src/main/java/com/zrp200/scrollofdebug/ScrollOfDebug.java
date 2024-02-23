@@ -1,9 +1,14 @@
 package com.zrp200.scrollofdebug;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.*;
+import static java.util.Arrays.copyOfRange;
+
+import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
+
 import com.badlogic.gdx.utils.StringBuilder;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
-import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
-import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
+// Commands
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
@@ -14,40 +19,40 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
-import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.Trap;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.CellSelector;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
+// needed for HelpWindow
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
+
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ScrollPane;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
-import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
+// WndTextInput (added in v0.9.4)
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndTextInput;
+// Output
+import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
+
 import com.watabou.noosa.Game;
 import com.watabou.noosa.ui.Component;
+import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
+import com.watabou.utils.FileUtils;
 import com.watabou.utils.Reflection;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.lang.reflect.Member;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.io.PrintWriter;
+import java.io.StringWriter;
+import java.lang.reflect.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.*;
-import static java.util.Arrays.copyOfRange;
-
-import java.lang.Float;
 
 /**
  * Scroll of Debug uses ClassLoader to get every class that can be directly created and provides a command interface with which to interact with them.
@@ -55,7 +60,7 @@ import java.lang.Float;
  *
  * @author  <a href="https://github.com/zrp200/scrollofdebug">
  *              Zrp200
- * @version v1.2.2
+ * @version v2.0.0
  *
  * @apiNote Compatible with Shattered Pixel Dungeon v1.3.0+, and compatible with any LibGDX Shattered Pixel Dungeon version (post v0.8) with minimal changes.
  * **/
@@ -106,6 +111,14 @@ public class ScrollOfDebug extends Scroll {
                 "If you set a variable from this command, the return value of the method will be stored into the variable."),
         INSPECT(Object.class, "<object>", "Gives a list of supported methods for the indicated class."),
         GOTO(null, "<depth>", "Sends your character to the indicated depth."),
+        MACRO(null, "<name>",
+                "Store a sequence of scroll of debug commands to a single name",
+                "Macros are a way to store and reproduce multiple scroll of debug commands at once.",
+                "This is an experimental feature. Anything that prompts the player should be at the last line of a macro.",
+                "Macros can call other macros",
+                "To take parameters, write '%n', where n is the nth input after the macro name when calling it. For example `mymacro rat` can reference 'rat' via '%1'.",
+                "Macros are saved and are kept independent of run."
+        ),
         VARIABLES(null,
                 "_@_<variable> [ [COMMAND ...] | i[nv] | c[ell] ]",
                 "store game objects for later use as method targets or parameters",
@@ -160,6 +173,46 @@ public class ScrollOfDebug extends Scroll {
         } catch (Exception e) { return null; } }
     }
 
+    // -- macro logic
+    private static final String MACRO_FILE = "debug-macros.dat", KEYS="KEYS", VALUES="VALUES";
+
+    private static HashMap<String, String> macros = null;
+
+    // always returns non-null value
+    private static Map<String, String> getMacros() {
+        if (macros == null) try {
+            Bundle macroBundle = FileUtils.bundleFromFile(MACRO_FILE);
+            String[] keys=macroBundle.getStringArray(KEYS), values=macroBundle.getStringArray(VALUES);
+            if (keys == null || values == null) throw new IOException("bad macro bundle!");
+            macros = new HashMap<>(keys.length);
+            for (int i=0; i < keys.length; i++) macros.put(keys[i], values[i]);
+        } catch (IOException e) {
+            // just... yea. Assuming the file just isn't there or something?
+            Game.reportException(new IOException("Failed to retrieve Scroll of Debug macros", e));
+            macros = new HashMap<>(); // initialize empty array
+        }
+        return macros;
+    }
+
+    /** creates or modifies macro with value. If value is empty, delete the macro. **/
+    public static void setMacro(String macro, String value) {
+        getMacros();
+        if(value.isEmpty() ? macros.remove(macro) == null : value.equals(macros.put(macro, value))) return;
+        // only run this if we actually changed macros
+        Bundle bundle = new Bundle();
+        String[] a = {};
+        bundle.put(KEYS, macros.keySet().toArray(a));
+        bundle.put(VALUES, macros.values().toArray(a));
+        try {
+            FileUtils.bundleToFile(MACRO_FILE, bundle);
+        } catch (IOException e) {
+            Game.reportException(new IOException("Failed to save Scroll of Debug macros", e));
+        }
+    }
+
+    // -- general logic
+
+    // fixme should be able to buffer a store location for a macro
     private String storeLocation;
 
     @Override
@@ -167,13 +220,51 @@ public class ScrollOfDebug extends Scroll {
         collect(); // you don't lose scroll of debug.
         GameScene.show(new WndTextInput("Enter Command:", null, "", 100, false,
                 "Execute", "Cancel") {
+
+            private String[] handleVariables(String[] input) {
+                storeLocation = null;
+                if (input.length > 0 && input[0].startsWith(Variable.MARKER)) {
+                    // drop from the start, save for later.
+                    storeLocation = input[0];
+                    if (storeLocation.length() == 1) {
+                        if (input.length > 1)
+                            GLog.w("warning: remaining arguments were discarded");
+                        // list them all
+                        StringBuilder s = new StringBuilder();
+                        for (Map.Entry<String, Variable> e : Variable.assigned.entrySet())
+                            if (e.getValue().isActive()) {
+                                s.append("\n_").append(e.getKey()).append("_ - ").append(e.getValue());
+                            }
+                        GameScene.show(new HelpWindow("Active Variables: \n" + s));
+                        return null;
+                    }
+                    input = Arrays.copyOfRange(input, 1, input.length);
+
+                    // variable-specific actions
+                    if (input.length == 0) {
+                        GLog.p("%s = %s", storeLocation, Variable.toString(storeLocation));
+                        return input;
+                    }
+                    String vCommand = input[0].toLowerCase();
+                    if (vCommand.matches("i(nv(entory)?)?")) {
+                        Variable.putFromInventory(storeLocation);
+                        return null;
+                    } else if (vCommand.matches("c(ell)?")) {
+                        Variable.putFromCell(storeLocation);
+                        return null;
+                    }
+
+                }
+                return input;
+            }
+
             @Override public void onSelect(boolean positive, String text) {
                 if(!positive) return;
 
                 // !! handling
                 {
                     Matcher m = Pattern.compile("!!").matcher(text);
-                    if(m.find()) {
+                    if (m.find()) {
                         GLog.newLine();
                         GLog.i("> %s", text = m.replaceAll(lastCommand));
                         GLog.newLine();
@@ -184,46 +275,83 @@ public class ScrollOfDebug extends Scroll {
                 String[] initialInput = text.split(" ");
                 Callback init = null;
 
-                final String[] input;
+                final String[] input = handleVariables(initialInput);
 
-                storeLocation = null;
-                if(initialInput.length > 0 && initialInput[0].startsWith(Variable.MARKER)) {
-                    // drop from the start, save for later.
-                    storeLocation = initialInput[0];
-                    if(storeLocation.length() == 1) {
-                        if(initialInput.length > 1) GLog.w("warning: remaining arguments were discarded");
-                        // list them all
-                        StringBuilder s = new StringBuilder();
-                        for(Map.Entry<String,Variable> e : Variable.assigned.entrySet()) if(e.getValue().isActive()) {
-                            s.append("\n_").append(e.getKey()).append("_ - ").append(e.getValue());
+                if (input == null || input.length == 0) return;
+
+                interpret(input);
+            }
+
+            // returns whether a macro exists
+            private boolean handleMacro(String[] input) {
+                String macro = getMacros().get(input[0]);
+                if(macro == null) return false; // only false output of handleMacro
+
+                Pattern argPattern = Pattern.compile("%(\\d)");
+                // avoid stupid infinite loops caused by parameter substitution
+                // I want to allow it but infinite loops are dumb
+                int[] placeholders = new int[input.length];
+                Arrays.fill(placeholders, -2); // -2 is unprocessed
+                for (int i = 0; i < input.length; i++) {
+                    if (placeholders[i] > -2) continue; // already processed
+                    int cur = i;
+                    StringBuilder loop = new StringBuilder();
+                    do {
+                        if (!loop.isEmpty()) loop.append("->");
+                        loop.append(cur);
+                        if (placeholders[cur] != -2) {
+                            GLog.n("infinite parameter loop: " + loop);
+                            return true;
                         }
-                        GameScene.show(new HelpWindow("Active Variables: \n" + s));
-                        return;
+                        Matcher matcher = argPattern.matcher(input[cur]);
+                        cur = placeholders[cur] = matcher.matches() ? Integer.parseInt(matcher.group(1)) : -1;
+                    } while(cur >= 0 && placeholders[cur] != -1);
+                }
+                String[] lines = macro.split("\n");
+                for (String line : lines) {
+                    try {
+                        while (true) {
+                            Matcher argMatcher = argPattern.matcher(line);
+                            if (argMatcher.find()) {
+                                int index = Integer.parseInt(argMatcher.group(1));
+                                argMatcher.reset();
+                                line = argMatcher.replaceFirst(input[index]);
+                                continue;
+                            }
+                            break;
+                        }
+                        String[] line_input = handleVariables(line.split(" "));
+                        if (line_input == null) break; // fixme should also indicate end of parsing
+                        // todo fix for when command isn't actually...given
+                        GLog.newLine();
+                        GLog.i("> " + line);
+
+                        // interpret until we can't
+                        if (!interpret(line_input)) {
+                            return true;
+                        }
+                    } catch (Exception ex) {
+                        reportException(ex);
+                        break;
                     }
-                    input = Arrays.copyOfRange(initialInput, 1, initialInput.length);
+                }
+                return true;
+            }
 
-                    // variable-specific actions
-                    if(input.length == 0){
-                        GLog.p("%s = %s", storeLocation, Variable.toString(storeLocation));
-                        return;
+            // todo have redirect-able output for better logging
+            // command logic
+            // returns true if another command is safely called after it.
+            // errors generally return false to stop macro flow.
+            private boolean interpret(String... input) {
+                Command command = Command.get(input[0]);
+
+                if (command == null) {
+                    // fixme drawbacks of the current system make it impossible to verify macro call safety
+                    if (handleMacro(input)) {
+                        return true; // dig your own grave...
                     }
-                    String vCommand = input[0].toLowerCase();
-                    if(vCommand.matches("i(nv(entory)?)?")) {
-                        Variable.putFromInventory(storeLocation);
-                        return;
-                    } else if(vCommand.matches("c(ell)?")) {
-                        Variable.putFromCell(storeLocation);
-                        return;
-                    }
-
-                } else input = initialInput;
-
-                if(input.length == 0) return;
-
-                Command command; try { command = Command.valueOf(input[0].toUpperCase()); }
-                catch (Exception e) {
-                    GLog.w("\""+input[0]+"\" is not a valid command.");
-                    return;
+                    GLog.w("\"" + input[0] + "\" is not a valid command.");
+                    return false;
                 }
 
                 if(command == Command.CHANGES) {
@@ -255,7 +383,45 @@ public class ScrollOfDebug extends Scroll {
                         output = builder.toString().trim();
                     }
                     GameScene.show(new HelpWindow(output));
-                } else if(input.length > 1) {
+                    return false;
+                }
+                else if (command == Command.MACRO) {
+                    getMacros();
+                    if (input.length == 1) {
+                        StringBuilder msg = new StringBuilder();
+                        msg.append(command.documentation());
+                        if(!macros.isEmpty()) {
+                            msg.append("\n_Defined macros:_");
+                            for(String macro : macros.keySet()) {
+                                msg.append("\n_-_ ").append(macro);
+                            }
+                        }
+                        GameScene.show(new HelpWindow(msg.toString()));
+                        return false;
+                    }
+                    final String macro = input[1];
+                    boolean macroExists = macros.containsKey(macro);
+                    String failureReason =
+                            macroExists ? null : // avoid checks if it already exists
+                                    Command.get(macro) != null ? "existing command" :
+                                            // should I print out the offending part???
+                                            !macro.matches("[A-Za-z_][\\w$_]*") ? "must be valid java variable name (alphanumeric, first character must be a letter or underscore)"
+                                                    : null;
+                    if (failureReason != null) {
+                        GLog.n("Invalid macro name - " + failureReason);
+                    } else GameScene.show(new WndTextInput(
+                            "Macro " + input[1], "Enter macro.\n\nMacros consist of chains of scroll of debug commands separated by new lines. Please refrain from commands that prompt for input outside of the last line.",
+                            macroExists ? macros.get(macro) : "",
+                            Integer.MAX_VALUE, // ????
+                            true, "Confirm", "Cancel"
+                    ) {
+                        @Override public void onSelect(boolean positive, String text) {
+                            if (positive) setMacro(macro, text);
+                        }
+                    });
+                    return false;
+                }
+                else if(input.length > 1) {
                     Object storedVariable = Variable.get(input[1]);
 
                     if(command == Command.GOTO) {
@@ -266,27 +432,33 @@ public class ScrollOfDebug extends Scroll {
                             gotoDepth(Integer.parseInt(input[1]));
                         } catch (NumberFormatException e) {
                             GLog.w("Invalid depth provided: " + input[1]);
+                            // should I report this exception too?
+                            // false to stop at failure
+                            return false;
                         }
-                        return;
+                        return true;
                     }
 
                     Class _cls = storedVariable != null ? storedVariable.getClass()
                             : trie.findClass(input[1], command.paramClass);
 
-                    if(command == Command.INSPECT) {
+                    if(command == Command.INSPECT || command == Command.USE && input.length == 2) {
                         Class cls = _cls;
                         if(cls == null) {
                             Command c = Command.get(input[1]);
                             if(c != null) cls = c.paramClass;
                         }
                         if(cls != null) {
+                            boolean isGameClass = cls.getName().contains(ROOT); // dirty hack to allow seeing methods for out of package stuff
                             StringBuilder message = new StringBuilder();
                             for(Map.Entry<Class,Set<Method>> entry : hierarchy(cls).entrySet()) {
                                 Class inspecting = entry.getKey();
                                 String className = inspecting.getName();
-                                int i = className.indexOf(ROOT);
-                                if(i == -1) continue;
-                                className = className.substring(i+ROOT.length()+1);
+                                if (isGameClass) {
+                                    int i = className.indexOf(ROOT);
+                                    if(i == -1) continue;
+                                    className = className.substring(i+ROOT.length()+1);
+                                }
                                 message.append("\n\n_").append(className).append("_");
                                 Object[] enumConstants = inspecting.getEnumConstants();
                                 if(enumConstants != null) for(Object member : entry.getKey().getEnumConstants()) {
@@ -308,7 +480,7 @@ public class ScrollOfDebug extends Scroll {
                                             // no point in showing if we're just going to get a meaningless hash
                                             showValue = t.isPrimitive()
                                                     || t.getMethod("toString")
-                                                        .getDeclaringClass() != Object.class;
+                                                    .getDeclaringClass() != Object.class;
                                         } catch (NoSuchMethodException e) { showValue = false; }
                                         if(showValue) try {
                                             message.append("=").append(f.get(null));
@@ -346,27 +518,24 @@ public class ScrollOfDebug extends Scroll {
                             GameScene.show(new HelpWindow(
                                     "inspection of _"+input[1]+"_:"
                                             + message.toString() ));
-                            return;
+                            return false;
                         }
                     }
 
                     final Class cls = _cls;
 
-                    if(command == Command.USE) {
-                        // alias for inspect when not enough args.
-                        if(input.length == 2) onSelect(true, "inspect " + input[1]);
-                        else {
-                            Object o =
-                                    storedVariable != null ? storedVariable : // use the variable if available.
-                                    cls == Hero.class ? Dungeon.hero :
-                                    cls != Object.class && cls != null && cls.isInstance(Dungeon.level) ? Dungeon.level :
-                                    cls != null && canInstantiate(cls) ? Reflection.newInstance(cls) :
-                                    null;
-                            if(!executeMethod(o, cls, input, 2)) {
-                                GLog.w(String.format("No method '%s' was found for %s", input[2], cls));
-                            }
+                    if(command == Command.USE && input.length > 2) {
+                        Object o =
+                                storedVariable != null ? storedVariable : // use the variable if available.
+                                        cls == Hero.class ? Dungeon.hero :
+                                                cls != Object.class && cls != null && cls.isInstance(Dungeon.level) ? Dungeon.level :
+                                                        cls != null && canInstantiate(cls) ? Reflection.newInstance(cls) :
+                                                                null;
+                        if(!executeMethod(o, cls, input, 2)) {
+                            GLog.w(String.format("No method '%s' was found for %s", input[2], cls));
+                            return false;
                         }
-                        return;
+                        return true;
                     }
 
                     boolean valid = true;
@@ -414,6 +583,7 @@ public class ScrollOfDebug extends Scroll {
                                         GLog.w("Spawned " + mob.name());
                                     }
                                 });
+                                return false; // DO NOT USE THIS IN MACROS DO NOT USE THIS IN MACROS
                             } else {
                                 int spawned = 0;
                                 boolean canExecute = true;
@@ -431,7 +601,7 @@ public class ScrollOfDebug extends Scroll {
                                         + (spawned == 1 ? "" : " x" + spawned)
                                 );
                             }
-                            break;
+                            return true;
                         case SET:
                             Trap t = (Trap)o;
                             GameScene.selectCell(new CellSelector.Listener() {
@@ -446,7 +616,7 @@ public class ScrollOfDebug extends Scroll {
                                     return "Select location of trap:";
                                 }
                             });
-                            break;
+                            return false; // game selectors do not stack well
                         case GIVE: Item item = (Item)o;
                             item.identify();
                             // todo add enchants/glyphs for weapons/armor?
@@ -459,19 +629,18 @@ public class ScrollOfDebug extends Scroll {
                                 else if(input[i].matches("[\\-x+]\\d+")) {
                                     switch (input[i].charAt(0)) {
                                         case 'x':
-                                            item.quantity(Long.parseLong(input[i].substring(1)));
+                                            item.quantity(Integer.parseInt(input[i].substring(1)));
                                             break;
                                         case '-':
                                         case '+':
-                                            item.level(Long.parseLong(input[i]));
+                                            item.level(Integer.parseInt(input[i]));
                                             break;
                                     }
                                 }
                                 else {
                                     if(!executeMethod(item,input,i)) {
                                         GLog.w("Unrecognized option or method '%s'", input[i]);
-                                        onSelect(true, "help " + input[0]);
-                                        return;
+                                        return interpret("help", input[0]);
                                     }
                                     break;
                                 }
@@ -494,7 +663,7 @@ public class ScrollOfDebug extends Scroll {
                             } else {
                                 GLog.n(Messages.get(curUser, "you_cant_have", itemName));
                             }
-                            break;
+                            return true;
                         case AFFECT:
                             Buff buff = (Buff)o;
                             // fixme perhaps have special logic for when additional arguments in general are passed to non-flavor buffs.
@@ -564,7 +733,7 @@ public class ScrollOfDebug extends Scroll {
                                     }
                                 }
                             });
-                            break;
+                            return false;
                         case SEED:
                             int a = 1;
                             if(input.length > 2) try {
@@ -580,8 +749,16 @@ public class ScrollOfDebug extends Scroll {
                                     GameScene.add(Blob.seed(cell, amount, (Class<Blob>)cls));
                                 }
                             });
-                    } else GLog.w( "%s \"%s\" not found.", command.paramClass.getSimpleName(), input[1]);
-                } else onSelect(true, "help " + text); // lazy me, I know.
+                            return false;
+                    } else {
+                        GLog.w( "%s \"%s\" not found.", command.paramClass.getSimpleName(), input[1]);
+                        return false;
+                    }
+                } else {
+                    // fixme should be able to just call help directly...
+                    return interpret("help", input[0]); // bring up help for command
+                }
+                return true;
             }
         });
     }
@@ -597,27 +774,26 @@ public class ScrollOfDebug extends Scroll {
     }
     // force sends you to the corresponding depth.
     private static void gotoDepth(int targetDepth) {
-            Mob.holdAllies( Dungeon.level );
-            try { saveAll(); } catch (IOException e) {
-                Game.reportException(e);
-                GLog.w("Unable to save game, aborting.");
-                return;
-            }
-            try {
-                // needed for certain implementations of this mechanic.
-                Game.scene().destroy();
-            } catch (Exception e) {
-                // if it fails for some unknown reason I really don't care, move on.
-                Game.reportException(e);
-            }
-            depth = targetDepth;
-            Level level; try { level = loadLevel(GamesInProgress.curSlot); } catch (IOException e) {
-                // generating a new level before the feature rework incremented the level automatically.
-                if(before1_3_0) depth--;
-                level = newLevel();
-            }
-            switchLevel(level, -1);
-            Game.switchScene(GameScene.class);
+        Mob.holdAllies( Dungeon.level );
+        try { saveAll(); } catch (IOException e) {
+            reportException("Unable to save game!", e);
+            return;
+        }
+        try {
+            // needed for certain implementations of this mechanic.
+            Game.scene().destroy();
+        } catch (Exception e) {
+            // if it fails for some unknown reason I really don't care, move on.
+            Game.reportException(e);
+        }
+        depth = targetDepth;
+        Level level; try { level = loadLevel(GamesInProgress.curSlot); } catch (IOException e) {
+            // generating a new level before the feature rework incremented the level automatically.
+            if(before1_3_0) depth--;
+            level = newLevel();
+        }
+        switchLevel(level, -1);
+        Game.switchScene(GameScene.class);
     }
 
     @Override public String name() {
@@ -657,15 +833,27 @@ public class ScrollOfDebug extends Scroll {
             if(method.getName().equalsIgnoreCase(methodName)) methods.add(method);
         }
         Collections.sort(methods, (m1, m2) -> m2.getParameterTypes().length - m1.getParameterTypes().length );
-        for(Method method : methods) try {
-            Object[] arguments = getArguments(method.getParameterTypes(), args);
-            Object result = method.invoke(obj, arguments);
-            if(result != null) {
-                printMethodOutput(cls,method,method.getModifiers(),result,arguments);
-                if(storeLocation != null) Variable.put(storeLocation, result);
+        for(Method method : methods) {
+            Object[] arguments; try { arguments = getArguments(method.getParameterTypes(), args); }
+            catch (Exception e) { continue; }
+            try {
+                Object result = method.invoke(obj, arguments);
+                if(result != null) {
+                    printMethodOutput(cls,method,method.getModifiers(),result,arguments);
+                    if(storeLocation != null) Variable.put(storeLocation, result);
+                }
+                return true;
+            } catch (Exception e) {
+                // fixme distinguish properly between methods that don't exist and methods that failed to call so errors can be reported here
+                // this is a straight up guess, and if it doesn't work as expected, remove the if-else clause entirely and just call Game.reportException
+                if (e instanceof IllegalArgumentException) {
+                    Game.reportException(e);
+                } else {
+                    reportException(e);
+                    break;
+                }
             }
-            return true;
-        } catch (Exception e) {/*do nothing */}
+        }
         // check if it is actually a field.
         try {
             Field field = null;
@@ -726,13 +914,26 @@ public class ScrollOfDebug extends Scroll {
             Class type = params[i];
             args[i] = Variable.get(input[j], type);
             if(args[i] != null) j++; // successful variable call.
-            else if (type == int.class || type == Integer.class)
+                // primitive type checks
+            else if (type == int.class || type == Integer.class) {
                 args[i] = Integer.parseInt(input[j++]);
+            }
+            else if (type == char.class || type == Character.class) {
+                // check if it's a length of 1. If it is, just use that, otherwise fail.
+                String fullStr = input[j++];
+                if (fullStr.length() != 1) throw new NumberFormatException("Unable to coerce " + fullStr + "to char");
+                args[i] = fullStr.charAt(0);
+            }
             else if (type == long.class || type == Long.class)
                 args[i] = Long.parseLong(input[j++]);
-            else if (type == float.class || type == Float.class)
-                args[i] = Float.parseFloat(input[j++]);
+                // being through, nothing actually uses these (I hope)
+            else if (type == short.class || type == Short.class)
+                args[i] = Short.parseShort(input[j++]);
+            else if (type == byte.class || type == Byte.class)
+                args[i] = Byte.parseByte(input[j++]);
             else if (type == double.class || type == Double.class)
+                args[i] = Double.parseDouble(input[j++]);
+            else if (type == float.class || type == Float.class)
                 args[i] = Float.parseFloat(input[j++]);
             else if (type == String.class)
                 args[i] = input[j++];
@@ -754,29 +955,26 @@ public class ScrollOfDebug extends Scroll {
                 j++;
             }
             else {
-                // non-primitive object retrieval
-                if(Char.class.isAssignableFrom(type)) {
-                    // two subclasses, which means two possible ways for this to go.
-                    if (type.isAssignableFrom(Hero.class) && input[j].equalsIgnoreCase("hero")) {
-                        params[i] = Hero.class;
-                        j++;
-                    }
+                // note: the only drawback of this is that it makes it harder to pass the class version of hero or level as an Object.
+                // -- substitution logic for major dungeon objects
+                if(type.isInstance(curUser) && input[j].equalsIgnoreCase("hero")) {
+                    type = Hero.class;
+                    j++;
                 }
-                else if(type != Object.class && type.isInstance(Dungeon.level)) {
-                    if(input[j].equals("level")) j++; // for easier understanding.
-                    args[i] = Dungeon.level;
-                    continue;
+                if(type.isInstance(Dungeon.level) && input[j].equalsIgnoreCase("level")) {
+                    type = Dungeon.level.getClass();
+                    j++; // for easier understanding.
                 }
 
                 args[i] =
                         type == Hero.class ? curUser :// autofill hero
-                        Class.class.isAssignableFrom(type) ? trie.findClass(input[j++], Object.class) :
-                        type != Object.class && type.isInstance(Dungeon.level) ? Dungeon.level : // todo add handling if it is in fact passed
-                        // blindly instantiate, any error indicates invalid method.
-                        Reflection.newInstanceUnhandled(trie.findClass(input[j++], type));
+                                Class.class.isAssignableFrom(type) ? trie.findClass(input[j++], Object.class) :
+                                        type == Dungeon.level.getClass() ? Dungeon.level : // level autofill
+                                                // blindly instantiate, any error indicates invalid method.
+                                                Reflection.newInstanceUnhandled(trie.findClass(input[j++], type));
             }
             // todo determine the exact cases where this is reached.
-            if (args[i] == null) throw new IllegalArgumentException();
+            if (args[i] == null) throw new IllegalArgumentException("No argument for " + type.getName());
         }
         return args;
     }
@@ -845,7 +1043,7 @@ public class ScrollOfDebug extends Scroll {
     public static PackageTrie trie = null; // loaded when needed.
     static {
         try {
-            trie = ShatteredPixelDungeon.platform.findClasses(ROOT);
+            trie = PackageTrie.getClassesForPackage(ROOT);
         } catch (ClassNotFoundException e) { Game.reportException(e); }
     }
 
@@ -913,6 +1111,20 @@ public class ScrollOfDebug extends Scroll {
         }
     }
 
+    // report exception via HelpWindow
+    // should only be used if it terminates execution of whatever command was running
+    // wonder if I should split this into another file...
+    public static void reportException(CharSequence msg, Exception e) {
+        Game.reportException(e); // also log normally
+        // print stack trace directly to help window for faster error identification
+        StringWriter s = new StringWriter();
+        PrintWriter p = new PrintWriter(s);
+        if (msg != null) p.print(msg + "\n\n");
+        e.printStackTrace(p);
+        GameScene.show(new HelpWindow(s.toString()));
+    }
+    public static void reportException(Exception e) { reportException(null, e);}
+
     /** this checks if we can create this class using Reflection. **/
     public static boolean canInstantiate(Class c) {
         // check if there's a valid constructor
@@ -921,8 +1133,15 @@ public class ScrollOfDebug extends Scroll {
     }
 
     private static final String CHANGELOG
-        = ""
-        +"_1.2.2_:"
+            = ""
+            +"_2.0.0_:"
+            +"\n_-_ Added experimental macro support; macros are chains of commands stored together under an alias, saved between sessions"
+            +"\n_-_ Implemented workaround allowing scroll of debug to work even when it can't find any classes"
+            +"\n_-_ argument autofill now works with Object parameters, autofills level in more cases, and works with all primitives"
+            +"\n_-_ some minor changes to method execution logic, will eventually print errors directly as stack trace in a scrollable window"
+            +"\n_-_ fixed formatting in this command"
+            +"\n"
+            +"_1.2.2_:"
             +"\n_-_ Goto no longer relies on version code in any form."
             +"\n_-_ Variables now attempt to show their ingame name rather than built-in toString."
             +"\n_-_ Seeing the value of a specific variable now uses the same template as when setting them."
@@ -930,30 +1149,30 @@ public class ScrollOfDebug extends Scroll {
             +"\n_-_ Fixed goto crash when warping to post-v1.3.0 demon halls."
             +"\n_-_ Fixed erroneous assertion in goto description; it does not generate depths in between."
             +"\n"
-        +"_1.2.1_:"
+            +"_1.2.1_:"
             +"\n_-_ Implemented goto, which immediately sends the hero to the targeted depth."
             +"\n_-_ Fixed 1.4.X shattered changes breaking give command text output."
             +"\n"
-        +"_1.2.0_:"
+            +"_1.2.0_:"
             +"\n_-_ Implemented variables! You are now able to store the result of commands that create game objects, as well as anything generated from the use command. You can also store stuff from the map (variable name followed by 'cell' or 'c') and your inventory (variable name followed by 'inv' or 'i')."
             +"\n_-_ Adjusted some descriptions of commands, and added more detail to their extended descriptions."
             +"\n_- help all_ no longer displays all usable classes for every command. To get the functionality, please use _help <command>_."
-            +"\n_- For methods, Level arguments are now optional (autofilled with Dungeon.level)"
+            +"\n_-_ For methods, Level arguments are now optional (autofilled with Dungeon.level)"
             +"\n_-_ You can now pass 'null' to methods."
             +"\n_-_ Fixed info window for Scroll of Debug being too big for most devices."
             +"\n_-_ Fixed cases where hero wouldn't be inferred when used in methods"
             +"\n_-_ Fixed not being able to pass true to methods expecting true or false"
-        +"\n\n"
-        +"_1.1.1_:"
+            +"\n\n"
+            +"_1.1.1_:"
             +"\n_-_ methods that have less parameters than given arguments are now ignored, preventing inappropriate hiding of fields"
             +"\n_-_ fields are no longer case sensitive"
             +"\n_-_ fixed bug making inspection field types way longer"
             +"\n_-_ Fixed scrollpane issues. Really."
             +"\n_-_ There is, however, a bug caused by resizing your window while a help window is active. So don't do that."
-        +"\n\n_1.1.0_:"
+            +"\n\n_1.1.0_:"
             +"\n_-_ Actually fixed scrollpane issues this time"
             +"\n_-_ Added the ability to retrieve and set public fields of objects, though such functionality cannot be used to pass them to methods at this time."
-        +"\n\n_1.0.0_:"
+            +"\n\n_1.0.0_:"
             +"\n_-_ Changes to Shattered Pixel Dungeon in v1.3.0 mean scroll of debug no longer directly supports versions before it."
             +"\n_-_ Changed formatting style of commands."
             +"\n_-_ Enumerated types now list their values in _inspect_"
@@ -961,7 +1180,7 @@ public class ScrollOfDebug extends Scroll {
             +"\n_- give_ now rejects more invalid inputs."
             +"\n_-_ Scroll of Debug's add implementation only triggers when it is not in the player's inventory."
             +"\n_-_ Fixed scrollpanes being offset incorrectly in full shpd view"
-        +"\n\n\n_0.4.0_:"
+            +"\n\n\n_0.4.0_:"
             +"\n_-_ Added this command."
             +"\n_-_ Added _use_ command, which can call a desired method on any game class that supports it (see _inspect_ for valid methods)."
             +"\n_-_ Including _!!_ in a command will replace it with the previously written command."
@@ -971,10 +1190,10 @@ public class ScrollOfDebug extends Scroll {
             +"\n_-_ Scroll of Debug is now considered unique, and thus will not burn."
             +"\n_-_ Fixed more bugs in class finding for jar version caused by 0.3."
             +"\n_-_ Fixed Hero method arguments not being automatically resolved to the hero."
-        +"\n\n\n_0.3.3_:"
+            +"\n\n\n_0.3.3_:"
             +"\n_-_ Scroll Of Debug now automatically adds itself to the first open quickslot, rather than always quickslot #3."
-        +"\n_0.3.1, 0.3.2_:"
+            +"\n_0.3.1, 0.3.2_:"
             +"\n_-_ Fixed faulty package logic caused by 0.3.0"
-        +"\n_0.3.0_:"
+            +"\n_0.3.0_:"
             +"\n_-_ Scroll of Debug now works on Android";
 }
