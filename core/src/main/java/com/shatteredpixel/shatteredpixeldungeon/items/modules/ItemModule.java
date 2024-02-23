@@ -34,22 +34,22 @@ public class ItemModule extends Module {
                     if (Random.Int(2) == 0) {
                         detach(curUser.belongings.backpack);
                         updateQuickslot();
-                        Dungeon.level.drop(Generator.random(Generator.Category.POTION).quantity(Random.Int(5, 50)), curUser.pos).sprite.drop();
+                        Dungeon.level.drop(Generator.random(Generator.Category.POTION).quantity(Random.Int(2, 5)), curUser.pos).sprite.drop();
                     } else {
-                        detach( curUser.belongings.backpack );
+                        detach( curUser.belongings.backpack);
                         updateQuickslot();
-                        Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION).quantity(Random.Int(5, 50)), curUser.pos).sprite.drop();
+                        Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION).quantity(Random.Int(2, 5)), curUser.pos).sprite.drop();
                     }
                     break;
                 case 1:
                     if (Random.Int(2) == 0) {
                         detach(curUser.belongings.backpack);
                         updateQuickslot();
-                        Dungeon.level.drop(Generator.random(Generator.Category.SCROLL).quantity(Random.Int(5, 50)), curUser.pos).sprite.drop();
+                        Dungeon.level.drop(Generator.random(Generator.Category.SCROLL).quantity(Random.Int(2, 5)), curUser.pos).sprite.drop();
                     } else {
                         detach(curUser.belongings.backpack);
                         updateQuickslot();
-                        Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL).quantity(Random.Int(5, 50)), curUser.pos).sprite.drop();
+                        Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL).quantity(Random.Int(2, 5)), curUser.pos).sprite.drop();
                     }
                     break;
                 case 2:
@@ -60,11 +60,10 @@ public class ItemModule extends Module {
                     } else {
                         detach(curUser.belongings.backpack);
                         updateQuickslot();
-                        Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG).quantity(Random.Int(2, 5)), curUser.pos).sprite.drop();
+                        Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG).quantity(Random.Int(2, 3)), curUser.pos).sprite.drop();
                     }
                     break;
             }
-            detach(hero.belongings.backpack);
         }
     }
 
