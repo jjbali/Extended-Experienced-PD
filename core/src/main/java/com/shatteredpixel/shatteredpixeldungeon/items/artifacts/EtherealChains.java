@@ -70,7 +70,7 @@ public class EtherealChains extends Artifact {
 	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped(hero) && !cursed && hero.buff(MagicImmune.class) == null || !isEquipped(hero)) {
+		if (isEquipped(hero) && !cursed && hero.buff(MagicImmune.class) == null) {
 			actions.add(AC_CAST);
 		}
 		return actions;
