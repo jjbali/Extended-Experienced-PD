@@ -354,12 +354,12 @@ public enum HeroClass {
 		new ScrollOfRage().identify();
 
 		EtherealChains eth = new EtherealChains();
-		eth.collect();
-		eth.identify();
+		//eth.collect();
+		//eth.identify();
 
 		AlchemistsToolkit alc = new AlchemistsToolkit();
-		alc.collect();
-		alc.identify();
+		//alc.collect();
+		//alc.identify();
 		  
 	}
 
