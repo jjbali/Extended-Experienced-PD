@@ -74,7 +74,7 @@ public abstract class EquipableItem extends Item {
 	public ArrayList<String> actions(Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
 		actions.add( isEquipped( hero ) ? AC_UNEQUIP : AC_EQUIP );
-		//actions.add( AC_DISMANTLE );
+		actions.add( AC_DISMANTLE );
 		if (DeviceCompat.isDebug()) {
 			if (isUpgradable()) actions.add( AC_UPGRADE );
 			if (this instanceof Weapon) actions.add( AC_ENCHANT );
@@ -126,8 +126,7 @@ public abstract class EquipableItem extends Item {
 				GLog.w( Messages.get(this, "unequip_first"));
 			} else if (curItem instanceof Artifact) {
 				curItem.detach(curUser.belongings.backpack);
-				Dungeon.gold += Dungeon.NormalIntRange(100000, 800000);
-				Dungeon.level.drop(new ArcaneCatalyst().quantity(Random.Int(32, 199)), curUser.pos).sprite.drop();
+				Dungeon.level.drop(new ArcaneCatalyst().quantity(Random.Int(3, 20)), curUser.pos).sprite.drop();
 				updateQuickslot();
 
 				hero.spend( 1f );
@@ -139,8 +138,7 @@ public abstract class EquipableItem extends Item {
 				if (curItem.level() > 0) {
 					Dungeon.level.drop(new ScrollOfUpgrade().quantity(curItem.level()), curUser.pos).sprite.drop();
 				} else {
-					Dungeon.gold += Dungeon.NormalIntRange(100000, 800000);
-					Dungeon.level.drop(new LiquidMetal().quantity(Random.Int(3, 199)), curUser.pos).sprite.drop();
+					Dungeon.level.drop(new LiquidMetal().quantity(Random.Int(3, 20)), curUser.pos).sprite.drop();
 				}
 				updateQuickslot();
 
@@ -153,7 +151,7 @@ public abstract class EquipableItem extends Item {
 				if (curItem.level() > 0) {
 					Dungeon.level.drop(new ScrollOfUpgrade().quantity(curItem.level()), curUser.pos).sprite.drop();
 				} else {
-					Dungeon.gold += Dungeon.NormalIntRange(100000, 400000);
+					Dungeon.gold += Dungeon.NormalIntRange(500, 1000);
 				}
 				updateQuickslot();
 
