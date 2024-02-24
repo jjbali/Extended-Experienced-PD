@@ -568,10 +568,10 @@ public class ScrollOfDebug extends Scroll {
                                     @Override public void onSelect(Integer cell) {
                                         if(cell == null) return;
                                         // damn it evan for making me copy paste this
-                                        if(Dungeon.level.findMob(cell) != null
-                                                || !Dungeon.level.passable[cell]
-                                                || Dungeon.level.solid[cell]
-                                                || !Dungeon.level.openSpace[cell] && mob.properties().contains(Char.Property.LARGE)
+                                        if(level.findMob(cell) != null
+                                                || !level.passable[cell]
+                                                || level.solid[cell]
+                                                || !level.openSpace[cell] && mob.properties().contains(Char.Property.LARGE)
                                         ) {
                                             GLog.w("You cannot place %s here.", mob.name());
                                             return;
@@ -589,7 +589,7 @@ public class ScrollOfDebug extends Scroll {
                                 boolean canExecute = true;
                                 // nonstandard for loop that generates mobs. first mob is the original one.
                                 for(Mob m = mob; m != null && spawned++ < quantity; m = (Mob)Reflection.newInstance(cls)) {
-                                    m.pos = Dungeon.level.randomRespawnCell(m);
+                                    m.pos = level.randomRespawnCell(m);
                                     if(m.pos == -1) break;
                                     GameScene.add(m);
                                     // if it fails we don't want to flood the screen with messages.
@@ -1043,7 +1043,7 @@ public class ScrollOfDebug extends Scroll {
     public static PackageTrie trie = null; // loaded when needed.
     static {
         try {
-            trie = PackageTrie.getClassesForPackage(ROOT);
+            trie = Game.platform.findClasses(ROOT);
         } catch (ClassNotFoundException e) { Game.reportException(e); }
     }
 
