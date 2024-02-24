@@ -90,7 +90,7 @@ public class MiscBag extends TreasureBag {
                 SpyGlass.class,
                 RandomBuffGiver.class
         );
-        int amount = Random.Int(20, 40);
+        int amount = Random.Int(5, 10);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 3.5f;
         items.add(Reflection.newInstance(Random.element(normal)).quantity(amount));
         return items;

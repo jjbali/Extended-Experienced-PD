@@ -95,7 +95,7 @@ public class PotionBag extends TreasureBag {
                 PotionOfStamina.class,
                 PotionOfStormClouds.class
         );
-        int amount = Random.Int(20, 40);
+        int amount = Random.Int(2, 6);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 3.5f;
         items.add(Reflection.newInstance(Random.element(normal)).quantity(amount));
         items.add(Reflection.newInstance(Random.element(exotic)).quantity(amount));

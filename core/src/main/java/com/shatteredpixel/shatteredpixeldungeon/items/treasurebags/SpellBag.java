@@ -85,7 +85,7 @@ public class SpellBag extends TreasureBag {
                 HandyBarricade.class,
                 MagicBridge.class
         );
-        int amount = Random.Int(10, 20);
+        int amount = Random.Int(4, 10);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 3.5f;
         items.add(Reflection.newInstance(Random.element(normal)).quantity(amount));
         return items;
