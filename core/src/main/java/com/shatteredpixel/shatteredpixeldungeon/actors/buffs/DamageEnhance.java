@@ -44,7 +44,7 @@ public class DamageEnhance extends Buff {
 
 	@Override
 	public void tintIcon(Image icon) {
-		icon.hardlight(0f, 0f, 0f);
+		icon.hardlight(1f, 0f, 1f);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class DamageEnhance extends Buff {
 
 	public void set(int lvl) {
 		dmgBonus = 1 + 0.2f * lvl;
-		duration = 20f;
+		duration = 5f;
 		initialDuration = duration;
 
 		BuffIndicator.refreshHero(); //refresh the buff visually on-hit

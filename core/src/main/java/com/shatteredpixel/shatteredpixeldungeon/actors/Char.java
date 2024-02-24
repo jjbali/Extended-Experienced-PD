@@ -380,8 +380,8 @@ public abstract class Char extends Actor {
 				dmg = endure.adjustDamageTaken(dmg);
 			}
 
-			if ( buff(DamageEnhance.class) != null ) {
-				DamageEnhance dmgbon = new DamageEnhance();
+			DamageEnhance dmgbon = buff(DamageEnhance.class);
+			if ( buff(DamageEnhance.class) != null && this == Dungeon.hero ) {
 				dmg *= dmgbon.getDmg();
 			}
 

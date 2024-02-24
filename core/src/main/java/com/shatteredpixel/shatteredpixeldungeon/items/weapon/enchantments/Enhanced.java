@@ -41,9 +41,9 @@ public class Enhanced extends Weapon.Enchantment {
 	
 	@Override
 	public long proc( Weapon weapon, Char attacker, Char defender, long damage ) {
-		int level = (int) Math.max( 0, weapon.buffedLvl() );
+		//int level = (int) Math.max( 0, weapon.buffedLvl() );
 		if (Dungeon.Int(2) == 0) {
-			Buff.affect(attacker, DamageEnhance.class).set(level);
+			Buff.affect(attacker, DamageEnhance.class).set((int) weapon.buffedLvl());
 		}
 		return damage;
 	}
