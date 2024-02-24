@@ -1121,7 +1121,7 @@ public abstract class Mob extends Char {
 			}
 		}
 
-		if (buff(RingOfWealth.Wealth.class) != null) {
+		/*if (buff(RingOfWealth.Wealth.class) != null) {
 			int rolls = (int) (2 * new RingOfWealth().level());
 			if (properties.contains(Property.BOSS)) rolls = (int) (10 * new RingOfWealth().level());
 			else if (properties.contains(Property.MINIBOSS)) rolls = (int) (5 * new RingOfWealth().level());
@@ -1131,6 +1131,7 @@ public abstract class Mob extends Char {
 				RingOfWealth.showFlareForBonusDrop(sprite);
 			}
 		}
+		 */
 
 		if (Dungeon.hero.grinding && hero.lvl >= 30) {
 			int rolls = 25;
