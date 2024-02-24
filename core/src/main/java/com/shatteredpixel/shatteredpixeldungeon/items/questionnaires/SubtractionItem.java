@@ -245,7 +245,7 @@ public class SubtractionItem extends Questionnaire {
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
                 + "\n- (0) Health +20"
-                + "\n- (40) Module Shop available [reset if streak >= 40]";
+                + "\n- (10) Module Shop available [reset if streak >= 10]";
     }
 
     private String STREAKS = "STREAKS";

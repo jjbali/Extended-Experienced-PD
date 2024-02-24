@@ -140,10 +140,10 @@ public abstract class RegularLevel extends Level {
 		if (Dungeon.shopOnLevel())
 			initRooms.add(new ShopRoom());
 
-		if (Dungeon.shopOnLevel2() && AdditionItem.streak_a >= 40)
+		if (Dungeon.shopOnLevel2() && AdditionItem.streak_a >= 10)
 			initRooms.add(new ItemShopRoom());
 
-		if (Dungeon.shopOnLevel3() && SubtractionItem.streak_b >= 40)
+		if (Dungeon.shopOnLevel3() && SubtractionItem.streak_b >= 10)
 			initRooms.add(new ModuleShopRoom());
 
 
