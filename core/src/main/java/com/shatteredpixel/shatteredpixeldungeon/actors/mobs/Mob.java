@@ -927,7 +927,13 @@ public abstract class Mob extends Char {
 			if (loot != null) {
 				Dungeon.level.drop(loot, pos).sprite.drop();
 			}
+			if (Random.Float() < lootChance()) {
+				if (loot != null) {
+					Dungeon.level.drop(loot, pos).sprite.drop();
+				}
+			}
 		}
+
 
 		if (hero.grinding){
 			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
