@@ -464,7 +464,7 @@ public class Dungeon {
 				level = new DeadEndLevel();
 			}
 		} else if (branch == BRANCH_BLACK){
-			if (depth == 103) {
+			if (depth == 28) {
 				level = new BlackMimicLevel();
 			} else {
 				level = new DeadEndLevel();
@@ -575,7 +575,7 @@ public class Dungeon {
 	}
 	
 	public static boolean bossLevel( int depth ) {
-		return depth == 20 || depth == 40 || depth == 60 || depth == 80 || depth == 100 || depth == 103;
+		return depth == 5 || depth == 10 || depth == 15 || depth == 20 || depth == 25 || depth == 28;
 	}
 
 	//value used for scaling of damage values and other effects.
