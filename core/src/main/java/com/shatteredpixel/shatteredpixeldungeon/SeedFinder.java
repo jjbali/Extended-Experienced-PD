@@ -450,23 +450,23 @@ public Map<String, String> logSeedItems(String seed, int floors) {
 					else {
 						others.add(new HeapItem(item, h));
 						noOfLines +=1;
-						if (i <= 19 && (item.name().contains("boomerang") || item.name().contains("shuriken"))) {
+						if (i <= 9 && (item.name().contains("boomerang") || item.name().contains("shuriken"))) {
 							otherString += "- " + item.name() + " +" + item.level() + " - floor " + (i+1);
 							otherString += item.cursed ? " (cursed)" : "";
 							otherString += "\n";
 						}
 					}
-					if (i <= 19 && item instanceof Ring) {
+					if (i <= 9 && item instanceof Ring) {
 						ringString += "- " + item.name() + " +" + item.level() + " - floor " + (i+1);
 						ringString += item.cursed ? " (cursed)" : "";
 						ringString += "\n";
 					}
-					if (i <= 19 && item instanceof Artifact) {
+					if (i <= 9 && item instanceof Artifact) {
 						artifactString += "- " + item.name() + " +" + item.level() + " - floor " + (i+1);
 						artifactString += item.cursed ? " (cursed)" : "";
 						artifactString += "\n";
 					}
-					if (i <= 19 && item instanceof Wand) {
+					if (i <= 9 && item instanceof Wand) {
 						wandString += "- " + item.name() + " +" + item.level() + " - floor " + (i+1);
 						wandString += item.cursed ? " (cursed)" : "";
 						wandString += "\n";
@@ -486,11 +486,11 @@ public Map<String, String> logSeedItems(String seed, int floors) {
 			//SJC
 //			out.print(builder.toString());
 			returnString += builder.toString();
-			if (i<=19) { sewersString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
-			else if (i>19 && i<=39) { prisonString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
-			else if (i>39 && i<=59) { cavesString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
-			else if (i>59 && i<=79) { metropolisString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
-			else if (i>79 && i<=99) { hallsString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
+			if (i<=4) { sewersString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
+			else if (i>4 && i<=9) { prisonString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
+			else if (i>9 && i<=14) { cavesString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
+			else if (i>14 && i<=19) { metropolisString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
+			else if (i>19 && i<=24) { hallsString += "\n--- Floor: "+Dungeon.depth+" --- Line: "+noOfLines+"\n"+builder.toString(); }
 
 			Dungeon.depth++;
 		}
