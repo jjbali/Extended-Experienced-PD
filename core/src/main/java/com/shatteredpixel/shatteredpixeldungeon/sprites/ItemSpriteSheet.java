@@ -884,17 +884,15 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 8, 10);
 	}
 
-	//free 16 slots
 
-
-	private static final int NEW_WEP_TIER_1	=			xy(1, 45);  //8 slots
+	private static final int NEW_WEP_TIER_1	=			xy(1, 40);  //8 slots
 	public static final int HEALING_BOOK	= NEW_WEP_TIER_1+2;
 	static{
 		assignItemRect(HEALING_BOOK	, 13, 15);
 	}
 
 
-	private static final int AL_WEP_T3			=			xy(1, 56);  //16 slots
+	private static final int AL_WEP_T3			=			xy(1, 41);  //16 slots
 	public static final int SPEAR_N_SHIELD		= AL_WEP_T3+0;
 	public static final int UNHOLY_SWORD		= AL_WEP_T3+1;
 	public static final int CHAOS_SWORD			= AL_WEP_T3+2;
@@ -912,7 +910,7 @@ public class ItemSpriteSheet {
 		assignItemRect(ELECTRIC_SCIMITAR, 13, 16);
 	}
 
-	private static final int ENERGY_WEP			  	=			xy(1, 61);  //16 slots
+	private static final int ENERGY_WEP			  	=			xy(1, 42);  //16 slots
 	public static final int WORN_SHORTSWORD_ENERGY	= ENERGY_WEP+0;
 	//	public static final int 						= ENERGY_WEP+1;
 	public static final int DAGGER_ENERGY			= ENERGY_WEP+2;
@@ -931,7 +929,7 @@ public class ItemSpriteSheet {
 		assignItemRect(SABER_ENERGY				, 13, 15);
 	}
 
-	private static final int NEW_POTIONS		=			xy(1, 64);  //16 slots
+	private static final int NEW_POTIONS		=			xy(1, 43);  //16 slots
 	public static final int POTION_FLUORESCENT	= NEW_POTIONS+0;
 	public static final int POTION_ASH			= NEW_POTIONS+1;
 	static{
@@ -939,7 +937,7 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 12, 14);
 	}
 
-	private static final int NEW_EXOTIC_POTIONS	=			xy(1, 65);  //16 slots
+	private static final int NEW_EXOTIC_POTIONS	=			xy(1, 44);  //16 slots
 	public static final int EXOTIC_FLUORESCENT	= NEW_EXOTIC_POTIONS+0;
 	public static final int EXOTIC_ASH			= NEW_EXOTIC_POTIONS+1;
 	static{
@@ -947,7 +945,7 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 12, 13);
 	}
 
-	private static final int NEW_BREWS			=			xy(1, 66);  //16 slots
+	private static final int NEW_BREWS			=			xy(1, 45);  //16 slots
 	public static final int BREW_SATISFACTION	= +0;
 	public static final int BREW_TALENT			= +1;
 	static{
@@ -955,7 +953,7 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 12, 14);
 	}
 
-	private static final int NEW_SPELLS			=			xy(1, 67);  //16 slots
+	private static final int NEW_SPELLS			=			xy(1, 46);  //16 slots
 	public static final int FIRE_IMBUE			= NEW_SPELLS+0;
 	public static final int XRAY				= NEW_SPELLS+1;
 	public static final int FIREMAKER			= NEW_SPELLS+2;
