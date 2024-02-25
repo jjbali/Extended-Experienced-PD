@@ -66,7 +66,7 @@ public class Greatsword extends MeleeWeapon {
 
     @Override
     public String statsInfo() {
-        return Messages.get(this, "stats_desc", 9 + Dungeon.escalatingDepth() * 3);
+        return Messages.get(this, "stats_desc", 12 + Dungeon.escalatingDepth() * 3);
     }
 
     @Override
@@ -173,7 +173,7 @@ public class Greatsword extends MeleeWeapon {
         }
 
         public GuardianKnight() {
-            HP = HT = 9 + Dungeon.escalatingDepth() * 4;
+            HP = HT = 12 + Dungeon.escalatingDepth() * 4L;
             defenseSkill = 4 + Dungeon.escalatingDepth();
         }
 
@@ -199,7 +199,7 @@ public class Greatsword extends MeleeWeapon {
             @Override
             public boolean act() {
                 if (target.isAlive()) {
-                    float regen = 1f / (target.HT / 150f);
+                    float regen = 1f / (target.HT / 10f);
                     if (target.HP > 0) {
                         partialHP += regen;
                         if (partialHP >= 1){
@@ -223,7 +223,7 @@ public class Greatsword extends MeleeWeapon {
 
         @Override
         public long drRoll() {
-            return Random.Long(10L * Dungeon.hero.lvl, 20L * Dungeon.hero.lvl);
+            return Random.Long(5L * Dungeon.hero.lvl, 10L * Dungeon.hero.lvl);
         }
     }
 
