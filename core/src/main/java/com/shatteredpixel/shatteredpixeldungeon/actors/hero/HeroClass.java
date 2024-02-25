@@ -154,7 +154,6 @@ public enum HeroClass {
 			new TestPotion().collect();
 			new SpawnRingOrWand().collect();
 			new TestBag().collect();
-			new MobAttributeViewer().collect();
 			new MobPlacer().collect();
 			new LevelTeleporter().collect();
 			new ImmortalShieldAffecter().collect();
@@ -182,6 +181,7 @@ public enum HeroClass {
 		new Notebook().collect();
 		new NotebookHolder().collect();
 		new LotteryItem().collect();
+		new MobAttributeViewer().collect();
 
 		switch (this) {
 			case WARRIOR:
