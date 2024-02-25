@@ -149,11 +149,11 @@ public class ItemSpriteSheet {
 	public static final int MASTERY         = MISC_CONSUMABLE +14;
 	public static final int KIT             = MISC_CONSUMABLE +15;
 	static{
-		assignItemRect(ANKH,            10, 16);
-		assignItemRect(STYLUS,          12, 12);
+		assignItemRect(ANKH,            10, 14);
+		assignItemRect(STYLUS,          12, 13);
 		
-		assignItemRect(SEAL,            16,  16);
-		assignItemRect(TORCH,           16, 16);
+		assignItemRect(SEAL,            9,  15);
+		assignItemRect(TORCH,           12, 15);
 		assignItemRect(BEACON,          16, 15);
 		
 		assignItemRect(HONEYPOT,        14, 12);
@@ -826,7 +826,7 @@ public class ItemSpriteSheet {
 		assignItemRect(CAVES_PAGE,  10, 11);
 		assignItemRect(CITY_PAGE,   10, 11);
 		assignItemRect(HALLS_PAGE,  10, 11);
-		assignItemRect(SPYGLASS,  10, 11);
+		assignItemRect(SPYGLASS,  10, 4);
 		assignItemRect(NOTEBOOK_PAGE,   10, 11);
 		assignItemRect(PAGE,  10, 11);
 		assignItemRect(PAGE_2,  10, 11);
