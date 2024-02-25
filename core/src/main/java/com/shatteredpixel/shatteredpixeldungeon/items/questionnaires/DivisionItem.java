@@ -28,6 +28,7 @@ import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
@@ -93,7 +94,8 @@ public class DivisionItem extends Questionnaire {
             GLog.w(Messages.get(this, "cooldown"));
             GameScene.flash(0xFFFF0000);
         }
-        if (action.equals( AC_REFRESH )) {
+        if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) == null) {
+            Buff.affect(hero, RefreshCooldown.class).set(50);
             if (streak_d < 11) {
                 CODE = Random.Int(10)+1;
                 CODE2 = Random.Int(10)+1;
@@ -123,6 +125,9 @@ public class DivisionItem extends Questionnaire {
                 CODE2 = Random.Int(100)+1;
                 ANSWER = String.valueOf(Math.round(CODE / CODE2));
             }
+        }
+        else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
+            GLog.w(Messages.get(RefreshCooldown.class, "cooldown"));
         }
     }
 

@@ -32,6 +32,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ArcaneArmor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barkskin;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.BlobImmunity;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
@@ -98,9 +99,13 @@ public class BinaryItem extends Questionnaire {
             GLog.w(Messages.get(this, "cooldown"));
             GameScene.flash(0xFFFF0000);
         }
-        if (action.equals( AC_REFRESH )) {
+        if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) == null) {
+            Buff.affect(hero, RefreshCooldown.class).set(50);
             CODE = Random.Int(1000) + 1;
             ANSWER = Integer.toBinaryString(CODE);
+        }
+        else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
+            GLog.w(Messages.get(RefreshCooldown.class, "cooldown"));
         }
     }
 

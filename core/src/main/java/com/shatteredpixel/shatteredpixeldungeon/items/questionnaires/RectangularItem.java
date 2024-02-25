@@ -28,6 +28,7 @@ import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
@@ -107,7 +108,8 @@ public class RectangularItem extends Questionnaire {
             GLog.w(Messages.get(this, "cooldown"));
             GameScene.flash(0xFFFF0000);
         }
-        if (action.equals( AC_REFRESH )){
+        if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) == null){
+            Buff.affect(hero, RefreshCooldown.class).set(50);
             randomizer = Random.Int(2);
             switch (randomizer) {
                 case 0:
@@ -127,6 +129,9 @@ public class RectangularItem extends Questionnaire {
                     type = "Find The Perimeter";
                     break;
             }
+        }
+        else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
+            GLog.w(Messages.get(RefreshCooldown.class, "cooldown"));
         }
     }
 

@@ -28,6 +28,7 @@ import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
@@ -93,9 +94,13 @@ public class OddEvenItem extends Questionnaire {
             GLog.w(Messages.get(this, "cooldown"));
             GameScene.flash(0xFFFF0000);
         }
-        if (action.equals( AC_REFRESH )) {
+        if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) == null) {
+            Buff.affect(hero, RefreshCooldown.class).set(50);
             CODE = Random.Int(Integer.MAX_VALUE);
             ANSWER = CODE % 2 == 0 ? "even" : "odd";
+        }
+        else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
+            GLog.w(Messages.get(RefreshCooldown.class, "cooldown"));
         }
     }
 

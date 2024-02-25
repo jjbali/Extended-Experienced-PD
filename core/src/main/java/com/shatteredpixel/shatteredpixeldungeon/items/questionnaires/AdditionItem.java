@@ -29,6 +29,8 @@ import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.SPDSettings;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Belongings;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.EnemyAttributeModifier;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.ImmortalShieldAffecter;
@@ -37,6 +39,10 @@ import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.TimeReverser;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.PotionOfDebug;
+import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
+import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
+import com.shatteredpixel.shatteredpixeldungeon.items.quest.KingBlade;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Unstable;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
@@ -47,6 +53,7 @@ import com.shatteredpixel.shatteredpixeldungeon.windows.WndTextInput;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
+import com.watabou.utils.Reflection;
 import com.zrp200.scrollofdebug.ScrollOfDebug;
 
 import java.util.ArrayList;
@@ -101,7 +108,8 @@ public class AdditionItem extends Questionnaire {
             GLog.w(Messages.get(this, "cooldown"));
             GameScene.flash(0xFFFF0000);
         }
-        if (action.equals( AC_REFRESH )){
+        if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) == null){
+            Buff.affect(hero, RefreshCooldown.class).set(50);
             if (streak_a < 11) {
                 CODE = Random.Int(100);
                 CODE2 = Random.Int(100);
@@ -131,6 +139,9 @@ public class AdditionItem extends Questionnaire {
                 CODE2 = Random.Int(100);
                 ANSWER = String.valueOf(CODE + CODE2);
             }
+        }
+        else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
+            GLog.w(Messages.get(RefreshCooldown.class, "cooldown"));
         }
     }
 
