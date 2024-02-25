@@ -125,7 +125,7 @@ public class Hero extends Char {
         alignment = Alignment.ALLY;
     }
 
-	public static final int STARTING_STR = 15;
+	public static final int STARTING_STR = 10;
 	
 	private static final float TIME_TO_REST		    = 1f;
 	private static final float TIME_TO_SEARCH	    = 2f;
@@ -1948,8 +1948,8 @@ public class Hero extends Char {
 	
 	public static long maxExp( int lvl ){
 		HeroClass heroClass = hero == null ? GamesInProgress.selectedClass: hero.heroClass;
-		if (heroClass == HeroClass.RAT_KING) return (long) Math.pow((50 * lvl), 1.1);
-		return (long) Math.pow((100 * lvl), 1.1);
+		if (heroClass == HeroClass.RAT_KING) return (long) ((5 + lvl * 5L) * Math.pow(1.1, Math.max(0, lvl - 30)));
+		return (long) ((5 + lvl * 5L)*Math.pow(1.25, Math.max(0, lvl - 30)));
 	}
 	
 	public boolean isStarving() {
