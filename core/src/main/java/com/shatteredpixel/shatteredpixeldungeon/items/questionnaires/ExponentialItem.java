@@ -51,6 +51,7 @@ public class ExponentialItem extends Questionnaire {
         image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
         unique = true;
         identify();
+        defaultAction = AC_ANSWER;
     }
 
     private static final String AC_ANSWER = "ANSWER";

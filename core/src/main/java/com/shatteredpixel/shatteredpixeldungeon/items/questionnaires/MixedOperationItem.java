@@ -49,6 +49,7 @@ public class MixedOperationItem extends Questionnaire {
         image = ItemSpriteSheet.TOKEN;
         unique = true;
         identify();
+        defaultAction = AC_ANSWER;
     }
 
     private static final String AC_ANSWER = "ANSWER";
