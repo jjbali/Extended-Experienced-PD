@@ -293,9 +293,11 @@ public class TitleScene extends PixelScene {
 					}
 				});
 //
+			} else {
+				ChangesScene.changesSelected = 0;
+				ShatteredPixelDungeon.switchNoFade( ChangesScene.class );
 			}
-			ChangesScene.changesSelected = 0;
-			ShatteredPixelDungeon.switchNoFade( ChangesScene.class );
+
 
 		}
 
