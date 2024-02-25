@@ -61,7 +61,7 @@ public class DamageEnhance extends Buff {
 		return Messages.get(this, "name");
 	}
 
-	public void set(int lvl) {
+	public void set(long lvl) {
 		dmgBonus = 1 + 0.2f * lvl;
 		duration = 5f;
 		initialDuration = duration;
