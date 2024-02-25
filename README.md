@@ -10,7 +10,7 @@ Some features
 - New Challenges
 - New Champions
 - New Items
-- Seed Analysis
+- Seed Finding
 - Some dimensional branch
 - Mathematical Items
 - Some bugs (usually from the update that got a very "long numbers")
