@@ -448,7 +448,8 @@ public class Dungeon {
 				case 26:
 					level = new LastLevel();
 					break;
-				default:level = new DeadEndLevel();
+				default:
+					level = new DeadEndLevel();
 			}
 		} else if (branch == 1) {
 			if (depth <= 101) {
