@@ -35,6 +35,7 @@ public class Bestiary {
 	public static ArrayList<Class<? extends Mob>> getMobRotation( int depth ){
 		ArrayList<Class<? extends Mob>> mobs = standardMobRotation( depth );
 		addRareMobs(depth, mobs);
+		addSuperRareMobs(depth, mobs);
 		swapMobAlts(mobs);
 		Random.shuffle(mobs);
 		return mobs;
@@ -154,6 +155,36 @@ public class Bestiary {
 				if (Random.Float() < 0.1f) rotation.add(Succubus.class);
 				if (Random.Float() < 0.1f) rotation.add(Scorpio.class);
 				if (Random.Float() < 0.1f) rotation.add(RipperDemon.class);
+				return;
+		}
+	}
+	public static void addSuperRareMobs(int depth, ArrayList<Class<?extends Mob>> rotation){
+
+		switch (depth){
+
+			// Sewers
+			default:
+				return;
+			case 1: case 2: case 3: case 4:
+				if (Random.Float() < 0.025f) rotation.add(Bat.class);
+				if (Random.Float() < 0.025f) rotation.add(Shaman.random());
+				return;
+
+			// Prison
+			case 6: case 7: case 8: case 9:
+				if (Random.Float() < 0.025f) rotation.add(Elemental.random());
+				if (Random.Float() < 0.025f) rotation.add(Monk.class);
+				return;
+
+			// Caves
+			case 11: case 12: case 13: case 14:
+				if (Random.Float() < 0.025f) rotation.add(Scorpio.class);
+				if (Random.Float() < 0.025f) rotation.add(RipperDemon.class);
+				return;
+
+			// City
+			case 16: case 17: case 18: case 19:
+				if (Random.Float() < 0.025f) rotation.add(OOFThief.class);
 				return;
 		}
 	}
