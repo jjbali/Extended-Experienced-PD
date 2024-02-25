@@ -47,7 +47,7 @@ public class ScrollHolder extends Bag {
 	}
 
 	public int capacity(){
-		return 57;
+		return 55;
 	}
 	
 	@Override

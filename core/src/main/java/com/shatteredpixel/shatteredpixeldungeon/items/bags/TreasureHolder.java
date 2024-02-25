@@ -69,7 +69,7 @@ public class TreasureHolder extends Bag {
 	}
 
 	public int capacity(){
-		return 57;
+		return 55;
 	}
 	
 	@Override
