@@ -68,7 +68,7 @@ public class DwarfKing extends Mob {
 	{
 		spriteClass = KingSprite.class;
 
-		HP = HT = 25 * theSubjectConstant();
+		HP = HT = 15L * theSubjectConstant();
 		EXP = 40;
 		defenseSkill = 22;
 
@@ -76,22 +76,22 @@ public class DwarfKing extends Mob {
 		properties.add(Property.UNDEAD);
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 323 * theSubjectConstant();
+                HP = HT = 323L * theSubjectConstant();
                 defenseSkill = 89;
                 EXP = 725;
                 break;
             case 2:
-                HP = HT = 5025 * theSubjectConstant();
+                HP = HT = 5025L * theSubjectConstant();
                 defenseSkill = 324;
                 EXP = 25000;
                 break;
             case 3:
-                HP = HT = 125000 * theSubjectConstant();
+                HP = HT = 125000L * theSubjectConstant();
                 defenseSkill = 780;
                 EXP = 400000;
                 break;
             case 4:
-                HP = HT = 15000000 * theSubjectConstant();
+                HP = HT = 15000000L * theSubjectConstant();
                 defenseSkill = 7000;
                 EXP = 99999999;
                 break;
@@ -99,7 +99,7 @@ public class DwarfKing extends Mob {
 	}
 
 	private int theSubjectConstant(){
-		return 12 * Dungeon.hero.lvl;
+		return 15 * Dungeon.hero.lvl;
 	}
 
 	@Override

@@ -578,7 +578,7 @@ public class PrisonBossLevel extends Level {
 		if (item != null) {
 			drop( item, randomRespawnCell( null ) ).setHauntedIfCursed().type = Heap.Type.REMAINS;
 		}
-		drop(new IronKey(40), randomPrisonCellPos());
+		drop(new IronKey(10), randomPrisonCellPos());
 	}
 
 	@Override
