@@ -7,7 +7,6 @@ Extended Experienced Pixel Dungeon currently compiles for Android, iOS, and Desk
 Some features
 
 - New Tickets (Second, Third and Fourth Arenas)
-- Hundred Depths
 - New Challenges
 - New Champions
 - New Items
