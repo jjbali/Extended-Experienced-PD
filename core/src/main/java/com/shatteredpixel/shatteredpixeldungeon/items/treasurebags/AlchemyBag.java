@@ -57,7 +57,7 @@ public class AlchemyBag extends TreasureBag {
                 ElixirOfDragonsBlood.class, ElixirOfHoneyedHealing.class, ElixirOfIcyTouch.class, ElixirOfToxicEssence.class,
                 Firebomb.class, Flashbang.class, FrostBomb.class, HolyBomb.class, Noisemaker.class,
                 RegrowthBomb.class, ShockBomb.class, WoollyBomb.class, ArcaneBomb.class, ShrapnelBomb.class);
-        int amount = Random.Int(20, 40);
+        int amount = Random.Int(5, 10);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 1.5f;
         items.add(Reflection.newInstance(Random.element(possibleItems)).quantity(amount));
         return items;
