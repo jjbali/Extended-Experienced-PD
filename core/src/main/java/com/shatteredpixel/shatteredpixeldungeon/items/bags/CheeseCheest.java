@@ -59,7 +59,7 @@ public class CheeseCheest extends Bag {
 		}
 	}
 	public int capacity(){
-		return 63;
+		return 57;
 	}
 
 	@Override
