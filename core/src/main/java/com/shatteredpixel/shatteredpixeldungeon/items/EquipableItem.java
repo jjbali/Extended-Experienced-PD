@@ -129,7 +129,7 @@ public abstract class EquipableItem extends Item {
 				Dungeon.level.drop(new ArcaneCatalyst().quantity(Random.Int(3, 20)), curUser.pos).sprite.drop();
 				updateQuickslot();
 
-				hero.spend( 1f );
+				hero.spendAndNext( 1f );
 
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
 				curUser.sprite.operate(curUser.pos);
@@ -142,7 +142,7 @@ public abstract class EquipableItem extends Item {
 				}
 				updateQuickslot();
 
-				hero.spend( 1f );
+				hero.spendAndNext( 1f );
 
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
 				curUser.sprite.operate(curUser.pos);
@@ -155,7 +155,7 @@ public abstract class EquipableItem extends Item {
 				}
 				updateQuickslot();
 
-				hero.spend( 1f );
+				hero.spendAndNext( 1f );
 
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
 				curUser.sprite.operate(curUser.pos);
