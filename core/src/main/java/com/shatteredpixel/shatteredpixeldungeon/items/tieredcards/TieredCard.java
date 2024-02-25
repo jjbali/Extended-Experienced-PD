@@ -25,7 +25,10 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
@@ -34,7 +37,7 @@ import java.util.ArrayList;
 public class TieredCard extends Item {
 
     private static final String AC_DRINK	= "DRINK";
-    public int lvl = -5;
+    public static long lvl = 1;
 
     {
         image = ItemSpriteSheet.RANDOM_ITEM_GIVER;
@@ -58,8 +61,18 @@ public class TieredCard extends Item {
         super.execute(hero, action);
 
         if (action.equals(AC_DRINK)) {
-
+            long rolls = 2 * lvl;
+            ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop((int) rolls);
+            if (!bonus.isEmpty()) {
+                for (Item b : bonus) Dungeon.level.drop(b, hero.pos).sprite.drop();
+                RingOfWealth.showFlareForBonusDrop(hero.sprite);
+            }
         }
+    }
+
+    @Override
+    public long level() {
+        return lvl;
     }
 
     @Override
@@ -72,10 +85,19 @@ public class TieredCard extends Item {
         return true;
     }
 
+    public void setLvl(int level){
+        lvl = level;
+    }
+
     @Override
     public long value() {
-        return 100 * quantity;
+        return 100 * quantity * lvl;
     }
+
+    private static ItemSprite.Glowing GREEN = new ItemSprite.Glowing( 0xFFFF00, 0.3f );
+    private static ItemSprite.Glowing YELLOW = new ItemSprite.Glowing( 0xFF0000, 0.3f );
+    private static ItemSprite.Glowing ORANGE = new ItemSprite.Glowing( 0x00FF00, 0.3f );
+    private static ItemSprite.Glowing RED = new ItemSprite.Glowing( 0x0000FF, 0.3f );
 
     @Override
     public String name() {
@@ -84,6 +106,25 @@ public class TieredCard extends Item {
 
     @Override
     public String desc() {
-        return "Gives random item based on ring of wealth";
+        return "Gives random item based on ring of wealth and they glow in specific level"
+                + "\n\nLevel 1 - 19: Green"
+                + "\n\nLevel 20 - 39: Yellow"
+                + "\n\nLevel 40 - 59: Orange"
+                + "\n\nLevel 60 above: Red";
+    }
+
+    @Override
+    public ItemSprite.Glowing glowing() {
+        if (lvl < 20) {
+            return GREEN;
+        } if (lvl >= 20 && lvl < 40) {
+            return YELLOW;
+        } if (lvl >= 40 && lvl < 60) {
+            return ORANGE;
+        } if (lvl >= 60) {
+            return RED;
+        } else {
+            return null;
+        }
     }
 }
