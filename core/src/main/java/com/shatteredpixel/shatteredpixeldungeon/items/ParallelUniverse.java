@@ -120,7 +120,7 @@ public class ParallelUniverse extends Item{
 
     @Override
     public ItemSprite.Glowing glowing() {
-        return new ItemSprite.Glowing( 0xFFFF00, 0.1f );
+        return new ItemSprite.Glowing(0.2f);
     }
 
     @Override
