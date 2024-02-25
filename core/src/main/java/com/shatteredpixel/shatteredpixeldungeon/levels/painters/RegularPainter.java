@@ -178,7 +178,7 @@ public abstract class RegularPainter extends Painter {
 		float hiddenDoorChance = 0;
 		if (Dungeon.depth > 1){
 			//chance for a hidden door scales from 2/20 on floor 2 to 20/20 on floor 20
-			hiddenDoorChance = Math.min(1f, Dungeon.depth / 20f);
+			hiddenDoorChance = Math.min(1f, Dungeon.depth / 5f);
 		}
 		if (l.feeling == Level.Feeling.SECRETS){
 			//pull the value of extra secret doors toward 50% on secrets level feel

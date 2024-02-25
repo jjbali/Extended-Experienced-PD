@@ -57,7 +57,7 @@ public class MagicalPorter extends InventorySpell {
 	protected void onItemSelected(Item item) {
 		
 		Item result = item.detachAll(curUser.belongings.backpack);
-		int portDepth = 20 * (1 + Dungeon.depth/20);
+		int portDepth = 20 * (1 + Dungeon.depth/5);
 		
 	}
 	

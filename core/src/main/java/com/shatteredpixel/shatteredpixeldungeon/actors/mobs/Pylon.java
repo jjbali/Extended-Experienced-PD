@@ -232,7 +232,7 @@ public class Pylon extends Mob {
 	@Override
 	public void die(Object cause) {
 		super.die(cause);
-		if (Dungeon.depth == 60) ((CavesBossLevel)Dungeon.level).eliminatePylon();
+		if (Dungeon.depth == 15) ((CavesBossLevel)Dungeon.level).eliminatePylon();
 		else ((BlackMimicLevel)Dungeon.level).eliminatePylon();
 	}
 

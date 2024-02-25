@@ -705,7 +705,7 @@ public class Item implements Bundlable {
 	}
 
 	public final long sellPrice(){
-		return value() * 5 * (Dungeon.depth / 20 + 1);
+		return value() * 5 * (Dungeon.depth / 5 + 1);
 	}
 	
 	public Item virtual(){

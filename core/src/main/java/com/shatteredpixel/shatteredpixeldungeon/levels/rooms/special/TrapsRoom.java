@@ -50,7 +50,7 @@ public class TrapsRoom extends SpecialRoom {
 				trapClass = null;
 				break;
 			default:
-				trapClass = Random.oneOf(levelTraps[Dungeon.depth/20]);
+				trapClass = Random.oneOf(levelTraps[Dungeon.depth/5]);
 				break;
 		}
 
