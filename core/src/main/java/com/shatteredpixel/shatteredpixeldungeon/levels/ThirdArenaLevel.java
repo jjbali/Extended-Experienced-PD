@@ -403,7 +403,7 @@ public class ThirdArenaLevel extends Level {
 							Buff.affect(mob, MagicalSight.class, MagicalSight.DURATION * 10);
 						}
 						if (power >= 1500){
-							Buff.affect(mob, RageShield.class).set(power*4);
+							Buff.affect(mob, BlobImmunity.class, power);
 						}
 						if (power >= 3000){
 							Class<?extends ChampionEnemy> buffCls;

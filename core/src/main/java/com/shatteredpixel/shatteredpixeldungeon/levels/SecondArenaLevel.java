@@ -406,7 +406,7 @@ public class SecondArenaLevel extends Level {
 							Buff.affect(mob, Overload.class, 200f);
 						}
 						if (power >= 1500){
-							Buff.affect(mob, RageShield.class).set(power*4);
+							Buff.affect(mob, BlobImmunity.class, power);
 						}
 						if (power >= 2850){
 							Class<?extends ChampionEnemy> buffCls;

@@ -393,7 +393,7 @@ public class FourthArenaLevel extends Level {
 							Buff.affect(mob, MagicalSight.class, MagicalSight.DURATION * power);
 						}
 						if (power >= 2000){
-							Buff.affect(mob, RageShield.class).set(power*15);
+							Buff.affect(mob, BlobImmunity.class, power);
 						}
 						if (power >= 3920){
 							Class<?extends ChampionEnemy> buffCls;

@@ -29,6 +29,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Bones;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.BlobImmunity;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ChampionEnemy;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.CounterBuff;
@@ -365,7 +366,7 @@ public class DimensionalLevel extends Level {
 							Buff.affect(mob, Overload.class, 20f);
 						}
 						if (power >= 150) {
-							Buff.affect(mob, RageShield.class).set(power*4);
+							Buff.affect(mob, BlobImmunity.class, power);
 							mob.HP = mob.HT *= 7;
 						}
 						if (power == 200) {
