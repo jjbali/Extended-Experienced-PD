@@ -42,7 +42,7 @@ public class Bestiary {
 	
 	//returns a rotation of standard mobs, unshuffled.
 	private static ArrayList<Class<? extends Mob>> standardMobRotation( int depth ){
-		if (depth < 21 && depth > 0) {
+		if (depth < 5 && depth > 0) {
 			return new ArrayList<>(Arrays.asList(
 					Rat.class,
 					Snake.class,
@@ -51,7 +51,7 @@ public class Bestiary {
 					Crab.class,
 					Slime.class
 			));
-		} else if (depth < 41 && depth > 20) {
+		} else if (depth < 10 && depth > 5) {
 			return new ArrayList<>(Arrays.asList(
 					Skeleton.class,
 					Thief.class,
@@ -60,7 +60,7 @@ public class Bestiary {
 					Guard.class,
 					Necromancer.class
 			));
-		} else if (depth < 61 && depth > 40) {
+		} else if (depth < 15 && depth > 10) {
 			return new ArrayList<>(Arrays.asList(
 					Bat.class,
 					Brute.class,
@@ -68,7 +68,7 @@ public class Bestiary {
 					Spinner.class,
 					DM200.class
 			));
-		} else if (depth < 81 && depth > 60) {
+		} else if (depth < 20 && depth > 15) {
 			return new ArrayList<>(Arrays.asList(
 					Ghoul.class,
 					Elemental.random(),
@@ -76,7 +76,7 @@ public class Bestiary {
 					Monk.class,
 					Golem.class
 			));
-		} else if (depth < 101 && depth > 80) {
+		} else if (depth < 101 && depth > 20) {
 			return new ArrayList<>(Arrays.asList(
 					Succubus.class,
 					Eye.class,
@@ -124,27 +124,36 @@ public class Bestiary {
 		switch (depth){
 
 			// Sewers
-			case 19: default:
-				if (Random.Float() < 0.10f) rotation.add(Thief.class);
-				if (Random.Float() < 0.25f) rotation.add(Thief.class);
+			default:
+				return;
+			case 1: case 2: case 3: case 4:
+				if (Random.Float() < 0.1f) rotation.add(Thief.class);
+				if (Random.Float() < 0.1f) rotation.add(Skeleton.class);
+				if (Random.Float() < 0.1f) rotation.add(Necromancer.class);
+				if (Random.Float() < 0.1f) rotation.add(DM100.class);
 				return;
 
 			// Prison
-			case 39:
-				if (Random.Float() < 0.10f) rotation.add(Bat.class);
-				if (Random.Float() < 0.25f) rotation.add(Bat.class);
+			case 6: case 7: case 8: case 9:
+				if (Random.Float() < 0.1f) rotation.add(Bat.class);
+				if (Random.Float() < 0.1f) rotation.add(Brute.class);
+				if (Random.Float() < 0.1f) rotation.add(Shaman.random());
+				if (Random.Float() < 0.1f) rotation.add(DM200.class);
 				return;
 
 			// Caves
-			case 59:
-				if (Random.Float() < 0.10f) rotation.add(Ghoul.class);
-				if (Random.Float() < 0.25f) rotation.add(Ghoul.class);
+			case 11: case 12: case 13: case 14:
+				if (Random.Float() < 0.1f) rotation.add(Ghoul.class);
+				if (Random.Float() < 0.1f) rotation.add(Elemental.random());
+				if (Random.Float() < 0.1f) rotation.add(Golem.class);
+				if (Random.Float() < 0.1f) rotation.add(Monk.class);
 				return;
 
 			// City
-			case 79:
-				if (Random.Float() < 0.10f) rotation.add(Succubus.class);
-				if (Random.Float() < 0.25f) rotation.add(Succubus.class);
+			case 16: case 17: case 18: case 19:
+				if (Random.Float() < 0.1f) rotation.add(Succubus.class);
+				if (Random.Float() < 0.1f) rotation.add(Scorpio.class);
+				if (Random.Float() < 0.1f) rotation.add(RipperDemon.class);
 				return;
 		}
 	}
