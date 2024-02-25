@@ -365,6 +365,12 @@ public class ItemSprite extends MovieClip {
 			}
 			
 			float value = phase / glowing.period * 0.6f;
+			if (glowing.isRainbow) {
+				glowing.tempColor.fromHsv(Random.Float(360), Random.Float(0.5f, 1f), 0.9f);
+				glowing.red = glowing.tempColor.r;
+				glowing.blue = glowing.tempColor.b;
+				glowing.green = glowing.tempColor.g;
+			}
 			
 			rm = gm = bm = 1 - value;
 			ra = glowing.red * value;
