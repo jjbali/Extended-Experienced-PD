@@ -351,7 +351,7 @@ public Map<String, String> logSeedItems(String seed, int floors) {
 		noOfLines +=11; // for special items area, but that hardcoded. dynamically adding it doesn't work as it's mixed in with main pass and we need to know in advance so we can add to the floor title
 		// need to re-architect the whole thing.
 
-		titleString += "***** Special items before floor 20 *****\n";
+		titleString += "***** Special items before floor 10 *****\n";
 		String artifactString = "";
 		String ringString = "";
 		String wandString = "";
