@@ -70,7 +70,7 @@ public abstract class FishingRod extends Item {
     public boolean hook;
 
     public float fishingPower(){
-        return level()*amplifier;
+        return level() * amplifier;
     }
 
     @Override
@@ -154,7 +154,10 @@ public abstract class FishingRod extends Item {
     @Override
     public Item upgrade() {
         super.upgrade();
-        fishingStr = (int) Math.min(Integer.MAX_VALUE, level() / 5);
+        for (long i = 0; i < Math.min(Integer.MAX_VALUE, level() / 5); i++) {
+            fishingStr++;
+        }
+        //fishingStr = (int) Math.min(Integer.MAX_VALUE, level() / 5);
         return this;
     }
 
