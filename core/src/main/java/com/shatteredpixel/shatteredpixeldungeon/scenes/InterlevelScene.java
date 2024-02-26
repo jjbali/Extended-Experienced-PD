@@ -119,8 +119,8 @@ public class InterlevelScene extends PixelScene {
 					else                        loadingDepth = Dungeon.depth+1;
 					if (Statistics.deepestFloor >= loadingDepth) {
 						fadeTime = FAST_FADE;
-					} else if (loadingDepth == 21 || loadingDepth == 41
-							|| loadingDepth == 61 || loadingDepth == 81) {
+					} else if (loadingDepth == 6 || loadingDepth == 11
+							|| loadingDepth == 16 || loadingDepth == 21) {
 						fadeTime = SLOW_FADE;
 					}
 				}
@@ -143,7 +143,7 @@ public class InterlevelScene extends PixelScene {
 		}
 
 		//flush the texture cache whenever moving between regions, helps reduce memory load
-		int region = (int)Math.ceil(loadingDepth / 20f);
+		int region = (int)Math.ceil(loadingDepth / 5f);
 		if (region != lastRegion){
 			TextureCache.clear();
 			lastRegion = region;
