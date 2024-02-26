@@ -909,11 +909,11 @@ public abstract class Mob extends Char {
 		if (stolen == null || !stolen.itemWasStolen()) {
 			Item loot = createLoot();
 			if (loot != null) {
-				Dungeon.level.drop(loot, pos).sprite.drop();
+				Dungeon.level.drop(loot.quantity(1), pos).sprite.drop();
 			}
 			if (Random.Float() < lootChance()) {
 				if (loot != null) {
-					Dungeon.level.drop(loot, pos).sprite.drop();
+					Dungeon.level.drop(loot.quantity(1), pos).sprite.drop();
 				}
 			}
 		}
