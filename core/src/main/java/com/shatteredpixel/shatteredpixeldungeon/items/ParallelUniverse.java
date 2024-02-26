@@ -26,6 +26,7 @@ package com.shatteredpixel.shatteredpixeldungeon.items;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
+import com.shatteredpixel.shatteredpixeldungeon.Rankings;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.levels.ArenaLevel;
@@ -160,10 +161,11 @@ public class ParallelUniverse extends Item{
 
     @Override
     public String desc() {
+        String desc_1 = "\n\nTurns elapsed: " + Game.elapsed;
         if (Dungeon.hero.lvl >= requirements) {
-            return "This legendary item will teleport you to the most powerful branch that exist.";
+            return "This legendary item will teleport you to the most powerful branch that exist." + desc_1;
         } else {
-            return "You are not ready for this, but grind more if you can!";
+            return "You are not ready for this, but grind more if you can!" + desc_1;
         }
     }
 }
