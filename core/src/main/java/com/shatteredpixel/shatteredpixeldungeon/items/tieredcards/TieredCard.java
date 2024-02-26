@@ -33,7 +33,6 @@ import java.util.ArrayList;
 public class TieredCard extends Item {
 
     private static final String AC_DRINK	= "DRINK";
-    public static long lvl = 1;
 
     {
         image = ItemSpriteSheet.RANDOM_ITEM_GIVER;
@@ -57,7 +56,7 @@ public class TieredCard extends Item {
         super.execute(hero, action);
 
         if (action.equals(AC_DRINK)) {
-            long rolls = 2 * lvl;
+            long rolls = 5 * level();
             ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop((int) rolls);
             if (!bonus.isEmpty()) {
                 for (Item b : bonus) Dungeon.level.drop(b, hero.pos).sprite.drop();
@@ -68,13 +67,8 @@ public class TieredCard extends Item {
     }
 
     @Override
-    public long level() {
-        return lvl;
-    }
-
-    @Override
     public boolean isUpgradable() {
-        return false;
+        return level() <= 30;
     }
 
     @Override
@@ -82,25 +76,9 @@ public class TieredCard extends Item {
         return true;
     }
 
-    final public Item setLvl(long n ) {
-        if (n > 20){
-            for (long i=0; i < 20; i++) {
-                upgrade();
-            }
-            lvl += n - 20;
-            updateQuickslot();
-        } else {
-            for (long i = 0; i < n; i++) {
-                upgrade();
-            }
-        }
-
-        return this;
-    }
-
     @Override
     public long value() {
-        return 100 * quantity * lvl;
+        return 100 * quantity * level();
     }
 
     private static ItemSprite.Glowing GLITCHED = new ItemSprite.Glowing( 0.3f );
@@ -112,7 +90,7 @@ public class TieredCard extends Item {
 
     @Override
     public String desc() {
-        return "Gives random item based on ring of wealth and they glow in specific level";
+        return "Gives random item based on ring of wealth, it is upgradable until it reaches 30.";
     }
 
     @Override

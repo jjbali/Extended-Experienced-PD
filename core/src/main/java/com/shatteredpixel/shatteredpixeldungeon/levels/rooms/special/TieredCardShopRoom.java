@@ -173,11 +173,10 @@ public class TieredCardShopRoom extends SpecialRoom {
 	protected static ArrayList<Item> generateItems() {
 
 		ArrayList<Item> itemsToSpawn = new ArrayList<>();
-		itemsToSpawn.add(new TieredCard().upgrade(2L * Dungeon.depth));
-		itemsToSpawn.add(new TieredCard().upgrade(4L * Dungeon.depth));
-		itemsToSpawn.add(new TieredCard().upgrade(6L * Dungeon.depth));
-		itemsToSpawn.add(new TieredCard().upgrade(8L * Dungeon.depth));
-		itemsToSpawn.add(new TieredCard().upgrade(9L * Dungeon.depth));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(2, 15)));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(2, 15)));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(2, 15)));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(2, 15)));
 
 
 
