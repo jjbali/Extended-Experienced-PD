@@ -880,7 +880,7 @@ public class ItemSpriteSheet {
 	public static final int RING_AQUAMARINE = NEW_RING+5;
 	public static final int RING_JADE		= NEW_RING+6;
 	static{
-		for (int i = NEW_RING; i < NEW_RING+6; i++)
+		for (int i = NEW_RING; i < NEW_RING+7; i++)
 			assignItemRect(i, 8, 10);
 	}
 
