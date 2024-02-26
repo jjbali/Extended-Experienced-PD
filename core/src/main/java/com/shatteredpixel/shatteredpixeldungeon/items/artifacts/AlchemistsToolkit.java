@@ -3,10 +3,10 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,8 +50,8 @@ public class AlchemistsToolkit extends Artifact {
 		image = ItemSpriteSheet.ARTIFACT_TOOLKIT;
 		defaultAction = AC_BREW;
 
-		levelCap = Integer.MAX_VALUE;
-		
+		levelCap = 10;
+
 		charge = 0;
 		partialCharge = 0;
 	}
@@ -64,14 +64,12 @@ public class AlchemistsToolkit extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		//if (isEquipped( hero ) && !cursed && hero.buff(MagicImmune.class) == null) {
-
-			//if (level() < levelCap) {
-
-			//}
-		//}
-		actions.add(AC_BREW);
-		actions.add(AC_ENERGIZE);
+		if (isEquipped( hero ) && !cursed && hero.buff(MagicImmune.class) == null) {
+			actions.add(AC_BREW);
+			if (level() < levelCap) {
+				actions.add(AC_ENERGIZE);
+			}
+		}
 		return actions;
 	}
 
@@ -83,19 +81,19 @@ public class AlchemistsToolkit extends Artifact {
 		if (hero.buff(MagicImmune.class) != null) return;
 
 		if (action.equals(AC_BREW)){
-			//if (!isEquipped(hero))              GLog.i( Messages.get(this, "need_to_equip") );
-			//else if (cursed)                    GLog.w( Messages.get(this, "cursed") );
-			//else if (warmUpDelay > 0)           GLog.w( Messages.get(this, "not_ready") );
-			//else {
+			if (!isEquipped(hero))              GLog.i( Messages.get(this, "need_to_equip") );
+			else if (cursed)                    GLog.w( Messages.get(this, "cursed") );
+			else if (warmUpDelay > 0)           GLog.w( Messages.get(this, "not_ready") );
+			else {
 				AlchemyScene.assignToolkit(this);
 				Game.switchScene(AlchemyScene.class);
-			//}
-			
+			}
+
 		} else if (action.equals(AC_ENERGIZE)){
-			//if (!isEquipped(hero))              GLog.i( Messages.get(this, "need_to_equip") );
-			//else if (cursed)                    GLog.w( Messages.get(this, "cursed") );
-			//else if (Dungeon.energy < 6)        GLog.w( Messages.get(this, "need_energy") );
-			//else {
+			if (!isEquipped(hero))              GLog.i( Messages.get(this, "need_to_equip") );
+			else if (cursed)                    GLog.w( Messages.get(this, "cursed") );
+			else if (Dungeon.energy < 6)        GLog.w( Messages.get(this, "need_energy") );
+			else {
 
 				final int maxLevels = (int) Math.min(levelCap - level(), Dungeon.energy/6);
 
@@ -125,7 +123,7 @@ public class AlchemistsToolkit extends Artifact {
 							Sample.INSTANCE.play(Assets.Sounds.DRINK);
 							Sample.INSTANCE.playDelayed(Assets.Sounds.PUFF, 0.5f);
 							Dungeon.hero.sprite.operate(Dungeon.hero.pos);
-							upgrade((int)maxLevels);
+							upgrade((int) maxLevels);
 						}
 
 					}
@@ -140,7 +138,7 @@ public class AlchemistsToolkit extends Artifact {
 						return new ItemSprite(ItemSpriteSheet.ENERGY);
 					}
 				});
-			//}
+			}
 		}
 
 		updateQuickslot();
@@ -159,7 +157,7 @@ public class AlchemistsToolkit extends Artifact {
 	protected ArtifactBuff passiveBuff() {
 		return new kitEnergy();
 	}
-	
+
 	@Override
 	public void charge(Hero target, float amount) {
 		if (target.buff(MagicImmune.class) != null) return;
@@ -191,10 +189,10 @@ public class AlchemistsToolkit extends Artifact {
 			else if (warmUpDelay > 0)   result += "\n\n" + Messages.get(this, "desc_warming");
 			else                        result += "\n\n" + Messages.get(this, "desc_hint");
 		}
-		
+
 		return result;
 	}
-	
+
 	@Override
 	public boolean doEquip(Hero hero) {
 		if (super.doEquip(hero)){
@@ -204,21 +202,21 @@ public class AlchemistsToolkit extends Artifact {
 			return false;
 		}
 	}
-	
+
 	private static final String WARM_UP = "warm_up";
-	
+
 	@Override
 	public void storeInBundle(Bundle bundle) {
 		super.storeInBundle(bundle);
 		bundle.put(WARM_UP, warmUpDelay);
 	}
-	
+
 	@Override
 	public void restoreFromBundle(Bundle bundle) {
 		super.restoreFromBundle(bundle);
 		warmUpDelay = bundle.getFloat(WARM_UP);
 	}
-	
+
 	public class kitEnergy extends ArtifactBuff {
 
 		@Override
@@ -248,7 +246,7 @@ public class AlchemistsToolkit extends Artifact {
 			//This means that energy absorbed into the kit is recovered in 5 hero levels
 			float chargeGain = (2 + level()) * levelPortion;
 			chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
-				partialCharge += chargeGain;
+			partialCharge += chargeGain;
 
 			//charge is in increments of 1 energy.
 			while (partialCharge >= 1) {
