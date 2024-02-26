@@ -3,10 +3,10 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -62,11 +62,11 @@ public class UnstableSpellbook extends Artifact {
 	{
 		image = ItemSpriteSheet.ARTIFACT_SPELLBOOK;
 
-		levelCap = 20;
+		levelCap = 10;
 
-		charge = 20;
+		charge = (int)(level()*0.6f)+2;
 		partialCharge = 0;
-		chargeCap = 20;
+		chargeCap = (int)(level()*0.6f)+2;
 
 		defaultAction = AC_READ;
 	}
@@ -95,10 +95,10 @@ public class UnstableSpellbook extends Artifact {
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
-		if (charge > 0 && !cursed && hero.buff(MagicImmune.class) == null) {
+		if (isEquipped( hero ) && charge > 0 && !cursed && hero.buff(MagicImmune.class) == null) {
 			actions.add(AC_READ);
 		}
-		if (level() < levelCap && !cursed && hero.buff(MagicImmune.class) == null) {
+		if (isEquipped( hero ) && level() < levelCap && !cursed && hero.buff(MagicImmune.class) == null) {
 			actions.add(AC_ADD);
 		}
 		return actions;
@@ -114,7 +114,7 @@ public class UnstableSpellbook extends Artifact {
 		if (action.equals( AC_READ )) {
 
 			if (hero.buff( Blindness.class ) != null) GLog.w( Messages.get(this, "blinded") );
-			//else if (!isEquipped( hero ))             GLog.i( Messages.get(Artifact.class, "need_to_equip") );
+			else if (!isEquipped( hero ))             GLog.i( Messages.get(Artifact.class, "need_to_equip") );
 			else if (charge <= 0)                     GLog.i( Messages.get(this, "no_charge") );
 			else if (cursed)                          GLog.i( Messages.get(this, "cursed") );
 			else {
@@ -126,11 +126,11 @@ public class UnstableSpellbook extends Artifact {
 				} while (scroll == null
 						//reduce the frequency of these scrolls by half
 						||((scroll instanceof ScrollOfIdentify ||
-							scroll instanceof ScrollOfRemoveCurse ||
-							scroll instanceof ScrollOfMagicMapping) && Random.Int(2) == 0)
+						scroll instanceof ScrollOfRemoveCurse ||
+						scroll instanceof ScrollOfMagicMapping) && Random.Int(2) == 0)
 						//cannot roll transmutation
 						|| (scroll instanceof ScrollOfTransmutation));
-				
+
 				scroll.anonymize();
 				curItem = scroll;
 				curUser = hero;
@@ -152,6 +152,7 @@ public class UnstableSpellbook extends Artifact {
 							handler.detach();
 							if (index == 1){
 								Scroll scroll = Reflection.newInstance(ExoticScroll.regToExo.get(fScroll.getClass()));
+								curItem = scroll;
 								charge--;
 								scroll.anonymize();
 								scroll.doRead();
@@ -162,7 +163,7 @@ public class UnstableSpellbook extends Artifact {
 							}
 							updateQuickslot();
 						}
-						
+
 						@Override
 						public void onBackPressed() {
 							//do nothing
@@ -219,7 +220,7 @@ public class UnstableSpellbook extends Artifact {
 	protected ArtifactBuff passiveBuff() {
 		return new bookRecharge();
 	}
-	
+
 	@Override
 	public void charge(Hero target, float amount) {
 		if (charge < chargeCap && !cursed && target.buff(MagicImmune.class) == null){
@@ -251,7 +252,7 @@ public class UnstableSpellbook extends Artifact {
 			if (cursed) {
 				desc += "\n\n" + Messages.get(this, "desc_cursed");
 			}
-			
+
 			if (level() < levelCap && scrolls.size() > 0) {
 				desc += "\n\n" + Messages.get(this, "desc_index");
 				desc += "\n" + "_" + Messages.get(scrolls.get(0), "name") + "_";
@@ -259,7 +260,7 @@ public class UnstableSpellbook extends Artifact {
 					desc += "\n" + "_" + Messages.get(scrolls.get(1), "name") + "_";
 			}
 		}
-		
+
 		if (level() > 0) {
 			desc += "\n\n" + Messages.get(this, "desc_empowered");
 		}
