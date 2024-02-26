@@ -43,15 +43,9 @@ public class Midas extends Weapon.Enchantment {
 	@Override
 	public long proc( Weapon weapon, Char attacker, Char defender, long damage ) {
 		int level = (int) Math.max( 0, weapon.buffedLvl() );
-		if (Random.Int(level) < 10) {
-			long goldValue = Random.LongRange(1000, 9999);
-			Dungeon.level.drop(new Gold().quantity(goldValue), attacker.pos).sprite.drop();
-			Sample.INSTANCE.play(Assets.Sounds.GOLD);
-		} else if (Random.Int(level) >= 10) {
-			long goldValue = Random.LongRange(5000, 15000);
-			Dungeon.level.drop(new Gold().quantity(goldValue), attacker.pos).sprite.drop();
-			Sample.INSTANCE.play(Assets.Sounds.GOLD);
-		}
+		long goldValue = Random.LongRange(1000, 9999) * level;
+		Dungeon.level.drop(new Gold().quantity(goldValue), attacker.pos).sprite.drop();
+		Sample.INSTANCE.play(Assets.Sounds.GOLD);
 		return damage;
 	}
 	
