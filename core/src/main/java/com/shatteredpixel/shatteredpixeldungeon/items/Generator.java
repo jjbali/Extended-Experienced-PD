@@ -195,10 +195,10 @@ public class Generator {
 
     public enum Category {
 		WEAPON	( 2, 2, MeleeWeapon.class),
-		WEP_T1	( 1, 0, MeleeWeapon.class),
-		WEP_T2	( 1, 0, MeleeWeapon.class),
-		WEP_T3	( 1, 0, MeleeWeapon.class),
-		WEP_T4	( 1, 0, MeleeWeapon.class),
+		WEP_T1	( 5, 0, MeleeWeapon.class),
+		WEP_T2	( 4, 0, MeleeWeapon.class),
+		WEP_T3	( 3, 0, MeleeWeapon.class),
+		WEP_T4	( 2, 0, MeleeWeapon.class),
 		WEP_T5	( 1, 0, MeleeWeapon.class),
 		ARMOR	( 2, 1, Armor.class ),
 		MISSILE ( 1, 2, MissileWeapon.class ),
@@ -210,8 +210,8 @@ public class Generator {
 		WAND	( 1, 1, Wand.class ),
 		RING	( 1, 1, Ring.class ),
 		ARTIFACT( 2, 0, Artifact.class),
-		FOOD	( 7, 3, Food.class ),
-		POTION	( 7, 3, Potion.class ),
+		FOOD	( 10, 3, Food.class ),
+		POTION	( 5, 3, Potion.class ),
 		SEED	( 5, 5, Plant.Seed.class ),
 		
 		SCROLL	( 5, 5, Scroll.class ),

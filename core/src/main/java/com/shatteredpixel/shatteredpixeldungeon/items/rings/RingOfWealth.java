@@ -3,7 +3,10 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2024 Evan Debenham
+ * Copyright (C) 2014-2019 Evan Debenham
+ *
+ * Experienced Pixel Dungeon
+ * Copyright (C) 2019-2024 Trashbox Bobylev
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -23,15 +26,14 @@ package com.shatteredpixel.shatteredpixeldungeon.items.rings;
 
 import com.shatteredpixel.shatteredpixeldungeon.Challenges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
-import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Perks;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Flare;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
-import com.shatteredpixel.shatteredpixeldungeon.items.Honeypot;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Bomb;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.Food;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.ExoticPotion;
@@ -39,8 +41,8 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutat
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfEnchantment;
-import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
-import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
+import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.AlchemyBag;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.noosa.Visual;
 import com.watabou.utils.Bundle;
@@ -48,7 +50,6 @@ import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 
 public class RingOfWealth extends Ring {
 
@@ -56,54 +57,13 @@ public class RingOfWealth extends Ring {
 		icon = ItemSpriteSheet.Icons.RING_WEALTH;
 	}
 
-	private static float triesToDrop = Float.MIN_VALUE;
-	private static int dropsToRare = Integer.MIN_VALUE;
+	public static float triesToDrop = Float.MIN_VALUE;
+	public static int dropsToRare = Integer.MIN_VALUE;
 	public static int level = 0;
-
-	public String statsInfo() {
-		if (isIdentified()){
-			String info = Messages.get(this, "stats",
-					Messages.decimalFormat("#.##", 100f * (Math.pow(1.20f, soloBuffedBonus()) - 1f)));
-			if (isEquipped(Dungeon.hero) && soloBuffedBonus() != combinedBuffedBonus(Dungeon.hero, Wealth.class)){
-				info += "\n\n" + Messages.get(this, "combined_stats",
-						Messages.decimalFormat("#.##", 100f * (Math.pow(1.20f, combinedBuffedBonus(Dungeon.hero, Wealth.class)) - 1f)));
-			}
-			return info;
-		} else {
-			return Messages.get(this, "typical_stats", Messages.decimalFormat("#.##", 20f));
-		}
-	}
-
-	private static final String TRIES_TO_DROP = "tries_to_drop";
-	private static final String DROPS_TO_RARE = "drops_to_rare";
-	public static final String LEVEL = "level";
-
-	public static void store(Bundle bundle) {
-		bundle.put(TRIES_TO_DROP, triesToDrop);
-		bundle.put(DROPS_TO_RARE, dropsToRare);
-		bundle.put(LEVEL, level);
-	}
-
-	public static void restore(Bundle bundle) {
-		triesToDrop = bundle.getFloat(TRIES_TO_DROP);
-		dropsToRare = bundle.getInt(DROPS_TO_RARE);
-		level = bundle.getInt(LEVEL);
-	}
-
-	@Override
-	protected RingBuff buff( ) {
-		return new Wealth();
-	}
-
-	public static float dropChanceMultiplier( Char target ){
-		return (float)Math.pow(1.20, getBuffedBonus(target, Wealth.class));
-	}
 
 	public static ArrayList<Item> tryForBonusDrop(int tries){
 
 		//reset (if needed), decrement, and store counts
-		float triesToDrop = Float.MIN_VALUE;
-		int dropsToRare = Integer.MIN_VALUE;
 		if (triesToDrop == Float.MIN_VALUE) {
 			triesToDrop = Dungeon.NormalIntRange(4, 12);
 			dropsToRare = Dungeon.NormalIntRange(4, 8);
@@ -119,14 +79,14 @@ public class RingOfWealth extends Ring {
 
 				Item i;
 				do {
-					i = genEquipmentDrop((level - 1));
+					i = genEquipmentDrop(level - 1);
 				} while (Challenges.isItemBlocked(i));
 				drops.add(i);
 				dropsToRare = Random.NormalIntRange(3, 8);
 			} else {
 				Item i;
 				do {
-					i = genConsumableDrop((level - 1));
+					i = genConsumableDrop(level - 1);
 				} while (Challenges.isItemBlocked(i));
 				if (Dungeon.hero.perks.contains(Perks.Perk.FISHING_PRO) && Random.Int(4) == 0) i.quantity(i.quantity()*2);
 				drops.add(i);
@@ -141,10 +101,9 @@ public class RingOfWealth extends Ring {
 	//used for visuals
 	// 1/2/3 used for low/mid/high tier consumables
 	// 3 used for +0-1 equips, 4 used for +2 or higher equips
-	private static int latestDropTier = 0;
+	public static int latestDropTier = 0;
 
 	public static void showFlareForBonusDrop( Visual vis ){
-		if (vis == null || vis.parent == null) return;
 		switch (latestDropTier){
 			default:
 				break; //do nothing
@@ -165,13 +124,13 @@ public class RingOfWealth extends Ring {
 	}
 
 	public static Item genConsumableDrop(long level) {
-		float roll = Random.Float();
+		float roll = Dungeon.Float();
 		//60% chance - 4% per level. Starting from +15: 0%
 		if (roll < (0.6f - 0.04f * level)) {
 			latestDropTier = 1;
 			return genLowValueConsumable();
 			//30% chance + 2% per level. Starting from +15: 60%-2%*(lvl-15)
-		} else if (roll < (0.9f - 0.02f * level)) {
+		} else if (roll < 0.9f) {
 			latestDropTier = 2;
 			return genMidValueConsumable();
 			//10% chance + 2% per level. Starting from +15: 40%+2%*(lvl-15)
@@ -187,16 +146,16 @@ public class RingOfWealth extends Ring {
 				Item i = new Gold().random();
 				return i.quantity(i.quantity()/2);
 			case 1:
-				return Generator.randomUsingDefaults(Generator.Category.STONE);
+				return Generator.random(Generator.Category.STONE);
 			case 2:
-				return Generator.randomUsingDefaults(Generator.Category.POTION);
+				return Generator.random(Generator.Category.POTION);
 			case 3:
-				return Generator.randomUsingDefaults(Generator.Category.SCROLL);
+				return Generator.random(Generator.Category.SCROLL);
 		}
 	}
 
 	private static Item genMidValueConsumable(){
-		switch (Random.Int(6)){
+		switch (Random.Int(7)){
 			case 0: default:
 				Item i = genLowValueConsumable();
 				return i.quantity(i.quantity()*2);
@@ -207,16 +166,16 @@ public class RingOfWealth extends Ring {
 				i = Generator.randomUsingDefaults(Generator.Category.SCROLL);
 				return Reflection.newInstance(ExoticScroll.regToExo.get(i.getClass()));
 			case 3:
-				return Random.Int(2) == 0 ? new ArcaneCatalyst() : new AlchemicalCatalyst();
+				return Dungeon.Int(2) == 0 ? new ArcaneCatalyst() : new AlchemicalCatalyst();
 			case 4:
 				return new Bomb();
 			case 5:
-				return new Honeypot();
+				return new Food();
 		}
 	}
 
 	private static Item genHighValueConsumable(){
-		switch (Random.Int(4)){
+		switch (Random.Int(5)){
 			case 0: default:
 				Item i = genMidValueConsumable();
 				if (i instanceof Bomb){
@@ -230,23 +189,24 @@ public class RingOfWealth extends Ring {
 				return new PotionOfExperience();
 			case 3:
 				return new ScrollOfTransmutation();
+			case 4:
+				return new AlchemyBag();
 		}
 	}
 
 	private static Item genEquipmentDrop( int level ){
 		Item result;
-		//each upgrade increases depth used for calculating drops by 1
-		int floorset = (Dungeon.depth + level)/5;
+		int floorset = (Dungeon.depth)/5;
 		switch (Random.Int(5)){
 			default: case 0: case 1:
-				Weapon w = Generator.randomWeapon(floorset, true);
-				if (!w.hasGoodEnchant() && Random.Int(10) < level)      w.enchant();
+				MeleeWeapon w = Generator.randomWeapon(floorset, true);
+				if (!w.hasGoodEnchant() && Dungeon.Int(10) < level)      w.enchant();
 				else if (w.hasCurseEnchant())                           w.enchant(null);
 				result = w;
 				break;
 			case 2:
 				Armor a = Generator.randomArmor(floorset);
-				if (!a.hasGoodGlyph() && Random.Int(10) < level)        a.inscribe();
+				if (!a.hasGoodGlyph() && Dungeon.Int(10) < level)        a.inscribe();
 				else if (a.hasCurseGlyph())                             a.inscribe(null);
 				result = a;
 				break;
@@ -257,11 +217,10 @@ public class RingOfWealth extends Ring {
 				result = Generator.random(Generator.Category.ARTIFACT);
 				break;
 		}
-		//minimum level is 1/2/3/4/5/6 when ring level is 1/3/5/7/9/11
+		//minimum level of sqrt(ringLvl)
 		if (result.isUpgradable()){
-			int minLevel = (level+1)/2;
-			if (result.level() < minLevel){
-				result.level(minLevel);
+			if (result.level() < Math.floor(level) / 12){
+				result.level((int)Math.floor(level) / 12);
 			}
 		}
 		result.cursed = false;
@@ -274,23 +233,21 @@ public class RingOfWealth extends Ring {
 		return result;
 	}
 
-	public class Wealth extends RingBuff {
+	public static final String TRIES_TO_DROP = "tries_to_drop";
+	public static final String DROPS_TO_RARE = "drops_to_rare";
+	public static final String LEVEL = "level";
 
-		private void triesToDrop( float val ){
-			triesToDrop = val;
-		}
 
-		private float triesToDrop(){
-			return triesToDrop;
-		}
-
-		private void dropsToRare( int val ) {
-			dropsToRare = val;
-		}
-
-		private int dropsToRare(){
-			return dropsToRare;
-		}
-
+	public static void store(Bundle bundle) {
+		bundle.put(TRIES_TO_DROP, triesToDrop);
+		bundle.put(DROPS_TO_RARE, dropsToRare);
+		bundle.put(LEVEL, level);
 	}
+
+	public static void restore(Bundle bundle) {
+		triesToDrop = bundle.getFloat(TRIES_TO_DROP);
+		dropsToRare = bundle.getInt(DROPS_TO_RARE);
+		level = bundle.getInt(LEVEL);
+	}
+
 }
