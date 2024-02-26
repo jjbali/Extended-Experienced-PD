@@ -99,7 +99,7 @@ public class DwarfKing extends Mob {
 	}
 
 	private int theSubjectConstant(){
-		return 15 * Dungeon.hero.lvl;
+		return 15 + Dungeon.hero.lvl;
 	}
 
 	@Override
@@ -230,7 +230,7 @@ public class DwarfKing extends Mob {
 
 		} else if (phase == 2){
 				//non-challenge logic
-				if (summonsMade < 4) {
+				if (summonsMade < 10) {
 					if (summonsMade == 0) {
 						sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
 						Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
@@ -240,13 +240,13 @@ public class DwarfKing extends Mob {
 					spend(3 * TICK);
 					summonsMade++;
 					return true;
-				} else if (shielding() <= (HT - (HT / theSubjectConstant()) * 4) && summonsMade < 8) {
-					if (summonsMade == 4) {
+				} else if (shielding() <= (HT - (HT / theSubjectConstant()) * 4) && summonsMade < 12) {
+					if (summonsMade == 8) {
 						sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
 						Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
 						yell(Messages.get(this, "wave_2"));
 					}
-					if (summonsMade == 7) {
+					if (summonsMade == 10) {
 						summonSubject(3, Random.Int(2) == 0 ? DKMonk.class : DKWarlock.class);
 					} else {
 						summonSubject(3, DKGhoul.class);
@@ -254,7 +254,7 @@ public class DwarfKing extends Mob {
 					summonsMade++;
 					spend(TICK);
 					return true;
-				} else if (shielding() <= (HT - (HT / theSubjectConstant()) * 8) && summonsMade < 12) {
+				} else if (shielding() <= (HT - (HT / theSubjectConstant()) * 8) && summonsMade < 16) {
 					sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
 					Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
 					yell(Messages.get(this, "wave_3"));
@@ -262,7 +262,9 @@ public class DwarfKing extends Mob {
 					summonSubject(4, DKMonk.class);
 					summonSubject(4, DKGhoul.class);
 					summonSubject(4, DKGhoul.class);
-					summonsMade = 12;
+					summonSubject(4, DKGhoul.class);
+					summonSubject(4, DKGhoul.class);
+					summonsMade = 16;
 					spend(TICK);
 					return true;
 				} else {
