@@ -145,7 +145,7 @@ public enum HeroClass {
 
 		new ScrollOfIdentify().identify();
 		//DebugItems
-		if (DeviceCompat.isDebug() || SPDSettings.debuggable()) {
+		if (DeviceCompat.isDebug()) {
 			new PotionOfDebug().collect();
 			new SpawnArmor().collect();
 			new SpawnArtifact().collect();
