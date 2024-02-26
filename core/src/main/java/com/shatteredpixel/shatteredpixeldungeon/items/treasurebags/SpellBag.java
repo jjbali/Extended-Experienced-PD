@@ -80,7 +80,6 @@ public class SpellBag extends TreasureBag {
                 Recycle.class,
                 WildEnergy.class,
                 SummonElemental.class,
-                Evolution.class,
                 FireBooster.class,
                 HandyBarricade.class,
                 MagicBridge.class
