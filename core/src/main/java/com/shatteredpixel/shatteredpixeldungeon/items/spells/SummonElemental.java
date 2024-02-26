@@ -68,6 +68,11 @@ public class SummonElemental extends Spell {
 	private Class<? extends Elemental> summonClass = Elemental.AllyNewBornElemental.class;
 
 	@Override
+	public long value() {
+		return 30 * quantity;
+	}
+
+	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions(hero);
 		actions.add(AC_IMBUE);
