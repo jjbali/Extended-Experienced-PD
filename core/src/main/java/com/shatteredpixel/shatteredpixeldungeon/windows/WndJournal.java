@@ -619,23 +619,9 @@ public class WndJournal extends WndTabbed {
 							if (item instanceof ClassArmor){
 								GameScene.show(new WndTitledMessage(new Image(icon),
 										Messages.titleCase(item.trueName()), item.desc()));
-								if (!item.collect()){
-									int pos = Dungeon.hero.pos;
-									item.identify();
-									Dungeon.level.drop(item, pos);
-								} else {
-									GLog.p( "You have now " + item.name() );
-								}
 							} else {
 								GameScene.show(new WndTitledMessage(new Image(icon),
 										Messages.titleCase(item.trueName()), item.info()));
-								if (!item.collect()){
-									int pos = Dungeon.hero.pos;
-									item.identify();
-									Dungeon.level.drop(item, pos);
-								} else {
-									GLog.p( "You have now " + item.name() );
-								}
 							}
 							return true;
 						} else {
