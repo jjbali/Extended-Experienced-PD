@@ -69,6 +69,7 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.ModuleShopR
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.PitRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.ShopRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.SpecialRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.TieredCardShopRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.EntranceRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.ExitRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.StandardRoom;
@@ -145,6 +146,8 @@ public abstract class RegularLevel extends Level {
 
 		if (Dungeon.shopOnLevel3() && SubtractionItem.streak_b >= 10)
 			initRooms.add(new ModuleShopRoom());
+
+		initRooms.add(new TieredCardShopRoom());
 
 
 		//force max special rooms and add one more for large levels

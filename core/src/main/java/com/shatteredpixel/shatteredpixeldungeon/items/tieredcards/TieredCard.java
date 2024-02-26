@@ -23,14 +23,10 @@ package com.shatteredpixel.shatteredpixeldungeon.items.tieredcards;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
-import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
-import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
-import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
-import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -86,8 +82,20 @@ public class TieredCard extends Item {
         return true;
     }
 
-    public void setLvl(int level){
-        lvl = level;
+    final public Item setLvl(long n ) {
+        if (n > 20){
+            for (long i=0; i < 20; i++) {
+                upgrade();
+            }
+            lvl += n - 20;
+            updateQuickslot();
+        } else {
+            for (long i = 0; i < n; i++) {
+                upgrade();
+            }
+        }
+
+        return this;
     }
 
     @Override
