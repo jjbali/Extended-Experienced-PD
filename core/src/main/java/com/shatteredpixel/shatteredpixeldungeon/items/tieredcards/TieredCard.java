@@ -44,7 +44,7 @@ public class TieredCard extends Item {
 
         defaultAction = AC_DRINK;
 
-        stackable = true;
+        stackable = false;
         unique = true;
     }
 
@@ -67,6 +67,7 @@ public class TieredCard extends Item {
                 for (Item b : bonus) Dungeon.level.drop(b, hero.pos).sprite.drop();
                 RingOfWealth.showFlareForBonusDrop(hero.sprite);
             }
+            detach(hero.belongings.backpack);
         }
     }
 
@@ -94,10 +95,7 @@ public class TieredCard extends Item {
         return 100 * quantity * lvl;
     }
 
-    private static ItemSprite.Glowing GREEN = new ItemSprite.Glowing( 0xFFFF00, 0.3f );
-    private static ItemSprite.Glowing YELLOW = new ItemSprite.Glowing( 0xFF0000, 0.3f );
-    private static ItemSprite.Glowing ORANGE = new ItemSprite.Glowing( 0x00FF00, 0.3f );
-    private static ItemSprite.Glowing RED = new ItemSprite.Glowing( 0x0000FF, 0.3f );
+    private static ItemSprite.Glowing GLITCHED = new ItemSprite.Glowing( 0.3f );
 
     @Override
     public String name() {
@@ -106,25 +104,11 @@ public class TieredCard extends Item {
 
     @Override
     public String desc() {
-        return "Gives random item based on ring of wealth and they glow in specific level"
-                + "\n\nLevel 1 - 19: Green"
-                + "\n\nLevel 20 - 39: Yellow"
-                + "\n\nLevel 40 - 59: Orange"
-                + "\n\nLevel 60 above: Red";
+        return "Gives random item based on ring of wealth and they glow in specific level";
     }
 
     @Override
     public ItemSprite.Glowing glowing() {
-        if (lvl < 20) {
-            return GREEN;
-        } if (lvl >= 20 && lvl < 40) {
-            return YELLOW;
-        } if (lvl >= 40 && lvl < 60) {
-            return ORANGE;
-        } if (lvl >= 60) {
-            return RED;
-        } else {
-            return null;
-        }
+       return GLITCHED;
     }
 }

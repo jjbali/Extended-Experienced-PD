@@ -804,7 +804,7 @@ public class ItemSpriteSheet {
 		assignItemRect(SCROLL_BAG, 14, 15);
 		assignItemRect(POTION_BAG, 14, 15);
 		assignItemRect(MISC_BAG, 14, 15);
-		assignItemRect(RANDOM_ITEM_GIVER, 14, 15);
+		assignItemRect(RANDOM_ITEM_GIVER, 13, 13);
     }
 	private static final int DOCUMENTS  =                                   xy(1, 32);  //16 slots
 	public static final int GUIDE_PAGE  = DOCUMENTS+0;
