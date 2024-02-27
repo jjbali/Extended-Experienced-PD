@@ -338,7 +338,7 @@ public class DimensionalLevel extends Level {
 
 			DimensionalCounter counter = Dungeon.hero.buff(DimensionalCounter.class);
 
-			if (count < 10) {
+			if (count < 20) {
 
 				Mob mob = Dungeon.level.createMob();
 				mob.state = mob.WANDERING;

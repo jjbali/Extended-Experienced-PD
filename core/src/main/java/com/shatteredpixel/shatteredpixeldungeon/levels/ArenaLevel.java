@@ -326,7 +326,7 @@ public class ArenaLevel extends Level {
 			ArenaCounter counter = Dungeon.hero.buff(ArenaCounter.class);
 			float timerBasis = 6.5f;
 
-			if (count < 100) {
+			if (count < 50) {
 
 				Mob mob = Dungeon.level.createMob();
 				mob.state = mob.WANDERING;

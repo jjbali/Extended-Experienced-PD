@@ -361,7 +361,7 @@ public class FourthArenaLevel extends Level {
 			timerBasis = 50f;
 
 
-			if (count < 15000) {
+			if (count < 50) {
 
 				Mob mob = Dungeon.level.createMob();
 				mob.state = mob.WANDERING;

@@ -907,13 +907,10 @@ public abstract class Mob extends Char {
 
 		MasterThievesArmband.StolenTracker stolen = buff(MasterThievesArmband.StolenTracker.class);
 		if (stolen == null || !stolen.itemWasStolen()) {
-			Item loot = createLoot();
-			if (loot != null) {
-				Dungeon.level.drop(loot.quantity(1), pos).sprite.drop();
-			}
 			if (Random.Float() < lootChance()) {
+				Item loot = createLoot();
 				if (loot != null) {
-					Dungeon.level.drop(loot.quantity(1), pos).sprite.drop();
+					Dungeon.level.drop(loot, pos).sprite.drop();
 				}
 			}
 		}

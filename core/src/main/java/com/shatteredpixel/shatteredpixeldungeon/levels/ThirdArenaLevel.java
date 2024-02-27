@@ -371,7 +371,7 @@ public class ThirdArenaLevel extends Level {
 			float timerBasis;
 			timerBasis = 30f;
 
-			if (count < 15000) {
+			if (count < 50) {
 
 				Mob mob = Dungeon.level.createMob();
 				mob.state = mob.WANDERING;
