@@ -173,10 +173,29 @@ public class TieredCardShopRoom extends SpecialRoom {
 	protected static ArrayList<Item> generateItems() {
 
 		ArrayList<Item> itemsToSpawn = new ArrayList<>();
-		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(2, 15)));
-		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(2, 15)));
-		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(2, 15)));
-		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(2, 15)));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(1, 5) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(1, 5) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(1, 5) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(1, 5) + 1));
+
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(10, 15) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(10, 15) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(10, 15) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(10, 15) + 1));
+
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(16, 20) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(16, 20) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(16, 20) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(16, 20) + 1));
+
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(21, 29) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(21, 29) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(21, 29) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(21, 29) + 1));
+
+		itemsToSpawn.add(new TieredCard().upgrade(30));
+		itemsToSpawn.add(new TieredCard().upgrade(30));
+		itemsToSpawn.add(new TieredCard().upgrade(30));
 
 
 

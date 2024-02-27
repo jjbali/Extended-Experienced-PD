@@ -36,9 +36,8 @@ public class TieredCard extends Item {
 
     {
         image = ItemSpriteSheet.RANDOM_ITEM_GIVER;
-
         defaultAction = AC_DRINK;
-
+        identify();
         stackable = false;
         unique = true;
     }
@@ -67,6 +66,11 @@ public class TieredCard extends Item {
     }
 
     @Override
+    public long level() {
+        return super.level();
+    }
+
+    @Override
     public boolean isUpgradable() {
         return level() <= 30;
     }
@@ -78,10 +82,13 @@ public class TieredCard extends Item {
 
     @Override
     public long value() {
-        return 100 * quantity * level();
+        return 1500 * level();
     }
 
     private static ItemSprite.Glowing GLITCHED = new ItemSprite.Glowing( 0.3f );
+    private static ItemSprite.Glowing r = new ItemSprite.Glowing(0xff0000, 0.3f );
+    private static ItemSprite.Glowing y = new ItemSprite.Glowing(0xFFFF00,0.3f );
+    private static ItemSprite.Glowing g = new ItemSprite.Glowing(0x008000, 0.3f );
 
     @Override
     public String name() {
@@ -95,6 +102,16 @@ public class TieredCard extends Item {
 
     @Override
     public ItemSprite.Glowing glowing() {
-       return GLITCHED;
+        if (level() >= 0) {
+            return g;
+        } else if (level() >= 13) {
+            return y;
+        } else if (level() >= 25) {
+            return r;
+        } else if (level() == 30) {
+            return GLITCHED;
+        } else {
+            return null;
+        }
     }
 }
