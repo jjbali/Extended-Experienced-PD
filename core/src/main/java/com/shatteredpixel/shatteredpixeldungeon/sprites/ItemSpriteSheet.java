@@ -826,7 +826,7 @@ public class ItemSpriteSheet {
 		assignItemRect(CAVES_PAGE,  10, 11);
 		assignItemRect(CITY_PAGE,   10, 11);
 		assignItemRect(HALLS_PAGE,  10, 11);
-		assignItemRect(SPYGLASS,  10, 4);
+		assignItemRect(SPYGLASS,  10, 5);
 		assignItemRect(NOTEBOOK_PAGE,   10, 11);
 		assignItemRect(PAGE,  10, 11);
 		assignItemRect(PAGE_2,  10, 11);
