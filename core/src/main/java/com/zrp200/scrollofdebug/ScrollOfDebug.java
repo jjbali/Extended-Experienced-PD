@@ -629,11 +629,11 @@ public class ScrollOfDebug extends Scroll {
                                 else if(input[i].matches("[\\-x+]\\d+")) {
                                     switch (input[i].charAt(0)) {
                                         case 'x':
-                                            item.quantity(Integer.parseInt(input[i].substring(1)));
+                                            item.quantity(Long.parseLong(input[i].substring(1)));
                                             break;
                                         case '-':
                                         case '+':
-                                            item.level(Integer.parseInt(input[i]));
+                                            item.level(Long.parseLong(input[i]));
                                             break;
                                     }
                                 }
