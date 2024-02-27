@@ -35,6 +35,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
 import com.shatteredpixel.shatteredpixeldungeon.items.RandomItemTicket;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite.Glowing;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
@@ -66,6 +67,10 @@ public class Experienced extends Weapon.Enchantment {
 		if (Random.Int(20) == 0) {
 			Dungeon.level.drop(new RandomItemTicket(), attacker.pos).sprite.drop();
 			GLog.p("Random Item Ticket dropped with a 5% chance!");
+		}
+		if (Random.Int(120) == 0) {
+			Dungeon.level.drop(new TieredCard().upgrade(Random.Int(80) + 1), attacker.pos).sprite.drop();
+			GLog.p("Tiered Card dropped with a 0.012% chance!");
 		}
 		damage += damage * 0.10f;
 		return damage;
