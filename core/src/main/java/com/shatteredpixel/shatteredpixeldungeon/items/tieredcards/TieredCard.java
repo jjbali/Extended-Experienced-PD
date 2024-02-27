@@ -72,7 +72,7 @@ public class TieredCard extends Item {
 
     @Override
     public boolean isUpgradable() {
-        return level() <= 30;
+        return level() <= 100;
     }
 
     @Override
@@ -89,6 +89,7 @@ public class TieredCard extends Item {
     private static ItemSprite.Glowing r = new ItemSprite.Glowing(0xff0000, 0.3f );
     private static ItemSprite.Glowing y = new ItemSprite.Glowing(0xFFFF00,0.3f );
     private static ItemSprite.Glowing g = new ItemSprite.Glowing(0x008000, 0.3f );
+    private static ItemSprite.Glowing o = new ItemSprite.Glowing(0xFFA500, 0.3f);
 
     @Override
     public String name() {
@@ -97,18 +98,20 @@ public class TieredCard extends Item {
 
     @Override
     public String desc() {
-        return "Gives random item based on ring of wealth, it is upgradable until it reaches 30.";
+        return "Gives random item based on ring of wealth, it is upgradable until it reaches 100.";
     }
 
     @Override
     public ItemSprite.Glowing glowing() {
-        if (level() >= 0 && level() <= 12) {
+        if (level() >= 0 && level() <= 25) {
             return g;
-        } else if (level() >= 13 && level() <= 24) {
+        } else if (level() >= 26 && level() <= 50) {
             return y;
-        } else if (level() >= 25 && level() <= 29) {
+        } else if (level() >= 51 && level() <= 75) {
             return r;
-        } else if (level() == 30) {
+        } else if (level() >= 75 && level() <= 90) {
+            return o;
+        } else if (level() >= 91) {
             return GLITCHED;
         } else {
             return null;
