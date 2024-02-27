@@ -29,6 +29,7 @@ import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Belongings;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.RandomBuffGiver;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.MagicalHolster;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.PotionBandolier;
@@ -51,12 +52,12 @@ public class TieredCardShopRoom extends SpecialRoom {
 	
 	@Override
 	public int minWidth() {
-		return Math.max(7, (int)(Math.sqrt(itemCount())+3));
+		return Math.max(9, (int)(Math.sqrt(itemCount())+3));
 	}
 	
 	@Override
 	public int minHeight() {
-		return Math.max(7, (int)(Math.sqrt(itemCount())+3));
+		return Math.max(9, (int)(Math.sqrt(itemCount())+3));
 	}
 
 	public int itemCount(){
@@ -176,9 +177,7 @@ public class TieredCardShopRoom extends SpecialRoom {
 		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(1, 5) + 1));
 		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(1, 5) + 1));
 		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(1, 5) + 1));
-		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(1, 5) + 1));
 
-		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(10, 15) + 1));
 		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(10, 15) + 1));
 		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(10, 15) + 1));
 		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(10, 15) + 1));
@@ -186,16 +185,36 @@ public class TieredCardShopRoom extends SpecialRoom {
 		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(16, 20) + 1));
 		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(16, 20) + 1));
 		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(16, 20) + 1));
-		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(16, 20) + 1));
 
-		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(21, 29) + 1));
-		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(21, 29) + 1));
-		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(21, 29) + 1));
-		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(21, 29) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(21, 30) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(21, 30) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(21, 30) + 1));
 
-		itemsToSpawn.add(new TieredCard().upgrade(30));
-		itemsToSpawn.add(new TieredCard().upgrade(30));
-		itemsToSpawn.add(new TieredCard().upgrade(30));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(31, 40) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(31, 40) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(31, 40) + 1));
+
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(41, 55) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(41, 55) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(41, 55) + 1));
+
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(56, 70) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(56, 70) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(56, 70) + 1));
+
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(71, 90) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(71, 90) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(71, 90) + 1));
+
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(91, 100) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(91, 100) + 1));
+		itemsToSpawn.add(new TieredCard().upgrade(Random.Int(91, 100) + 1));
+
+		itemsToSpawn.add(new RandomBuffGiver());
+		itemsToSpawn.add(new RandomBuffGiver());
+		itemsToSpawn.add(new RandomBuffGiver());
+
+		itemsToSpawn.add(new TieredCard().upgrade(100));
 
 
 

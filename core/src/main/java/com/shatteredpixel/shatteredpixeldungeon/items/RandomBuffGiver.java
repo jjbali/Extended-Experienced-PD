@@ -92,7 +92,7 @@ public class RandomBuffGiver extends Item {
 
     @Override
     public ItemSprite.Glowing glowing() {
-        return new ItemSprite.Glowing( 0xFFFFFF );
+        return new ItemSprite.Glowing( 0.3f);
     }
 
     @Override
@@ -237,6 +237,6 @@ public class RandomBuffGiver extends Item {
 
     @Override
     public long value() {
-        return 100 * quantity;
+        return 300 * quantity;
     }
 }
