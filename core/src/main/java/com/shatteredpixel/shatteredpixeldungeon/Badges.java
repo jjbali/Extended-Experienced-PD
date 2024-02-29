@@ -338,26 +338,26 @@ public class Badges {
 	public static void validateMonstersSlain() {
 		Badge badge = null;
 		
-		if (!local.contains( Badge.MONSTERS_SLAIN_1 ) && Statistics.enemiesSlain >= 1000) {
+		if (!local.contains( Badge.MONSTERS_SLAIN_1 ) && Statistics.enemiesSlain >= 100) {
 			badge = Badge.MONSTERS_SLAIN_1;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.MONSTERS_SLAIN_2 ) && Statistics.enemiesSlain >= 5000) {
+		if (!local.contains( Badge.MONSTERS_SLAIN_2 ) && Statistics.enemiesSlain >= 500) {
 			if (badge != null) unlock(badge);
 			badge = Badge.MONSTERS_SLAIN_2;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.MONSTERS_SLAIN_3 ) && Statistics.enemiesSlain >= 10000) {
+		if (!local.contains( Badge.MONSTERS_SLAIN_3 ) && Statistics.enemiesSlain >= 1000) {
 			if (badge != null) unlock(badge);
 			badge = Badge.MONSTERS_SLAIN_3;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.MONSTERS_SLAIN_4 ) && Statistics.enemiesSlain >= 25000) {
+		if (!local.contains( Badge.MONSTERS_SLAIN_4 ) && Statistics.enemiesSlain >= 2500) {
 			if (badge != null) unlock(badge);
 			badge = Badge.MONSTERS_SLAIN_4;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.MONSTERS_SLAIN_5 ) && Statistics.enemiesSlain >= 50000) {
+		if (!local.contains( Badge.MONSTERS_SLAIN_5 ) && Statistics.enemiesSlain >= 5000) {
 			if (badge != null) unlock(badge);
 			badge = Badge.MONSTERS_SLAIN_5;
 			local.add( badge );
@@ -401,26 +401,26 @@ public class Badges {
 	public static void validateLevelReached() {
 		Badge badge = null;
 		
-		if (!local.contains( Badge.LEVEL_REACHED_1 ) && Dungeon.hero.lvl >= 600) {
+		if (!local.contains( Badge.LEVEL_REACHED_1 ) && Dungeon.hero.lvl >= 30) {
 			badge = Badge.LEVEL_REACHED_1;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.LEVEL_REACHED_2 ) && Dungeon.hero.lvl >= 1500) {
+		if (!local.contains( Badge.LEVEL_REACHED_2 ) && Dungeon.hero.lvl >= 60) {
 			if (badge != null) unlock(badge);
 			badge = Badge.LEVEL_REACHED_2;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.LEVEL_REACHED_3 ) && Dungeon.hero.lvl >= 3600) {
+		if (!local.contains( Badge.LEVEL_REACHED_3 ) && Dungeon.hero.lvl >= 120) {
 			if (badge != null) unlock(badge);
 			badge = Badge.LEVEL_REACHED_3;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.LEVEL_REACHED_4 ) && Dungeon.hero.lvl >= 5000) {
+		if (!local.contains( Badge.LEVEL_REACHED_4 ) && Dungeon.hero.lvl >= 150) {
 			if (badge != null) unlock(badge);
 			badge = Badge.LEVEL_REACHED_4;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.LEVEL_REACHED_5 ) && Dungeon.hero.lvl >= 10000) {
+		if (!local.contains( Badge.LEVEL_REACHED_5 ) && Dungeon.hero.lvl >= 180) {
 			if (badge != null) unlock(badge);
 			badge = Badge.LEVEL_REACHED_5;
 			local.add( badge );
@@ -455,22 +455,22 @@ public class Badges {
 			badge = Badge.STRENGTH_ATTAINED_1;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.STRENGTH_ATTAINED_2 ) && Dungeon.hero.STR >= 500) {
+		if (!local.contains( Badge.STRENGTH_ATTAINED_2 ) && Dungeon.hero.STR >= 150) {
 			if (badge != null) unlock(badge);
 			badge = Badge.STRENGTH_ATTAINED_2;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.STRENGTH_ATTAINED_3 ) && Dungeon.hero.STR >= 1000) {
+		if (!local.contains( Badge.STRENGTH_ATTAINED_3 ) && Dungeon.hero.STR >= 200) {
 			if (badge != null) unlock(badge);
 			badge = Badge.STRENGTH_ATTAINED_3;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.STRENGTH_ATTAINED_4 ) && Dungeon.hero.STR >= 1500) {
+		if (!local.contains( Badge.STRENGTH_ATTAINED_4 ) && Dungeon.hero.STR >= 250) {
 			if (badge != null) unlock(badge);
 			badge = Badge.STRENGTH_ATTAINED_4;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.STRENGTH_ATTAINED_5 ) && Dungeon.hero.STR >= 2000) {
+		if (!local.contains( Badge.STRENGTH_ATTAINED_5 ) && Dungeon.hero.STR >= 300) {
 			if (badge != null) unlock(badge);
 			badge = Badge.STRENGTH_ATTAINED_5;
 			local.add( badge );
@@ -482,26 +482,26 @@ public class Badges {
 	public static void validateFoodEaten() {
 		Badge badge = null;
 		
-		if (!local.contains( Badge.FOOD_EATEN_1 ) && Statistics.foodEaten >= 100) {
+		if (!local.contains( Badge.FOOD_EATEN_1 ) && Statistics.foodEaten >= 20) {
 			badge = Badge.FOOD_EATEN_1;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.FOOD_EATEN_2 ) && Statistics.foodEaten >= 200) {
+		if (!local.contains( Badge.FOOD_EATEN_2 ) && Statistics.foodEaten >= 40) {
 			if (badge != null) unlock(badge);
 			badge = Badge.FOOD_EATEN_2;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.FOOD_EATEN_3 ) && Statistics.foodEaten >= 300) {
+		if (!local.contains( Badge.FOOD_EATEN_3 ) && Statistics.foodEaten >= 60) {
 			if (badge != null) unlock(badge);
 			badge = Badge.FOOD_EATEN_3;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.FOOD_EATEN_4 ) && Statistics.foodEaten >= 400) {
+		if (!local.contains( Badge.FOOD_EATEN_4 ) && Statistics.foodEaten >= 80) {
 			if (badge != null) unlock(badge);
 			badge = Badge.FOOD_EATEN_4;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.FOOD_EATEN_5 ) && Statistics.foodEaten >= 500) {
+		if (!local.contains( Badge.FOOD_EATEN_5 ) && Statistics.foodEaten >= 100) {
 			if (badge != null) unlock(badge);
 			badge = Badge.FOOD_EATEN_5;
 			local.add( badge );
@@ -522,17 +522,17 @@ public class Badges {
 			badge = Badge.ITEMS_CRAFTED_2;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.ITEMS_CRAFTED_3 ) && Statistics.itemsCrafted >= 400) {
+		if (!local.contains( Badge.ITEMS_CRAFTED_3 ) && Statistics.itemsCrafted >= 300) {
 			if (badge != null) unlock(badge);
 			badge = Badge.ITEMS_CRAFTED_3;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.ITEMS_CRAFTED_4 ) && Statistics.itemsCrafted >= 800) {
+		if (!local.contains( Badge.ITEMS_CRAFTED_4 ) && Statistics.itemsCrafted >= 400) {
 			if (badge != null) unlock(badge);
 			badge = Badge.ITEMS_CRAFTED_4;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.ITEMS_CRAFTED_5 ) && Statistics.itemsCrafted >= 1000) {
+		if (!local.contains( Badge.ITEMS_CRAFTED_5 ) && Statistics.itemsCrafted >= 500) {
 			if (badge != null) unlock(badge);
 			badge = Badge.ITEMS_CRAFTED_5;
 			local.add( badge );
@@ -778,16 +778,16 @@ public class Badges {
 	public static void validateBossSlain() {
 		Badge badge = null;
 		switch (Dungeon.depth) {
-		case 20:
+		case 5:
 			badge = Badge.BOSS_SLAIN_1;
 			break;
-		case 40:
+		case 10:
 			badge = Badge.BOSS_SLAIN_2;
 			break;
-		case 60:
+		case 15:
 			badge = Badge.BOSS_SLAIN_3;
 			break;
-		case 80:
+		case 20:
 			badge = Badge.BOSS_SLAIN_4;
 			break;
 		}
@@ -843,19 +843,19 @@ public class Badges {
 	public static void validateBossChallengeCompleted(){
 		Badge badge = null;
 		switch (Dungeon.depth) {
-			case 20:
+			case 5:
 				badge = Badge.BOSS_CHALLENGE_1;
 				break;
-			case 40:
+			case 10:
 				badge = Badge.BOSS_CHALLENGE_2;
 				break;
-			case 60:
+			case 15:
 				badge = Badge.BOSS_CHALLENGE_3;
 				break;
-			case 80:
+			case 20:
 				badge = Badge.BOSS_CHALLENGE_4;
 				break;
-			case 100:
+			case 25:
 				badge = Badge.BOSS_CHALLENGE_5;
 				break;
 		}
