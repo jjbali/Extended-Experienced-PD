@@ -52,23 +52,31 @@ public class Experienced extends Weapon.Enchantment {
 		if (Random.Int(2) == 0) {
 			Buff.affect(attacker, BlobImmunity.class, 10f);
 		}
-		if (Random.Int(7) == 0) {
-			Dungeon.level.drop(new ScrollOfUpgrade().quantity(2L), attacker.pos).sprite.drop();
-			GLog.p("Scroll of Upgrade dropped with a 14% chance!");
+		if (Random.Int(14) == 0 && level >= 30) {
+			Dungeon.level.drop(Generator.random(Generator.Category.SCROLL).quantity(level/10 + 1L), attacker.pos).sprite.drop();
+			GLog.p("Some kind of scroll dropped with a 7.1% chance!");
 		}
-		if (Random.Int(10) == 0) {
+		if (Random.Int(14) == 0 && level >= 30) {
+			Dungeon.level.drop(Generator.random(Generator.Category.POTION).quantity(level/10 + 1L), attacker.pos).sprite.drop();
+			GLog.p("Some kind of potion dropped with a 7.1% chance!");
+		}
+		if (Random.Int(14) == 0 && level >= 30) {
+			Dungeon.level.drop(Generator.random(Generator.Category.STONE).quantity(level/10 + 1L), attacker.pos).sprite.drop();
+			GLog.p("Some kind of stone dropped with a 7.1% chance!");
+		}
+		if (Random.Int(10) == 0 && level >= 30) {
 			Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), attacker.pos).sprite.drop();
 			GLog.p("Some kind of treasure bag dropped with a 10% chance!");
 		}
-		if (Random.Int(50) == 0) {
+		if (Random.Int(50) == 0 && level >= 30) {
 			Dungeon.level.drop(new Ankh(), attacker.pos).sprite.drop();
 			GLog.p("Ankh dropped with a 2% chance!");
 		}
-		if (Random.Int(20) == 0) {
+		if (Random.Int(20) == 0 && level >= 30) {
 			Dungeon.level.drop(new RandomItemTicket(), attacker.pos).sprite.drop();
 			GLog.p("Random Item Ticket dropped with a 5% chance!");
 		}
-		if (Random.Int(120) == 0) {
+		if (Random.Int(120) == 0 && level >= 30) {
 			Dungeon.level.drop(new TieredCard().upgrade(Random.Int(80) + 1), attacker.pos).sprite.drop();
 			GLog.p("Tiered Card dropped with a 0.012% chance!");
 		}
