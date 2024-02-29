@@ -166,6 +166,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.Fi
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.GleamingStaff;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.RegrowingSlasher;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.StarlightSmasher;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticSword;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.AdrenalineDart;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.BlindingDart;
@@ -200,6 +201,7 @@ public class Generator {
 		WEP_T3	( 3, 0, MeleeWeapon.class),
 		WEP_T4	( 2, 0, MeleeWeapon.class),
 		WEP_T5	( 1, 0, MeleeWeapon.class),
+		WEP_T6	( 2, 0, MeleeWeapon.class),
 		ARMOR	( 2, 1, Armor.class ),
 		MISSILE ( 1, 2, MissileWeapon.class ),
 		MIS_T1  ( 1, 0, MissileWeapon.class ),
@@ -617,6 +619,12 @@ public class Generator {
 			};
 			WEP_T5.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2 };
 			WEP_T5.probs = WEP_T5.defaultProbs.clone();
+
+			WEP_T6.classes = new Class<?>[]{
+					BallisticSword.class,
+			};
+			WEP_T6.defaultProbs = new float[]{ 2 };
+			WEP_T6.probs = WEP_T6.defaultProbs.clone();
 			
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{
@@ -728,12 +736,12 @@ public class Generator {
 	}
 
 	private static final float[][] floorSetTierProbs = new float[][] {
-			{10, 75, 20, 14, 11},
-			{10, 25, 50, 20, 15},
-			{10, 10, 40, 50, 10},
-			{10, 10, 20, 40, 40},
-			{10, 10, 10, 20, 80},
-            {10, 25, 25, 25, 25}
+			{0, 75, 20,  4,  1, 1},
+			{0, 25, 50, 20,  5, 1},
+			{0,  0, 40, 50, 10, 1},
+			{0,  0, 20, 40, 40, 1},
+			{0,  0,  0, 20, 80, 1},
+			{0, 25, 25, 25, 25, 1}
 	};
 
 	private static boolean usingFirstDeck = false;
@@ -879,7 +887,8 @@ public class Generator {
 			Category.WEP_T2,
 			Category.WEP_T3,
 			Category.WEP_T4,
-			Category.WEP_T5
+			Category.WEP_T5,
+			Category.WEP_T6
 	};
 
 	public static MeleeWeapon randomWeapon(){
