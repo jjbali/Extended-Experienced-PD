@@ -193,7 +193,7 @@ public class StartScene extends PixelScene {
 				depth.text(Integer.toString(info.depth));
 				depth.measure();
 				
-				level.text(Integer.toString(info.level));
+				level.text(Long.toString(info.level));
 				level.measure();
 				
 				if (info.challenges > 0){
