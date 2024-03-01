@@ -201,7 +201,7 @@ public class Generator {
 		WEP_T3	( 3, 0, MeleeWeapon.class),
 		WEP_T4	( 2, 0, MeleeWeapon.class),
 		WEP_T5	( 1, 0, MeleeWeapon.class),
-		WEP_T6	( 2, 0, MeleeWeapon.class),
+		WEP_T6	( 1, 0, MeleeWeapon.class),
 		ARMOR	( 2, 1, Armor.class ),
 		MISSILE ( 1, 2, MissileWeapon.class ),
 		MIS_T1  ( 1, 0, MissileWeapon.class ),
@@ -736,12 +736,12 @@ public class Generator {
 	}
 
 	private static final float[][] floorSetTierProbs = new float[][] {
-			{0, 75, 20,  4,  1, 1},
-			{0, 25, 50, 20,  5, 1},
-			{0,  0, 40, 50, 10, 1},
-			{0,  0, 20, 40, 40, 1},
-			{0,  0,  0, 20, 80, 1},
-			{0, 25, 25, 25, 25, 1}
+			{0, 75, 20,  4,  1},
+			{0, 25, 50, 20,  5},
+			{0,  0, 40, 50, 10},
+			{0,  0, 20, 40, 40},
+			{0,  0,  0, 20, 80},
+			{0, 25, 25, 25, 25}
 	};
 
 	private static boolean usingFirstDeck = false;
@@ -887,8 +887,7 @@ public class Generator {
 			Category.WEP_T2,
 			Category.WEP_T3,
 			Category.WEP_T4,
-			Category.WEP_T5,
-			Category.WEP_T6
+			Category.WEP_T5
 	};
 
 	public static MeleeWeapon randomWeapon(){
