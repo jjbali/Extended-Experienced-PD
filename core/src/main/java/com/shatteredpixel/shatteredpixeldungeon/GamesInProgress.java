@@ -172,7 +172,7 @@ public class GamesInProgress {
 		public boolean daily;
 		public boolean dailyReplay;
 
-		public int level;
+		public long level;
 		public int str;
 		public int strBonus;
 		public long exp;
