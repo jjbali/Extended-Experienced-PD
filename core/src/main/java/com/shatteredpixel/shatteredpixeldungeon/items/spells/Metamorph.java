@@ -46,6 +46,7 @@ public class Metamorph extends Spell {
 	
 	{
 		image = ItemSpriteSheet.RESPAWN;
+		unique = true;
 	}
 
 	private static WndBag parentWnd;
@@ -58,7 +59,7 @@ public class Metamorph extends Spell {
 	@Override
 	public long value() {
 		//prices of ingredients, divided by output quantity, rounds down
-		return (int)(40 * (quantity/8f));
+		return (int)(400 * (quantity/8f));
 	}
 
 	//TODO also allow alchemical catalyst? Or save that for an elixir/brew?

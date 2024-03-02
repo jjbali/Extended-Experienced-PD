@@ -136,6 +136,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.spells.FireBooster;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.HandyBarricade;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicBridge;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicalInfusion;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.Metamorph;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.PhaseShift;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ReclaimTrap;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.Recycle;
@@ -408,7 +409,8 @@ public class Generator {
 					SummonElemental.class,
 					FireBooster.class,
 					HandyBarricade.class,
-					MagicBridge.class
+					MagicBridge.class,
+					Metamorph.class
 			};
 
 			TICKETS.classes = new Class<?>[]{

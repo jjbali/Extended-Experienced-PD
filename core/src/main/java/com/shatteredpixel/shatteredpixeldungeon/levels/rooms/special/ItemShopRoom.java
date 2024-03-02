@@ -130,6 +130,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.spells.FireBooster;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.HandyBarricade;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicBridge;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicalPorter;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.Metamorph;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.PhaseShift;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ReclaimTrap;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.Recycle;
@@ -460,10 +461,11 @@ public class ItemShopRoom extends SpecialRoom {
 				itemsToSpawn.add( new MagicBridge());
 				itemsToSpawn.add( new HandyBarricade());
 
+				if (Dungeon.Int(3) == 0) itemsToSpawn.add( new Metamorph());
+
 			//MISCS (RANDOMIZED)
 				if (Dungeon.Int(2) == 0) {
 					itemsToSpawn.add( new RandomItemTicket());
-
 					itemsToSpawn.add( new SmallRation());
 					itemsToSpawn.add( new Pasty());
 					itemsToSpawn.add( new OverloadBeacon());

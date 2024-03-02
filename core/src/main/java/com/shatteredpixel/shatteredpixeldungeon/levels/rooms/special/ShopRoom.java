@@ -36,6 +36,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Cheese;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.Metamorph;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.AlchemyBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.BiggerGambleBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.GambleBag;
@@ -217,6 +218,7 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add(Generator.random(Generator.Category.SCROLL));
 		itemsToSpawn.add(Generator.random(Generator.Category.STONE));
 		itemsToSpawn.add(Generator.random(Generator.Category.STONE));
+		if (Dungeon.Int(5) == 0) itemsToSpawn.add(new Metamorph());
 		if (MultiplicationItem.streak_c >= 5) {
 			itemsToSpawn.add(new TicketToArena());
 			itemsToSpawn.add(new TicketToSecondArena());
