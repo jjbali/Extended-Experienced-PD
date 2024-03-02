@@ -121,7 +121,7 @@ abstract public class KindOfWeapon extends EquipableItem {
 				GLog.n( Messages.get(KindOfWeapon.class, "equip_cursed") );
 			}
 
-			if (wasInInv && hero.heroClass == HeroClass.DUELIST) {
+			if (wasInInv && hero.heroClass == HeroClass.DUELIST || hero.hasTalent(Talent.SWIFT_EQUIP)) {
 				if (hero.buff(Talent.SwiftEquipCooldown.class) == null){
 					hero.spendAndNext(-hero.cooldown());
 					Buff.affect(hero, Talent.SwiftEquipCooldown.class, 24f)
@@ -165,7 +165,7 @@ abstract public class KindOfWeapon extends EquipableItem {
 				GLog.n( Messages.get(KindOfWeapon.class, "equip_cursed") );
 			}
 
-			if (wasInInv && hero.heroClass == HeroClass.DUELIST) {
+			if (wasInInv && hero.heroClass == HeroClass.DUELIST || hero.hasTalent(Talent.SWIFT_EQUIP)) {
 				if (hero.buff(Talent.SwiftEquipCooldown.class) == null){
 					hero.spendAndNext(-hero.cooldown());
 					Buff.affect(hero, Talent.SwiftEquipCooldown.class, 24f)
