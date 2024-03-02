@@ -244,11 +244,14 @@ public class TalentsPane extends ScrollPane {
 
 			float gap = (width - buttons.size()*TalentButton.WIDTH)/(buttons.size()+1);
 			left = x + gap;
+
 			for (TalentButton btn : buttons){
 				btn.setPos(left, title.bottom() + 4);
 				PixelScene.align(btn);
 				left += btn.width() + gap;
 			}
+
+
 
 			height = buttons.get(0).bottom() - y;
 
