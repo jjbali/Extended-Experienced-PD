@@ -869,7 +869,7 @@ public abstract class Mob extends Char {
 				}
 
 				if (hero.pointsInTalent(Talent.HANDIFUL_EXPERIENCE) >= 1){
-					EXP *= 1 + hero.pointsInTalent(Talent.HANDIFUL_EXPERIENCE);
+					EXP *= 1 + (0.1f * hero.pointsInTalent(Talent.HANDIFUL_EXPERIENCE));
 				}
 
 			}
@@ -1094,9 +1094,6 @@ public abstract class Mob extends Char {
 			}
 			//Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 		}
-		if (buff(DanceFloor.RewardBoost.class) != null) {
-			EXP *= 4;
-		}
 
 		if (buff(FourthArenaLevel.FourthArenaBuff.class) != null){
 			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
@@ -1146,7 +1143,7 @@ public abstract class Mob extends Char {
 		}
 		 */
 
-		if (Dungeon.hero.grinding && hero.lvl >= 30) {
+		if (Dungeon.hero.grinding && hero.lvl >= 50) {
 			int rolls = 25;
 			ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(rolls);
 			if (!bonus.isEmpty()) {
