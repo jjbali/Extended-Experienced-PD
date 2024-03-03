@@ -94,7 +94,7 @@ public class NotebookPage extends Item {
     }
 
     private static final String identfication		= "identification";
-    private static final String note_this		= "identification";
+    private static final String note_this		= "player_note";
     @Override
     public void storeInBundle( Bundle bundle ) {
         bundle.put( identfication, id );
