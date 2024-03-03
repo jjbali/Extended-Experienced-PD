@@ -29,6 +29,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Shopkeeper;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.InventoryScroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfMetamorphosis;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -36,9 +37,11 @@ import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RedButton;
+import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndBag;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndEnergizeItem;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndInfoItem;
+import com.shatteredpixel.shatteredpixeldungeon.windows.WndOptions;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndTradeItem;
 import com.watabou.noosa.audio.Sample;
 
@@ -55,6 +58,28 @@ public class Metamorph extends Spell {
 	protected void onCast(Hero hero) {
 		GameScene.show(new ScrollOfMetamorphosis.WndMetamorphChoose());
 		detach(Dungeon.hero.belongings.backpack);
+	}
+
+	public void confirmCancelation_metamoprh( Window chooseWindow ) {
+		GameScene.show( new WndOptions(new ItemSprite(this),
+				Messages.titleCase(name()),
+				"Do you really want to cancel this spell usage? It will be consumed anyway.",
+				"Yes, I'm positive",
+				"No, I changed my mind" ) {
+			@Override
+			protected void onSelect( int index ) {
+				switch (index) {
+					case 0:
+						curUser.spendAndNext( 1f );
+						chooseWindow.hide();
+						break;
+					case 1:
+						//do nothing
+						break;
+				}
+			}
+			public void onBackPressed() {}
+		} );
 	}
 	
 	@Override

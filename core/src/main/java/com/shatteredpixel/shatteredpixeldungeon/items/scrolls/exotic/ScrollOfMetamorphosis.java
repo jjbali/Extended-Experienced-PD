@@ -275,7 +275,7 @@ public class ScrollOfMetamorphosis extends ExoticScroll {
 			if (curItem instanceof ScrollOfMetamorphosis) {
 				((ScrollOfMetamorphosis)curItem).confirmCancelation(this);
 			} else if (curItem instanceof Metamorph) {
-				GLog.w("Cancelling through cancel button is most helpful.");
+				((Metamorph)curItem).confirmCancelation_metamoprh(this);
 			}
 		}
 	}
