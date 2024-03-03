@@ -249,6 +249,8 @@ public class Item implements Bundlable {
 			public void onSelect( boolean positive, String text ) {
 				if (text != null && positive && !text.equals(item.name())) {
 					curItem.customName = text;
+				} else if (text != null && positive && text.equals(item.name())) {
+					curItem.customName = "";
 				}
 			}
 
@@ -657,7 +659,7 @@ public class Item implements Bundlable {
 	}
 
 	public String name() {
-		if (this.customName.equals("")) {
+		if (this.customName.equals("") || this.customName.isEmpty()) {
 			return trueName();
 		}
 		return this.customName;
