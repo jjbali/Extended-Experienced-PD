@@ -868,6 +868,10 @@ public abstract class Mob extends Char {
 					EXP *= hero.buff(SuperExp.class).expfactor();
 				}
 
+				if (hero.pointsInTalent(Talent.HANDIFUL_EXPERIENCE) >= 1){
+					EXP *= 1 + hero.pointsInTalent(Talent.HANDIFUL_EXPERIENCE);
+				}
+
 			}
 
 		}

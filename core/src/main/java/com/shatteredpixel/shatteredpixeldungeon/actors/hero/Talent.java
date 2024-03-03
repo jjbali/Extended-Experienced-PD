@@ -161,6 +161,8 @@ public enum Talent {
 	QUESTIONNAIRE_SUPERVISOR(160, 3),
 	//universal T2
 	SCROLL_COLLECTOR(161, 3), POTION_COLLECTOR(162, 3), TREASUREBAG_COLLECTOR(163, 2),
+	//unversal T3
+	HANDIFUL_EXPERIENCE(164, 3),
 	//Ratmogrify T4
 	RATSISTANCE(215, 4), RATLOMACY(216, 4), RATFORCEMENTS(217, 4);
 
@@ -768,10 +770,9 @@ public enum Talent {
 						POTION_COLLECTOR, TREASUREBAG_COLLECTOR);
 				break;
 			case RAT_KING:
-				Collections.addAll(tierTalents, IRON_STOMACH, RESTORED_WILLPOWER, LETHAL_MOMENTUM, ENERGIZING_MEAL, WAND_PRESERVATION,
+				Collections.addAll(tierTalents, IRON_STOMACH, LETHAL_MOMENTUM, ENERGIZING_MEAL, WAND_PRESERVATION,
 						MYSTICAL_MEAL, ROGUES_FORESIGHT, INVIGORATING_MEAL, RESTORED_NATURE, DURABLE_PROJECTILES,
-						RESTORED_AGILITY, LETHAL_HASTE, SWIFT_EQUIP, SCROLL_COLLECTOR, POTION_COLLECTOR,
-						TREASUREBAG_COLLECTOR);
+						RESTORED_AGILITY, LETHAL_HASTE, SWIFT_EQUIP, SCROLL_COLLECTOR, POTION_COLLECTOR, TREASUREBAG_COLLECTOR);
 				break;
 		}
 		for (Talent talent : tierTalents){
@@ -785,23 +786,23 @@ public enum Talent {
 		//tier 3
 		switch (cls){
 			case WARRIOR: default:
-				Collections.addAll(tierTalents, HOLD_FAST);
+				Collections.addAll(tierTalents, HOLD_FAST, HANDIFUL_EXPERIENCE);
 				break;
 			case MAGE:
-				Collections.addAll(tierTalents, DESPERATE_POWER, ALLY_WARP);
+				Collections.addAll(tierTalents, DESPERATE_POWER, ALLY_WARP, HANDIFUL_EXPERIENCE);
 				break;
 			case ROGUE:
-				Collections.addAll(tierTalents, ENHANCED_RINGS);
+				Collections.addAll(tierTalents, ENHANCED_RINGS, HANDIFUL_EXPERIENCE);
 				break;
 			case HUNTRESS:
-				Collections.addAll(tierTalents, POINT_BLANK, SEER_SHOT);
+				Collections.addAll(tierTalents, POINT_BLANK, SEER_SHOT, HANDIFUL_EXPERIENCE);
 				break;
 			case DUELIST:
-				Collections.addAll(tierTalents, PRECISE_ASSAULT, DEADLY_FOLLOWUP);
+				Collections.addAll(tierTalents, PRECISE_ASSAULT, DEADLY_FOLLOWUP, HANDIFUL_EXPERIENCE);
 				break;
 			case RAT_KING:
 				Collections.addAll(tierTalents, HOLD_FAST, DESPERATE_POWER, ALLY_WARP, ENHANCED_RINGS, POINT_BLANK,
-						SEER_SHOT, PRECISE_ASSAULT, DEADLY_FOLLOWUP);
+						SEER_SHOT, PRECISE_ASSAULT, DEADLY_FOLLOWUP , HANDIFUL_EXPERIENCE);
 				break;
 		}
 		for (Talent talent : tierTalents){
