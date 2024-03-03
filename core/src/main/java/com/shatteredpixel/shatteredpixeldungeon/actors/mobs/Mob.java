@@ -977,6 +977,34 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), pos).sprite.drop();
 				Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), pos).sprite.drop();
 			}
+
+			if (hero.pointsInTalent(Talent.SCROLL_COLLECTOR) >= 1) {
+				Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
+				if (hero.pointsInTalent(Talent.SCROLL_COLLECTOR) >= 2) {
+					Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
+					if (hero.pointsInTalent(Talent.SCROLL_COLLECTOR) >= 3) {
+						Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
+					}
+				}
+			}
+
+			if (hero.pointsInTalent(Talent.POTION_COLLECTOR) >= 1) {
+				Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
+				if (hero.pointsInTalent(Talent.POTION_COLLECTOR) >= 2) {
+					Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
+					if (hero.pointsInTalent(Talent.POTION_COLLECTOR) >= 3) {
+						Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
+					}
+				}
+			}
+
+			if (hero.pointsInTalent(Talent.TREASUREBAG_COLLECTOR) >= 1) {
+				Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), pos).sprite.drop();
+				if (hero.pointsInTalent(Talent.TREASUREBAG_COLLECTOR) >= 2) {
+					Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), pos).sprite.drop();
+				}
+			}
+
 		}
 
 		if (hero.grinding && buff(DanceFloor.RewardBoost.class) != null){
