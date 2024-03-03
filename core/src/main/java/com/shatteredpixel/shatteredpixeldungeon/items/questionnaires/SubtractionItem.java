@@ -27,9 +27,13 @@ package com.shatteredpixel.shatteredpixeldungeon.items.questionnaires;
 import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.EnhancedRings;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ShieldBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -138,6 +142,15 @@ public class SubtractionItem extends Questionnaire {
                 if (text.equals(ANSWER)) {
                     Buff.affect(hero, CodeCooldown5.class).set(3);
                     GLog.h("You answered the question correctly, +20HP!");
+                    if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
+                        Buff.affect(hero, EnhancedRings.class, 3f);
+                    }
+                    if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 2){
+                        streak_b += 1;
+                    }
+                    if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 3){
+                        Buff.affect(hero, Barrier.class).setShield(hero.HT);
+                    }
                     if (streak_b < 11) {
                         CODE = Random.Int(10);
                         CODE2 = Random.Int(10);
