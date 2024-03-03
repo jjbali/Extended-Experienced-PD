@@ -87,7 +87,7 @@ public class NotebookPage extends Item {
             renamed = "";
         }
         if (!this.notes.isEmpty()) {
-            return "_This page has some contents._" + renamed + instructions + "\nRefer to the text below:\n\nContents:\n" + notes;
+            return "_This page has some contents._" + renamed + "\nRefer to the text below:\n\nContents:\n" + notes;
         } else {
             return "_This page has no contents._" + renamed + instructions + "\n\nYou may add something that you want here. Click the white scroll to edit your notes";
         }
