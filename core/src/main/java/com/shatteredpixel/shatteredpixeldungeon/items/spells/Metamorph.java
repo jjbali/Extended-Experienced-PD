@@ -54,6 +54,7 @@ public class Metamorph extends Spell {
 	@Override
 	protected void onCast(Hero hero) {
 		GameScene.show(new ScrollOfMetamorphosis.WndMetamorphChoose());
+		detach(Dungeon.hero.belongings.backpack);
 	}
 	
 	@Override
