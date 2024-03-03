@@ -82,7 +82,7 @@ public class NotebookPage extends Item {
     @Override
     public String desc() {
         String renamed = "\nYou can also rename this page.";
-        String instructions = "\n\nRefer to the highlighting system:\n- Red: use #hash#\n- Blue: use %percentage%\n- Green: use @arroba@";
+        String instructions = "\n\nRefer to the highlighting system:\n- Red: use #hash#\n- Blue: use %percentage%\n- Green: use @arroba@\n- Yellow: use _underscore_";
         if (!this.customName.isEmpty()) {
             renamed = "";
         }
