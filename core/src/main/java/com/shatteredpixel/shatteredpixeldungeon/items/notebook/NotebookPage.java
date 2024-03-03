@@ -94,12 +94,15 @@ public class NotebookPage extends Item {
     }
 
     private static final String identfication		= "identification";
+    private static final String note_this		= "identification";
     @Override
     public void storeInBundle( Bundle bundle ) {
         bundle.put( identfication, id );
+        bundle.put( note_this, notes );
     }
     @Override
     public void restoreFromBundle( Bundle bundle ) {
         id = bundle.getString( identfication );
+        notes = bundle.getString( note_this );
     }
 }
