@@ -119,7 +119,7 @@ public class Food extends Item {
 		if (hero.perks.contains(Perks.Perk.MYSTICAL_MEAL)){
 			Buff.affect(hero, ArtifactRecharge.class).prolong(6);
 		}
-		if (hero.perks.contains(Perks.Perk.COLLECT_EVERYTHING) && this instanceof SmallRation){
+		if (hero.perks.contains(Perks.Perk.COLLECT_EVERYTHING) && !(this instanceof Berry || this instanceof Blandfruit || this instanceof ChargrilledMeat || this instanceof MysteryMeat || this instanceof PhantomMeat)){
 			for (Heap h : Dungeon.level.heaps.valueList()){
 				if (h.type == Heap.Type.HEAP) {
 					Item item = h.peek();

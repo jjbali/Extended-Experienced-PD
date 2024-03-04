@@ -33,7 +33,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 public class Berry extends Food {
 
 	{
-		image = ItemSpriteSheet.RATION;
+		image = ItemSpriteSheet.OVERPRICED;
 		energy = Hunger.HUNGRY/3f; //100 food value
 
 		bones = false;

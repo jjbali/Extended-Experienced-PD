@@ -204,26 +204,26 @@ public class Perks {
                 }
         }
         if (hero.perks.contains(Perk.INBOUND_COLLABORATION)) {
-            damage *= Random.Int(2, Dungeon.hero.lvl);
+            damage *= 1f + Random.Float();
         }
         if (hero.perks.contains(Perk.PROTECTIVE_BARRIER)) {
-            damage *= Random.Int(2, 5);
+            damage *= 1f + Random.Float();
             Buff.affect(hero, Barrier.class).setShield((20L * Dungeon.hero.lvl));
         }
         if (hero.perks.contains(Perk.MIND_GAZER)) {
-            damage *= Random.Int(2, 5);
-            Buff.affect(hero, MindVision.class, 2f);
+            damage *= Random.Int(2, 3);
+            Buff.affect(hero, MindVision.class, 4f);
         }
         if (hero.perks.contains(Perk.OOZE)) {
-            Buff.affect(enemy, Ooze.class).set(10f);
+            Buff.affect(enemy, Ooze.class).set(5f);
         }
         return damage;
     }
 
     public static int nextPerkLevel(){
-        int num = 50;
+        int num = 3;
         for (int i = 0; i < Dungeon.hero.perks.size(); i++){
-            num += 50 + i;
+            num += 3 + i;
         }
         return num;
     }
