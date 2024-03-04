@@ -372,8 +372,6 @@ public class Hero extends Char {
 			return 0;
 		} else if (lvl >= Talent.tierLevelThresholds[tier+1]){
 			return Talent.tierLevelThresholds[tier+1] - Talent.tierLevelThresholds[tier] - talentPointsSpent(tier) + bonusTalentPoints(tier);
-		} else if (heroClass == HeroClass.RAT_KING){
-			return 6 + lvl - talentPointsSpent(tier) + bonusTalentPoints(tier);
 		} else {
 			return 1 + lvl - Talent.tierLevelThresholds[tier] - talentPointsSpent(tier) + bonusTalentPoints(tier);
 		}
