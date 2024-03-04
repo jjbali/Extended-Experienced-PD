@@ -208,7 +208,7 @@ public class ScrollOfTransmutation extends InventoryScroll {
 		
 		do {
 			n = (Weapon)Generator.randomUsingDefaults(c);
-			if (w.tier > 5)
+			if (w.tier > 6)
 				n.tier += Dungeon.cycle * 5;
 		} while (Challenges.isItemBlocked(n) || n.getClass() == w.getClass());
 

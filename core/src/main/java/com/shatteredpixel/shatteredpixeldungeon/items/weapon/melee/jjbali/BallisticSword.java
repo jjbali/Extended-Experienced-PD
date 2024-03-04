@@ -55,25 +55,18 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
-public class BallisticSword extends MeleeWeapon {
+public class BallisticSword extends JjbaliWeapon {
 
 	{
 		image = ItemSpriteSheet.DAGGER_ENERGY;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
-
-		internalTier = tier = 6;
 	}
 
     @Override
     public long max(long lvl) {
         return  10L*(tier+1) +    //70
                 lvl*(tier+10);   //+12
-    }
-
-    @Override
-    public float abilityChargeUse(Hero hero, Char target) {
-        return 2*super.abilityChargeUse(hero, target);
     }
 
 	@Override

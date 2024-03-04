@@ -192,6 +192,8 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import jdk.tools.jlink.plugin.Plugin;
+
 public class Generator {
 
 
@@ -202,7 +204,7 @@ public class Generator {
 		WEP_T3	( 3, 0, MeleeWeapon.class),
 		WEP_T4	( 2, 0, MeleeWeapon.class),
 		WEP_T5	( 1, 0, MeleeWeapon.class),
-		WEP_T6	( 1, 0, MeleeWeapon.class),
+		WEP_JJBALI	( 1, 0, MeleeWeapon.class),
 		ARMOR	( 2, 1, Armor.class ),
 		MISSILE ( 1, 2, MissileWeapon.class ),
 		MIS_T1  ( 1, 0, MissileWeapon.class ),
@@ -622,11 +624,11 @@ public class Generator {
 			WEP_T5.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2 };
 			WEP_T5.probs = WEP_T5.defaultProbs.clone();
 
-			WEP_T6.classes = new Class<?>[]{
+			WEP_JJBALI.classes = new Class<?>[]{
 					BallisticSword.class,
 			};
-			WEP_T6.defaultProbs = new float[]{ 2 };
-			WEP_T6.probs = WEP_T6.defaultProbs.clone();
+			WEP_JJBALI.defaultProbs = new float[]{ 2 };
+			WEP_JJBALI.probs = WEP_JJBALI.defaultProbs.clone();
 			
 			//see Generator.randomArmor
 			ARMOR.classes = new Class<?>[]{
