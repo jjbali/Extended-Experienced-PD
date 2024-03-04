@@ -202,7 +202,6 @@ public class TalentsPane extends ScrollPane {
 			}
 
 			int totStars = Talent.tierLevelThresholds[tier+1] - Talent.tierLevelThresholds[tier] + Dungeon.hero.bonusTalentPoints(tier);
-			if (Dungeon.hero.heroClass == HeroClass.RAT_KING) totStars += 6;
 			int openStars = Dungeon.hero.talentPointsAvailable(tier);
 			int usedStars = Dungeon.hero.talentPointsSpent(tier);
 			for (int i = 0; i < totStars; i++){
