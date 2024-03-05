@@ -57,11 +57,8 @@ public class SuperExp extends Buff {
 
 	@Override
 	public boolean act() {
-		multiplier += 0.5f;
-		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
-			multiplier += 1.5f;
-		}
-		spend(15f);
+		multiplier += 0.01f;
+		spend(1f);
 		return true;
 	}
 
