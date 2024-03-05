@@ -146,7 +146,7 @@ public class ParallelUniverse extends Item{
     }
 
     @Override
-    public String name() {
+    public final String name() {
         if (Dungeon.hero.lvl >= requirements) {
             return "Parallel Universe: Glitched";
         } else {
