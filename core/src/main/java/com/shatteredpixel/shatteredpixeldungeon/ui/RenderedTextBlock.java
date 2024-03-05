@@ -127,7 +127,7 @@ public class RenderedTextBlock extends Component {
 				redhighlight = !redhighlight;
 			} else if (str.equals("@")) {
 				greenhighlight = !greenhighlight;
-			}else if (str.equals("%%")) {
+			}else if (str.equals("--")) {
 				bluehighlight = !bluehighlight;
 			} else if (str.equals("\n")){
 				words.add(NEWLINE);
