@@ -965,20 +965,15 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
 				Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
 			}
-			if (hero.perks.contains(Perks.Perk.POTION_COLLECTOR)) {
-				Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
-				Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
+			if (hero.perks.contains(Perks.Perk.POTION_COLLECTOR) && Random.Float() < 0.2f) {
 				Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
 				Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
 			}
-			if (hero.perks.contains(Perks.Perk.SCROLL_COLLECTOR)) {
-				Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
-				Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
+			if (hero.perks.contains(Perks.Perk.SCROLL_COLLECTOR) && Random.Float() < 0.2f) {
 				Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
 				Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
 			}
-			if (hero.perks.contains(Perks.Perk.TREASUREBAG_COLLECTOR)) {
-				Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), pos).sprite.drop();
+			if (hero.perks.contains(Perks.Perk.TREASUREBAG_COLLECTOR) && Random.Float() < 0.2f) {
 				Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), pos).sprite.drop();
 			}
 
