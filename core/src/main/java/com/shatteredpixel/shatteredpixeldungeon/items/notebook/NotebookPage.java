@@ -54,7 +54,7 @@ public class NotebookPage extends Item {
         } else if (action.equals(AC_DISSIPATE) && this.notes.isEmpty()) {
             GLog.w("The page has no content.");
         } else if (action.equals(AC_SHOW_NOTES)) {
-            GameScene.show(new NoteWindow("Notes:\n\n" + notes));
+            GameScene.show(new NoteWindow("Notes for [" + name() + "]:\n\n"+ notes));
         }
     }
 
