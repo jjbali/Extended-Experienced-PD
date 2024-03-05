@@ -131,7 +131,7 @@ public class DivisibilityItem extends Questionnaire {
                         streak_h += 1;
                     }
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 3){
-                        Buff.affect(hero, Barrier.class).setShield(hero.HT);
+                        Buff.affect(hero, Barrier.class).setShield(hero.HT/4);
                     }
                     totalAnswers_h += 1;
                     streak_h += 1;

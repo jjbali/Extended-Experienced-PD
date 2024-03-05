@@ -149,7 +149,7 @@ public class SubtractionItem extends Questionnaire {
                         streak_b += 1;
                     }
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 3){
-                        Buff.affect(hero, Barrier.class).setShield(hero.HT);
+                        Buff.affect(hero, Barrier.class).setShield(hero.HT/4);
                     }
                     if (streak_b < 11) {
                         CODE = Random.Int(10);

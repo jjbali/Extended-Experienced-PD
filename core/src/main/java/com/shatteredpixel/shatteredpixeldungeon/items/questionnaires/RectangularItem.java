@@ -152,7 +152,7 @@ public class RectangularItem extends Questionnaire {
                         streak_j += 1;
                     }
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 3){
-                        Buff.affect(hero, Barrier.class).setShield(hero.HT);
+                        Buff.affect(hero, Barrier.class).setShield(hero.HT/4);
                     }
                     GLog.h("You answered the question correctly");
                     randomizer = Random.Int(2);

@@ -278,7 +278,7 @@ public class MixedOperationItem extends Questionnaire {
                             streak_f += 1;
                         }
                         if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 3){
-                            Buff.affect(hero, Barrier.class).setShield(hero.HT);
+                            Buff.affect(hero, Barrier.class).setShield(hero.HT/4);
                         }
                     }
                 } else if (text.equals("")) {

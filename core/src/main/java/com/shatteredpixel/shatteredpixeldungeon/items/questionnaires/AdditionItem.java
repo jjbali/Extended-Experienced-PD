@@ -163,7 +163,7 @@ public class AdditionItem extends Questionnaire {
                         streak_a += 1;
                     }
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 3){
-                        Buff.affect(hero, Barrier.class).setShield(hero.HT);
+                        Buff.affect(hero, Barrier.class).setShield(hero.HT/4);
                     }
                     if (streak_a < 11) {
                         CODE = Random.Int(100);

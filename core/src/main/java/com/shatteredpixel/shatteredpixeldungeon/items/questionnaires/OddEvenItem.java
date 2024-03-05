@@ -120,7 +120,7 @@ public class OddEvenItem extends Questionnaire {
                         streak_g += 1;
                     }
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 3){
-                        Buff.affect(hero, Barrier.class).setShield(hero.HT);
+                        Buff.affect(hero, Barrier.class).setShield(hero.HT/4);
                     }
                     Buff.affect(hero, CodeCooldown8.class).set(3);
                     GLog.h("You answered the question correctly.");

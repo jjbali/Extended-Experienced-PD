@@ -149,7 +149,7 @@ public class DivisionItem extends Questionnaire {
                         streak_d += 1;
                     }
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 3){
-                        Buff.affect(hero, Barrier.class).setShield(hero.HT);
+                        Buff.affect(hero, Barrier.class).setShield(hero.HT/4);
                     }
                     if (streak_d < 11) {
                         CODE = Random.Int(10)+1;

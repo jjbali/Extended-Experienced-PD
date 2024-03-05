@@ -178,7 +178,7 @@ public class MultiplicationItem extends Questionnaire {
                         streak_c += 1;
                     }
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 3){
-                        Buff.affect(hero, Barrier.class).setShield(hero.HT);
+                        Buff.affect(hero, Barrier.class).setShield(hero.HT/4);
                     }
                     totalAnswers_c += 1;
                     streak_c += 1;

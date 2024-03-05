@@ -127,7 +127,7 @@ public class BinaryItem extends Questionnaire {
                         streak_i += 1;
                     }
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 3){
-                        Buff.affect(hero, Barrier.class).setShield(hero.HT);
+                        Buff.affect(hero, Barrier.class).setShield(hero.HT/4);
                     }
                     CODE = Random.Int(1000) + 1;
                     ANSWER = Integer.toBinaryString(CODE);
