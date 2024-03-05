@@ -26,6 +26,7 @@ package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special;
 
 import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 
+import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.SuperExp;
@@ -54,6 +55,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.modules.PurityModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.ScrollModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.StrengthModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.TimeReverserModule;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.Clayball;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
@@ -194,9 +196,7 @@ public class ModuleShopRoom extends SpecialRoom {
 
 		itemsToSpawn.add(new ChampionModule());
 		//itemsToSpawn.add(new CycleModule());
-		if (hero.buff(SuperExp.class) == null) {
-			itemsToSpawn.add(new ExpBoostModule());
-		}
+		itemsToSpawn.add(new ExpBoostModule());
 		itemsToSpawn.add(new GoldModule());
 		itemsToSpawn.add(new HasteModule());
 		itemsToSpawn.add(new HealerModule());
