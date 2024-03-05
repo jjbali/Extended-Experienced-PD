@@ -43,6 +43,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.TargetedCell;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
+import com.shatteredpixel.shatteredpixeldungeon.items.notebook.NotebookPage;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.Dart;
@@ -366,7 +367,7 @@ public class Item implements Bundlable {
 			return false;
 		}
 
-		//if (notes.isEmpty() && !(this instanceof MissileWeapon)) {
+		//if (notes.isEmpty() && !(this instanceof MissileWeapon) && !(this instanceof NotebookPage)) {
 			//notes = Messages.get(this, "depth_note", Dungeon.depth);
 			//generates unique id every game (doesn't depends on seed)
 			//notes += "\nID: " + randomID();
@@ -472,7 +473,7 @@ public class Item implements Bundlable {
 	}
 
 	protected boolean notePersists() {
-		return false;
+		return true;
 	}
 	
 	public final Item detachAll( Bag container ) {
