@@ -91,7 +91,8 @@ public class CityLevel extends RegularLevel {
 		return new Class[]{
 				FrostTrap.class, StormTrap.class, CorrosionTrap.class, BlazingTrap.class, DisintegrationTrap.class,
 				RockfallTrap.class, FlashingTrap.class, GuardianTrap.class, WeakeningTrap.class,
-				DisarmingTrap.class, SummoningTrap.class, WarpingTrap.class, CursingTrap.class, PitfallTrap.class, DistortionTrap.class, GatewayTrap.class, GeyserTrap.class };
+				DisarmingTrap.class, SummoningTrap.class, WarpingTrap.class, CursingTrap.class, PitfallTrap.class, DistortionTrap.class, GatewayTrap.class, GeyserTrap.class,
+				MultiTrap.class};
 	}
 
 	@Override
@@ -99,7 +100,8 @@ public class CityLevel extends RegularLevel {
 		return new float[]{
 				4, 4, 4, 4, 4,
 				2, 2, 2, 2,
-				1, 1, 1, 1, 1, 1, 1, 1 };
+				1, 1, 1, 1, 1, 1, 1, 1,
+				4};
 	}
 	
 	@Override

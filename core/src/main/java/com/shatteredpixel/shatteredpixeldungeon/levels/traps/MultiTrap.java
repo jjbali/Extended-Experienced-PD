@@ -21,24 +21,12 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.levels.traps;
 
-import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
-import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
-import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
-import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
-import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
-import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.ShadowCaster;
-import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
-import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
-import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
-import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Point;
-import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 public class MultiTrap extends Trap {
 
@@ -55,6 +43,7 @@ public class MultiTrap extends Trap {
         return reveal();
     }
 
+    @SuppressWarnings("NewApi")
     @Override
     public void activate() {
         boolean[] FOV = new boolean[Dungeon.level.length()];
@@ -96,9 +85,7 @@ public class MultiTrap extends Trap {
                     t.activate();
                 }
                 Collections.shuffle(disarmCandidates);
-            } catch (IllegalAccessException e) {
-
-            } catch (InstantiationException e) {
+            } catch ( IllegalAccessException | InstantiationException e) {
 
             }
             iii--;
