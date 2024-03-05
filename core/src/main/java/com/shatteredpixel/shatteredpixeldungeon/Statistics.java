@@ -170,7 +170,7 @@ public class Statistics {
 		bundle.put( PROG_SCORE,  progressScore );
 		bundle.put( ITEM_VAL,    heldItemValue );
 		bundle.put( TRES_SCORE,  treasureScore );
-		for (int i = 1; i < 101; i++){
+		for (int i = 1; i < 25; i++){
 			if (floorsExplored.containsKey(i)){
 				bundle.put( FLR_EXPL+i, floorsExplored.get(i) );
 			}
@@ -216,7 +216,7 @@ public class Statistics {
 		heldItemValue   = bundle.getInt( ITEM_VAL );
 		treasureScore   = bundle.getInt( TRES_SCORE );
 		floorsExplored.clear();
-		for (int i = 1; i < 101; i++){
+		for (int i = 1; i < 25; i++){
 			if (bundle.contains( FLR_EXPL+i )){
 				floorsExplored.put(i, bundle.getBoolean( FLR_EXPL+i ));
 			}

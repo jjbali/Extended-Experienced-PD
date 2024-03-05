@@ -183,7 +183,7 @@ public enum Rankings {
 
 			if (Statistics.heldItemValue == 0) {
 				for (Item i : Dungeon.hero.belongings) {
-					Statistics.heldItemValue += i.value();
+					Statistics.heldItemValue += 400;
 					if (i instanceof CorpseDust && Statistics.deepestFloor >= 10){
 						// in case player kept the corpse dust, for a necromancer run
 						Statistics.questScores[1] = 15000;
@@ -194,7 +194,7 @@ public enum Rankings {
 			Statistics.treasureScore = Math.min(Statistics.treasureScore, 1_000_000);
 
 			Statistics.exploreScore = 0;
-			int scorePerFloor = Statistics.floorsExplored.size * 15;
+			int scorePerFloor = Statistics.floorsExplored.size * 1500;
 			for (Boolean b : Statistics.floorsExplored.valueList()){
 				if (b) Statistics.exploreScore += scorePerFloor;
 			}
