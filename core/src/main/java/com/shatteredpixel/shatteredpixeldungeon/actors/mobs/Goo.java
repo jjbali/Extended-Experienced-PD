@@ -55,7 +55,7 @@ import com.watabou.utils.Random;
 public class Goo extends Mob {
 
 	{
-		HP = HT = 100 * Dungeon.hero.lvl;
+		HP = HT = 100L * Dungeon.hero.lvl;
 		EXP = 10;
 		defenseSkill = 8;
 		spriteClass = GooSprite.class;
@@ -66,22 +66,22 @@ public class Goo extends Mob {
 
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 800 * Dungeon.hero.lvl;
+                HP = HT = 800L * Dungeon.hero.lvl;
                 defenseSkill = 36;
                 EXP = 65;
                 break;
             case 2:
-                HP = HT = 12450 * Dungeon.hero.lvl;
+                HP = HT = 12450L * Dungeon.hero.lvl;
                 defenseSkill = 170;
                 EXP = 1200;
                 break;
             case 3:
-                HP = HT = 140000 * Dungeon.hero.lvl;
+                HP = HT = 140000L * Dungeon.hero.lvl;
                 defenseSkill = 415;
                 EXP = 15000;
                 break;
             case 4:
-                HP = HT = 30000000 * Dungeon.hero.lvl;
+                HP = HT = 30000000L * Dungeon.hero.lvl;
                 defenseSkill = 2200;
                 EXP = 2000000;
                 break;
