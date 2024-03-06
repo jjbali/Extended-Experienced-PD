@@ -1884,14 +1884,14 @@ public class Hero extends Char {
 			}
 		}
 
-		int neededExp = ((10 + (Dungeon.cycle * 10)) * 15) * hero.lvl;
+		int neededExp = 75 + hero.lvl;
 
         if (totalExp >= neededExp && grinding){
 			int souCount = 0;
 
             while (totalExp >= neededExp ) {
                 totalExp -= neededExp;
-                souCount = souCount + Random.Int(11, 21);
+                souCount = souCount + 1;
             }
 
 			ScrollOfUpgrade sou = new ScrollOfUpgrade();
