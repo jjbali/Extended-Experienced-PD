@@ -40,7 +40,7 @@ public class MultiTrap extends Trap {
     @Override
     public Trap hide() {
         //cannot hide this trap
-        return reveal();
+        return this;
     }
 
     @SuppressWarnings("NewApi")
@@ -85,7 +85,7 @@ public class MultiTrap extends Trap {
                     t.activate();
                 }
                 Collections.shuffle(disarmCandidates);
-            } catch ( IllegalAccessException | InstantiationException e) {
+            } catch ( IllegalAccessException | InstantiationException ignored) {
 
             }
             iii--;
