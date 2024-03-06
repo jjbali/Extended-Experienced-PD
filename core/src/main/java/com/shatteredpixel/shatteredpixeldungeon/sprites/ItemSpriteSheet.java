@@ -423,6 +423,7 @@ public class ItemSpriteSheet {
 	public static final int WAND_TRANSFUSION    = WANDS+12;
 	public static final int WAND_AVALANCHE      = WANDS+13;
 	public static final int WAND_UNSTABLE       = WANDS+14;
+	public static final int WAND_POISON      = WANDS+15;
 	static {
 		for (int i = WANDS; i < WANDS+16; i++)
 			assignItemRect(i, 14, 14);
