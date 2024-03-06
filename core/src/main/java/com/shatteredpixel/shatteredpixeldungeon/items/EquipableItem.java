@@ -41,6 +41,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Document;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -80,7 +81,7 @@ public abstract class EquipableItem extends Item {
 			if (isUpgradable()) actions.add( AC_UPGRADE );
 			if (this instanceof Weapon) actions.add( AC_ENCHANT );
 		}
-		actions.add( AC_EXTRACT );
+		if (this instanceof MeleeWeapon) actions.add( AC_EXTRACT );
 		return actions;
 	}
 
