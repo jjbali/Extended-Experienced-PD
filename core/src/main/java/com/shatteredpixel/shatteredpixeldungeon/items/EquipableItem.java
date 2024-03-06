@@ -65,6 +65,7 @@ public abstract class EquipableItem extends Item {
 	public static final String AC_UPGRADE = "UPGRADE";
 	public static final String AC_INDENTIFY = "IDENTIFY";
 	private static final String AC_ENCHANT = "ENCHANT";
+	private static final String AC_EXTRACT = "EXTRACT";
 
 	{
 		bones = true;
@@ -79,6 +80,7 @@ public abstract class EquipableItem extends Item {
 			if (isUpgradable()) actions.add( AC_UPGRADE );
 			if (this instanceof Weapon) actions.add( AC_ENCHANT );
 		}
+		actions.add( AC_EXTRACT );
 		return actions;
 	}
 
@@ -166,6 +168,29 @@ public abstract class EquipableItem extends Item {
 			curItem.identify();
 		} else if (action.equals( AC_ENCHANT )) {
 			askEnchant(curItem);
+		} else if (action.equals( AC_EXTRACT )) {
+
+
+			if (hero.buff(Degrade.class) != null) {
+				GLog.w( "While degraded, you can't extract!");
+			} else if (curItem.isEquipped(hero)) {
+				GLog.w( "To extract, you must unequip the item first!" );
+			} else {
+				if (curItem.level() > 0) {
+					Dungeon.level.drop(new ScrollOfUpgrade().quantity(curItem.level()), curUser.pos).sprite.drop();
+				} else {
+					GLog.w( "To extract, the item level must be greater to zero!" );
+				}
+				curItem.degrade(curItem.level());
+				updateQuickslot();
+
+				hero.spendAndNext( 1f );
+
+				Sample.INSTANCE.play(Assets.Sounds.DRINK);
+				curUser.sprite.operate(curUser.pos);
+			}
+
+
 		}
 	}
 
