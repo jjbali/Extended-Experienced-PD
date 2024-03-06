@@ -31,23 +31,28 @@ public class ChampionModule extends Module {
     public void execute( Hero hero, String action ) {
         super.execute(hero, action);
         if (action.equals(AC_USE)) {
-            switch (Random.Int(10)) {
+            switch (Random.Int(7)) {
                 case 0:
                     Buff.affect(hero, ChampionEnemy.AntiMagic.class);
+                    break;
                 case 1:
                     Buff.affect(hero, ChampionEnemy.Blazing.class);
+                    break;
                 case 2:
                     Buff.affect(hero, ChampionEnemy.Blessed.class);
+                    break;
                 case 3:
                     Buff.affect(hero, ChampionEnemy.Confused.class);
-                case 6:
-                    Buff.affect(hero, ChampionEnemy.Giant.class);
-                case 7:
+                    break;
+                case 4:
                     Buff.affect(hero, ChampionEnemy.Growing.class);
-                case 8:
+                    break;
+                case 5:
                     Buff.affect(hero, ChampionEnemy.Immunization.class);
-                case 9:
+                    break;
+                case 6:
                     Buff.affect(hero, ChampionEnemy.Poisonous.class);
+                    break;
             }
             detach(hero.belongings.backpack);
         }
