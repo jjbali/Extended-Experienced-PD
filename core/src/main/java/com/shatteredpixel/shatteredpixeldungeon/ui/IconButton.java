@@ -41,7 +41,9 @@ public class IconButton extends Button {
 		super();
 		icon( icon );
 	}
-	
+	public void onClick2() {
+		super.onClick();
+	}
 	@Override
 	protected void layout() {
 		super.layout();
@@ -62,6 +64,13 @@ public class IconButton extends Button {
 	@Override
 	protected void onPointerUp() {
 		if (icon != null) icon.resetColor();
+	}
+
+	public void onPointerD() {
+		super.onPointerDown();
+	}
+	public void onPointerU() {
+		super.onPointerUp();
 	}
 	
 	public void enable( boolean value ) {
