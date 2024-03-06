@@ -33,6 +33,8 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.PsycheChest;
+import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.BiggerGambleBag;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.Chasm;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -235,7 +237,7 @@ public class OOFThief extends Mob {
 
 		Item toSteal = hero.belongings.randomUnequipped();
 
-		if (toSteal != null) {
+		if (toSteal != null && !(toSteal instanceof PsycheChest || toSteal instanceof Bag)) {
 
 			hero.sprite.showStatus(CharSprite.DEFAULT, "oof");
 			GLog.w( Messages.get(Thief.class, "stole", toSteal.name()) );
