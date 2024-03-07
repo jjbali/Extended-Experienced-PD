@@ -37,6 +37,7 @@ import java.util.ArrayList;
 public abstract class Spell extends Item {
 	
 	public static final String AC_CAST = "CAST";
+	public static int spell_uses = 0;
 	
 	{
 		stackable = true;
@@ -63,6 +64,7 @@ public abstract class Spell extends Item {
 			}
 			
 			onCast( hero );
+			spell_uses++;
 			
 		}
 	}

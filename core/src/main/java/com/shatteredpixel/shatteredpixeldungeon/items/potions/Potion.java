@@ -77,6 +77,7 @@ public class Potion extends Item {
 	
 	//used internally for potions that can be drunk or thrown
 	public static final String AC_CHOOSE = "CHOOSE";
+	public static int potion_uses = 0;
 
 	private static final float TIME_TO_DRINK = 1f;
 
@@ -234,6 +235,7 @@ public class Potion extends Item {
 							@Override
 							protected void onSelect(int index) {
 								if (index == 0) {
+									potion_uses++;
 									drink( hero );
 								}
 							}
@@ -241,6 +243,7 @@ public class Potion extends Item {
 					);
 					
 				} else {
+					potion_uses++;
 					drink( hero );
 				}
 			

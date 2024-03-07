@@ -54,6 +54,7 @@ import java.util.LinkedHashMap;
 public abstract class Scroll extends Item {
 	
 	public static final String AC_READ	= "READ";
+	public static int scroll_uses = 0;
 	
 	protected static final float TIME_TO_READ	= 1f;
 
@@ -160,6 +161,7 @@ public abstract class Scroll extends Item {
 					&& !(this instanceof ScrollOfRemoveCurse || this instanceof ScrollOfAntiMagic)){
 				GLog.n( Messages.get(this, "cursed") );
 			} else {
+				scroll_uses++;
 				curUser = hero;
 				curItem = detach( hero.belongings.backpack );
 				doRead();

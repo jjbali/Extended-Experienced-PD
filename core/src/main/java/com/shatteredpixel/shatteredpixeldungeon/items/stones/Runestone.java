@@ -30,7 +30,8 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 
 public abstract class Runestone extends Item {
-	
+
+	public static int stone_uses = 0;
 	{
 		stackable = true;
 		defaultAction = AC_THROW;
@@ -47,6 +48,7 @@ public abstract class Runestone extends Item {
 			if (pressesCell) Dungeon.level.pressCell( cell );
 			activate(cell);
 			Invisibility.dispel();
+			stone_uses++;
 		}
 	}
 	
