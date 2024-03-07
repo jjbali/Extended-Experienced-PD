@@ -26,6 +26,7 @@ package com.shatteredpixel.shatteredpixeldungeon.windows;
 
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
+import com.shatteredpixel.shatteredpixeldungeon.ui.ScrollPane;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.ui.Component;
@@ -40,11 +41,13 @@ public class WndTitledMessage extends Window {
 		super();
 	}
 
+
 	public WndTitledMessage(Image icon, String title, String message ) {
 		
 		this( new IconTitle( icon, title ), message );
 
 	}
+	ScrollPane sp;
 	
 	public WndTitledMessage( Component titlebar, String message ) {
 
@@ -58,7 +61,6 @@ public class WndTitledMessage extends Window {
 		RenderedTextBlock text = PixelScene.renderTextBlock( 6 );
 		text.text( message, width );
 		text.setPos( titlebar.left(), titlebar.bottom() + 2*GAP );
-		add( text );
 
 		while (PixelScene.landscape()
 				&& text.bottom() > (PixelScene.MIN_HEIGHT_L - 10)
@@ -68,9 +70,16 @@ public class WndTitledMessage extends Window {
 			text.setPos( titlebar.left(), titlebar.bottom() + 2*GAP );
 			text.maxWidth(width);
 		}
+		Component comp = new Component();
+		comp.add(text);
+		text.setPos(0,GAP);
+		comp.setSize(text.width(),text.height()+GAP*2);
+		resize( width, (int)Math.min((int)comp.bottom()+2+titlebar.height()+GAP, (int)(PixelScene.uiCamera.height*0.9)) );
+
+		add( sp = new ScrollPane(comp) );
+		sp.setRect(titlebar.left(),titlebar.bottom() + GAP,comp.width(),Math.min((int)comp.bottom()+2, (int)(PixelScene.uiCamera.height*0.9)-titlebar.bottom()-GAP));
 
 		bringToFront(titlebar);
 
-		resize( width, (int)text.bottom() + 2 );
 	}
 }
