@@ -85,23 +85,75 @@ public class CityLevel extends RegularLevel {
 				.setGrass(feeling == Feeling.GRASS ? 0.80f : 0.20f, 3)
 				.setTraps(nTraps(), trapClasses(), trapChances());
 	}
-	
+
 	@Override
 	protected Class<?>[] trapClasses() {
 		return new Class[]{
-				FrostTrap.class, StormTrap.class, CorrosionTrap.class, BlazingTrap.class, DisintegrationTrap.class,
-				RockfallTrap.class, FlashingTrap.class, GuardianTrap.class, WeakeningTrap.class,
-				DisarmingTrap.class, SummoningTrap.class, WarpingTrap.class, CursingTrap.class, PitfallTrap.class, DistortionTrap.class, GatewayTrap.class, GeyserTrap.class,
-				MultiTrap.class};
+				AlarmTrap.class,
+				DisarmingTrap.class,
+				GuardianTrap.class,
+				PitfallTrap.class,
+				BlazingTrap.class,
+				BurningTrap.class,
+				ExplosiveTrap.class,
+				ShockingTrap.class,
+				StormTrap.class,
+				OozeTrap.class,
+				PoisonDartTrap.class,
+				ToxicTrap.class,
+				WeakeningTrap.class,
+				ConfusionTrap.class,
+				DistortionTrap.class,
+				SummoningTrap.class,
+				TeleportationTrap.class,
+				WarpingTrap.class,
+				CursingTrap.class,
+				DisintegrationTrap.class,
+				ChillingTrap.class,
+				FlockTrap.class,
+				FrostTrap.class,
+				CorrosionTrap.class,
+				FlashingTrap.class,
+				GrimTrap.class,
+				GrippingTrap.class,
+				RockfallTrap.class,
+				WornDartTrap.class,
+				GeyserTrap.class,
+				GatewayTrap.class,
+				CannonTrap.class,
+				ChestnutTrap.class,
+				CryoTrap.class,
+				CursedWandTrap.class,
+				CursingTrap.class,
+				EnchantingTrap.class,
+				FlashingTrap.class,
+				FloodTrap.class,
+				GuardianTrap.class,
+				HealingTrap.class,
+				InfernoTrap.class,
+				LotteryTrap.class,
+				MimicTrap.class,
+				MultiTrap.class,
+				OvergrowthTrap.class,
+				ParalyticTrap.class,
+				PoisonDartTrap.class,
+				RockfallTrap.class,
+				SlicingTrap.class,
+				SmokescreenTrap.class,
+				SpookTrap.class,
+		};
 	}
 
 	@Override
 	protected float[] trapChances() {
 		return new float[]{
-				4, 4, 4, 4, 4,
-				2, 2, 2, 2,
-				1, 1, 1, 1, 1, 1, 1, 1,
-				4};
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+				1, 1
+		};
 	}
 	
 	@Override
