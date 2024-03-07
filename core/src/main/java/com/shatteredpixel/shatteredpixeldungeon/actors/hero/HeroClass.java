@@ -24,6 +24,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.hero;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.THE_TRUE_FATALITY;
+
 import com.shatteredpixel.shatteredpixeldungeon.*;
 import com.shatteredpixel.shatteredpixeldungeon.SPDSettings;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.ArmorAbility;
@@ -61,6 +63,7 @@ import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.SpawnRingOrWand;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.SpawnWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.TestPotion;
 import com.shatteredpixel.shatteredpixeldungeon.items.InfoBook;
+import com.shatteredpixel.shatteredpixeldungeon.items.armor.PlateArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.lottery.LotteryItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.BinaryItem;
@@ -184,6 +187,15 @@ public enum HeroClass {
 		new LotteryItem().collect();
 		new MobAttributeViewer().collect();
 		new InfoBook().collect();
+		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
+			i = new ScrollOfUpgrade();
+			i.collect();
+			i.quantity(20);
+
+			i = new PlateArmor();
+			i.collect();
+			i.upgrade(10);
+		}
 
 		switch (this) {
 			case WARRIOR:
