@@ -449,7 +449,7 @@ public abstract class RegularPainter extends Painter {
 		nTraps = Math.min(nTraps, validCells.size()/5);
 
 		//5x traps on traps level feeling, but the extra traps are all visible
-		for (int i = 0; i < (l.feeling == Level.Feeling.TRAPS ? 5*nTraps : nTraps); i++) {
+		for (int i = 0; i < (l.feeling == Level.Feeling.TRAPS ? 3*nTraps : nTraps); i++) {
 
 			Trap trap = Reflection.newInstance(trapClasses[Random.chances( trapChances )]);
 
@@ -471,9 +471,9 @@ public abstract class RegularPainter extends Painter {
 			l.map[trapPos] = trap.visible ? Terrain.TRAP : Terrain.SECRET_TRAP;
 		}
 
-		//4x regular trap count of visible traps on traps level feeling
+		//2x regular trap count of visible traps on traps level feeling
 		if (l.feeling == Level.Feeling.TRAPS){
-			for (int i = 0; i < 4*nTraps; i++) {
+			for (int i = 0; i < 2*nTraps; i++) {
 
 				Integer trapPos = Random.element(validCells);
 				validCells.remove(trapPos); //removes the integer object, not at the index
