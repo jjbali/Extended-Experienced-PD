@@ -3,10 +3,10 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,8 +24,6 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.windows;
 
-import com.shatteredpixel.shatteredpixeldungeon.Assets;
-import com.shatteredpixel.shatteredpixeldungeon.Chrome;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Ghost;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
@@ -37,14 +35,11 @@ import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.FetidRatSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.GnollTricksterSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.GreatCrabSprite;
-import com.shatteredpixel.shatteredpixeldungeon.ui.ItemSlot;
+import com.shatteredpixel.shatteredpixeldungeon.ui.ItemButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RedButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
-import com.watabou.noosa.NinePatch;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.ui.Component;
 
 public class WndSadGhost extends Window {
 
@@ -54,9 +49,9 @@ public class WndSadGhost extends Window {
 	private static final int GAP		= 2;
 
 	Ghost ghost;
-	
+
 	public WndSadGhost( final Ghost ghost, final int type ) {
-		
+
 		super();
 
 		this.ghost = ghost;
@@ -89,21 +84,33 @@ public class WndSadGhost extends Window {
 		message.setPos(0, titlebar.bottom() + GAP);
 		add( message );
 
-		RewardButton btnWeapon = new RewardButton( Ghost.Quest.weapon );
+		ItemButton btnWeapon = new ItemButton(){
+			@Override
+			protected void onClick() {
+				GameScene.show(new RewardWindow(item()));
+			}
+		};
+		btnWeapon.item( Ghost.Quest.weapon );
 		btnWeapon.setRect( (WIDTH - BTN_GAP) / 2 - BTN_SIZE, message.top() + message.height() + BTN_GAP, BTN_SIZE, BTN_SIZE );
 		add( btnWeapon );
 
-		RewardButton btnArmor = new RewardButton( Ghost.Quest.armor );
+		ItemButton btnArmor = new ItemButton(){
+			@Override
+			protected void onClick() {
+				GameScene.show(new RewardWindow(item()));
+			}
+		};
+		btnArmor.item( Ghost.Quest.armor );
 		btnArmor.setRect( btnWeapon.right() + BTN_GAP, btnWeapon.top(), BTN_SIZE, BTN_SIZE );
 		add(btnArmor);
 
 		resize(WIDTH, (int) btnArmor.bottom() + BTN_GAP);
 	}
-	
+
 	private void selectReward( Item reward ) {
-		
+
 		hide();
-		
+
 		if (reward == null) return;
 
 		if (reward instanceof Weapon && Ghost.Quest.enchant != null){
@@ -118,50 +125,11 @@ public class WndSadGhost extends Window {
 		} else {
 			Dungeon.level.drop( reward, ghost.pos ).sprite.drop();
 		}
-		
+
 		ghost.yell( Messages.get(this, "farewell") );
 		ghost.die( null );
-		
+
 		Ghost.Quest.complete();
-	}
-
-	private class RewardButton extends Component {
-
-		protected NinePatch bg;
-		protected ItemSlot slot;
-
-		public RewardButton( Item item ){
-			bg = Chrome.get( Chrome.Type.RED_BUTTON);
-			add( bg );
-
-			slot = new ItemSlot( item ){
-				@Override
-				protected void onPointerDown() {
-					bg.brightness( 1.2f );
-					Sample.INSTANCE.play( Assets.Sounds.CLICK );
-				}
-				@Override
-				protected void onPointerUp() {
-					bg.resetColor();
-				}
-				@Override
-				protected void onClick() {
-					GameScene.show(new RewardWindow(item));
-				}
-			};
-			add(slot);
-		}
-
-		@Override
-		protected void layout() {
-			super.layout();
-
-			bg.x = x;
-			bg.y = y;
-			bg.size( width, height );
-
-			slot.setRect( x + 2, y + 2, width - 4, height - 4 );
-		}
 	}
 
 	private class RewardWindow extends WndInfoItem {
@@ -178,6 +146,7 @@ public class WndSadGhost extends Window {
 				}
 			};
 			btnConfirm.setRect(0, height+2, width/2-1, 16);
+			add(btnConfirm);
 
 			RedButton btnCancel = new RedButton(Messages.get(WndSadGhost.class, "cancel")){
 				@Override
@@ -186,8 +155,9 @@ public class WndSadGhost extends Window {
 				}
 			};
 			btnCancel.setRect(btnConfirm.right()+2, height+2, btnConfirm.width(), 16);
+			add(btnCancel);
 
-			addToBottom(btnConfirm, btnCancel);
+			resize(width, (int)btnCancel.bottom());
 		}
 	}
 }

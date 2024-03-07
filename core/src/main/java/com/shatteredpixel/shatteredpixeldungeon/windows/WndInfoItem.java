@@ -5,9 +5,6 @@
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2023 Evan Debenham
  *
- * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
- *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -31,8 +28,8 @@ import com.shatteredpixel.shatteredpixeldungeon.ui.ItemSlot;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 
-public class WndInfoItem extends WndTitledMessage {
-	
+public class WndInfoItem extends Window {
+
 	private static final float GAP	= 2;
 
 	private static final int WIDTH_MIN = 120;
@@ -41,23 +38,33 @@ public class WndInfoItem extends WndTitledMessage {
 	//only one WndInfoItem can appear at a time
 	private static WndInfoItem INSTANCE;
 
-	{
+	public WndInfoItem( Heap heap ) {
+
+		super();
+
 		if (INSTANCE != null){
 			INSTANCE.hide();
 		}
 		INSTANCE = this;
-	}
 
-	public WndInfoItem( Heap heap ) {
-		super(getTitlebar(heap), heap.type == Heap.Type.HEAP ? heap.peek().desc() : heap.info());
+		if (heap.type == Heap.Type.HEAP) {
+			fillFields( heap.peek() );
+
+		} else {
+			fillFields( heap );
+
+		}
 	}
 
 	public WndInfoItem( Item item ) {
-		super(getTitlebar(item), item.info());
-	}
+		super();
 
-	protected IconTitle getIconTitle(Item item) {
-		return new IconTitle(item);
+		if (INSTANCE != null){
+			INSTANCE.hide();
+		}
+		INSTANCE = this;
+
+		fillFields( item );
 	}
 
 	@Override
@@ -68,35 +75,22 @@ public class WndInfoItem extends WndTitledMessage {
 		}
 	}
 
-	private static IconTitle getTitlebar(Heap heap ) {
-		return heap.type == Heap.Type.HEAP
-				? getTitlebar( heap.peek() )
-				: new IconTitle( heap, TITLE_COLOR );
-	}
-	private static IconTitle getTitlebar( Item item ) {
-
-		int color = TITLE_COLOR;
-		if (item.levelKnown && item.level() > 0) {
-			color = ItemSlot.UPGRADED;
-		} else if (item.levelKnown && item.level() < 0) {
-			color = ItemSlot.DEGRADED;
-		}
-
-		return new IconTitle( item, color );
-	}
-
 	private void fillFields(Heap heap ) {
 
 		IconTitle titlebar = new IconTitle( heap );
 		titlebar.color( TITLE_COLOR );
-		
+
 		RenderedTextBlock txtInfo = PixelScene.renderTextBlock( heap.info(), 6 );
 
 		layoutFields(titlebar, txtInfo);
 	}
-	
+
+	protected IconTitle getIconTitle(Item item) {
+		return new IconTitle(item);
+	}
+
 	private void fillFields( Item item ) {
-		
+
 		int color = TITLE_COLOR;
 		if (item.levelKnown && item.level() > 0) {
 			color = ItemSlot.UPGRADED;
@@ -106,9 +100,9 @@ public class WndInfoItem extends WndTitledMessage {
 
 		IconTitle titlebar = getIconTitle(item);
 		titlebar.color( color );
-		
+
 		RenderedTextBlock txtInfo = PixelScene.renderTextBlock( item.info(), 6 );
-		
+
 		layoutFields(titlebar, txtInfo);
 	}
 

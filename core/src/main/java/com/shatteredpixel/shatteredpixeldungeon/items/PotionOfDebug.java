@@ -345,7 +345,7 @@ public class PotionOfDebug extends Potion {
             int width = initialWidth;
             float newPos = pos;
             do {
-                newPos = WndUseItem.layoutButtons( (ArrayList<RedButton>) buttons.clone(), width, pos);
+                newPos = WndUseItem.layoutButtons( (ArrayList<RedButton>) buttons.clone(), width, pos );
                 width += initialWidth / 2;
                 width = Math.min( width, (int) maxWidth() );
             } while (newPos > maxHeight() && width < (int) maxWidth());

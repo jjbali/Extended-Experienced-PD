@@ -3,10 +3,10 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -36,11 +36,10 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.MasterThievesArmband;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
+import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RedButton;
-
-import java.util.ArrayList;
 
 public class WndTradeItem extends WndInfoItem {
 
@@ -81,15 +80,15 @@ public class WndTradeItem extends WndInfoItem {
 					hide();
 				}
 			};
-			setHeight( BTN_HEIGHT );
+			btnSell.setRect( 0, pos + GAP, width, BTN_HEIGHT );
 			btnSell.icon(new ItemSprite(ItemSpriteSheet.GOLD));
-			addToBottom( btnSell );
+			add( btnSell );
 
 			pos = btnSell.bottom();
 
 		} else {
 
-			long priceAll = item.value();
+			long priceAll= item.value();
 			RedButton btnSell1 = new RedButton( Messages.get(this, "sell_1", priceAll / item.quantity()) ) {
 				@Override
 				protected void onClick() {
@@ -99,6 +98,7 @@ public class WndTradeItem extends WndInfoItem {
 			};
 			btnSell1.setRect( 0, pos + GAP, width, BTN_HEIGHT );
 			btnSell1.icon(new ItemSprite(ItemSpriteSheet.GOLD));
+			add( btnSell1 );
 			RedButton btnSellAll = new RedButton( Messages.get(this, "sell_all", priceAll ) ) {
 				@Override
 				protected void onClick() {
@@ -108,13 +108,13 @@ public class WndTradeItem extends WndInfoItem {
 			};
 			btnSellAll.setRect( 0, btnSell1.bottom() + 1, width, BTN_HEIGHT );
 			btnSellAll.icon(new ItemSprite(ItemSpriteSheet.GOLD));
-			addToBottom(btnSell1, btnSellAll );
+			add( btnSellAll );
 
 			pos = btnSellAll.bottom();
 
 		}
 
-		//resize( width, (int)pos );
+		resize( width, (int)pos );
 	}
 
 	//buying
@@ -129,7 +129,6 @@ public class WndTradeItem extends WndInfoItem {
 		float pos = height;
 
 		final long price = Shopkeeper.sellPrice( item );
-		ArrayList<RedButton> buttons = new ArrayList();
 
 		RedButton btnBuy = new RedButton( Messages.get(this, "buy", price) ) {
 			@Override
@@ -143,7 +142,7 @@ public class WndTradeItem extends WndInfoItem {
 		btnBuy.setRect( 0, pos + GAP, width, BTN_HEIGHT );
 		btnBuy.icon(new ItemSprite(ItemSpriteSheet.GOLD));
 		btnBuy.enable( price <= Dungeon.gold );
-		buttons.add( btnBuy );
+		add( btnBuy );
 
 		pos = btnBuy.bottom();
 
@@ -154,43 +153,66 @@ public class WndTradeItem extends WndInfoItem {
 			RedButton btnSteal = new RedButton(Messages.get(this, "steal", Math.min(100, (int) (chance * 100)), chargesToUse), 6) {
 				@Override
 				protected void onClick() {
-					if (thievery.steal(item)) {
+					if (chance >= 1){
+						thievery.steal(item);
 						Hero hero = Dungeon.hero;
 						Item item = heap.pickUp();
-						hide();
 						item.wereOofed = false;
+						hide();
 
 						if (!item.doPickUp(hero)) {
 							Dungeon.level.drop(item, heap.pos).sprite.drop();
 						}
 					} else {
-						for (Mob mob : Dungeon.level.mobs) {
-							if (mob instanceof Shopkeeper) {
-								mob.yell(Messages.get(mob, "thief"));
-								((Shopkeeper) mob).flee();
-								break;
+						GameScene.show(new WndOptions(new ItemSprite(ItemSpriteSheet.ARTIFACT_ARMBAND),
+								Messages.titleCase(Messages.get(MasterThievesArmband.class, "name")),
+								Messages.get(WndTradeItem.class, "steal_warn"),
+								Messages.get(WndTradeItem.class, "steal_warn_yes"),
+								Messages.get(WndTradeItem.class, "steal_warn_no")){
+							@Override
+							protected void onSelect(int index) {
+								super.onSelect(index);
+								if (index == 0){
+									if (thievery.steal(item)) {
+										Hero hero = Dungeon.hero;
+										Item item = heap.pickUp();
+										WndTradeItem.this.hide();
+
+										if (!item.doPickUp(hero)) {
+											Dungeon.level.drop(item, heap.pos).sprite.drop();
+										}
+									} else {
+										for (Mob mob : Dungeon.level.mobs) {
+											if (mob instanceof Shopkeeper) {
+												mob.yell(Messages.get(mob, "thief"));
+												((Shopkeeper) mob).flee();
+												break;
+											}
+										}
+										WndTradeItem.this.hide();
+									}
+								}
 							}
-						}
-						hide();
+						});
 					}
 				}
 			};
 			btnSteal.setRect(0, pos + 1, width, BTN_HEIGHT);
 			btnSteal.icon(new ItemSprite(ItemSpriteSheet.ARTIFACT_ARMBAND));
-			buttons.add(btnSteal);
+			add(btnSteal);
 
 			pos = btnSteal.bottom();
 
 		}
 
-		addToBottom( buttons.toArray(new RedButton[0]) );
+		resize(width, (int) pos);
 	}
-	
+
 	@Override
 	public void hide() {
-		
+
 		super.hide();
-		
+
 		if (owner != null) {
 			owner.hide();
 		}
@@ -202,9 +224,9 @@ public class WndTradeItem extends WndInfoItem {
 	}
 
 	public static void sell( Item item, Shopkeeper shop ) {
-		
+
 		Hero hero = Dungeon.hero;
-		
+
 		if (item.isEquipped( hero ) && !((EquipableItem)item).doUnequip( hero, false )) {
 			return;
 		}
@@ -228,13 +250,13 @@ public class WndTradeItem extends WndInfoItem {
 	}
 
 	public static void sellOne( Item item, Shopkeeper shop ) {
-		
+
 		if (item.quantity() <= 1) {
 			sell( item, shop );
 		} else {
-			
+
 			Hero hero = Dungeon.hero;
-			
+
 			item = item.detach( hero.belongings.backpack );
 
 			//selling items in the sell interface doesn't spend time
@@ -250,15 +272,16 @@ public class WndTradeItem extends WndInfoItem {
 			}
 		}
 	}
-	
+
 	private void buy( Heap heap ) {
-		
+
 		Item item = heap.pickUp();
 		if (item == null) return;
 
 		long price = Shopkeeper.sellPrice( item );
 		Dungeon.gold -= price;
 		item.wereOofed = false;
+
 		if (!item.doPickUp( Dungeon.hero )) {
 			Dungeon.level.drop( item, heap.pos ).sprite.drop();
 		}

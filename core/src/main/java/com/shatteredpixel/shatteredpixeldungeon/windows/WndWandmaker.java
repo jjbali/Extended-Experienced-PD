@@ -3,10 +3,10 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,8 +24,6 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.windows;
 
-import com.shatteredpixel.shatteredpixeldungeon.Assets;
-import com.shatteredpixel.shatteredpixeldungeon.Chrome;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Wandmaker;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
@@ -36,14 +34,11 @@ import com.shatteredpixel.shatteredpixeldungeon.plants.Rotberry;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
-import com.shatteredpixel.shatteredpixeldungeon.ui.ItemSlot;
+import com.shatteredpixel.shatteredpixeldungeon.ui.ItemButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RedButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
-import com.watabou.noosa.NinePatch;
-import com.watabou.noosa.audio.Sample;
-import com.watabou.noosa.ui.Component;
 
 public class WndWandmaker extends Window {
 
@@ -56,12 +51,12 @@ public class WndWandmaker extends Window {
 	Item questItem;
 
 	public WndWandmaker( final Wandmaker wandmaker, final Item item ) {
-		
+
 		super();
 
 		this.wandmaker = wandmaker;
 		this.questItem = item;
-		
+
 		IconTitle titlebar = new IconTitle();
 		titlebar.icon(new ItemSprite(item.image(), null));
 		titlebar.label(Messages.titleCase(item.name()));
@@ -81,18 +76,38 @@ public class WndWandmaker extends Window {
 		message.maxWidth(WIDTH);
 		message.setPos(0, titlebar.bottom() + GAP);
 		add( message );
-		
-		RewardButton btnWand1 = new RewardButton( Wandmaker.Quest.wand1 );
+
+		ItemButton btnWand1 = new ItemButton(){
+			@Override
+			protected void onClick() {
+				if (Dungeon.hero.belongings.contains(questItem) && item() != null) {
+					GameScene.show(new RewardWindow(item()));
+				} else {
+					hide();
+				}
+			}
+		};
+		btnWand1.item(Wandmaker.Quest.wand1);
 		btnWand1.setRect( (WIDTH - BTN_GAP) / 2 - BTN_SIZE, message.top() + message.height() + BTN_GAP, BTN_SIZE, BTN_SIZE );
 		add( btnWand1 );
-		
-		RewardButton btnWand2 = new RewardButton( Wandmaker.Quest.wand2 );
+
+		ItemButton btnWand2 = new ItemButton(){
+			@Override
+			protected void onClick() {
+				if (Dungeon.hero.belongings.contains(questItem) && item() != null) {
+					GameScene.show(new RewardWindow(item()));
+				} else {
+					hide();
+				}
+			}
+		};
+		btnWand2.item(Wandmaker.Quest.wand2);
 		btnWand2.setRect( btnWand1.right() + BTN_GAP, btnWand1.top(), BTN_SIZE, BTN_SIZE );
 		add(btnWand2);
-		
+
 		resize(WIDTH, (int) btnWand2.bottom());
 	}
-	
+
 	private void selectReward( Item reward ) {
 
 		if (reward == null){
@@ -109,56 +124,13 @@ public class WndWandmaker extends Window {
 		} else {
 			Dungeon.level.drop( reward, wandmaker.pos ).sprite.drop();
 		}
-		
+
 		wandmaker.yell( Messages.get(this, "farewell", Messages.titleCase(Dungeon.hero.name())) );
 		wandmaker.destroy();
-		
+
 		wandmaker.sprite.die();
-		
+
 		Wandmaker.Quest.complete();
-	}
-
-	public class RewardButton extends Component {
-
-		protected NinePatch bg;
-		protected ItemSlot slot;
-
-		public RewardButton( Item item ){
-			bg = Chrome.get( Chrome.Type.RED_BUTTON);
-			add( bg );
-
-			slot = new ItemSlot( item ){
-				@Override
-				protected void onPointerDown() {
-					bg.brightness( 1.2f );
-					Sample.INSTANCE.play( Assets.Sounds.CLICK );
-				}
-				@Override
-				protected void onPointerUp() {
-					bg.resetColor();
-				}
-				@Override
-				protected void onClick() {
-					if (Dungeon.hero.belongings.contains(questItem)) {
-						GameScene.show(new RewardWindow(item));
-					} else {
-						hide();
-					}
-				}
-			};
-			add(slot);
-		}
-
-		@Override
-		protected void layout() {
-			super.layout();
-
-			bg.x = x;
-			bg.y = y;
-			bg.size( width, height );
-
-			slot.setRect( x + 2, y + 2, width - 4, height - 4 );
-		}
 	}
 
 	private class RewardWindow extends WndInfoItem {
@@ -175,6 +147,7 @@ public class WndWandmaker extends Window {
 				}
 			};
 			btnConfirm.setRect(0, height+2, width/2-1, 16);
+			add(btnConfirm);
 
 			RedButton btnCancel = new RedButton(Messages.get(WndSadGhost.class, "cancel")){
 				@Override
@@ -183,8 +156,9 @@ public class WndWandmaker extends Window {
 				}
 			};
 			btnCancel.setRect(btnConfirm.right()+2, height+2, btnConfirm.width(), 16);
+			add(btnCancel);
 
-			addToBottom(btnConfirm, btnCancel);
+			resize(width, (int)btnCancel.bottom());
 		}
 	}
 
