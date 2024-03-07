@@ -136,7 +136,6 @@ public class SewerLevel extends RegularLevel {
 				HealingTrap.class,
 				InfernoTrap.class,
 				LotteryTrap.class,
-				MimicTrap.class,
 				MultiTrap.class,
 				OvergrowthTrap.class,
 				ParalyticTrap.class,
@@ -156,7 +155,7 @@ public class SewerLevel extends RegularLevel {
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-				1, 1
+				1
 		};
 	}
 	

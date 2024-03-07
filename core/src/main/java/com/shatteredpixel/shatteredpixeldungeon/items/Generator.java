@@ -249,6 +249,7 @@ public class Generator {
 		//Artifacts in particular don't reset, no duplicates!
 		public float[] probs;
 		public float[] defaultProbs = null;
+		public float[] defaultProbsTotal = null;
 		//These variables are used as a part of the deck system, to ensure that drops are consistent
 		// regardless of when they occur (either as part of seeded levelgen, or random item drops)
 		public Long seed = null;

@@ -141,7 +141,6 @@ public class PrisonLevel extends RegularLevel {
 				HealingTrap.class,
 				InfernoTrap.class,
 				LotteryTrap.class,
-				MimicTrap.class,
 				MultiTrap.class,
 				OvergrowthTrap.class,
 				ParalyticTrap.class,
@@ -161,7 +160,7 @@ public class PrisonLevel extends RegularLevel {
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-				1, 1
+				1
 		};
 	}
 

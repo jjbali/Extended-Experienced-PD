@@ -140,7 +140,6 @@ public class CavesLevel extends RegularLevel {
 				HealingTrap.class,
 				InfernoTrap.class,
 				LotteryTrap.class,
-				MimicTrap.class,
 				MultiTrap.class,
 				OvergrowthTrap.class,
 				ParalyticTrap.class,
@@ -160,7 +159,7 @@ public class CavesLevel extends RegularLevel {
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-				1, 1
+				1
 		};
 	}
 	

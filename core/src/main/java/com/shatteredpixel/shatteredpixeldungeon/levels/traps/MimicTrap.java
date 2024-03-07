@@ -23,7 +23,9 @@ package com.shatteredpixel.shatteredpixeldungeon.levels.traps;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
+import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Wraith;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.watabou.noosa.audio.Sample;
@@ -46,7 +48,17 @@ public class MimicTrap extends Trap {
 
 	@Override
 	public void activate() {
-		Mimic mimic = Mimic.spawnAt(pos);
+		Mimic mimic = null;
+		int tries = 20;
+		do{
+			pos = Random.Int(Dungeon.level.length());
+			tries --;
+		} while (tries > 0 && (Dungeon.level.solid[pos] || Actor.findChar( pos ) != null));
+		if (tries > 0) {
+			mimic = Mimic.spawnAt(pos, Mimic.class);
+			Sample.INSTANCE.play(Assets.Sounds.CURSED);
+		}
+
 		if (mimic != null) {
 			mimic.adjustStats(Dungeon.depth + 8);
 			mimic.HP = mimic.HT;

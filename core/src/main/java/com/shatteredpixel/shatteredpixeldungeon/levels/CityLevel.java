@@ -132,7 +132,6 @@ public class CityLevel extends RegularLevel {
 				HealingTrap.class,
 				InfernoTrap.class,
 				LotteryTrap.class,
-				MimicTrap.class,
 				MultiTrap.class,
 				OvergrowthTrap.class,
 				ParalyticTrap.class,
@@ -152,7 +151,7 @@ public class CityLevel extends RegularLevel {
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-				1, 1
+				1
 		};
 	}
 	

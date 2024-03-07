@@ -156,7 +156,6 @@ public class HallsLevel extends RegularLevel {
 				HealingTrap.class,
 				InfernoTrap.class,
 				LotteryTrap.class,
-				MimicTrap.class,
 				MultiTrap.class,
 				OvergrowthTrap.class,
 				ParalyticTrap.class,
@@ -176,7 +175,7 @@ public class HallsLevel extends RegularLevel {
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 				1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-				1, 1
+				1
 		};
 	}
 	
