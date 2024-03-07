@@ -72,6 +72,15 @@ public class IconTitle extends Component {
 		label( label );
 	}
 
+	public IconTitle( Item item, int color) {
+		this(item);
+		color(color);
+	}
+	public IconTitle( Heap heap, int color) {
+		this(heap);
+		color(color);
+	}
+
 	@Override
 	protected void createChildren() {
 		imIcon = new Image();

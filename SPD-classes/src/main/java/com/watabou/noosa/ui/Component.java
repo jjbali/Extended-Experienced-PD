@@ -46,8 +46,11 @@ public class Component extends Group {
 		return this;
 	}
 
-	public Component setHeight( float height ) 	{ return setSize(width, height); }
-	public Component setWidth( float width ) 	{ return setSize(width, height); }
+	public final Component setX( float x ) { return setPos(x, y); }
+	public final Component setY( float y ) { return setPos(x, y); }
+
+	public final Component setHeight( float height ) 	{ return setSize(width, height); }
+	public final Component setWidth( float width ) 	{ return setSize(width, height); }
 	
 	public Component setSize( float width, float height ) {
 		this.width = width;
