@@ -58,6 +58,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.MiscBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.PotionBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.ScrollBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Longsword;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticSword;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.SecondArenaShopLevel;
@@ -182,10 +183,10 @@ public class SecondArenaLevel extends Level {
 			itemsToSpawn.add(new ScrollBag().quantity(Dungeon.IntRange(5, 100)));
 			itemsToSpawn.add(new MiscBag().quantity(Dungeon.IntRange(5, 100)));
 			itemsToSpawn.add(new RandomItemTicket().quantity(Dungeon.IntRange(5, 100)));
-			itemsToSpawn.add(new SpyGlass());
+			itemsToSpawn.add(new SpyGlass().quantity(Dungeon.IntRange(5, 100)));
 			itemsToSpawn.add(new TicketToThirdArena());
 			// TODO OTHER 6 ITEMS
-			itemsToSpawn.add(new ExpGenerator().quantity(Dungeon.IntRange(1, 10)));
+			itemsToSpawn.add(new BallisticSword().upgrade(Dungeon.IntRange(1, 10)));
 			itemsToSpawn.add(new ChaosFishingRod().upgrade(Dungeon.IntRange(1, 10)));
 			itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.EXPOTION ));
 			itemsToSpawn.add( Generator.randomUsingDefaults( Generator.Category.EXPOTION ));
