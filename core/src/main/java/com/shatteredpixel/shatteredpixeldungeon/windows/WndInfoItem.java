@@ -31,7 +31,7 @@ import com.shatteredpixel.shatteredpixeldungeon.ui.ItemSlot;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Window;
 
-public class WndInfoItem extends Window {
+public class WndInfoItem extends WndTitledMessage {
 	
 	private static final float GAP	= 2;
 
@@ -41,33 +41,19 @@ public class WndInfoItem extends Window {
 	//only one WndInfoItem can appear at a time
 	private static WndInfoItem INSTANCE;
 
-	public WndInfoItem( Heap heap ) {
-
-		super();
-
+	{
 		if (INSTANCE != null){
 			INSTANCE.hide();
 		}
 		INSTANCE = this;
-
-		if (heap.type == Heap.Type.HEAP) {
-			fillFields( heap.peek() );
-
-		} else {
-			fillFields( heap );
-
-		}
 	}
-	
+
+	public WndInfoItem( Heap heap ) {
+		super(getTitlebar(heap), heap.type == Heap.Type.HEAP ? heap.peek().desc() : heap.info());
+	}
+
 	public WndInfoItem( Item item ) {
-		super();
-
-		if (INSTANCE != null){
-			INSTANCE.hide();
-		}
-		INSTANCE = this;
-
-		fillFields( item );
+		super(getTitlebar(item), item.info());
 	}
 
 	protected IconTitle getIconTitle(Item item) {
@@ -80,6 +66,23 @@ public class WndInfoItem extends Window {
 		if (INSTANCE == this){
 			INSTANCE = null;
 		}
+	}
+
+	private static IconTitle getTitlebar(Heap heap ) {
+		return heap.type == Heap.Type.HEAP
+				? getTitlebar( heap.peek() )
+				: new IconTitle( heap, TITLE_COLOR );
+	}
+	private static IconTitle getTitlebar( Item item ) {
+
+		int color = TITLE_COLOR;
+		if (item.levelKnown && item.level() > 0) {
+			color = ItemSlot.UPGRADED;
+		} else if (item.levelKnown && item.level() < 0) {
+			color = ItemSlot.DEGRADED;
+		}
+
+		return new IconTitle( item, color );
 	}
 
 	private void fillFields(Heap heap ) {

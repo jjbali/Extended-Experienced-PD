@@ -33,6 +33,10 @@ import com.watabou.noosa.ui.Component;
 
 public class WndTitledMessage extends Window {
 
+	protected static int maxHeight() {
+		return (int) (PixelScene.uiCamera.height * 0.9);
+	}
+
 	protected static final int WIDTH_MIN    = 120;
 	protected static final int WIDTH_MAX    = 220;
 	protected static final int GAP	= 2;
@@ -82,4 +86,50 @@ public class WndTitledMessage extends Window {
 		bringToFront(titlebar);
 
 	}
+
+	// adds to the bottom of a titled message, below the message itself.
+	// this only works ONCE currently.
+	public final void addToBottom(Component c) {
+		addToBottom(c, GAP);
+	}
+
+	public final void addToBottom(Component c, int gap) {
+		addToBottom(c, gap, 0);
+	}
+
+	public void addToBottom(Component c, int gapBefore, int gapAfter) {
+		// attempt to place normally.
+		c.setRect(0, height + gapBefore, width, c.height() + gapAfter); // assumes there is space at the bottom first. note that I'm baking in the bottom spacing into the component itself
+		add(c);
+		// in order to make things fit, we need to change the size of the scrollbar to make the component fit properly.
+		// fixme even though it *feels* like I should be able to stop here if everything fits, I can't. why?
+		setHeight((int) Math.min(c.bottom(), maxHeight()));
+		float y; c.setY(y = height - c.height()); // put the component into its final position.
+		// scrollbar height is reduced to respect top spacing
+		sp.setRect(0, sp.top(), width, y - sp.top() - gapBefore);
+	}
+
+	// note this wrapper component is very unable to moved after it's placed. If I need to move it again, I won't be able to.
+	public Component addToBottom(int gapBefore, int gapAfter, Component... components) {
+		// this ensures that things are formatted correctly vertically.
+		Component wrapper = new Component();
+		if(components.length == 0) return wrapper;
+		float top=Float.MAX_VALUE, bottom=Float.MIN_VALUE;
+		for(Component c : components) {
+			top = Math.min(top, c.top());
+			bottom = Math.max(bottom, c.bottom());
+			wrapper.add(c);
+		}
+		wrapper.setRect(0, top, width, bottom-top);
+		addToBottom(wrapper, gapBefore, gapAfter);
+
+		top -= wrapper.top();
+
+		for(Component c : components) c.setY(c.top() - top);
+
+		return wrapper;
+	}
+	// yes the order is different. deal with it.
+	public Component addToBottom(int gap, Component... components) { return addToBottom(gap, 0, components); }
+	public Component addToBottom(Component... components) { return addToBottom(GAP, components); }
 }

@@ -1,13 +1,7 @@
 package com.shatteredpixel.shatteredpixeldungeon.items;
 
-import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
-import com.shatteredpixel.shatteredpixeldungeon.items.keys.CrystalKey;
-import com.shatteredpixel.shatteredpixeldungeon.items.keys.GoldenKey;
-import com.shatteredpixel.shatteredpixeldungeon.items.keys.IronKey;
-import com.shatteredpixel.shatteredpixeldungeon.items.keys.Key;
-import com.shatteredpixel.shatteredpixeldungeon.items.keys.SkeletonKey;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.ExoticPotion;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
@@ -20,7 +14,6 @@ import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.MimicSprite;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RedButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RenderedTextBlock;
@@ -336,23 +329,23 @@ public class PotionOfDebug extends Potion {
 
             ArrayList<RedButton> buttons = createButtons( options, BUTTON_HEIGHT, 9 );
 
-            float newPos = tryLayout( buttons, pos, width, BUTTON_HEIGHT );
+            float newPos = tryLayout( buttons, pos, width);
 
             if ( newPos < 0 ) {
                 killAll( buttons );
                 buttons = createButtons( options, BUTTON_HEIGHT_SM, FONT_SIZE_SM );
-                newPos = tryLayout( buttons, pos, width, BUTTON_HEIGHT_SM );
+                newPos = tryLayout( buttons, pos, width);
             }
             pos = newPos;
 
             resize( width, (int) pos );
         }
 
-        private float tryLayout( ArrayList<RedButton> buttons, float pos, int initialWidth, int btnHeight ) {
+        private float tryLayout( ArrayList<RedButton> buttons, float pos, int initialWidth ) {
             int width = initialWidth;
             float newPos = pos;
             do {
-                newPos = WndUseItem.layoutButtons( (ArrayList<RedButton>) buttons.clone(), width, pos, btnHeight );
+                newPos = WndUseItem.layoutButtons( (ArrayList<RedButton>) buttons.clone(), width, pos);
                 width += initialWidth / 2;
                 width = Math.min( width, (int) maxWidth() );
             } while (newPos > maxHeight() && width < (int) maxWidth());

@@ -35,7 +35,7 @@ import java.util.ArrayList;
 public class WndUseItem extends WndInfoItem {
 
 	private static final float BUTTON_HEIGHT	= 16;
-	
+
 	private static final float GAP	= 2;
 	public final Window owner;
 	
@@ -74,7 +74,9 @@ public class WndUseItem extends WndInfoItem {
 				}
 				
 			}
-			y = layoutButtons(buttons, width, y,15);
+			RedButton[] buttonArray = buttons.toArray(new RedButton[0]);
+			y = layoutButtons(buttons, width, y); // technically this y variable is wasted now.
+			addToBottom(buttonArray);
 		}
 		
 		resize( width, (int)(y) );
@@ -86,7 +88,7 @@ public class WndUseItem extends WndInfoItem {
 	}
 
 
-	public static float layoutButtons(ArrayList<RedButton> buttons, float width, float y, int btnHeight){
+	public static float layoutButtons(ArrayList<RedButton> buttons, float width, float y){
 		ArrayList<RedButton> curRow = new ArrayList<>();
 		float widthLeftThisRow = width;
 		
@@ -159,7 +161,7 @@ public class WndUseItem extends WndInfoItem {
 				//finally set positions
 				float x = 0;
 				for (RedButton b : curRow){
-					b.setRect(x, y, b.width(), b.height());
+					b.setPos(x, y);
 					x += b.width() + 1;
 				}
 				

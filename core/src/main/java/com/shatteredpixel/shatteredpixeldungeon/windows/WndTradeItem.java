@@ -40,6 +40,8 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.RedButton;
 
+import java.util.ArrayList;
+
 public class WndTradeItem extends WndInfoItem {
 
 	private static final float GAP		= 2;
@@ -79,9 +81,9 @@ public class WndTradeItem extends WndInfoItem {
 					hide();
 				}
 			};
-			btnSell.setRect( 0, pos + GAP, width, BTN_HEIGHT );
+			setHeight( BTN_HEIGHT );
 			btnSell.icon(new ItemSprite(ItemSpriteSheet.GOLD));
-			add( btnSell );
+			addToBottom( btnSell );
 
 			pos = btnSell.bottom();
 
@@ -97,7 +99,6 @@ public class WndTradeItem extends WndInfoItem {
 			};
 			btnSell1.setRect( 0, pos + GAP, width, BTN_HEIGHT );
 			btnSell1.icon(new ItemSprite(ItemSpriteSheet.GOLD));
-			add( btnSell1 );
 			RedButton btnSellAll = new RedButton( Messages.get(this, "sell_all", priceAll ) ) {
 				@Override
 				protected void onClick() {
@@ -107,13 +108,13 @@ public class WndTradeItem extends WndInfoItem {
 			};
 			btnSellAll.setRect( 0, btnSell1.bottom() + 1, width, BTN_HEIGHT );
 			btnSellAll.icon(new ItemSprite(ItemSpriteSheet.GOLD));
-			add( btnSellAll );
+			addToBottom(btnSell1, btnSellAll );
 
 			pos = btnSellAll.bottom();
 
 		}
 
-		resize( width, (int)pos );
+		//resize( width, (int)pos );
 	}
 
 	//buying
@@ -128,6 +129,7 @@ public class WndTradeItem extends WndInfoItem {
 		float pos = height;
 
 		final long price = Shopkeeper.sellPrice( item );
+		ArrayList<RedButton> buttons = new ArrayList();
 
 		RedButton btnBuy = new RedButton( Messages.get(this, "buy", price) ) {
 			@Override
@@ -141,7 +143,7 @@ public class WndTradeItem extends WndInfoItem {
 		btnBuy.setRect( 0, pos + GAP, width, BTN_HEIGHT );
 		btnBuy.icon(new ItemSprite(ItemSpriteSheet.GOLD));
 		btnBuy.enable( price <= Dungeon.gold );
-		add( btnBuy );
+		buttons.add( btnBuy );
 
 		pos = btnBuy.bottom();
 
@@ -175,13 +177,13 @@ public class WndTradeItem extends WndInfoItem {
 			};
 			btnSteal.setRect(0, pos + 1, width, BTN_HEIGHT);
 			btnSteal.icon(new ItemSprite(ItemSpriteSheet.ARTIFACT_ARMBAND));
-			add(btnSteal);
+			buttons.add(btnSteal);
 
 			pos = btnSteal.bottom();
 
 		}
 
-		resize(width, (int) pos);
+		addToBottom( buttons.toArray(new RedButton[0]) );
 	}
 	
 	@Override
