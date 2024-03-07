@@ -60,6 +60,7 @@ import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.SpawnMissile;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.SpawnRingOrWand;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.SpawnWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.TestPotion;
+import com.shatteredpixel.shatteredpixeldungeon.items.InfoBook;
 import com.shatteredpixel.shatteredpixeldungeon.items.lottery.LotteryItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.BinaryItem;
@@ -182,6 +183,7 @@ public enum HeroClass {
 		new NotebookHolder().collect();
 		new LotteryItem().collect();
 		new MobAttributeViewer().collect();
+		new InfoBook().collect();
 
 		switch (this) {
 			case WARRIOR:
