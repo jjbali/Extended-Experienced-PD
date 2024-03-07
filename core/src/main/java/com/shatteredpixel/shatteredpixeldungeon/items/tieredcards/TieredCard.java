@@ -55,7 +55,7 @@ public class TieredCard extends Item {
         super.execute(hero, action);
 
         if (action.equals(AC_DRINK)) {
-            long rolls = 10 * level();
+            long rolls = 9 * level();
             ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop((int) rolls);
             if (!bonus.isEmpty()) {
                 for (Item b : bonus) Dungeon.level.drop(b, hero.pos).sprite.drop();
@@ -82,7 +82,7 @@ public class TieredCard extends Item {
 
     @Override
     public long value() {
-        return 1500 * level();
+        return 500 * level();
     }
 
     private static ItemSprite.Glowing GLITCHED = new ItemSprite.Glowing( 0.3f );
