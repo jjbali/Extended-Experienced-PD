@@ -24,6 +24,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.THE_TRUE_FATALITY;
+
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.watabou.utils.Random;
 
@@ -121,6 +123,13 @@ public class Bestiary {
 	
 	//has a chance to add a rarely spawned mobs to the rotation
 	public static void addRareMobs( int depth, ArrayList<Class<?extends Mob>> rotation ){
+		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
+			rotation.add(Wraith.class);
+			rotation.add(Wraith.class);
+			rotation.add(Wraith.class);
+			rotation.add(Wraith.class);
+			if (Random.Float() < 0.05f) rotation.add(OOFThief.class);
+		}
 
 		switch (depth){
 
