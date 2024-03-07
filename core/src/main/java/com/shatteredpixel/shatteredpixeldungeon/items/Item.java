@@ -29,6 +29,7 @@ import static com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene.updateIt
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
+import com.shatteredpixel.shatteredpixeldungeon.Challenges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
@@ -94,6 +95,7 @@ public class Item implements Bundlable {
 	private static final String AC_MULTIPLY = "MULTIPLY";
 	public static final String AC_RENAME = "RENAME";
 	public static final String AC_AIM		= "AIM_MI";
+	public static final String AC_TAG       = "TAG";
 
 
 	public String defaultAction;
@@ -109,6 +111,8 @@ public class Item implements Bundlable {
 	public boolean dropsDownHeap = false;
 	
 	private long level = 0;
+	public boolean tagged = false;
+
 
 	public boolean levelKnown = false;
 	
@@ -135,6 +139,10 @@ public class Item implements Bundlable {
 	};
 	public String customName = "";
 
+	public int taggingCost(){
+		return 9000 + Challenges.activeChallenges()*500;
+	}
+
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = new ArrayList<>();
 		actions.add( AC_DROP );
@@ -144,6 +152,8 @@ public class Item implements Bundlable {
 			if (!isIdentified()) actions.add( AC_IDENTIFY );
 			if (stackable) actions.add( AC_MULTIPLY );
 		}
+		if (Dungeon.gold >= taggingCost() && !tagged)
+			actions.add( AC_TAG );
 		return actions;
 	}
 
@@ -228,6 +238,13 @@ public class Item implements Bundlable {
 			doAddStorage( hero );
 		} else if (action.equals( AC_STORE_TAKE )) {
 			doTakeStorage( hero );
+		} else if (action.equals( AC_TAG )) {
+			if (Dungeon.gold >= taggingCost() && !tagged &&
+					(hero.belongings.backpack.contains(this) || isEquipped(hero))){
+				hero.spendAndNext(TIME_TO_DROP);
+				tagged = true;
+				Dungeon.gold -= taggingCost();
+			}
 		}
 	}
 
@@ -673,6 +690,8 @@ public class Item implements Bundlable {
 	public int image() {
 		return image;
 	}
+
+	public static ItemSprite.Glowing TAGGED = new ItemSprite.Glowing( 0xFFD400, 0.25f );
 	
 	public ItemSprite.Glowing glowing() {
 		return null;
@@ -685,7 +704,9 @@ public class Item implements Bundlable {
 	}
 	
 	public String desc() {
-		return Messages.get(this, "desc");
+		return Messages.get(this, "desc") +
+				(!tagged && Dungeon.gold >= taggingCost() ?
+						"\n\n" + Messages.get(Item.class, "desc_tag", taggingCost()) : "");
 	}
 	
 	public long quantity() {
@@ -741,6 +762,7 @@ public class Item implements Bundlable {
 	private static final String WERE_OOFED      = "were_oofed";
 	private static final String NOTES = "player_notes";
 	private static final String IDENTIFICATION = "ID";
+	private static final String TAGGING         = "tagged";
 	
 	@Override
 	public void storeInBundle( Bundle bundle ) {
@@ -756,6 +778,7 @@ public class Item implements Bundlable {
 		bundle.put( WERE_OOFED, wereOofed);
 		bundle.put( NOTES, notes );
 		bundle.put( IDENTIFICATION, identification_2 );
+		bundle.put( TAGGING, tagged);
 
 		if (!this.customName.equals("")) {
 			bundle.put("customName", this.customName);
@@ -790,6 +813,7 @@ public class Item implements Bundlable {
 		}
 		notes = bundle.getString(NOTES);
 		identification_2 = bundle.getString(IDENTIFICATION);
+		tagged = bundle.getBoolean( TAGGING);
 
 	}
 

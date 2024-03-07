@@ -192,7 +192,8 @@ public class ItemSprite extends MovieClip {
 	}
 
 	public ItemSprite view( Item item ){
-		view(item.image(), item.glowing());
+		ItemSprite.Glowing glow = item.tagged ? Item.TAGGED : item.glowing();
+		view(item.image(), glow);
 		Emitter emitter = item.emitter();
 		if (emitter != null && parent != null) {
 			emitter.pos( this );

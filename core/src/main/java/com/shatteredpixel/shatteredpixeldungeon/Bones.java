@@ -29,6 +29,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
+import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.CloakOfShadows;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.FileUtils;
@@ -118,21 +119,35 @@ public class Bones {
 					item = Dungeon.quickslot.randomNonePlaceholder();
 					break;
 			}
-			if (item == null || !item.bones) {
+			if (item != null && item.tagged)
+				return item;
+			else if (item == null || !item.bones) {
 				return pickItem(hero);
 			}
 		} else {
 
 			Iterator<Item> iterator = hero.belongings.backpack.iterator();
+			Iterator<Item> taggedIterator = hero.belongings.iterator();
 			Item curItem;
 			ArrayList<Item> items = new ArrayList<>();
+			ArrayList<Item> taggedItems = new ArrayList<>();
 			while (iterator.hasNext()){
 				curItem = iterator.next();
 				if (curItem.bones)
 					items.add(curItem);
 			}
+			while (taggedIterator.hasNext()){
+				curItem = taggedIterator.next();
+				if (curItem.tagged)
+					taggedItems.add(curItem);
+			}
 
-			if (Dungeon.Int(3) < items.size()) {
+			if (taggedItems.size() > 0){
+				depth = 1;
+				item = taggedItems.size() > 1 ? Random.element(taggedItems) : taggedItems.get(0);
+				if (item != null)
+					item.tagged = false;
+			} else if (Random.Int(3) < items.size()) {
 				item = Random.element(items);
 				if (item.stackable){
 					item.quantity(Dungeon.NormalLongRange(1, (item.quantity() + 1) / 2));
@@ -195,7 +210,7 @@ public class Bones {
 
 				//Enforces artifact uniqueness
 				if (item instanceof Artifact){
-					if (Generator.removeArtifact(((Artifact)item).getClass())) {
+					if (Generator.removeArtifact(((Artifact)item).getClass()) || item instanceof CloakOfShadows) {
 						
 						//generates a new artifact of the same type, always +0
 						Artifact artifact = Reflection.newInstance(((Artifact)item).getClass());
