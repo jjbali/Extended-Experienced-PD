@@ -26,6 +26,8 @@ package com.shatteredpixel.shatteredpixeldungeon.items;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.GamesInProgress;
+import com.shatteredpixel.shatteredpixeldungeon.Rankings;
+import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
@@ -50,6 +52,8 @@ public class InfoBook extends Item{
         unique = true;
     }
 
+    private static final String AC_CALCSCORE = "CALCSCORE";
+
     @Override
     public boolean isIdentified() {
         return true;
@@ -66,12 +70,17 @@ public class InfoBook extends Item{
         actions.remove(AC_DROP);
         actions.remove(AC_THROW);
         actions.remove(AC_RENAME);
+        actions.add( AC_CALCSCORE );
         return actions;
     }
 
     @Override
     public void execute(Hero hero, String action) {
         super.execute(hero, action);
+        if (action.equals(AC_CALCSCORE )) {
+            Rankings.INSTANCE.calculateScore();
+            GLog.h("Your scores has been calculated.");
+        }
     }
 
     @Override
@@ -118,6 +127,19 @@ public class InfoBook extends Item{
                 + scroll_counter
                 + spell_counter
                 + potion_counter
-                + stone_counter;
+                + stone_counter
+                + "\n\nAlso portrays some of the dungeon."
+                + "\n\nTotal Score: " + Statistics.totalScore
+                + "\nProgress Score: " + Statistics.progressScore
+                + "\nTreasure Score: " + Statistics.treasureScore
+                + "\nExplore Score: " + Statistics.exploreScore
+                + "\nAnswered Questions: " + Statistics.answeredQuestions
+                + "\nEnemies Slain: " + Statistics.enemiesSlain
+                + "\nItems Crafted: " + Statistics.itemsCrafted
+                + "\nFood Eaten: " + Statistics.foodEaten
+                + "\nUpgrades Used: " + Statistics.upgradesUsed
+                + "\nSneak Attacks: " + Statistics.sneakAttacks
+                + "\nThrown Attacks: " + Statistics.thrownAttacks
+                + "\nAnkh Used: " + Statistics.ankhsUsed;
     }
 }

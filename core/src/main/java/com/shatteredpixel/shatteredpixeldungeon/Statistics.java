@@ -99,6 +99,9 @@ public class Statistics {
 		winMultiplier   = 1;
 		chalMultiplier  = 1;
 		totalScore      = 0;
+		second_elapsed = 0;
+		real_seconds = 0;
+		turnsPassed = 0;
 		
 		upgradesUsed    = 0;
 		sneakAttacks    = 0;
