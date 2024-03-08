@@ -47,6 +47,7 @@ import com.shatteredpixel.shatteredpixeldungeon.journal.Document;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
+import com.shatteredpixel.shatteredpixeldungeon.windows.WndBag;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndTextInput;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
@@ -123,6 +124,7 @@ public abstract class EquipableItem extends Item {
 		} else if (action.equals( AC_UNEQUIP )) {
 			doUnequip( hero, true );
 		} else if (action.equals( AC_DISMANTLE )) {
+
 			if (hero.buff(Degrade.class) != null) {
 				GLog.w( Messages.get(this, "degrade"));
 			} else if (curItem.isEquipped(hero)) {
@@ -163,6 +165,7 @@ public abstract class EquipableItem extends Item {
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
 				curUser.sprite.operate(curUser.pos);
 			}
+			GameScene.show(new WndBag(Dungeon.hero.belongings.backpack));
 		} else if (action.equals( AC_UPGRADE )) {
 			askUpgradeLevel(curItem);
 		} else if (action.equals( AC_INDENTIFY )) {
