@@ -573,7 +573,7 @@ private static boolean evaluatingTwinUpgrades = false;
 		}
 
 		public int chargeCap(){
-			return Math.min(100, 3 + (Dungeon.hero.lvl-1)/3);
+			return Math.min(100, 3 + Dungeon.hero.lvl-1);
 		}
 
 		public int secondChargeCap(){
@@ -633,7 +633,7 @@ private static boolean evaluatingTwinUpgrades = false;
 
 		@Override
 		public boolean usable() {
-			return Dungeon.hero.subClass == HeroSubClass.CHAMPION;
+			return Dungeon.hero.subClass == HeroSubClass.CHAMPION || Dungeon.hero.subClass == HeroSubClass.KING;
 		}
 
 		@Override
@@ -668,7 +668,7 @@ private static boolean evaluatingTwinUpgrades = false;
 
 		@Override
 		public void doAction() {
-			if (!Dungeon.hero.isSubclass(HeroSubClass.CHAMPION)){
+			if (!Dungeon.hero.isSubclass(HeroSubClass.CHAMPION) || !Dungeon.hero.isSubclass(HeroSubClass.KING)){
 				return;
 			}
 
