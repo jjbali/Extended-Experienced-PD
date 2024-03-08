@@ -241,6 +241,10 @@ public class ShopRoom extends SpecialRoom {
 			itemsToSpawn.add( new Cheese());
 		}
 
+		if (Dungeon.Int(20) == 0) {
+			itemsToSpawn.add( Generator.random(Generator.Category.WEP_JJBALI) );
+		}
+
 		if (AdditionItem.streak_a >= 30) {
 			itemsToSpawn.add(new StormBomb());
 		}
