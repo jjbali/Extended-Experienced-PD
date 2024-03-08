@@ -125,18 +125,18 @@ public class BallisticGloves extends JjbaliWeapon {
                                 for (int i = 0; i < 3; i++) {
                                     int D = Random.Int(12);
                                     switch (D) {
-                                        case 0: default: Buff.prolong(ch, Blindness.class, 4f);break;
-                                        case 1: Buff.affect(ch, Burning.class).reignite(ch, 4f);break;
-                                        case 2: Buff.affect(ch, Corrosion.class).set(4f, 6L);break;
-                                        case 3: Buff.prolong(ch, Cripple.class, 4f);break;
-                                        case 4: Buff.prolong(ch, Chill.class, 4f);break;
-                                        case 5: Buff.prolong(ch, Frost.class, 4f);break;
-                                        case 6: Buff.prolong(ch, Hex.class, 4f);break;
-                                        case 7: Buff.prolong(ch, Paralysis.class, 4f);break;
-                                        case 8: Buff.affect(ch, Poison.class).set(4f);break;
-                                        case 9: Buff.prolong(ch, Vulnerable.class, 4f);break;
-                                        case 10: Buff.prolong(ch, Weakness.class, 4f);break;
-                                        case 11: Buff.prolong(ch, Vertigo.class, 4f);break;
+                                        case 0: default: Buff.prolong(ch, Blindness.class, Blindness.DURATION);break;
+                                        case 1: Buff.affect(ch, Burning.class).reignite(ch, 10f);break;
+                                        case 2: Buff.affect(ch, Corrosion.class).set(10f, 6L);break;
+                                        case 3: Buff.prolong(ch, Cripple.class, Cripple.DURATION);break;
+                                        case 4: Buff.prolong(ch, Chill.class, Chill.DURATION);break;
+                                        case 5: Buff.prolong(ch, Frost.class, Frost.DURATION);break;
+                                        case 6: Buff.prolong(ch, Hex.class, Hex.DURATION);break;
+                                        case 7: Buff.prolong(ch, Paralysis.class, Paralysis.DURATION);break;
+                                        case 8: Buff.affect(ch, Poison.class).set(10f);break;
+                                        case 9: Buff.prolong(ch, Vulnerable.class, Vulnerable.DURATION);break;
+                                        case 10: Buff.prolong(ch, Weakness.class, Weakness.DURATION);break;
+                                        case 11: Buff.prolong(ch, Vertigo.class, Vertigo.DURATION);break;
                                     }
                                 }
                             }
