@@ -30,7 +30,10 @@ import com.shatteredpixel.shatteredpixeldungeon.SPDSettings;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.NPC;
+import com.shatteredpixel.shatteredpixeldungeon.effects.SelectableCell;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.tiles.DungeonTilemap;
 import com.watabou.input.*;
 import com.watabou.noosa.Camera;
@@ -39,6 +42,9 @@ import com.watabou.noosa.ScrollArea;
 import com.watabou.utils.GameMath;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Signal;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CellSelector extends ScrollArea {
 
@@ -510,5 +516,46 @@ public class CellSelector extends ScrollArea {
 		public void onRightClick( Integer cell ){} //do nothing by default
 
 		public abstract String prompt();
+	}
+
+	public static abstract class TargetedListener extends Listener {
+		private final List<SelectableCell> selectableCells = new ArrayList();
+		public final void highlightCells() {
+			for(CharSprite s : getTargets()) {
+				selectableCells.add(new SelectableCell(s));
+			}
+		}
+		private List<CharSprite> targets;
+		protected abstract List<CharSprite> findTargets();
+		public final List<CharSprite> getTargets() { // lazily evaluated
+			if(targets == null) targets = findTargets();
+			return targets;
+		}
+
+		protected abstract void action(Char ch);
+
+		/** if a character can be highlighted by this selector at all. This affects auto-target as well. */
+		protected boolean canTarget(Char ch) {
+			return !(ch instanceof NPC || ch.alignment == Char.Alignment.ALLY);
+		}
+
+		// if there's only one target, this skips the actual selecting.
+		protected final boolean action() {
+			if(getTargets().size() != 1) return false;
+			// TODO could possibly skip the case where there's NO targets.
+			action(getTargets().get(0).ch);
+			return true;
+		}
+		@Override final public void onSelect(Integer cell) {
+			for(SelectableCell c : selectableCells) c.killAndErase();
+			selectableCells.clear();
+
+			if(cell == null) return;
+
+			Char c = Actor.findChar(cell);
+			if(c != null && getTargets().contains(c.sprite)) action(c);
+			else onInvalid(cell);
+		}
+		protected void onInvalid(int cell) {}
 	}
 }
