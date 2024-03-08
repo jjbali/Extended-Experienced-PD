@@ -573,7 +573,7 @@ private static boolean evaluatingTwinUpgrades = false;
 		}
 
 		public int chargeCap(){
-			return Math.min(10, 3 + (Dungeon.hero.lvl-1)/3);
+			return Math.min(100, 3 + (Dungeon.hero.lvl-1)/3);
 		}
 
 		public int secondChargeCap(){
