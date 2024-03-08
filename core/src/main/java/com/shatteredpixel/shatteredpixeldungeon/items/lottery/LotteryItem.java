@@ -158,6 +158,6 @@ public class LotteryItem extends Item {
 
     @Override
     public String desc() {
-        return "You have to guess what is the set of numbers.";
+        return "You have to guess what is the set of numbers. (1-24)";
     }
 }
