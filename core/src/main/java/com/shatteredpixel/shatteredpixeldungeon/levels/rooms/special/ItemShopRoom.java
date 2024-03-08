@@ -457,7 +457,6 @@ public class ItemShopRoom extends SpecialRoom {
 				itemsToSpawn.add( new TelekineticGrab());
 				itemsToSpawn.add( new Vampirism());
 				itemsToSpawn.add( new WildEnergy());
-				itemsToSpawn.add( new Evolution());
 				itemsToSpawn.add( new MagicBridge());
 				itemsToSpawn.add( new HandyBarricade());
 
