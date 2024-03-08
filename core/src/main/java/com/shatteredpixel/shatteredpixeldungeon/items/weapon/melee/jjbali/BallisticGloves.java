@@ -25,48 +25,45 @@
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
-import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Blindness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
-import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Doom;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Burning;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Chill;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Corrosion;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Cripple;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Frost;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Hex;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Invisibility;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Paralysis;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Poison;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vertigo;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vulnerable;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Statue;
-import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.MagicMissile;
-import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
-import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
-import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Longsword;
-import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.ConeAOE;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
-import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.StatueSprite;
-import com.shatteredpixel.shatteredpixeldungeon.ui.AttackIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
-import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
-import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
 
-public class BallisticSword extends JjbaliWeapon {
+public class BallisticGloves extends JjbaliWeapon {
 
 	{
-		image = ItemSpriteSheet.WORN_SHORTSWORD_ENERGY;
+		image = ItemSpriteSheet.GLOVES_ENERGY;
 		hitSound = Assets.Sounds.HIT_SLASH;
 		hitSoundPitch = 1f;
 	}
 
     @Override
     public long max(long lvl) {
-        return  10L*(tier+1) +    //70
-                lvl*(tier+10);   //+12
+        return  12L*(tier+1) +    //70
+                lvl*(tier+12);   //+12
     }
 
 	@Override
@@ -95,12 +92,12 @@ public class BallisticSword extends JjbaliWeapon {
             return;
         }
 
-        int maxDist = 5 + Math.round(chargeUse);
+        int maxDist = 30;
         int dist = Math.min(aim.dist, maxDist);
 
         ConeAOE cone = new ConeAOE(aim,
                 dist,
-                90,
+                20,
                 Ballistica.STOP_SOLID | Ballistica.STOP_TARGET);
 
         for (Ballistica ray : cone.outerRays){
@@ -125,8 +122,23 @@ public class BallisticSword extends JjbaliWeapon {
                             Char ch = Actor.findChar( cell );
                             if (ch != null) {
                                 Sample.INSTANCE.play(Assets.Sounds.HIT_MAGIC, 2f, 0.65f);
-                                Buff.affect(ch, Weakness.class, 10 + chargeUse/3);
-                                Buff.affect(ch, Blindness.class, 3 + chargeUse/3);
+                                for (int i = 0; i < 3; i++) {
+                                    int D = Random.Int(12);
+                                    switch (D) {
+                                        case 0: default: Buff.prolong(ch, Blindness.class, 4f);break;
+                                        case 1: Buff.affect(ch, Burning.class).reignite(ch, 4f);break;
+                                        case 2: Buff.affect(ch, Corrosion.class).set(4f, 6L);break;
+                                        case 3: Buff.prolong(ch, Cripple.class, 4f);break;
+                                        case 4: Buff.prolong(ch, Chill.class, 4f);break;
+                                        case 5: Buff.prolong(ch, Frost.class, 4f);break;
+                                        case 6: Buff.prolong(ch, Hex.class, 4f);break;
+                                        case 7: Buff.prolong(ch, Paralysis.class, 4f);break;
+                                        case 8: Buff.affect(ch, Poison.class).set(4f);break;
+                                        case 9: Buff.prolong(ch, Vulnerable.class, 4f);break;
+                                        case 10: Buff.prolong(ch, Weakness.class, 4f);break;
+                                        case 11: Buff.prolong(ch, Vertigo.class, 4f);break;
+                                    }
+                                }
                             }
                         }
 
