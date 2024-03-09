@@ -167,6 +167,7 @@ public class BlackMimic extends Mob {
 		}
 	}
 
+	@SuppressWarnings("SuspiciousIndentation")
 	@Override
 	protected boolean act() {
 		GameScene.add(Blob.seed(pos, 0, FallingRocks.class));

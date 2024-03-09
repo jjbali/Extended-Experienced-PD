@@ -95,6 +95,10 @@ public class RandomBuffGiver extends Item {
         return new ItemSprite.Glowing( 0.3f);
     }
 
+    public void say(String name, String desc) {
+        GLog.p("> " + name + " " + desc);
+    }
+
     @Override
     protected void onThrow(int cell) {
         if (!Dungeon.level.passable[cell]){
@@ -105,122 +109,143 @@ public class RandomBuffGiver extends Item {
                 int random = Random.Int(1, 30);
                 switch (random) {
                     default: case 1:
-                        Buff.affect(ch, Invisibility.class, Invisibility.DURATION * 0.66f + (super.level() * 1.5f));
-                        GLog.p("> You are now invisible.");
+                        Buff.affect(ch, Invisibility.class, Invisibility.DURATION * 0.66f + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "is now invisible.");
                         break;
                     case 2:
-                        Buff.affect(ch, Haste.class, Haste.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You are now faster than ever.");
+                        Buff.affect(ch, Haste.class, Haste.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "is now faster than ever.");
                         break;
                     case 3:
-                        Buff.affect(ch, FireImbue.class).set(FireImbue.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You are now imbued with fire.");
+                        Buff.affect(ch, FireImbue.class).set(FireImbue.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        say(ch.name(), "is now imbued with fire.");
                         break;
                     case 4:
-                        Buff.affect(ch, FrostImbue.class, FrostImbue.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You are now imbued with frost.");
+                        Buff.affect(ch, FrostImbue.class, FrostImbue.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "is now imbued with frost.");
                         break;
                     case 5:
-                        Buff.affect(ch, MindVision.class, MindVision.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You can now see through walls.");
+                        Buff.affect(ch, MindVision.class, MindVision.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "can now see through walls.");
                         break;
                     case 6:
-                        Buff.affect(ch, Bless.class, Bless.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You are now blessed.");
+                        Buff.affect(ch, Bless.class, Bless.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "is now blessed.");
                         break;
                     case 7:
-                        Buff.affect(ch, AdrenalineSurge.class).reset(2, 500  + (super.level() * 1.5f));
-                        GLog.p("> You are given a surge of humanism.");
+                        Buff.affect(ch, AdrenalineSurge.class).reset(2, 500  + (Dungeon.hero.lvl * 1.5f));
+                        say(ch.name(), "was given a surge of humanism.");
                         break;
                     case 8:
-                        Buff.affect(ch, Adrenaline.class, Adrenaline.DURATION * 0.66f   + (super.level() * 1.5f));
-                        GLog.p("> You are given a surge of physical power.");
+                        Buff.affect(ch, Adrenaline.class, Adrenaline.DURATION * 0.66f   + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "was given a surge of physical power.");
                         break;
                     case 9:
-                        Buff.affect(ch, BlobImmunity.class, BlobImmunity.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You are now immune to negative effects.");
+                        Buff.affect(ch, BlobImmunity.class, BlobImmunity.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "is now immune to negative effects.");
                         break;
                     case 10:
-                        Buff.affect(ch, Recharging.class, Recharging.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You can now recharge faster.");
+                        Buff.affect(ch, Recharging.class, Recharging.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "can now recharge faster.");
                         break;
                     case 11:
-                        Buff.affect(ch, AnkhInvulnerability.class, AnkhInvulnerability.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You are invulnerable.");
+                        Buff.affect(ch, AnkhInvulnerability.class, AnkhInvulnerability.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "is now invulnerable.");
                         break;
                     case 12:
-                        Buff.affect(ch, Awareness.class, Awareness.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You are now aware.");
+                        Buff.affect(ch, Awareness.class, Awareness.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "is now aware.");
                         break;
                     case 13:
-                        Buff.affect(ch, EnhancedRings.class, Random.Int(2, 10) * 0.66f  + (super.level() * 1.5f));
+                        Buff.affect(ch, EnhancedRings.class, Random.Int(2, 10) * 0.66f  + (Dungeon.hero.lvl * 1.5f));
                         GLog.p("> Your rings are enhanced.");
+                        assert ch != null;
+                        say(ch.name()+"'s", "ring(s) is now enhanced.");
                         break;
                     case 14:
-                        Buff.affect(ch, Foresight.class, Foresight.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You can reveal 8x8 area.");
+                        Buff.affect(ch, Foresight.class, Foresight.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "can now reveal hidden areas.");
                         break;
                     case 15:
-                        Buff.affect(ch, Levitation.class, Levitation.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You are now levitated.");
+                        Buff.affect(ch, Levitation.class, Levitation.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "is now levitated.");
                         break;
                     case 16:
-                        Buff.affect(ch, Light.class, Light.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You can see through darkness.");
+                        Buff.affect(ch, Light.class, Light.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "can now see through darkness.");
                         break;
                     case 17:
-                        Buff.affect(ch, LifeLink.class, Random.Int(2, 10) * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> Your life has been linked to share some damage.");
+                        Buff.affect(ch, LifeLink.class, Random.Int(2, 10) * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name()+"'s", "life has been linked.");
                         break;
                     case 18:
-                        Buff.affect(ch, MagicalSight.class, MagicalSight.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You can see through walls.");
+                        Buff.affect(ch, MagicalSight.class, MagicalSight.DURATION * 0.66f  + (Dungeon.hero.lvl* 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "can now see through walls.");
                         break;
                     case 19:
-                        Buff.affect(ch, MagicImmune.class, MagicImmune.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You are now immune to magical effects.");
+                        Buff.affect(ch, MagicImmune.class, MagicImmune.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "is now immune to magical effects.");
                         break;
                     case 20:
-                        Buff.affect(ch, Overload.class, Overload.DURATION * 0.66f  + (super.level() * 1.5f));
+                        Buff.affect(ch, Overload.class, Overload.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
                         GLog.p("> Step out and cry into the hell.");
                         break;
                     case 21:
-                        Buff.affect(ch, PrismaticGuard.class).set((int) (15 * level()));
-                        GLog.p("> You have a guard.");
+                        Buff.affect(ch, PrismaticGuard.class).set((int) (15 + Dungeon.hero.lvl));
+                        say(ch.name(), "has now a guard.");
                         break;
                     case 22:
-                        Buff.affect(ch, RageShield.class).set(15 * level());
-                        GLog.p("> Your rage has became a shield.");
+                        Buff.affect(ch, RageShield.class).set(15 + Dungeon.hero.lvl);
+                        say(ch.name()+"'s", "rage became a shield.");
                         break;
                     case 23:
                         Buff.affect(ch, ScrollEmpower.class).reset(1);
-                        GLog.p("> Your scrolls has been empowered.");
+                        say(ch.name()+"'s", "scrolls has been empowered.");
                         break;
                     case 24:
-                        Buff.affect(ch, Stamina.class, Stamina.DURATION * 0.66f  + (super.level() * 1.5f));
-                        GLog.p("> You are faster that others.");
+                        Buff.affect(ch, Stamina.class, Stamina.DURATION * 0.66f  + (Dungeon.hero.lvl * 1.5f));
+                        assert ch != null;
+                        say(ch.name(), "is now faster than others.");
                         break;
                     case 25:
                         Buff.affect(ch, ThunderImbue.class).set(15 * level());
-                        GLog.p("> You are now imbued with thunder.");
+                        say(ch.name(), "is now imbued with thunder.");
                         break;
                     case 26:
-                        Buff.affect(ch, WandEmpower.class).set((int) (15 * level()), (int) (3 * level()));
-                        GLog.p("> Your wands has been empowered.");
+                        Buff.affect(ch, WandEmpower.class).set((int) (15 + Dungeon.hero.lvl), (int) (3 + Dungeon.hero.lvl));
+                        say(ch.name()+"'s", "wands has been empowered.");
                         break;
                     case 27:
                         Buff.affect(ch, WellFed.class).reset();
                         GLog.p("> Well fed.");
                         break;
                     case 28:
-                        Buff.affect(ch, Barkskin.class).set((int) (5 * level()), (int) (20 * level()));
-                        GLog.p("> You have a barkskin");
+                        Buff.affect(ch, Barkskin.class).set((int) (5 * level()), (int) (20 + Dungeon.hero.lvl));
+                        say(ch.name(), "has now a barkskin.");
                         break;
                     case 29:
-                        Buff.affect(ch, Barrier.class).setShield((int) (10 * level()));
-                        GLog.p("> You have a barrier.");
+                        Buff.affect(ch, Barrier.class).setShield((int) (10 + Dungeon.hero.lvl));
+                        say(ch.name(), "has now a protective barrier.");
                         break;
                 }
+            } else {
+                GLog.w("There's no target.");
             }
         }
     }
