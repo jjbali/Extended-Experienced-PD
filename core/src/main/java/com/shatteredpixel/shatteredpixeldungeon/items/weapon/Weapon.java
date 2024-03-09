@@ -381,7 +381,7 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 
 		public static final Class<?>[] rare = new Class<?>[]{
 				Corrupting.class, Grim.class, Vampiric.class,
-				Experienced.class, Enhanced.class};
+				Experienced.class, Enhanced.class, Lootstreaker.class};
 
 		public static final float[] typeChances = new float[]{
 				50, //12.5% each
