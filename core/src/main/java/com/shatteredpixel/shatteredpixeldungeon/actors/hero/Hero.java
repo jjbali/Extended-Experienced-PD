@@ -77,6 +77,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfLivingEarth;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.*;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticDagger;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Document;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Notes;
@@ -938,6 +939,7 @@ public class Hero extends Char {
 		if (getCloser( action.dst )) {
 			canSelfTrample = false;
 			if (belongings.weapon instanceof Dirk) Buff.affect(this, Preparation.class);
+			if (belongings.weapon instanceof BallisticDagger) Buff.affect(this, Preparation.class);
 			return true;
 
 		//Hero moves in place if there is grass to trample

@@ -48,9 +48,11 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ToxicImbue;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bat;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Bbat;
 import com.shatteredpixel.shatteredpixeldungeon.effects.MagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Longsword;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.traits.PreparationAllowed;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.ConeAOE;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -60,7 +62,7 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
-public class BallisticDagger extends JjbaliWeapon {
+public class BallisticDagger extends JjbaliWeapon implements PreparationAllowed {
 
 
     {
@@ -82,6 +84,27 @@ public class BallisticDagger extends JjbaliWeapon {
     @Override
     public long proc(Char attacker, Char defender, long damage) {
         return super.proc(attacker, defender, damage);
+    }
+
+    @Override
+    public long damageRoll(Char owner) {
+        if (owner instanceof Hero) {
+            Hero hero = (Hero) owner;
+            Char enemy = hero.enemy();
+            if (enemy instanceof Mob && ((Mob) enemy).surprisedBy(hero)) {
+                //deals 67% toward max to max on surprise, instead of min to max.
+                long diff = max() - min();
+                long damage = augment.damageFactor(Random.NormalLongRange(
+                        min() + Math.round(diff * 0.67f),
+                        max()));
+                int exStr = hero.STR() - STRReq();
+                if (exStr > 0) {
+                    damage += Dungeon.IntRange(0, exStr);
+                }
+                return damage;
+            }
+        }
+        return super.damageRoll(owner);
     }
 
     @Override
