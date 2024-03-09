@@ -36,6 +36,7 @@ public class Bestiary {
 	
 	public static ArrayList<Class<? extends Mob>> getMobRotation( int depth ){
 		ArrayList<Class<? extends Mob>> mobs = standardMobRotation( depth );
+		assert mobs != null;
 		addRareMobs(depth, mobs);
 		addSuperRareMobs(depth, mobs);
 		swapMobAlts(mobs);
