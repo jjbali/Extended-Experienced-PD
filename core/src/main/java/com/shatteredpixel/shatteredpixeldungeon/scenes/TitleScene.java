@@ -152,9 +152,9 @@ public class TitleScene extends PixelScene {
 		btnBadges.icon(Icons.get(Icons.BADGES));
 		add(btnBadges);
 
-		StyledButton btnNews = new NewsButton(GREY_TR, Messages.get(this, "news"));
-		btnNews.icon(Icons.get(Icons.NEWS));
-		add(btnNews);
+		StyledButton btnSeedFind = new SeedFindButton(GREY_TR, "Explore Seeds");
+		btnSeedFind.icon(Icons.get(Icons.MAGNIFY));
+		add(btnSeedFind);
 
 		StyledButton btnChanges = new ChangesButton(GREY_TR, Messages.get(this, "changes"));
 		btnChanges.icon(Icons.get(Icons.CHANGES));
@@ -169,7 +169,7 @@ public class TitleScene extends PixelScene {
 				ShatteredPixelDungeon.switchScene( AboutScene.class );
 			}
 		};
-		btnAbout.icon(Icons.get(Icons.BOBBY_IS_VERY_STRANGE_PERSON_BECAUSE_HE_TRIES_TO_REFERENCE_HIMSELF_IN_NEW_SHATTERED_CREDITS_SCREEN));
+		btnAbout.icon(Icons.get(Icons.CHALLENGE_ON));
 		add(btnAbout);
 
 		
@@ -184,9 +184,9 @@ public class TitleScene extends PixelScene {
 			btnSupport.setRect(btnPlay.right()+2, btnPlay.top(), btnPlay.width(), BTN_HEIGHT);
 			btnRankings.setRect(btnPlay.left(), btnPlay.bottom()+ GAP, (btnPlay.width()*.67f)-1, BTN_HEIGHT);
 			btnBadges.setRect(btnRankings.left(), btnRankings.bottom()+GAP, btnRankings.width(), BTN_HEIGHT);
-			btnNews.setRect(btnRankings.right()+2, btnRankings.top(), btnRankings.width(), BTN_HEIGHT);
-			btnChanges.setRect(btnNews.left(), btnNews.bottom() + GAP, btnRankings.width(), BTN_HEIGHT);
-			btnSettings.setRect(btnNews.right()+2, btnNews.top(), btnRankings.width(), BTN_HEIGHT);
+			btnSeedFind.setRect(btnRankings.right()+2, btnRankings.top(), btnRankings.width(), BTN_HEIGHT);
+			btnChanges.setRect(btnSeedFind.left(), btnSeedFind.bottom() + GAP, btnRankings.width(), BTN_HEIGHT);
+			btnSettings.setRect(btnSeedFind.right()+2, btnSeedFind.top(), btnRankings.width(), BTN_HEIGHT);
 			btnAbout.setRect(btnSettings.left(), btnSettings.bottom() + GAP, btnRankings.width(), BTN_HEIGHT);
 		} else {
 			btnPlay.setRect(title.x, topRegion+GAP, title.width(), BTN_HEIGHT);
@@ -194,9 +194,9 @@ public class TitleScene extends PixelScene {
 			btnSupport.setRect(btnPlay.left(), btnPlay.bottom()+ GAP, btnPlay.width(), BTN_HEIGHT);
 			btnRankings.setRect(btnPlay.left(), btnSupport.bottom()+ GAP, (btnPlay.width()/2)-1, BTN_HEIGHT);
 			btnBadges.setRect(btnRankings.right()+2, btnRankings.top(), btnRankings.width(), BTN_HEIGHT);
-			btnNews.setRect(btnRankings.left(), btnRankings.bottom()+ GAP, btnRankings.width(), BTN_HEIGHT);
-			btnChanges.setRect(btnNews.right()+2, btnNews.top(), btnNews.width(), BTN_HEIGHT);
-			btnSettings.setRect(btnNews.left(), btnNews.bottom()+GAP, btnRankings.width(), BTN_HEIGHT);
+			btnSeedFind.setRect(btnRankings.left(), btnRankings.bottom()+ GAP, btnRankings.width(), BTN_HEIGHT);
+			btnChanges.setRect(btnSeedFind.right()+2, btnSeedFind.top(), btnSeedFind.width(), BTN_HEIGHT);
+			btnSettings.setRect(btnSeedFind.left(), btnSeedFind.bottom()+GAP, btnRankings.width(), BTN_HEIGHT);
 			btnAbout.setRect(btnSettings.right()+2, btnSettings.top(), btnSettings.width(), BTN_HEIGHT);
 		}
 
@@ -222,11 +222,10 @@ public class TitleScene extends PixelScene {
 		add( fb );
 	}
 
-	private static class NewsButton extends StyledButton {
+	private static class SeedFindButton extends StyledButton {
 
-		public NewsButton(Chrome.Type type, String label ){
+		public SeedFindButton(Chrome.Type type, String label ){
 			super(type, label);
-			if (SPDSettings.news()) News.checkForNews();
 		}
 
 		int unreadCount = -1;
@@ -239,7 +238,7 @@ public class TitleScene extends PixelScene {
 		@Override
 		protected void onClick() {
 			super.onClick();
-			ShatteredPixelDungeon.switchNoFade( NewsScene.class );
+			ShatteredPixelDungeon.switchNoFade( SeedFinderScene.class );
 		}
 	}
 
