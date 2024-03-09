@@ -448,7 +448,7 @@ public class Generator {
 					TenguTreasureBag.class
 
 			};
-			TREASUREBAG.probs = new float[]{ 5, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0 };
+			TREASUREBAG.probs = new float[]{ 5, 1, 1, 5, 5, 1, 5, 5, 5, 0, 0, 0, 0 };
 
 			EXPOTION.classes = new Class<?>[]{
 					PotionOfCleansing.class,
