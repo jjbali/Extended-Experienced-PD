@@ -47,6 +47,8 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Recharging;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ToxicImbue;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bat;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Bbat;
 import com.shatteredpixel.shatteredpixeldungeon.effects.MagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Longsword;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
@@ -126,7 +128,7 @@ public class BallisticDagger extends JjbaliWeapon {
                         beforeAbilityUsed(hero, enemy);
                         for (int cell: cone.cells){
                             Char ch = Actor.findChar( cell );
-                            if (ch != null) {
+                            if (ch != null && !(ch instanceof Bbat)) {
                                 Sample.INSTANCE.play(Assets.Sounds.HIT_MAGIC, 2f, 0.65f);
                                 for (int i = 0; i < 3; i++) {
                                     Buff.affect(ch, Longsword.HolyExpEffect.class).stacks++;

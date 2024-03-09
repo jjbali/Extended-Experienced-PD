@@ -35,6 +35,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Invisibility;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Weakness;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Statue;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Bbat;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.MagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
@@ -123,7 +124,7 @@ public class BallisticSword extends JjbaliWeapon {
                         beforeAbilityUsed(hero, enemy);
                         for (int cell: cone.cells){
                             Char ch = Actor.findChar( cell );
-                            if (ch != null) {
+                            if (ch != null && !(ch instanceof Bbat)) {
                                 Sample.INSTANCE.play(Assets.Sounds.HIT_MAGIC, 2f, 0.65f);
                                 Buff.affect(ch, Weakness.class, 10 + chargeUse/3);
                                 Buff.affect(ch, Blindness.class, 3 + chargeUse/3);
