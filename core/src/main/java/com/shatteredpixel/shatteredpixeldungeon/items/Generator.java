@@ -167,6 +167,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.Fi
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.GleamingStaff;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.RegrowingSlasher;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.StarlightSmasher;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticDagger;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticGloves;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticSword;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.*;
@@ -629,9 +630,10 @@ public class Generator {
 
 			WEP_JJBALI.classes = new Class<?>[]{
 					BallisticSword.class,
-					BallisticGloves.class
+					BallisticGloves.class,
+					BallisticDagger.class
 			};
-			WEP_JJBALI.defaultProbs = new float[]{ 2, 2 };
+			WEP_JJBALI.defaultProbs = new float[]{ 2, 2, 2 };
 			WEP_JJBALI.probs = WEP_JJBALI.defaultProbs.clone();
 			
 			//see Generator.randomArmor
