@@ -65,7 +65,7 @@ public class Toolbar extends Component {
 
 	private static Toolbar instance;
 
-	public enum Mode {
+    public enum Mode {
 		SPLIT,
 		GROUP,
 		CENTER
@@ -707,6 +707,7 @@ public class Toolbar extends Component {
 
 			icon.frame( x, y, width, height);
 		}
+
 		
 		@Override
 		protected void createChildren() {

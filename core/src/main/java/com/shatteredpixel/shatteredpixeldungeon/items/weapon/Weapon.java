@@ -28,9 +28,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Berserk;
-import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.MagicImmune;
-import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.WeaponEmpower;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.duelist.ElementalStrike;
@@ -56,6 +54,7 @@ import com.watabou.utils.Reflection;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Set;
 
 abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tierable {
 
@@ -352,7 +351,21 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 	}
 
 	public boolean hasEnchant(Class<?extends Enchantment> type, Char owner) {
+		if (enchantment instanceof Universal && type != Universal.class) {
+			return ((Universal) enchantment).hasEnchant(type, owner);
+		}
 		return enchantment != null && enchantment.getClass() == type && owner.buff(MagicImmune.class) == null;
+	}
+
+	@SuppressWarnings("unchecked")
+	public <T extends Enchantment> T getEnchant( Class<?extends T> type) {
+		if (enchantment instanceof Universal && type != Universal.class) {
+			return ((Universal) enchantment).getEnchant(type);
+		}
+		if(enchantment.getClass() == type){
+			return (T) enchantment;
+		}
+		return null;
 	}
 	
 	//these are not used to process specific enchant effects, so magic immune doesn't affect them
@@ -391,7 +404,9 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 		
 		private static final Class<?>[] curses = new Class<?>[]{
 				Annoying.class, Displacing.class, Dazzling.class, Explosive.class,
-				Sacrificial.class, Wayward.class, Polarized.class, Friendly.class
+				Sacrificial.class, Wayward.class, Polarized.class, Friendly.class,
+				Universal.class, Abyssal.class, Destabilizing.class, Sapping.class,
+				Sawing.class, Temporal.class, Timebending.class
 		};
 
 		public static Class<?>[] allEnchants(){
@@ -408,6 +423,15 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 		protected float procChanceMultiplier( Char attacker ){
 			return genericProcChanceMultiplier( attacker );
 		}
+
+		public int levelBonus(){
+			return 0;
+		}
+
+		public int tierBonus(){
+			return 0;
+		}
+
 
 		public static float genericProcChanceMultiplier( Char attacker ){
 			float multi = RingOfArcana.enchantPowerMultiplier(attacker);
@@ -513,6 +537,17 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 		}
 
 		@SuppressWarnings("unchecked")
+		public static Enchantment randomCurse(Set<Class<? extends Enchantment>> toIgnore ){
+			ArrayList<Class<?>> enchants = new ArrayList<>(Arrays.asList(curses));
+			enchants.removeAll(Arrays.asList(toIgnore));
+			if (enchants.isEmpty()) {
+				return random();
+			} else {
+				return (Enchantment) Reflection.newInstance(Random.element(enchants));
+			}
+		}
+
+		@SuppressWarnings("unchecked")
 		public static Enchantment randomCurse( Class<? extends Enchantment> ... toIgnore ){
 			ArrayList<Class<?>> enchants = new ArrayList<>(Arrays.asList(curses));
 			enchants.removeAll(Arrays.asList(toIgnore));
@@ -522,6 +557,5 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 				return (Enchantment) Reflection.newInstance(Random.element(enchants));
 			}
 		}
-		
 	}
 }

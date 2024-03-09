@@ -79,6 +79,9 @@ public class Buff extends Actor {
 			return false;
 		}
 	}
+
+	public void onDeathProc(Object src, boolean fakeDeath) {
+	}
 	
 	public void detach() {
 		if (target.remove( this ) && target.sprite != null) fx( false );
