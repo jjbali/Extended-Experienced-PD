@@ -40,16 +40,21 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Degrade;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.WeaponEmpower;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Storage;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.TargetedCell;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
+import com.shatteredpixel.shatteredpixeldungeon.items.lottery.LotteryItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.notebook.NotebookPage;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.Questionnaire;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
+import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfUnstable;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.Dart;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.TippedDart;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Catalog;
+import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.CellSelector;
@@ -152,8 +157,11 @@ public class Item implements Bundlable {
 			if (!isIdentified()) actions.add( AC_IDENTIFY );
 			if (stackable) actions.add( AC_MULTIPLY );
 		}
-		if (Dungeon.gold >= taggingCost() && !tagged)
-			actions.add( AC_TAG );
+		if (Dungeon.gold >= taggingCost() && !tagged) {
+			actions.add( AC_TAG ); }
+		if (!( this instanceof PsycheChest || this instanceof ParallelUniverse
+				|| this instanceof LotteryItem || this instanceof Bag
+				|| this instanceof InfoBook || this instanceof Questionnaire)) actions.add( AC_STORE );
 		return actions;
 	}
 
@@ -235,7 +243,11 @@ public class Item implements Bundlable {
 				doAim(hero);
 			}
 		} else if (action.equals( AC_STORE )) {
-			doAddStorage( hero );
+			if (!isEquipped(hero)) {
+				doAddStorage( hero );
+			} else if (isEquipped(hero)) {
+				GLog.w("You must unequip the item first before you store it.");
+			}
 		} else if (action.equals( AC_STORE_TAKE )) {
 			doTakeStorage( hero );
 		} else if (action.equals( AC_TAG )) {
@@ -250,12 +262,11 @@ public class Item implements Bundlable {
 
 	public void doTakeStorage( Hero hero ) {
 		hero.spendAndNext( TIME_TO_DROP );
-		Dungeon.level.drop( detachAll( hero.storage.backpack ), hero.pos ).sprite.drop( hero.pos );
+		Dungeon.level.drop( detachAll(hero.belongings.backpack), hero.pos ).sprite.drop( hero.pos );
 	}
 
 	public void doAddStorage( Hero hero ) {
-		if( collect( hero.storage.backpack) )
-		{
+		if ( collect( hero.storage.backpack) ) {
 			hero.spendAndNext( TIME_TO_DROP );
 			detachAll( hero.belongings.backpack );
 		}
@@ -505,6 +516,26 @@ public class Item implements Bundlable {
 				container.items.remove(this);
 				item.onDetach();
 				container.grabItems(); //try to put more items into the bag as it now has free space
+				updateQuickslot();
+				return this;
+			} else if (item instanceof Bag) {
+				Bag bag = (Bag)item;
+				if (bag.contains( this )) {
+					return detachAll( bag );
+				}
+			}
+		}
+
+		updateQuickslot();
+		return this;
+	}
+
+	public final Item detachAll( Storage container ) {
+
+		for (Item item : container.backpack.items) {
+			if (item == this) {
+				container.backpack.items.remove(this);
+				item.onDetach();
 				updateQuickslot();
 				return this;
 			} else if (item instanceof Bag) {

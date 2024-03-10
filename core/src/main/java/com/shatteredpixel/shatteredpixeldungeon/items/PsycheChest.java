@@ -24,6 +24,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.items;
 
+import static com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene.ready;
+
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
@@ -33,17 +35,18 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Imp;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Wandmaker;
 import com.shatteredpixel.shatteredpixeldungeon.levels.DimensionalLevel;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
+import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.InterlevelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
+import com.shatteredpixel.shatteredpixeldungeon.windows.WndStorage;
 import com.watabou.noosa.Game;
 
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class
-PsycheChest extends Item {
+public class PsycheChest extends Item {
     {
         image = ItemSpriteSheet.PSYCHE_CHEST;
         unique = true;
@@ -53,6 +56,7 @@ PsycheChest extends Item {
     private static final String AC_ACTIVATE = "ACTIVATE";
     private static final String AC_DEACTIVATE = "DEACTIVATE";
     private static final String AC_RESET = "RESET";
+    private static final String AC_STORAGE = "STORAGE";
 
     private static final ItemSprite.Glowing BLOODY = new ItemSprite.Glowing( 0x550000 );
 
@@ -66,6 +70,7 @@ PsycheChest extends Item {
         if (!(Dungeon.branch == 7)) actions.add(AC_RESET);
         actions.remove(AC_DROP);
         actions.remove(AC_THROW);
+        actions.add(AC_STORAGE);
         return actions;
     }
 
@@ -118,6 +123,10 @@ PsycheChest extends Item {
             InterlevelScene.mode = InterlevelScene.Mode.RESET;
             Game.switchScene(InterlevelScene.class);
             Dungeon.level.reset();
+        }
+        if (action.contains(AC_STORAGE)) {
+            GameScene.show( new WndStorage(Dungeon.hero.storage, null, WndStorage.Mode.ALL, "Storage" ) );
+            ready();
         }
     }
 

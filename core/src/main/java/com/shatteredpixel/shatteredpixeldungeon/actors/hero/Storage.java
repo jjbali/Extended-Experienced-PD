@@ -20,27 +20,36 @@ package com.shatteredpixel.shatteredpixeldungeon.actors.hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
+import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.watabou.utils.Bundle;
 
 import java.util.Iterator;
 
 public class Storage implements Iterable<Item> {
 
-    public static final int BACKPACK_SIZE	= 5;
-
-    private Hero owner;
+    public static final int BACKPACK_SIZE	= 40;
 
     public Bag backpack;
 
 
 
     public Storage(Hero owner) {
-        this.owner = owner;
 
-        backpack = new Bag() {{
-            name = "Storage";
-            size = BACKPACK_SIZE;
-        }};
+        backpack = new Bag() {
+            {
+                name = "Storage";
+                size = 25;
+            }
+
+            @Override
+            public String name() {
+                return name;
+            }
+
+            public int capacity(){
+                    return size; // default container size
+            }
+        };
         backpack.owner = owner;
     }
 

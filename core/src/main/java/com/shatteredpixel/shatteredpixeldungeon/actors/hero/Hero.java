@@ -104,6 +104,7 @@ import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndMessage;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndOptions;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndResurrect;
+import com.shatteredpixel.shatteredpixeldungeon.windows.WndStorage;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndTradeItem;
 import com.watabou.noosa.Game;
 import com.watabou.noosa.audio.Sample;
@@ -2578,5 +2579,23 @@ public class Hero extends Char {
 
 	public static interface Doom {
 		public void onDeath();
+	}
+
+	private boolean actStorage( HeroAction.Storage action ) {
+		int stairs = action.dst;
+		if (Dungeon.level.map[hero.pos] == Terrain.ENTRANCE) {
+
+			GameScene.show( new WndStorage(Dungeon.hero.storage, null, WndStorage.Mode.ALL, null ) );
+			ready();
+			return false;
+
+		} else if (getCloser( stairs )) {
+
+			return true;
+
+		} else {
+			ready();
+			return false;
+		}
 	}
 }
