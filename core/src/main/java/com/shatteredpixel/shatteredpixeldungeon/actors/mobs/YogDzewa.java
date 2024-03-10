@@ -21,6 +21,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.THE_TRUE_FATALITY;
+
 import com.shatteredpixel.shatteredpixeldungeon.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
@@ -55,7 +57,7 @@ public class YogDzewa extends Mob {
 	{
 		spriteClass = YogSprite.class;
 
-		HP = HT = 1000L * Dungeon.hero.lvl;
+		HP = HT = 4500L * Dungeon.hero.lvl;
 
 		EXP = 50;
 
@@ -69,26 +71,32 @@ public class YogDzewa extends Mob {
 		properties.add(Property.DEMONIC);
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 13000L * Dungeon.hero.lvl;
+                HP = HT = 130000L * Dungeon.hero.lvl;
                 defenseSkill = 0;
-                EXP = 1500;
+                EXP = 15000;
                 break;
             case 2:
-                HP = HT = 180000L * Dungeon.hero.lvl;
+                HP = HT = 1800000L * Dungeon.hero.lvl;
                 defenseSkill = 0;
-                EXP = 125000;
+                EXP = 1250000;
                 break;
             case 3:
-                HP = HT = 12000000L * Dungeon.hero.lvl;
+                HP = HT = 120000000L * Dungeon.hero.lvl;
                 defenseSkill = 0;
-                EXP = 2000000;
+                EXP = 20000000;
                 break;
             case 4:
-                HP = HT = 2000000000L * Dungeon.hero.lvl;
+                HP = HT = 20000000000L * Dungeon.hero.lvl;
                 defenseSkill = 0;
-                EXP = 1500000000;
+                EXP = 15000000000L;
                 break;
         }
+
+		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
+			HP = HT += HT * 0.30f;
+			defenseSkill *= 3;
+			EXP *= 3;
+		}
 	}
 
 	private int phase = 0;

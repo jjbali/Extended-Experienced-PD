@@ -24,6 +24,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.THE_TRUE_FATALITY;
+
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Challenges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
@@ -55,8 +57,8 @@ import com.watabou.utils.Random;
 public class Goo extends Mob {
 
 	{
-		HP = HT = 100L * Dungeon.hero.lvl;
-		EXP = 10;
+		HP = HT = 1000L * Dungeon.hero.lvl;
+		EXP = 50;
 		defenseSkill = 8;
 		spriteClass = GooSprite.class;
 
@@ -66,26 +68,32 @@ public class Goo extends Mob {
 
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 800L * Dungeon.hero.lvl;
+                HP = HT = 8000L * Dungeon.hero.lvl;
                 defenseSkill = 36;
-                EXP = 65;
+                EXP = 120;
                 break;
             case 2:
-                HP = HT = 12450L * Dungeon.hero.lvl;
+                HP = HT = 124500L * Dungeon.hero.lvl;
                 defenseSkill = 170;
-                EXP = 1200;
+                EXP = 1500;
                 break;
             case 3:
-                HP = HT = 140000L * Dungeon.hero.lvl;
+                HP = HT = 1400000L * Dungeon.hero.lvl;
                 defenseSkill = 415;
-                EXP = 15000;
+                EXP = 20000;
                 break;
             case 4:
-                HP = HT = 30000000L * Dungeon.hero.lvl;
+                HP = HT = 300000000L * Dungeon.hero.lvl;
                 defenseSkill = 2200;
-                EXP = 2000000;
+                EXP = 20000000;
                 break;
         }
+
+		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
+			HP = HT += HT * 0.30f;
+			defenseSkill *= 3;
+			EXP *= 3;
+		}
 	}
 
 	private int pumpedUp = 0;

@@ -61,6 +61,7 @@ import com.watabou.utils.*;
 
 import java.util.ArrayList;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.THE_TRUE_FATALITY;
 import static com.shatteredpixel.shatteredpixeldungeon.levels.BlackMimicLevel.mainArena;
 
 public class BlackMimic extends Mob {
@@ -69,7 +70,7 @@ public class BlackMimic extends Mob {
 		//TODO improved sprite
 		spriteClass = MimicSprite.Black.class;
 
-		HP = HT = 900 * Dungeon.hero.lvl * 15L;
+		HP = HT = 5400L * Dungeon.hero.lvl;
 		EXP = 2000;
 		defenseSkill = 20 + Dungeon.hero.lvl / 2;
 
@@ -80,18 +81,24 @@ public class BlackMimic extends Mob {
 		properties.add(Property.LARGE);
         switch (Dungeon.cycle){
             case 1:
-                EXP = 6000;
+                EXP = 60000;
                 break;
             case 2:
-                EXP = 500000;
+                EXP = 5000000;
                 break;
             case 3:
-                EXP = 25000000;
+                EXP = 250000000;
                 break;
             case 4:
-                EXP = 2100000000;
+                EXP = 21000000000L;
                 break;
         }
+
+		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
+			HP = HT += HT * 0.30f;
+			defenseSkill *= 3;
+			EXP *= 3L;
+		}
 	}
 
 	@Override

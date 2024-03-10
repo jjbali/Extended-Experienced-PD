@@ -58,14 +58,15 @@ import com.watabou.utils.*;
 import java.util.ArrayList;
 
 import static com.shatteredpixel.shatteredpixeldungeon.Badges.Badge.BOSS_SLAIN_3;
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.THE_TRUE_FATALITY;
 
 public class DM300 extends Mob {
 
 	{
 		spriteClass = DM300Sprite.class;
 
-		HP = HT = 400L * Dungeon.hero.lvl;
-		EXP = 30;
+		HP = HT = 2500L * Dungeon.hero.lvl;
+		EXP = 100;
 		defenseSkill = 15;
 
 		properties.add(Property.BOSS);
@@ -73,26 +74,32 @@ public class DM300 extends Mob {
 		properties.add(Property.LARGE);
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 1600L * Dungeon.hero.lvl;
+                HP = HT = 16000L * Dungeon.hero.lvl;
                 defenseSkill = 60;
-                EXP = 310;
+                EXP = 650;
                 break;
             case 2:
-                HP = HT = 19564L * Dungeon.hero.lvl;
+                HP = HT = 195640L * Dungeon.hero.lvl;
                 defenseSkill = 222;
-                EXP = 7000;
+                EXP = 7500;
                 break;
             case 3:
-                HP = HT = 900000L * Dungeon.hero.lvl;
+                HP = HT = 9000000L * Dungeon.hero.lvl;
                 defenseSkill = 624;
-                EXP = 110000;
+                EXP = 180000;
                 break;
             case 4:
-                HP = HT = 12000000L * Dungeon.hero.lvl;
+                HP = HT = 120000000L * Dungeon.hero.lvl;
                 defenseSkill = 5000;
-                EXP = 2000000;
+                EXP = 20000000;
                 break;
         }
+
+		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
+			HP = HT += HT * 0.30f;
+			defenseSkill *= 3;
+			EXP *= 3;
+		}
 	}
 
 	@Override

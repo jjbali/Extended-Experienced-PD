@@ -22,6 +22,8 @@
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.THE_TRUE_FATALITY;
+
 import com.shatteredpixel.shatteredpixeldungeon.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
@@ -68,8 +70,8 @@ public class DwarfKing extends Mob {
 	{
 		spriteClass = KingSprite.class;
 
-		HP = HT = 15L * theSubjectConstant();
-		EXP = 40;
+		HP = HT = 40L * theSubjectConstant();
+		EXP = 200;
 		defenseSkill = 22;
 
 		properties.add(Property.BOSS);
@@ -78,24 +80,30 @@ public class DwarfKing extends Mob {
             case 1:
                 HP = HT = 323L * theSubjectConstant();
                 defenseSkill = 89;
-                EXP = 725;
+                EXP = 1420;
                 break;
             case 2:
                 HP = HT = 5025L * theSubjectConstant();
                 defenseSkill = 324;
-                EXP = 25000;
+                EXP = 250000;
                 break;
             case 3:
                 HP = HT = 125000L * theSubjectConstant();
                 defenseSkill = 780;
-                EXP = 400000;
+                EXP = 4000000;
                 break;
             case 4:
                 HP = HT = 15000000L * theSubjectConstant();
                 defenseSkill = 7000;
-                EXP = 99999999;
+                EXP = 999999999;
                 break;
         }
+
+		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
+			HP = HT += HT * 0.30f;
+			defenseSkill *= 3;
+			EXP *= 3;
+		}
 	}
 
 	private int theSubjectConstant(){

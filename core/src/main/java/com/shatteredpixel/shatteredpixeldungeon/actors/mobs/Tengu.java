@@ -24,6 +24,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.THE_TRUE_FATALITY;
+
 import com.shatteredpixel.shatteredpixeldungeon.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
@@ -68,8 +70,8 @@ public class Tengu extends Mob {
 	{
 		spriteClass = TenguSprite.class;
 		
-		HP = HT = 200L * Dungeon.hero.lvl;
-		EXP = 20;
+		HP = HT = 2000L * Dungeon.hero.lvl;
+		EXP = 75;
 		defenseSkill = 15;
 		
 		HUNTING = new Hunting();
@@ -82,26 +84,32 @@ public class Tengu extends Mob {
 
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 1000L * Dungeon.hero.lvl;
+                HP = HT = 10000L * Dungeon.hero.lvl;
                 defenseSkill = 43;
-                EXP = 120;
+                EXP = 210;
                 break;
             case 2:
-                HP = HT = 18000L * Dungeon.hero.lvl;
+                HP = HT = 180000L * Dungeon.hero.lvl;
                 defenseSkill = 210;
                 EXP = 4100;
                 break;
             case 3:
-                HP = HT = 600000L * Dungeon.hero.lvl;
+                HP = HT = 6000000L * Dungeon.hero.lvl;
                 defenseSkill = 520;
                 EXP = 60000;
                 break;
             case 4:
-                HP = HT = 75000000L * Dungeon.hero.lvl;
+                HP = HT = 750000000L * Dungeon.hero.lvl;
                 defenseSkill = 3600;
-                EXP = 7500000;
+                EXP = 75000000;
                 break;
         }
+
+		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
+			HP = HT += HT * 0.30f;
+			defenseSkill *= 3;
+			EXP *= 3;
+		}
 	}
 
 	@Override
