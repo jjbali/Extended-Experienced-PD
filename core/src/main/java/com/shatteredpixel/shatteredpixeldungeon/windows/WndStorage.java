@@ -62,10 +62,10 @@ public class WndStorage extends WndTabbed {
         SEED
     }
 
-    protected static final int COLS_P	= 5;
-    protected static final int COLS_L	= 6;
+    protected static final int COLS_P	= 7;
+    protected static final int COLS_L	= 10;
 
-    protected static final int SLOT_SIZE	= 20;
+    protected static final int SLOT_SIZE	= 15;
     protected static final int SLOT_MARGIN	= 1;
 
     protected static final int TITLE_HEIGHT	= 12;
@@ -115,7 +115,7 @@ public class WndStorage extends WndTabbed {
 
         placeItems( bag );
 
-        resize( slotsWidth, slotsHeight + TITLE_HEIGHT + 25 );
+        resize( slotsWidth, slotsHeight + TITLE_HEIGHT + 85 );
 
     }
 
@@ -140,7 +140,7 @@ public class WndStorage extends WndTabbed {
         }
 
         // Free space
-        while (count-(backpack ? 0 : nCols) < 25) {
+        while (count-(backpack ? 0 : nCols) < 55) {
             placeItem( null );
         }
 

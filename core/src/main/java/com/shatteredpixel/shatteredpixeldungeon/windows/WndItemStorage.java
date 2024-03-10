@@ -38,7 +38,7 @@ public class WndItemStorage extends Window {
 
     private static final float GAP	= 2;
 
-    private static final int WIDTH = 120;
+    private static final int WIDTH = 160;
 
     public WndItemStorage(final WndStorage owner, final Item item) {
 

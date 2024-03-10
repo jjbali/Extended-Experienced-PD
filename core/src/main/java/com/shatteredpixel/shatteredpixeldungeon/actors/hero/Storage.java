@@ -36,18 +36,13 @@ public class Storage implements Iterable<Item> {
     public Storage(Hero owner) {
 
         backpack = new Bag() {
-            {
-                name = "Storage";
-                size = 25;
-            }
-
             @Override
             public String name() {
-                return name;
+                return "Storage";
             }
 
             public int capacity(){
-                    return size; // default container size
+                    return BACKPACK_SIZE; // default container size
             }
         };
         backpack.owner = owner;
