@@ -38,15 +38,15 @@ public class Bestiary {
 		ArrayList<Class<? extends Mob>> mobs = standardMobRotation( depth );
 		assert mobs != null;
 		addRareMobs(depth, mobs);
-		addSuperRareMobs(depth, mobs);
 		swapMobAlts(mobs);
+		addSuperRareMobs(depth, mobs);
 		Random.shuffle(mobs);
 		return mobs;
 	}
 	
 	//returns a rotation of standard mobs, unshuffled.
 	private static ArrayList<Class<? extends Mob>> standardMobRotation( int depth ){
-		if (depth < 5 && depth > 0) {
+		if (depth < 5 && depth >= 1) {
 			return new ArrayList<>(Arrays.asList(
 					Rat.class,
 					Snake.class,
@@ -55,7 +55,7 @@ public class Bestiary {
 					Crab.class,
 					Slime.class
 			));
-		} else if (depth < 10 && depth > 5) {
+		} else if (depth < 10 && depth >= 5) {
 			return new ArrayList<>(Arrays.asList(
 					Skeleton.class,
 					Thief.class,
@@ -64,7 +64,7 @@ public class Bestiary {
 					Guard.class,
 					Necromancer.class
 			));
-		} else if (depth < 15 && depth > 10) {
+		} else if (depth < 15 && depth >= 10) {
 			return new ArrayList<>(Arrays.asList(
 					Bat.class,
 					Brute.class,
@@ -72,7 +72,7 @@ public class Bestiary {
 					Spinner.class,
 					DM200.class
 			));
-		} else if (depth < 20 && depth > 15) {
+		} else if (depth < 20 && depth >= 15) {
 			return new ArrayList<>(Arrays.asList(
 					Ghoul.class,
 					Elemental.random(),
@@ -80,14 +80,14 @@ public class Bestiary {
 					Monk.class,
 					Golem.class
 			));
-		} else if (depth < 101 && depth > 20) {
+		} else if (depth < 101 && depth >= 20) {
 			return new ArrayList<>(Arrays.asList(
 					Succubus.class,
 					Eye.class,
 					Scorpio.class,
 					RipperDemon.class
 			));
-		} else if (depth > 101) {
+		} else if (depth >= 101) {
 			return new ArrayList<>(Arrays.asList(
 					Rat.class,
 					Snake.class,
