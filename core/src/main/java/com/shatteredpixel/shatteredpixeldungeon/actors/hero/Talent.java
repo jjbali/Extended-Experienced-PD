@@ -162,7 +162,7 @@ public enum Talent {
 	//universal T2
 	SCROLL_COLLECTOR(161, 3), POTION_COLLECTOR(162, 3), TREASUREBAG_COLLECTOR(163, 2),
 	//unversal T3
-	HANDIFUL_EXPERIENCE(164, 3),
+	HANDIFUL_EXPERIENCE(164, 3), AMPLIFIER(165, 3),
 	//Ratmogrify T4
 	RATSISTANCE(215, 4), RATLOMACY(216, 4), RATFORCEMENTS(217, 4);
 
@@ -781,22 +781,22 @@ public enum Talent {
 		//tier 3
 		switch (cls){
 			case WARRIOR: default:
-				Collections.addAll(tierTalents, HOLD_FAST, HANDIFUL_EXPERIENCE);
+				Collections.addAll(tierTalents, HOLD_FAST, HANDIFUL_EXPERIENCE, AMPLIFIER);
 				break;
 			case MAGE:
-				Collections.addAll(tierTalents, DESPERATE_POWER, ALLY_WARP, HANDIFUL_EXPERIENCE);
+				Collections.addAll(tierTalents, DESPERATE_POWER, ALLY_WARP, HANDIFUL_EXPERIENCE, AMPLIFIER);
 				break;
 			case ROGUE:
-				Collections.addAll(tierTalents, ENHANCED_RINGS, HANDIFUL_EXPERIENCE);
+				Collections.addAll(tierTalents, ENHANCED_RINGS, HANDIFUL_EXPERIENCE, AMPLIFIER);
 				break;
 			case HUNTRESS:
-				Collections.addAll(tierTalents, POINT_BLANK, SEER_SHOT, HANDIFUL_EXPERIENCE);
+				Collections.addAll(tierTalents, POINT_BLANK, SEER_SHOT, HANDIFUL_EXPERIENCE, AMPLIFIER);
 				break;
 			case DUELIST:
-				Collections.addAll(tierTalents, PRECISE_ASSAULT, DEADLY_FOLLOWUP, HANDIFUL_EXPERIENCE);
+				Collections.addAll(tierTalents, PRECISE_ASSAULT, DEADLY_FOLLOWUP, HANDIFUL_EXPERIENCE, AMPLIFIER);
 				break;
 			case RAT_KING:
-				Collections.addAll(tierTalents, HOLD_FAST, ALLY_WARP, PRECISE_ASSAULT, DEADLY_FOLLOWUP , HANDIFUL_EXPERIENCE);
+				Collections.addAll(tierTalents, AMPLIFIER, ALLY_WARP, PRECISE_ASSAULT, DEADLY_FOLLOWUP , HANDIFUL_EXPERIENCE);
 				break;
 		}
 		for (Talent talent : tierTalents){

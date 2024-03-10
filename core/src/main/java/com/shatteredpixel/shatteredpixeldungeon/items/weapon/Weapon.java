@@ -28,7 +28,9 @@ import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Berserk;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.MagicImmune;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.WeaponEmpower;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.duelist.ElementalStrike;
@@ -114,6 +116,15 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
                     damage = new Unstable().proc(this,attacker,defender,damage);
                 }
             }
+			if (Dungeon.hero.pointsInTalent(Talent.AMPLIFIER) == 1) {
+				damage += damage * 0.10f;
+			}
+			if (Dungeon.hero.pointsInTalent(Talent.AMPLIFIER) == 2) {
+				damage += damage * 0.65f;
+			}
+			if (Dungeon.hero.pointsInTalent(Talent.AMPLIFIER) == 3) {
+				damage += damage * 1f;
+			}
         }
 
 		if (!levelKnown && attacker == Dungeon.hero) {
