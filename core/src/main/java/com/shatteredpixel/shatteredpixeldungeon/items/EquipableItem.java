@@ -132,6 +132,9 @@ public abstract class EquipableItem extends Item {
 			} else if (curItem instanceof Artifact) {
 				curItem.detach(curUser.belongings.backpack);
 				Dungeon.level.drop(new ArcaneCatalyst().quantity(Random.Int(3, 20)), curUser.pos).sprite.drop();
+				if (Random.Float() < 0.15f) {
+					Dungeon.level.drop(new ScrollOfUpgrade().quantity(1), curUser.pos).sprite.drop();
+				}
 				updateQuickslot();
 
 				hero.spendAndNext( 1f );
@@ -140,8 +143,8 @@ public abstract class EquipableItem extends Item {
 				curUser.sprite.operate(curUser.pos);
 			} else if (curItem instanceof MissileWeapon) {
 				curItem.detach(curUser.belongings.backpack);
-				if (curItem.level() > 0) {
-					Dungeon.level.drop(new ScrollOfUpgrade().quantity(curItem.level()), curUser.pos).sprite.drop();
+				if (Random.Float() < 0.15f) {
+					Dungeon.level.drop(new ScrollOfUpgrade().quantity(1), curUser.pos).sprite.drop();
 				} else {
 					Dungeon.level.drop(new LiquidMetal().quantity(Random.Int(3, 20)), curUser.pos).sprite.drop();
 				}
