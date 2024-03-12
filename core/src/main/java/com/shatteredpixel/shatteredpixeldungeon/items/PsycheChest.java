@@ -120,6 +120,13 @@ public class PsycheChest extends Item {
                     Imp.Quest.reset();
                 }
             }
+            for (Heap heap: Dungeon.level.heaps.valueList()) {
+                if (heap.type.forSale()) {
+                    if (heap.peek().wereOofed && !Dungeon.oofedItems.contains(heap.peek())){
+                        Dungeon.oofedItems.add(heap.items.removeFirst());
+                    }
+                }
+            }
             InterlevelScene.mode = InterlevelScene.Mode.RESET;
             Game.switchScene(InterlevelScene.class);
             Dungeon.level.reset();

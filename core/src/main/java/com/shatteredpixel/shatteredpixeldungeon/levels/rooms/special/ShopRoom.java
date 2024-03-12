@@ -249,6 +249,15 @@ public class ShopRoom extends SpecialRoom {
 			itemsToSpawn.add(new StormBomb());
 		}
 
+		if (!Dungeon.oofedItems.isEmpty()) {
+			Item lol = Dungeon.oofedItems.get(Random.index(Dungeon.oofedItems));
+			if (lol != null){
+				lol.wereOofed = true;
+				itemsToSpawn.add(lol);
+				Dungeon.oofedItems.remove(lol);
+			}
+		}
+
 		//use a new generator here to prevent items in shop stock affecting levelgen RNG (e.g. sandbags)
 		//we can use a random long for the seed as it will be the same long every time
 		Random.pushGenerator(Random.Long());
