@@ -547,7 +547,7 @@ public class HeroSelectScene extends PixelScene {
 
 			buttons = new ArrayList<>();
 			spacers = new ArrayList<>();
-			if (DeviceCompat.isDebug() || Badges.isUnlocked(Badges.Badge.VICTORY)){
+			if (DeviceCompat.isDebug() || Badges.isUnlocked(Badges.Badge.VICTORY) || Badges.isUnlocked(Badges.Badge.BOSS_SLAIN_1)){
 				StyledButton seedButton = new StyledButton(Chrome.Type.BLANK, Messages.get(HeroSelectScene.class, "custom_seed"), 6){
 					@Override
 					protected void onClick() {
@@ -613,16 +613,6 @@ public class HeroSelectScene extends PixelScene {
 				btnRenameHero.icon(Icons.get(Hero.customHeroName.isEmpty() ? Icons.RENAME_OFF : Icons.RENAME_ON));
 				add(btnRenameHero);
 				buttons.add(btnRenameHero);
-
-				StyledButton btnSeedAnalysis = new StyledButton(Chrome.Type.BLANK, Messages.get(HeroSelectScene.class, "seed_analysis"), 6){
-					@Override
-					protected void onClick() {
-						ShatteredPixelDungeon.switchScene( SeedAnalysisScene.class );
-					}
-				};
-				btnSeedAnalysis.icon(Icons.get(Icons.NEWS));
-				add(btnSeedAnalysis);
-				buttons.add(btnSeedAnalysis);
 				StyledButton dailyButton = new StyledButton(Chrome.Type.BLANK, Messages.get(HeroSelectScene.class, "daily"), 6){
 
 					private static final long SECOND = 1000;
