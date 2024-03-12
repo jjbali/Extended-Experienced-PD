@@ -1283,7 +1283,7 @@ public class Hero extends Char {
 				}
 
 			} else if (transition.type == LevelTransition.Type.REGULAR_ENTRANCE
-					&& Dungeon.depth == 100
+					&& Dungeon.depth == 25
 					//ascension challenge only works on runs started on v1.3+
 					&& Dungeon.initialVersion > 453
 					&& belongings.getItem(Amulet.class) != null
@@ -1301,7 +1301,7 @@ public class Hero extends Char {
 							protected void onSelect(int index) {
 								if (index == 0){
 									Buff.affect(Hero.this, AscensionChallenge.class);
-									Statistics.highestAscent = 100;
+									Statistics.highestAscent = 25;
 									actTransition(action);
 								}
 							}
