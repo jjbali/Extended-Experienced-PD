@@ -46,6 +46,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.TargetedCell;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.shatteredpixeldungeon.items.lottery.LotteryItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.notebook.Notebook;
 import com.shatteredpixel.shatteredpixeldungeon.items.notebook.NotebookPage;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.Questionnaire;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
@@ -157,7 +158,10 @@ public class Item implements Bundlable {
 			if (!isIdentified()) actions.add( AC_IDENTIFY );
 			if (stackable) actions.add( AC_MULTIPLY );
 		}
-		if (Dungeon.gold >= taggingCost() && !tagged) {
+		if (Dungeon.gold >= taggingCost() && !tagged && !( this instanceof PsycheChest || this instanceof ParallelUniverse
+				|| this instanceof LotteryItem || this instanceof Bag
+				|| this instanceof InfoBook || this instanceof Questionnaire || this instanceof Amulet
+				|| this instanceof Notebook || this instanceof NotebookPage)) {
 			actions.add( AC_TAG ); }
 		if (!( this instanceof PsycheChest || this instanceof ParallelUniverse
 				|| this instanceof LotteryItem || this instanceof Bag
