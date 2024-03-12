@@ -83,6 +83,19 @@ public class SupporterScene extends PixelScene {
 		link.setSize(elementWidth, BTN_HEIGHT);
 		add(link);
 
+		StyledButton form = new StyledButton(Chrome.Type.GREY_BUTTON_TR, "Challenge Form"){
+			@Override
+			protected void onClick() {
+				super.onClick();
+				String form = "https://forms.gle/NjG1jbHgs9Rd3Ns49";
+				ShatteredPixelDungeon.platform.openURI(form);
+			}
+		};
+		form.icon(Icons.get(Icons.CHALLENGE_ON));
+		form.textColor(Window.TITLE_COLOR);
+		form.setSize(elementWidth, BTN_HEIGHT);
+		add(form);
+
 		float elementHeight = msg.height() + BTN_HEIGHT + GAP;
 
 		float top = 16 + (h - 16 - elementHeight)/2f;
@@ -93,6 +106,8 @@ public class SupporterScene extends PixelScene {
 
 		link.setPos(left, msg.bottom()+GAP);
 		align(link);
+		form.setPos(left, link.bottom()+GAP);
+		align(form);
 
 	}
 
@@ -115,6 +130,7 @@ public class SupporterScene extends PixelScene {
 			String message = Messages.get(this, "intro");
 			message += "\n\n" + Messages.get(this, "patreon_msg");
 				message += "\n" + Messages.get(this, "patreon_english");
+				message += "\n\nThe link for challenge creation form is included below.";
 			message += "\n\n- Jjbali";
 
 			text = PixelScene.renderTextBlock(message, 6);
