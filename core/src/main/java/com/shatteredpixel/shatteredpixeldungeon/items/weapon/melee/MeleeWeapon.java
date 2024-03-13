@@ -515,13 +515,13 @@ private static boolean evaluatingTwinUpgrades = false;
 		public boolean act() {
 			if (charges < chargeCap()){
 				if (Regeneration.regenOn()){
-					partialCharge += 1/(40f-(chargeCap()-charges)); // 40 to 30 turns per charge
+					partialCharge += 1/(4f); // 4 turns per charge
 				}
 
 				if (((Hero) target).heroClass == HeroClass.DUELIST &&
 						target.buff(Recharging.class) != null || target.buff(ArtifactRecharge.class) != null){
-					//1 every 5 turns
-					partialCharge += 1/(5f);
+					//1 every 1 turn
+					partialCharge += 1;
 				}
 
 				if (partialCharge >= 1){
@@ -538,7 +538,9 @@ private static boolean evaluatingTwinUpgrades = false;
 				if (Regeneration.regenOn()) {
 					// 80 to 60 turns per charge without talent
 					// up to 53.333 to 40 turns per charge at max talent level
-					secondPartialCharge += secondChargeMultiplier() / (40f-(secondChargeCap()-secondCharges));
+
+					//this is maybe 1 to 2 turns per charge, even with no talent.
+					secondPartialCharge += secondChargeMultiplier();
 				}
 
 				if (secondPartialCharge >= 1) {
