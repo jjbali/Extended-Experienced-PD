@@ -170,7 +170,6 @@ public class BallisticRapier extends JjbaliWeapon {
                         afterAbilityUsed(hero);
                     }
                 });
-        Sickle.harvestAbility(hero, target, 0.9f, this);
         Sample.INSTANCE.play( Assets.Sounds.ZAP );
     }
 }
