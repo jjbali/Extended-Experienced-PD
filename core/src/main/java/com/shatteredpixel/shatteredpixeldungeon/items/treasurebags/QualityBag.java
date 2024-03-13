@@ -69,6 +69,11 @@ public class QualityBag extends TreasureBag {
             ring.identify();
             items.add(ring);
 
+            Weapon ballistic = (Weapon) Generator.random(Generator.Category.WEP_JJBALI);
+            ballistic.cursed = false;
+            ballistic.identify();
+            items.add(ring);
+
             Artifact artifact = Generator.randomArtifact();
             if (artifact != null) {
                 artifact.cursed = false;
