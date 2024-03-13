@@ -25,7 +25,9 @@
 package com.shatteredpixel.shatteredpixeldungeon;
 
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHaste;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStamina;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfMight;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
@@ -42,8 +44,7 @@ public class Challenges {
 	public static final int GOLDFISH_MEMORY = 64;
 	public static final int CRUEL_WORLD = 128;
 	public static final int THE_TRUE_FATALITY = 256;
-	public static final int DANCE = 512;
-	public static final int STRAIGHT_HORIZONS = 1024;
+	public static final int ENDLESS_MOMENTUM = 512;
 
 	public static final int MAX_VALUE           = 2058;
 
@@ -56,8 +57,7 @@ public class Challenges {
 			"goldfish_memory",
 			"cruel_world",
 			"the_true_fatality",
-			//"dance",
-			//"straight_horizons"
+			"endless_momentum"
 	};
 
 	public static final int[] MASKS = {
@@ -69,8 +69,7 @@ public class Challenges {
 			GOLDFISH_MEMORY,
 			CRUEL_WORLD,
 			THE_TRUE_FATALITY,
-			//DANCE,
-			//STRAIGHT_HORIZONS
+			ENDLESS_MOMENTUM
 	};
 
     public static int activeChallenges(){
@@ -94,6 +93,10 @@ public class Challenges {
 		if (Dungeon.isChallenged(THE_TRUE_FATALITY) && (item instanceof PotionOfHealing ||
 														item instanceof ScrollOfUpgrade ||
 														item instanceof RingOfMight)) {
+			return true;
+		}
+
+		if (Dungeon.isChallenged(ENDLESS_MOMENTUM) && (item instanceof PotionOfHaste || item instanceof PotionOfStamina)) {
 			return true;
 		}
 

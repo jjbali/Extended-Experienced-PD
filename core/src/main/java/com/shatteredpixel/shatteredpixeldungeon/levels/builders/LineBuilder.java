@@ -24,10 +24,6 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.levels.builders;
 
-import static com.shatteredpixel.shatteredpixeldungeon.Challenges.STRAIGHT_HORIZONS;
-
-import com.shatteredpixel.shatteredpixeldungeon.Challenges;
-import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.Room;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.connection.ConnectionRoom;
 import com.watabou.utils.Random;
@@ -60,11 +56,6 @@ public class LineBuilder extends RegularBuilder {
 		boolean noCorridors = false;
 
 		float direction = Random.Float(0, 360);
-		if (Dungeon.isChallenged(STRAIGHT_HORIZONS)) {
-			int i = Random.Int(4);
-			direction = i * 90;
-			noCorridors = true;
-		}
 		ArrayList<Room> branchable = new ArrayList<>();
 
 		entrance.setSize();

@@ -24,7 +24,6 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.levels;
 
-import static com.shatteredpixel.shatteredpixeldungeon.Challenges.STRAIGHT_HORIZONS;
 
 import com.shatteredpixel.shatteredpixeldungeon.Bones;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
@@ -97,12 +96,6 @@ public abstract class RegularLevel extends Level {
 	protected boolean build() {
 		
 		builder = builder();
-
-
-		if (Dungeon.isChallenged(STRAIGHT_HORIZONS)) {
-			((RegularBuilder) builder).setPathLength(1, new float[]{1});
-			((RegularBuilder) builder).setPathVariance(0);
-		}
 		
 		ArrayList<Room> initRooms = initRooms();
 		roomList = initRooms;
@@ -180,7 +173,6 @@ public abstract class RegularLevel extends Level {
 	}
 	
 	protected Builder builder(){
-		if (Dungeon.isChallenged(STRAIGHT_HORIZONS)) return new LineBuilder();
 		if (Random.Int(2) == 0){
 			return new LoopBuilder()
 					.setLoopShape( 2 ,

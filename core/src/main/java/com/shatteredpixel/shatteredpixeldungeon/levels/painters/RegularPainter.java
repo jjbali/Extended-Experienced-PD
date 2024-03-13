@@ -24,8 +24,6 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.levels.painters;
 
-import static com.shatteredpixel.shatteredpixeldungeon.Challenges.STRAIGHT_HORIZONS;
-
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.SPDSettings;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
@@ -289,7 +287,6 @@ public abstract class RegularPainter extends Painter {
 	}
 
 	protected boolean mergeRooms( Level l, Room r, Room n, Point start, int mergeTerrain){
-		if(Dungeon.isChallenged(STRAIGHT_HORIZONS)) return false;
 		Rect intersect = r.intersect( n );
 		if (intersect.left == intersect.right) {
 

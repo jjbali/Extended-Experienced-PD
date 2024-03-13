@@ -24,11 +24,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.levels;
 
-
-
-import static com.shatteredpixel.shatteredpixeldungeon.Challenges.DANCE;
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.ENDLESS_MOMENTUM;
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.THE_TRUE_FATALITY;
-import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 
 import com.shatteredpixel.shatteredpixeldungeon.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
@@ -269,9 +266,6 @@ public abstract class Level implements Bundlable {
 
 		Random.popGenerator();
 
-		if (Dungeon.isChallenged(DANCE)) {
-			GameScene.add(Blob.seed(0, 1, DanceFloor.class, this));
-		}
 	}
 	
 	public void setSize(int w, int h){
@@ -483,6 +477,14 @@ public abstract class Level implements Bundlable {
 			ChampionEnemy.rollForChampion(m);
 			ChampionEnemy.rollForChampion(m);
 			m.defenseSkill *= 5;
+		}
+
+		if (Dungeon.isChallenged(ENDLESS_MOMENTUM)) {
+			if (Random.Int(2) == 0) {
+				Buff.affect(m, Haste.class, Integer.MAX_VALUE);
+			} else {
+				Buff.affect(m, Stamina.class, Integer.MAX_VALUE);
+			}
 		}
 
 		if (Dungeon.branch == Dungeon.DIMENSIONAL) {
