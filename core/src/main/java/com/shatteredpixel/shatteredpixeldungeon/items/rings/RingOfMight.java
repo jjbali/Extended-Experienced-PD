@@ -3,10 +3,10 @@
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -70,7 +70,7 @@ public class RingOfMight extends Ring {
 		super.level(value);
 		updateTargetHT();
 	}
-	
+
 	private void updateTargetHT(){
 		if (buff != null && buff.target instanceof Hero){
 			((Hero) buff.target).updateHT( false );
@@ -95,19 +95,18 @@ public class RingOfMight extends Ring {
 	protected RingBuff buff( ) {
 		return new Might();
 	}
-	
+
 	public static int strengthBonus( Char target ){
-		return (getBuffedBonus(target, Might.class) >= 4) ? getBuffedBonus(target, Might.class) : 0;
-    }
-	
+		return (getBuffedBonus(target, Might.class) >= 1) ? getBuffedBonus(target, Might.class) : 0;
+	}
+
 	public static int HTMultiplier( Char target ){
 		int multiplier = 0;
-		if (getBuffedBonus(target, Might.class) == 1) multiplier = 6;
-		if (getBuffedBonus(target, Might.class) > 1) multiplier += getBuffedBonus(target, Might.class)*6;
+		if (getBuffedBonus(target, Might.class) == 1) multiplier = 2;
+		if (getBuffedBonus(target, Might.class) > 1) multiplier += getBuffedBonus(target, Might.class)*2;
 		return multiplier;
 	}
 
 	public class Might extends RingBuff {
 	}
 }
-
