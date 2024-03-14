@@ -913,13 +913,14 @@ public class ItemSpriteSheet {
 
 	private static final int ENERGY_WEP			  	=			xy(1, 42);  //16 slots
 	public static final int WORN_SHORTSWORD_ENERGY	= ENERGY_WEP+0;
-	//	public static final int 						= ENERGY_WEP+1;
 	public static final int DAGGER_ENERGY			= ENERGY_WEP+2;
 	public static final int GLOVES_ENERGY			= ENERGY_WEP+3;
 	public static final int RAPIER_ENERGY			= ENERGY_WEP+4;
 	public static final int HG_T1_ENERGY			= ENERGY_WEP+5;
 	public static final int WORN_KATANA_ENERGY		= ENERGY_WEP+6;
 	public static final int SABER_ENERGY			= ENERGY_WEP+7;
+	public static final int CROSSBOW_ENERGY			= ENERGY_WEP+8;
+	public static final int QUARTERSTAFF_ENERGY			= ENERGY_WEP+9;
 	static{
 		assignItemRect(WORN_SHORTSWORD_ENERGY	, 13, 13);
 		assignItemRect(DAGGER_ENERGY			, 12, 13);
@@ -928,6 +929,8 @@ public class ItemSpriteSheet {
 		assignItemRect(HG_T1_ENERGY				, 10, 13);
 		assignItemRect(WORN_KATANA_ENERGY		, 13, 13);
 		assignItemRect(SABER_ENERGY				, 13, 15);
+		assignItemRect(CROSSBOW_ENERGY				, 15, 15);
+		assignItemRect(QUARTERSTAFF_ENERGY				, 16, 16);
 	}
 
 	private static final int NEW_POTIONS		=			xy(1, 43);  //16 slots
