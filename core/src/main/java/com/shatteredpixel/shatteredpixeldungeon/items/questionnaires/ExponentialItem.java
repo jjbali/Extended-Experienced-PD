@@ -62,9 +62,9 @@ public class ExponentialItem extends Questionnaire {
     private static final String AC_ANSWER = "ANSWER";
     private static final String AC_REFRESH = "REFRESH";
 
-    private int CODE = Random.Int(10) + 1;
-    private int CODE2 = Random.Int(10) + 1;
-    private String ANSWER = String.valueOf((int) Math.pow(CODE, CODE2));
+    private long CODE = Random.Int(10) + 1;
+    private long CODE2 = Random.Int(10) + 1;
+    private String ANSWER = String.valueOf((long) Math.pow(CODE, CODE2));
     public static int totalAnswers_e = 0;
     public static int streak_e = 0;
     public int t = totalAnswers_e;
@@ -129,7 +129,7 @@ public class ExponentialItem extends Questionnaire {
                     GLog.h("You answered the question correctly.");
                     CODE = Random.Int(10) + 1;
                     CODE2 = Random.Int(10) + 1;
-                    ANSWER = String.valueOf((int) Math.pow(CODE, CODE2));
+                    ANSWER = String.valueOf((long) Math.pow(CODE, CODE2));
                     totalAnswers_e += 1;
                     streak_e += 1;
                     GameScene.flash(0xFF008000);
@@ -165,21 +165,21 @@ public class ExponentialItem extends Questionnaire {
                             break;
                         case 5:
                             updateQuickslot();
-                            Buff.affect(hero, Foresight.class, Foresight.DURATION);
+                            Buff.affect(hero, Foresight.class, Foresight.DURATION * hero.lvl);
                             break;
                         case 6:
                             updateQuickslot();
-                            Buff.affect(hero, Bless.class, Bless.DURATION);
+                            Buff.affect(hero, Bless.class, Bless.DURATION * hero.lvl);
                             break;
                         case 7:
                             updateQuickslot();
                             for (int q = 0; q < 5; q++) {
-                                Dungeon.level.drop(Generator.randomMissile(), curUser.pos).sprite.drop();
+                                Dungeon.level.drop(Generator.randomMissile().upgrade(Random.Long(20L * hero.lvl, 60L * hero.lvl)), curUser.pos).sprite.drop();
                             }
                             break;
                         case 8:
                             updateQuickslot();
-                            Dungeon.level.drop(Generator.randomWeapon(), curUser.pos).sprite.drop();
+                            Dungeon.level.drop(Generator.randomWeapon().upgrade(Random.Long(40L * hero.lvl, 120L * hero.lvl)), curUser.pos).sprite.drop();
                             break;
                     }
                 } else if (text.equals("")) {
