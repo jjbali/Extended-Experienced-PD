@@ -48,7 +48,7 @@ public class VelvetPouch extends Bag {
 	}
 
 	public int capacity(){
-		return 55;
+		return 54;
 	}
 	
 	@Override
