@@ -49,6 +49,7 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -97,9 +98,9 @@ public class Pickaxe extends MeleeWeapon {
 				return;
 			}
 			
-			for (int i = 0; i < PathFinder.NEIGHBOURS8.length; i++) {
+			for (int i = 0; i < PathFinder.NEIGHBOURS25.length; i++) {
 				
-				final int pos = hero.pos + PathFinder.NEIGHBOURS8[i];
+				final int pos = hero.pos + PathFinder.NEIGHBOURS25[i];
 				if (Dungeon.level.map[pos] == Terrain.WALL_DECO) {
 				
 					hero.spend( TIME_TO_MINE );
@@ -114,6 +115,9 @@ public class Pickaxe extends MeleeWeapon {
 							Sample.INSTANCE.play( Assets.Sounds.EVOKE );
 							
 							Level.set( pos, Terrain.WALL );
+							if (Random.Int(3) == 0) {
+								Level.set( pos, Terrain.WALL_DECO );
+							}
 							GameScene.updateMap( pos );
 							
 							DarkGold gold = new DarkGold();
