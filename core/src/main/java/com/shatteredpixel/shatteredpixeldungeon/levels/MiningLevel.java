@@ -68,7 +68,7 @@ public class MiningLevel extends Level {
 	@Override
 	protected boolean build() {
 
-		setSize(32, 32);
+		setSize(124, 124);
 
 		CaveRoom c = new CaveRoom();
 		c.set(1, 1, 31, 31);
