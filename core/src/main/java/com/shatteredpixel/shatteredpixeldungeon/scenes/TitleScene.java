@@ -24,24 +24,16 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.scenes;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.utils.Clipboard;
 import com.shatteredpixel.shatteredpixeldungeon.*;
 import com.shatteredpixel.shatteredpixeldungeon.effects.BannerSprites;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Fireball;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Languages;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
-import com.shatteredpixel.shatteredpixeldungeon.services.news.News;
-//import com.shatteredpixel.shatteredpixeldungeon.services.updates.AvailableUpdateData;
-//import com.shatteredpixel.shatteredpixeldungeon.services.updates.Updates;
 import com.shatteredpixel.shatteredpixeldungeon.services.updates.AvailableUpdateData;
 import com.shatteredpixel.shatteredpixeldungeon.services.updates.Updates;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.ui.*;
-import com.shatteredpixel.shatteredpixeldungeon.utils.DungeonSeed;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndOptions;
-import com.shatteredpixel.shatteredpixeldungeon.windows.WndSeedfinderLog;
-import com.shatteredpixel.shatteredpixeldungeon.windows.WndSeedfinderSeedinput;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndSettings;
 import com.watabou.glwrap.Blending;
 import com.watabou.noosa.BitmapText;
