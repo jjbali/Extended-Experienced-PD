@@ -304,6 +304,8 @@ public class Dungeon {
 		BinaryItem.totalAnswers_i = 0;
 		RectangularItem.totalAnswers_j = 0;
 
+		Shopkeeper.inflation_increment = 0f;
+
 		Scroll.scroll_uses = 0;
 		Potion.potion_uses = 0;
 		Spell.spell_uses = 0;
