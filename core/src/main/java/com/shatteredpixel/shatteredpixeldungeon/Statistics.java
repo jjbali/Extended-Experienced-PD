@@ -51,6 +51,7 @@ public class Statistics {
 	public static int totalQuestScore;
 	public static float winMultiplier;
 	public static float chalMultiplier;
+	public static float streakMultiplier;
 	public static float cycleMultiplier;
 	public static long totalScore;
 
@@ -97,6 +98,7 @@ public class Statistics {
 		questScores     = new int[5];
 		totalQuestScore = 0;
 		winMultiplier   = 1;
+		streakMultiplier   = 1;
 		chalMultiplier  = 1;
 		totalScore      = 0;
 		second_elapsed = 0;
@@ -159,6 +161,7 @@ public class Statistics {
 	private static final String WON		        = "won";
 	private static final String ASCENDED		= "ascended";
 	private static final String ANSWERED_Q		= "answeredquestion";
+	private static final String STREAK_Q		= "streakonquestion";
 	
 	public static void storeInBundle( Bundle bundle ) {
 		bundle.put( GOLD,		goldCollected );
@@ -203,6 +206,7 @@ public class Statistics {
 		bundle.put( WON,        gameWon );
 		bundle.put( ASCENDED,   ascended );
 		bundle.put( ANSWERED_Q,   answeredQuestions );
+		bundle.put( STREAK_Q,   streakMultiplier );
 	}
 	
 	public static void restoreFromBundle( Bundle bundle ) {
@@ -251,6 +255,7 @@ public class Statistics {
 		amuletObtained	= bundle.getBoolean( AMULET );
 		gameWon         = bundle.getBoolean( WON );
 		ascended        = bundle.getBoolean( ASCENDED );
+		streakMultiplier        = bundle.getFloat( STREAK_Q );
 	}
 	
 	public static void preview( GamesInProgress.Info info, Bundle bundle ){
