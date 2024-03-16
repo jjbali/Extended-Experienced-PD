@@ -46,7 +46,7 @@ import java.util.Locale;
 public class WndRanking extends WndTabbed {
 	
 	private static final int WIDTH			= 115;
-	private static final int HEIGHT			= 144;
+	private static final int HEIGHT			= 160;
 	
 	private static WndRanking INSTANCE;
 	
@@ -89,11 +89,11 @@ public class WndRanking extends WndTabbed {
 
 		if (Dungeon.hero != null) {
 			Icons[] icons =
-					{Icons.RANKINGS, Icons.BACKPACK_LRG, Icons.BADGES, Icons.CHALLENGE_ON};
+					{Icons.RANKINGS, Icons.BACKPACK_LRG, Icons.BADGES};
 			Group[] pages =
-					{new StatsTab(), new ItemsTab(), new BadgesTab(), null};
+					{new StatsTab(), new ItemsTab(), new BadgesTab()};
 
-			if (Dungeon.challenges != 0) pages[3] = new ChallengesTab();
+			//if (Dungeon.challenges != 0) pages[3] = new ChallengesTab();
 
 			for (int i = 0; i < pages.length; i++) {
 
@@ -241,7 +241,7 @@ public class WndRanking extends WndTabbed {
 				pos = statSlot(this, Messages.get(this, "alchemy"), num.format(Statistics.itemsCrafted), pos);
 			}
 
-			int buttontop = HEIGHT - 16;
+			int buttontop = HEIGHT - 32;
 
 			if (Dungeon.hero != null && Dungeon.seed != -1 && !Dungeon.daily &&
 					(DeviceCompat.isDebug() || Badges.isUnlocked(Badges.Badge.VICTORY))){
@@ -272,6 +272,15 @@ public class WndRanking extends WndTabbed {
 				btnSeed.icon(icon);
 				btnSeed.setRect(0, buttontop, 115, 16);
 				add(btnSeed);
+				RedButton btnChallenges = new RedButton( Messages.get(this, "challenges") ) {
+					@Override
+					protected void onClick() {
+						Game.scene().add( new WndChallenges( Dungeon.challenges, false ) );
+					}
+				};
+				btnChallenges.icon(Icons.get(Icons.CHALLENGE_ON));
+				btnChallenges.setRect( 0, btnSeed.bottom() , 115 , 16 );
+				add( btnChallenges );
 			}
 
 		}
