@@ -128,7 +128,7 @@ public class WndTradeItem extends WndInfoItem {
 
 		float pos = height;
 
-		final long price = Shopkeeper.sellPrice( item );
+		long price = Shopkeeper.sellPrice( item );
 
 		RedButton btnBuy = new RedButton( Messages.get(this, "buy", price) ) {
 			@Override

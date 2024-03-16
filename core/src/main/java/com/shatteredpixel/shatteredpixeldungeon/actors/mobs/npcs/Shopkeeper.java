@@ -144,9 +144,7 @@ if (sprite != null) {
 	public static long sellPrice(Item item){
 		long i = item.value() * 5 * (Dungeon.escalatingDepth() / 5 + 1);
 		if (item.wereOofed) i *= 5;
-		if (Dungeon.isChallenged(COND_INFLATION)) {
-			i += i * inflation_increment;
-		}
+		if (Dungeon.isChallenged(COND_INFLATION)) i += i * inflation_increment;
 		return i;
 	}
 
@@ -262,11 +260,13 @@ if (sprite != null) {
 	}
 
 	public static String BUYBACK_ITEMS = "buyback_items";
+	public static String INFL = "inflation";
 
 	@Override
 	public void storeInBundle(Bundle bundle) {
 		super.storeInBundle(bundle);
 		bundle.put(BUYBACK_ITEMS, buybackItems);
+		bundle.put(INFL, inflation_increment);
 	}
 
 	@Override
@@ -278,5 +278,6 @@ if (sprite != null) {
 				buybackItems.add((Item) i);
 			}
 		}
+		inflation_increment = bundle.getFloat(INFL);
 	}
 }
