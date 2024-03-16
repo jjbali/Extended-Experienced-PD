@@ -24,6 +24,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.COND_INFLATION;
+
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
@@ -66,6 +68,7 @@ public class Shopkeeper extends NPC {
 	}
 
 	public static int MAX_BUYBACK_HISTORY = 3;
+	public static float inflation_increment = 0f;
 	public ArrayList<Item> buybackItems = new ArrayList<>();
 
 	@Override
@@ -141,6 +144,9 @@ if (sprite != null) {
 	public static long sellPrice(Item item){
 		long i = item.value() * 5 * (Dungeon.escalatingDepth() / 5 + 1);
 		if (item.wereOofed) i *= 5;
+		if (Dungeon.isChallenged(COND_INFLATION)) {
+			i += i * inflation_increment;
+		}
 		return i;
 	}
 

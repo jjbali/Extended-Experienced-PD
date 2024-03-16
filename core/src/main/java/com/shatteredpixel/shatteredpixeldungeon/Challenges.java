@@ -45,6 +45,7 @@ public class Challenges {
 	public static final int CRUEL_WORLD = 128;
 	public static final int THE_TRUE_FATALITY = 256;
 	public static final int ENDLESS_MOMENTUM = 512;
+	public static final int COND_INFLATION = 1024;
 
 	public static final int MAX_VALUE           = 2058;
 
@@ -57,7 +58,8 @@ public class Challenges {
 			"goldfish_memory",
 			"cruel_world",
 			"the_true_fatality",
-			"endless_momentum"
+			"endless_momentum",
+			"cond_inflation"
 	};
 
 	public static final int[] MASKS = {
@@ -69,7 +71,8 @@ public class Challenges {
 			GOLDFISH_MEMORY,
 			CRUEL_WORLD,
 			THE_TRUE_FATALITY,
-			ENDLESS_MOMENTUM
+			ENDLESS_MOMENTUM,
+			COND_INFLATION
 	};
 
     public static int activeChallenges(){

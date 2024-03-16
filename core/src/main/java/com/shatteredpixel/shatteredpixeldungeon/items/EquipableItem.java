@@ -24,6 +24,7 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.items;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.COND_INFLATION;
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.INTUITION_TEST;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
@@ -33,6 +34,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Degrade;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.LostInventory;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.MagicImmune;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Shopkeeper;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
@@ -138,6 +140,8 @@ public abstract class EquipableItem extends Item {
 				updateQuickslot();
 
 				hero.spendAndNext( 1f );
+				if (Dungeon.isChallenged(COND_INFLATION)) {
+					Shopkeeper.inflation_increment += 0.01f; }
 
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
 				curUser.sprite.operate(curUser.pos);
@@ -151,6 +155,8 @@ public abstract class EquipableItem extends Item {
 				updateQuickslot();
 
 				hero.spendAndNext( 1f );
+				if (Dungeon.isChallenged(COND_INFLATION)) {
+					Shopkeeper.inflation_increment += 0.01f; }
 
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
 				curUser.sprite.operate(curUser.pos);
@@ -164,6 +170,8 @@ public abstract class EquipableItem extends Item {
 				updateQuickslot();
 
 				hero.spendAndNext( 1f );
+				if (Dungeon.isChallenged(COND_INFLATION)) {
+					Shopkeeper.inflation_increment += 0.01f; }
 
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
 				curUser.sprite.operate(curUser.pos);
@@ -192,6 +200,8 @@ public abstract class EquipableItem extends Item {
 				updateQuickslot();
 
 				hero.spendAndNext( 1f );
+				if (Dungeon.isChallenged(COND_INFLATION)) {
+					Shopkeeper.inflation_increment += 0.01f; }
 
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
 				curUser.sprite.operate(curUser.pos);
