@@ -164,7 +164,7 @@ public enum Talent {
 	//universal T2
 	SCROLL_COLLECTOR(161, 3), POTION_COLLECTOR(162, 3), TREASUREBAG_COLLECTOR(163, 2),
 	//unversal T3
-	HANDIFUL_EXPERIENCE(164, 3), AMPLIFIER(165, 3),
+	HANDIFUL_EXPERIENCE(164, 3), AMPLIFIER(165, 3), QUESTIONNAIRE_SUPERVISOR_II(166, 3),
 	//Ratmogrify T4
 	RATSISTANCE(215, 4), RATLOMACY(216, 4), RATFORCEMENTS(217, 4);
 
@@ -783,22 +783,22 @@ public enum Talent {
 		//tier 3
 		switch (cls){
 			case WARRIOR: default:
-				Collections.addAll(tierTalents, HOLD_FAST, HANDIFUL_EXPERIENCE, AMPLIFIER);
+				Collections.addAll(tierTalents, HOLD_FAST, HANDIFUL_EXPERIENCE, AMPLIFIER, QUESTIONNAIRE_SUPERVISOR_II);
 				break;
 			case MAGE:
-				Collections.addAll(tierTalents, DESPERATE_POWER, ALLY_WARP, HANDIFUL_EXPERIENCE, AMPLIFIER);
+				Collections.addAll(tierTalents, DESPERATE_POWER, ALLY_WARP, HANDIFUL_EXPERIENCE, AMPLIFIER, QUESTIONNAIRE_SUPERVISOR_II);
 				break;
 			case ROGUE:
-				Collections.addAll(tierTalents, ENHANCED_RINGS, HANDIFUL_EXPERIENCE, AMPLIFIER);
+				Collections.addAll(tierTalents, ENHANCED_RINGS, HANDIFUL_EXPERIENCE, AMPLIFIER, QUESTIONNAIRE_SUPERVISOR_II);
 				break;
 			case HUNTRESS:
-				Collections.addAll(tierTalents, POINT_BLANK, SEER_SHOT, HANDIFUL_EXPERIENCE, AMPLIFIER);
+				Collections.addAll(tierTalents, POINT_BLANK, SEER_SHOT, HANDIFUL_EXPERIENCE, AMPLIFIER, QUESTIONNAIRE_SUPERVISOR_II);
 				break;
 			case DUELIST:
-				Collections.addAll(tierTalents, PRECISE_ASSAULT, DEADLY_FOLLOWUP, HANDIFUL_EXPERIENCE, AMPLIFIER);
+				Collections.addAll(tierTalents, PRECISE_ASSAULT, DEADLY_FOLLOWUP, HANDIFUL_EXPERIENCE, AMPLIFIER, QUESTIONNAIRE_SUPERVISOR_II);
 				break;
 			case RAT_KING:
-				Collections.addAll(tierTalents, AMPLIFIER, ALLY_WARP, PRECISE_ASSAULT, DEADLY_FOLLOWUP , HANDIFUL_EXPERIENCE);
+				Collections.addAll(tierTalents, AMPLIFIER, ALLY_WARP, PRECISE_ASSAULT, QUESTIONNAIRE_SUPERVISOR_II , HANDIFUL_EXPERIENCE);
 				break;
 		}
 		for (Talent talent : tierTalents){
@@ -832,31 +832,31 @@ public enum Talent {
 				Collections.addAll(tierTalents, ENDLESS_RAGE, DEATHLESS_FURY, ENRAGED_CATALYST);
 				break;
 			case GLADIATOR:
-				Collections.addAll(tierTalents, CLEAVE, LETHAL_DEFENSE);
+				Collections.addAll(tierTalents, CLEAVE, LETHAL_DEFENSE, ENHANCED_COMBO);
 				break;
 			case BATTLEMAGE:
 				Collections.addAll(tierTalents, EMPOWERED_STRIKE, MYSTICAL_CHARGE, EXCESS_CHARGE);
 				break;
 			case WARLOCK:
-				Collections.addAll(tierTalents, SOUL_SIPHON);
+				Collections.addAll(tierTalents, SOUL_EATER, SOUL_SIPHON, NECROMANCERS_MINIONS);
 				break;
 			case ASSASSIN:
-				Collections.addAll(tierTalents, ENHANCED_LETHALITY, BOUNTY_HUNTER);
+				Collections.addAll(tierTalents, ENHANCED_LETHALITY, ASSASSINS_REACH, BOUNTY_HUNTER);
 				break;
 			case FREERUNNER:
-				Collections.addAll(tierTalents, EVASIVE_ARMOR, SPEEDY_STEALTH);
+				Collections.addAll(tierTalents, EVASIVE_ARMOR, PROJECTILE_MOMENTUM, SPEEDY_STEALTH);
 				break;
 			case SNIPER:
-				Collections.addAll(tierTalents, FARSIGHT, SHARED_UPGRADES);
+				Collections.addAll(tierTalents, FARSIGHT, SHARED_ENCHANTMENT, SHARED_UPGRADES);
 				break;
 			case WARDEN:
 				Collections.addAll(tierTalents, DURABLE_TIPS, BARKSKIN, SHIELDING_DEW);
 				break;
 			case CHAMPION:
-				Collections.addAll(tierTalents, SECONDARY_CHARGE, TWIN_UPGRADES);
+				Collections.addAll(tierTalents, SECONDARY_CHARGE, TWIN_UPGRADES, COMBINED_LETHALITY);
 				break;
 			case MONK:
-				Collections.addAll(tierTalents, UNENCUMBERED_SPIRIT, COMBINED_ENERGY);
+				Collections.addAll(tierTalents, UNENCUMBERED_SPIRIT, MONASTIC_VIGOR, COMBINED_ENERGY);
 				break;
 			case KING:
 				Collections.addAll(tierTalents, CLEAVE, EXCESS_CHARGE, SOUL_SIPHON, ENHANCED_LETHALITY, SECONDARY_CHARGE);
