@@ -189,9 +189,10 @@ public class Badges {
 		HIGH_SCORE_5                ( 122 ),
 		CHAMPION_2                  ( 123 ),
 		CHAMPION_3                  ( 124 ),
-		CYCLE_1                 ( 125 ),
-		CYCLE_2                 ( 126 ),
-		CYCLE_3                 ( 127 ),
+		CYCLE_1                 ( 125, true ),
+		CYCLE_2                 ( 126, true ),
+		CYCLE_3                 ( 127, true ),
+		CYCLE_4                 ( 128, true ),
 
 		//Arena Masters series
 		SECOND_ARENA_MASTER			( 22 ),
@@ -343,26 +344,26 @@ public class Badges {
 	public static void validateMonstersSlain() {
 		Badge badge = null;
 		
-		if (!local.contains( Badge.MONSTERS_SLAIN_1 ) && Statistics.enemiesSlain >= 100) {
+		if (!local.contains( Badge.MONSTERS_SLAIN_1 ) && Statistics.enemiesSlain >= 50) {
 			badge = Badge.MONSTERS_SLAIN_1;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.MONSTERS_SLAIN_2 ) && Statistics.enemiesSlain >= 500) {
+		if (!local.contains( Badge.MONSTERS_SLAIN_2 ) && Statistics.enemiesSlain >= 100) {
 			if (badge != null) unlock(badge);
 			badge = Badge.MONSTERS_SLAIN_2;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.MONSTERS_SLAIN_3 ) && Statistics.enemiesSlain >= 1000) {
+		if (!local.contains( Badge.MONSTERS_SLAIN_3 ) && Statistics.enemiesSlain >= 150) {
 			if (badge != null) unlock(badge);
 			badge = Badge.MONSTERS_SLAIN_3;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.MONSTERS_SLAIN_4 ) && Statistics.enemiesSlain >= 2500) {
+		if (!local.contains( Badge.MONSTERS_SLAIN_4 ) && Statistics.enemiesSlain >= 200) {
 			if (badge != null) unlock(badge);
 			badge = Badge.MONSTERS_SLAIN_4;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.MONSTERS_SLAIN_5 ) && Statistics.enemiesSlain >= 5000) {
+		if (!local.contains( Badge.MONSTERS_SLAIN_5 ) && Statistics.enemiesSlain >= 250) {
 			if (badge != null) unlock(badge);
 			badge = Badge.MONSTERS_SLAIN_5;
 			local.add( badge );
@@ -386,6 +387,11 @@ public class Badges {
 		if (!local.contains( Badge.CYCLE_3 ) && Dungeon.cycle >= 3) {
 			if (badge != null) unlock(badge);
 			badge = Badge.CYCLE_3;
+			local.add( badge );
+		}
+		if (!local.contains( Badge.CYCLE_4 ) && Dungeon.cycle >= 4) {
+			if (badge != null) unlock(badge);
+			badge = Badge.CYCLE_4;
 			local.add( badge );
 		}
 
@@ -1195,7 +1201,8 @@ public class Badges {
 			{Badge.GAMES_PLAYED_1, Badge.GAMES_PLAYED_2, Badge.GAMES_PLAYED_3, Badge.GAMES_PLAYED_4, Badge.GAMES_PLAYED_5},
 			{Badge.CHAMPION_1, Badge.CHAMPION_2, Badge.CHAMPION_3},
 			{Badge.WAND_QUEST_1, Badge.WAND_QUEST_2, Badge.WAND_QUEST_3, Badge.WAND_QUEST_4, Badge.WAND_QUEST_5, Badge.WAND_QUEST_6},
-			{Badge.SECOND_ARENA_MASTER, Badge.THIRD_ARENA_MASTER, Badge.FOURTH_ARENA_MASTER}
+			{Badge.SECOND_ARENA_MASTER, Badge.THIRD_ARENA_MASTER, Badge.FOURTH_ARENA_MASTER},
+			{Badge.CYCLE_1, Badge.CYCLE_2, Badge.CYCLE_3}
 	};
 
 	//don't show the later badge if the earlier one isn't unlocked
