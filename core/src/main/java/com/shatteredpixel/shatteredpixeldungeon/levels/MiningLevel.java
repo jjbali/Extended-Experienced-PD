@@ -26,6 +26,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Bones;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Bestiary;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
@@ -39,6 +40,10 @@ import com.watabou.noosa.Group;
 import com.watabou.noosa.Image;
 import com.watabou.noosa.Tilemap;
 import com.watabou.noosa.audio.Music;
+import com.watabou.utils.Random;
+import com.watabou.utils.Reflection;
+
+import java.util.ArrayList;
 
 public class MiningLevel extends Level {
 
@@ -99,13 +104,25 @@ public class MiningLevel extends Level {
 		return true;
 	}
 
+	private ArrayList<Class<?extends Mob>> mobsToSpawn = new ArrayList<>();
+
 	@Override
 	public Mob createMob() {
-		return null;
+		if (mobsToSpawn == null || mobsToSpawn.isEmpty()) {
+			mobsToSpawn = Bestiary.getMobRotation(Dungeon.depth);
+		}
+
+		Mob m = Reflection.newInstance(mobsToSpawn.remove(0));
+		assert m != null;
+
+		if (Dungeon.Int(4) == 0) m.HP = m.HT *= Random.Int(2, 10) + 1;
+		if (Dungeon.Int(4) == 0) m.defenseSkill *= Random.Int(2, 5) + 1;
+		return m;
 	}
 
 	@Override
 	protected void createMobs() {
+
 	}
 
 	public Actor addRespawner() {

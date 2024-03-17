@@ -187,7 +187,7 @@ public class ExponentialItem extends Questionnaire {
                         case 7:
                             updateQuickslot();
                             for (int q = 0; q < 5; q++) {
-                                Dungeon.level.drop(Generator.randomMissile().upgrade(Random.Long(20L * hero.lvl, 60L * hero.lvl)), curUser.pos).sprite.drop();
+                                Dungeon.level.drop(Generator.randomMissile().upgrade(Random.Long(20L * hero.lvl, 60L * hero.lvl)).quantity(1), curUser.pos).sprite.drop();
                             }
                             break;
                         case 8:
