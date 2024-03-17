@@ -126,6 +126,7 @@ public enum Icons {
 	KRISTJAN,
 	CUBE_CODE,
 	PURIGRO,
+	JJBALI_IS_NOT_A_PURE_HUMAN,
 	ARCNOR;
 
 	public Image get() {
@@ -185,6 +186,9 @@ public enum Icons {
 
 			case EXIT:
 				icon.frame( icon.texture.uvRectBySize( 0, 32, 15, 11 ) );
+				break;
+			case JJBALI_IS_NOT_A_PURE_HUMAN:
+				icon.frame( icon.texture.uvRectBySize( 240, 48, 16, 16 ) );
 				break;
 			case DISPLAY:
 				if (!PixelScene.landscape()){

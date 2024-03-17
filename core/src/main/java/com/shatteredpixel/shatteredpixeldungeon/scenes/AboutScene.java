@@ -59,8 +59,8 @@ public class AboutScene extends PixelScene {
 		final int TWEAKS_COLOR = 0xB7876E;
 		CreditsBlock tweaks = new CreditsBlock(true, TWEAKS_COLOR,
 				"Extended ExpPD",
-				Icons.CHALLENGE_ON.get(),
-				"Developed by: _Jjbali_\nAn extended version for some people\n\nBased on the source of ExpPD by _Trashboxbobylev_",
+				Icons.JJBALI_IS_NOT_A_PURE_HUMAN.get(),
+				"Developed by: _Jjbali_\nAn extended version with overpowered grinding contexts.\n\nBased on the source of ExpPD by _Trashboxbobylev_",
 				null,
 				null);
 		if (landscape()){
