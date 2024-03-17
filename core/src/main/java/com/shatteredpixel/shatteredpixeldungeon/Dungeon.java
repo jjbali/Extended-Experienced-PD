@@ -362,6 +362,7 @@ public class Dungeon {
 			if (a != LimitedDrops.BBAT && a != LimitedDrops.CHEESY_CHEEST)  a.count = 0;
         Notes.reset();
         if (cycle < 4) cycle += 1;
+		Badges.validateCycleReached();
         //GameLog.wipe();
         Generator.generalReset();
 			generatedLevels.clear();

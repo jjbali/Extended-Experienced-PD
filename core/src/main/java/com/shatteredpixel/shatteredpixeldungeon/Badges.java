@@ -189,6 +189,11 @@ public class Badges {
 		HIGH_SCORE_5                ( 122 ),
 		CHAMPION_2                  ( 123 ),
 		CHAMPION_3                  ( 124 ),
+		CYCLE_1                 ( 125 ),
+		CYCLE_2                 ( 126 ),
+		CYCLE_3                 ( 127 ),
+
+		//Arena Masters series
 		SECOND_ARENA_MASTER			( 22 ),
 		THIRD_ARENA_MASTER			( 86 ),
 		FOURTH_ARENA_MASTER 		( 122 );
@@ -360,6 +365,27 @@ public class Badges {
 		if (!local.contains( Badge.MONSTERS_SLAIN_5 ) && Statistics.enemiesSlain >= 5000) {
 			if (badge != null) unlock(badge);
 			badge = Badge.MONSTERS_SLAIN_5;
+			local.add( badge );
+		}
+
+		displayBadge( badge );
+	}
+
+	public static void validateCycleReached() {
+		Badge badge = null;
+
+		if (!local.contains( Badge.CYCLE_1 ) && Dungeon.cycle >= 1) {
+			badge = Badge.CYCLE_1;
+			local.add( badge );
+		}
+		if (!local.contains( Badge.CYCLE_2 ) && Dungeon.cycle >= 2) {
+			if (badge != null) unlock(badge);
+			badge = Badge.CYCLE_2;
+			local.add( badge );
+		}
+		if (!local.contains( Badge.CYCLE_3 ) && Dungeon.cycle >= 3) {
+			if (badge != null) unlock(badge);
+			badge = Badge.CYCLE_3;
 			local.add( badge );
 		}
 
@@ -1073,7 +1099,7 @@ public class Badges {
 	}
 
 	public static void validateCreative(){
-		displayBadge( Badge.WAND_QUEST_3);
+		displayBadge( Badge.WAND_QUEST_3 );
 	}
 
 	public static void validateClay(){
