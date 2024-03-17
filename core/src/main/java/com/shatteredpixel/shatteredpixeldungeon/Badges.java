@@ -193,6 +193,8 @@ public class Badges {
 		CYCLE_2                 ( 126, true ),
 		CYCLE_3                 ( 127, true ),
 		CYCLE_4                 ( 128, true ),
+		SCROLL_DENIAL           ( 129 ),
+		POTION_DENIAL           ( 130 ),
 
 		//Arena Masters series
 		SECOND_ARENA_MASTER			( 22 ),
@@ -1003,6 +1005,22 @@ public class Badges {
 			displayBadge( badge );
 		}
 	}
+
+	public static void validateNoPotionUse() {
+		if (!local.contains( Badge.POTION_DENIAL ) && Statistics.qualifiedForPotionDenialChallengeBadge) {
+			Badge badge = Badge.POTION_DENIAL;
+			local.add( badge );
+			displayBadge( badge );
+		}
+	}
+
+	public static void validateNoScrollUse() {
+		if (!local.contains( Badge.SCROLL_DENIAL ) && Statistics.qualifiedForScrollDenialChallengeBadge) {
+			Badge badge = Badge.SCROLL_DENIAL;
+			local.add( badge );
+			displayBadge( badge );
+		}
+	}
 	
 	public static void validateGrimWeapon() {
 		if (!local.contains( Badge.GRIM_WEAPON )) {
@@ -1202,7 +1220,7 @@ public class Badges {
 			{Badge.CHAMPION_1, Badge.CHAMPION_2, Badge.CHAMPION_3},
 			{Badge.WAND_QUEST_1, Badge.WAND_QUEST_2, Badge.WAND_QUEST_3, Badge.WAND_QUEST_4, Badge.WAND_QUEST_5, Badge.WAND_QUEST_6},
 			{Badge.SECOND_ARENA_MASTER, Badge.THIRD_ARENA_MASTER, Badge.FOURTH_ARENA_MASTER},
-			{Badge.CYCLE_1, Badge.CYCLE_2, Badge.CYCLE_3}
+			{Badge.CYCLE_1, Badge.CYCLE_2, Badge.CYCLE_3, Badge.CYCLE_4}
 	};
 
 	//don't show the later badge if the earlier one isn't unlocked

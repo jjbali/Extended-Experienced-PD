@@ -27,6 +27,7 @@ package com.shatteredpixel.shatteredpixeldungeon.items.scrolls;
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.GOLDFISH_MEMORY;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
+import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
@@ -35,6 +36,8 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.ItemStatusHandler;
 import com.shatteredpixel.shatteredpixeldungeon.items.Recipe;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.UnstableSpellbook;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfAntiMagic;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.*;
@@ -165,6 +168,9 @@ public abstract class Scroll extends Item {
 				curUser = hero;
 				curItem = detach( hero.belongings.backpack );
 				doRead();
+				if (!(this instanceof ScrollOfIdentify || this instanceof ScrollOfUpgrade)) {
+					Statistics.qualifiedForScrollDenialChallengeBadge = false;
+				}
 			}
 			
 		}

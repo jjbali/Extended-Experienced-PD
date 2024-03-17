@@ -27,7 +27,9 @@ package com.shatteredpixel.shatteredpixeldungeon.items.potions;
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.GOLDFISH_MEMORY;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
+import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
+import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Fire;
@@ -246,7 +248,9 @@ public class Potion extends Item {
 					potion_uses++;
 					drink( hero );
 				}
-			
+			if (!(this instanceof PotionOfHealing || this instanceof PotionOfStrength)) {
+				Statistics.qualifiedForPotionDenialChallengeBadge = false;
+			}
 		}
 	}
 	

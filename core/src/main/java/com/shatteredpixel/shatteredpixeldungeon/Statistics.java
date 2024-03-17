@@ -67,6 +67,8 @@ public class Statistics {
 	public static boolean qualifiedForNoKilling = false;
 	public static boolean completedWithNoKilling = false;
 	public static boolean qualifiedForBossChallengeBadge = false;
+	public static boolean qualifiedForScrollDenialChallengeBadge = true;
+	public static boolean qualifiedForPotionDenialChallengeBadge = true;
 	
 	public static boolean amuletObtained = false;
 	public static boolean gameWon = false;
@@ -116,6 +118,8 @@ public class Statistics {
 		
 		qualifiedForNoKilling = false;
 		qualifiedForBossChallengeBadge = false;
+		qualifiedForScrollDenialChallengeBadge = true;
+		qualifiedForPotionDenialChallengeBadge = true;
 		
 		amuletObtained = false;
 		gameWon = false;
