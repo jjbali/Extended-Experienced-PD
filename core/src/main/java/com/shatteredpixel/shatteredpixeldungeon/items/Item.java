@@ -402,11 +402,11 @@ public class Item implements Bundlable {
 			return false;
 		}
 
-		//if (notes.isEmpty() && !(this instanceof MissileWeapon) && !(this instanceof NotebookPage)) {
-			//notes = Messages.get(this, "depth_note", Dungeon.depth);
+		if (notes.isEmpty() && !(this instanceof MissileWeapon || this instanceof NotebookPage)) {
+			notes = Messages.get(this, "depth_note", Dungeon.depth);
 			//generates unique id every game (doesn't depends on seed)
-			//notes += "\nID: " + randomID();
-		//}
+			notes += "\nID: " + randomID();
+		}
 		
 		if (stackable) {
 			for (Item item:items) {
