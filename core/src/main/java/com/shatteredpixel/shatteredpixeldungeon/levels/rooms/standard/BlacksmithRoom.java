@@ -33,6 +33,9 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.BurningTrap;
+import com.shatteredpixel.shatteredpixeldungeon.levels.traps.DisarmingTrap;
+import com.shatteredpixel.shatteredpixeldungeon.levels.traps.DisintegrationTrap;
+import com.shatteredpixel.shatteredpixeldungeon.levels.traps.FrostTrap;
 import com.shatteredpixel.shatteredpixeldungeon.tiles.CustomTilemap;
 import com.watabou.noosa.Tilemap;
 import com.watabou.utils.Point;
@@ -102,7 +105,7 @@ public class BlacksmithRoom extends StandardRoom {
 		for(Point p : getPoints()) {
 			int cell = level.pointToCell(p);
 			if (level.map[cell] == Terrain.TRAP){
-				level.setTrap(new BurningTrap().reveal(), cell);
+				level.setTrap(Random.Int(2) == 0 ? new BurningTrap().reveal() : Random.Int(4) != 0 ? new FrostTrap().reveal() : new DisintegrationTrap().reveal(), cell);
 			}
 		}
 	}
