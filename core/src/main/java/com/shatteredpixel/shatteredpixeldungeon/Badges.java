@@ -193,8 +193,8 @@ public class Badges {
 		CYCLE_2                 ( 126, true ),
 		CYCLE_3                 ( 127, true ),
 		CYCLE_4                 ( 128, true ),
-		SCROLL_DENIAL           ( 129 ),
-		POTION_DENIAL           ( 130 ),
+		SCROLL_DENIAL           ( 130 ),
+		POTION_DENIAL           ( 129 ),
 
 		//Arena Masters series
 		SECOND_ARENA_MASTER			( 22 ),
