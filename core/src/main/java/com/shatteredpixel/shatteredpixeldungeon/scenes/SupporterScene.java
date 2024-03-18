@@ -96,6 +96,19 @@ public class SupporterScene extends PixelScene {
 		form.setSize(elementWidth, BTN_HEIGHT);
 		add(form);
 
+		StyledButton item_form = new StyledButton(Chrome.Type.GREY_BUTTON_TR, "Item Creation Form"){
+			@Override
+			protected void onClick() {
+				super.onClick();
+				String form = "https://forms.gle/exGznZtqP1DSAgeU8";
+				ShatteredPixelDungeon.platform.openURI(form);
+			}
+		};
+		item_form.icon(Icons.get(Icons.RENAME_ON));
+		item_form.textColor(Window.TITLE_COLOR);
+		item_form.setSize(elementWidth, BTN_HEIGHT);
+		add(item_form);
+
 		float elementHeight = msg.height() + BTN_HEIGHT + GAP;
 
 		float top = 16 + (h - 16 - elementHeight)/2f;
@@ -108,6 +121,8 @@ public class SupporterScene extends PixelScene {
 		align(link);
 		form.setPos(left, link.bottom()+GAP);
 		align(form);
+		item_form.setPos(left, form.bottom()+GAP);
+		align(item_form);
 
 	}
 
