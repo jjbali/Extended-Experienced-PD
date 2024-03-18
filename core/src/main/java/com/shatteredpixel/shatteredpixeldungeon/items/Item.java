@@ -353,6 +353,8 @@ public class Item implements Bundlable {
 			other.quantity = 0;
 			if (notes.isEmpty()) {
 				notes = other.notes;
+			} else if (!other.notes.isEmpty()) {
+				notes = notes + "\n>================<\n" + other.notes;
 			}
 		}
 		return this;
