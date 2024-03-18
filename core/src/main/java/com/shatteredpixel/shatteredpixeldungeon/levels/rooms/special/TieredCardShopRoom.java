@@ -38,6 +38,11 @@ import com.shatteredpixel.shatteredpixeldungeon.items.bags.VelvetPouch;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.LeveledTieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.GambleBag;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.FantasmalStabber;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.FiringSnapper;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.GleamingStaff;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.RegrowingSlasher;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.StarlightSmasher;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
@@ -192,6 +197,26 @@ public class TieredCardShopRoom extends SpecialRoom {
 		itemsToSpawn.add(new RandomBuffGiver());
 
 		itemsToSpawn.add(new TieredCard().upgrade(100));
+
+		if (Random.Int(50) == 0) {
+			switch (Random.Int(5)) {
+				case 0: default:
+					itemsToSpawn.add(new FantasmalStabber().upgrade(20L * Random.Int(2, 5) + 1));
+					break;
+				case 1:
+					itemsToSpawn.add(new FiringSnapper().upgrade(20L * Random.Int(2, 5) + 1));
+					break;
+				case 2:
+					itemsToSpawn.add(new GleamingStaff().upgrade(20L * Random.Int(2, 5) + 1));
+					break;
+				case 3:
+					itemsToSpawn.add(new RegrowingSlasher().upgrade(20L * Random.Int(2, 5) + 1));
+					break;
+				case 4:
+					itemsToSpawn.add(new StarlightSmasher().upgrade(20L * Random.Int(2, 5) + 1));
+					break;
+			}
+		}
 
 
 
