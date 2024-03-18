@@ -147,6 +147,9 @@ public abstract class StandardRoom extends Room {
 		rooms.add(StudyRoom.class);
 		rooms.add(SuspiciousChestRoom.class);
 		rooms.add(MinefieldRoom.class);
+
+		rooms.add(MultiTrapRoom.class);
+		rooms.add(RandomTrapfieldRoom.class);
 	}
 	/*
 	private static float[][] chances = new float[99999][];
@@ -221,7 +224,7 @@ public abstract class StandardRoom extends Room {
 	
 	
 	public static StandardRoom createRoom(){
-		return Reflection.newInstance(rooms.get(Dungeon.chances(new float[]{4,  2,2,2, 2,2,2, 2,2,2, 1,1,1, 1,1,1,  1,1,1,1,1,1,1,1,1,1})));
+		return Reflection.newInstance(rooms.get(Dungeon.chances(new float[]{2,  1,1,1, 1,1,1, 1,1,1, 1,1,1, 1,1,1,  1,1,1,1,1,1,1,1,1,1,  1,1})));
 	}
 	
 }
