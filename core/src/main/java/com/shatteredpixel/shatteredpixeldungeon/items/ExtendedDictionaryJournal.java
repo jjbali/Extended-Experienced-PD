@@ -21,6 +21,9 @@ public enum ExtendedDictionaryJournal {
     static {
         //Documents
         DOCUMENTS.page.put("first",       ItemSpriteSheet.GUIDE_PAGE);
+        DOCUMENTS.page.put("ballistics",       ItemSpriteSheet.DAGGER_ENERGY);
+        DOCUMENTS.page.put("questionnaire",       ItemSpriteSheet.EXOTIC_SCROLL_PLUS);
+        DOCUMENTS.page.put("self_explanatory",       ItemSpriteSheet.SOMETHING);
         //Journal
         JOURNAL.page.put("tip",       ItemSpriteSheet.CITY_PAGE);
         JOURNAL.page.put("tip_2",       ItemSpriteSheet.ALCH_PAGE);
