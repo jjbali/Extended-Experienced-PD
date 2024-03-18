@@ -158,11 +158,14 @@ public class Item implements Bundlable {
 			if (!isIdentified()) actions.add( AC_IDENTIFY );
 			if (stackable) actions.add( AC_MULTIPLY );
 		}
+		/*
 		if (Dungeon.gold >= taggingCost() && !tagged && !( this instanceof PsycheChest || this instanceof ParallelUniverse
 				|| this instanceof LotteryItem || this instanceof Bag
 				|| this instanceof InfoBook || this instanceof Questionnaire || this instanceof Amulet
 				|| this instanceof Notebook || this instanceof NotebookPage)) {
 			actions.add( AC_TAG ); }
+		 */
+
 		if (!( this instanceof PsycheChest || this instanceof ParallelUniverse
 				|| this instanceof LotteryItem || this instanceof Bag
 				|| this instanceof InfoBook || this instanceof Questionnaire)) actions.add( AC_STORE );
