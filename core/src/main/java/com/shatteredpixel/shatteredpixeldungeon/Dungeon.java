@@ -506,9 +506,9 @@ public class Dungeon {
 			}
 		} else if (branch == DIMENSIONAL){
 			//TODO to bo used soon.
-			if (depth <= 100) {
+			if (depth <= 25) {
 				level = new GlitchedLevel();
-			} else if (depth == 101) {
+			} else if (depth == 26) {
 				level = new LastLevel();
 			}
 		} else {
