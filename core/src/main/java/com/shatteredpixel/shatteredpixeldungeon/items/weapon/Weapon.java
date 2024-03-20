@@ -365,6 +365,9 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 		if (enchantment instanceof Universal && type != Universal.class) {
 			return ((Universal) enchantment).hasEnchant(type, owner);
 		}
+		if (enchantment instanceof Galactic && type != Galactic.class) {
+			return ((Galactic) enchantment).hasEnchant(type, owner);
+		}
 		return enchantment != null && enchantment.getClass() == type && owner.buff(MagicImmune.class) == null;
 	}
 
@@ -372,6 +375,9 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 	public <T extends Enchantment> T getEnchant( Class<?extends T> type) {
 		if (enchantment instanceof Universal && type != Universal.class) {
 			return ((Universal) enchantment).getEnchant(type);
+		}
+		if (enchantment instanceof Galactic && type != Galactic.class) {
+			return ((Galactic) enchantment).getEnchant(type);
 		}
 		if(enchantment.getClass() == type){
 			return (T) enchantment;
@@ -405,7 +411,8 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 
 		public static final Class<?>[] rare = new Class<?>[]{
 				Corrupting.class, Grim.class, Vampiric.class,
-				Experienced.class, Enhanced.class, Lootstreaker.class};
+				Experienced.class, Enhanced.class, Lootstreaker.class,
+				Galactic.class};
 
 		public static final float[] typeChances = new float[]{
 				50, //12.5% each
