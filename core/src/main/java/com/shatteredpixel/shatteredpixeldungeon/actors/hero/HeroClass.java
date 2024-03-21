@@ -62,6 +62,7 @@ import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.SpawnMissile;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.SpawnRingOrWand;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.SpawnWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.TestPotion;
+import com.shatteredpixel.shatteredpixeldungeon.items.ExtendedDictBook;
 import com.shatteredpixel.shatteredpixeldungeon.items.InfoBook;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.PlateArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.lottery.LotteryItem;
@@ -181,11 +182,10 @@ public enum HeroClass {
 		new RectangularItem().collect();
 		new ParallelUniverse().collect();
 		//new DictBook().collect();
-		//new ExtendedDictBook().collect();
+		new ExtendedDictBook().collect();
 		new Notebook().collect();
 		new NotebookHolder().collect();
 		new LotteryItem().collect();
-		new MobAttributeViewer().collect();
 		new InfoBook().collect();
 		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
 			i = new ScrollOfUpgrade();

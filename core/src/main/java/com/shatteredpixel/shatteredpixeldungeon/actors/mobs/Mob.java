@@ -33,6 +33,8 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.duelist.Feint;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.DirectableAlly;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Hook;
+import com.shatteredpixel.shatteredpixeldungeon.custom.messages.M;
+import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.MobAttributeViewer;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.FloatingText;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Surprise;
@@ -1197,6 +1199,66 @@ public abstract class Mob extends Char {
 		for (Buff b : buffs(ChampionEnemy.class)){
 			desc += "\n\n_" + Messages.titleCase(b.name()) + "_\n" + b.desc();
 		}
+
+		desc += "\n\n";
+		desc += M.L(MobAttributeViewer.class, "health", this.HP, this.HT);
+		desc += "\n";
+
+		int tries = 100;
+
+		long[] damage = new long[tries];
+		for (int i = 0; i < tries; ++i) {
+			damage[i] = this.damageRoll();
+		}
+		float variance = 0f;
+		float average = 0f;
+		for (int i = 0; i < tries; ++i) {
+			average += damage[i];
+		}
+		average /= tries;
+		for (int i = 0; i < tries; ++i) {
+			variance += (damage[i] - average) * (damage[i] - average);
+		}
+		variance = (float) Math.sqrt(variance/tries);
+		desc += M.L(MobAttributeViewer.class, "damage", average, variance);
+		desc += "\n";
+
+		long[] defense = new long[tries];
+		for (int i = 0; i < tries; ++i) {
+			defense[i] = this.drRoll();
+		}
+		variance = 0f;
+		average = 0f;
+		for (int i = 0; i < tries; ++i) {
+			average += defense[i];
+		}
+		average /= tries;
+		for (int i = 0; i < tries; ++i) {
+			variance += (defense[i] - average) * (defense[i] - average);
+		}
+		variance = (float) Math.sqrt(variance/tries);
+		desc += M.L(MobAttributeViewer.class, "defense", average, variance);
+		desc += "\n";
+
+		try {
+			desc += M.L(MobAttributeViewer.class, "accuracy", this.attackSkill(null));
+			desc += "\n";
+		} catch (NullPointerException ignored){
+
+		}
+		try {
+			desc += M.L(MobAttributeViewer.class, "evasion", this.defenseSkill(null));
+			desc += "\n";
+		} catch (NullPointerException ignored){
+
+		}
+		desc += M.L(MobAttributeViewer.class, "move_speed", this.speed());
+		desc += "\n";
+		desc += M.L(MobAttributeViewer.class, "attack_delay", this.attackDelay());
+		desc += "\n";
+		desc += M.L(MobAttributeViewer.class, "view_distance", this.viewDistance);
+		desc += "\n";
+		desc += M.L(MobAttributeViewer.class, "exp", this.EXP, this.maxLvl);
 
 		return desc;
 	}
