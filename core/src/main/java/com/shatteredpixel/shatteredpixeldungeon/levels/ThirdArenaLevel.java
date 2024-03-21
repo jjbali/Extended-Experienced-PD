@@ -388,7 +388,7 @@ public class ThirdArenaLevel extends Level {
 						timerBasis = 30f + power / 2f;
 
 						if (power >= 50){
-							for (int i = 0; i < 1 + power/3; i++){
+							for (int i = 0; i < 5; i++){
 								Buff.affect(mob, Longsword.HolyExpEffect.class).stacks++;
 							}
 						}

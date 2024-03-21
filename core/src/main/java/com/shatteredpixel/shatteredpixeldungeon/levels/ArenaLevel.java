@@ -33,7 +33,10 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.modules.RewardBoostModule;
+import com.shatteredpixel.shatteredpixeldungeon.items.modules.TimeReverserModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfAquaticRejuvenation;
+import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.BiggerGambleBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.GambleBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.QualityBag;
@@ -152,9 +155,12 @@ public class ArenaLevel extends Level {
 
 		{
 			itemsToSpawn = new ArrayList<>();
-			for (int i = 0; i < 6; i++) itemsToSpawn.add(new GambleBag());
-			for (int i = 0; i < 6; i++) itemsToSpawn.add(new BiggerGambleBag());
-			for (int i = 0; i < 6; i++) itemsToSpawn.add(new QualityBag());
+			for (int i = 0; i < 3; i++) itemsToSpawn.add(new GambleBag());
+			for (int i = 0; i < 3; i++) itemsToSpawn.add(new BiggerGambleBag());
+			for (int i = 0; i < 3; i++) itemsToSpawn.add(new QualityBag());
+			for (int i = 0; i < 3; i++) itemsToSpawn.add(new TieredCard().upgrade(Random.Int(1, 100) + 1));
+			for (int i = 0; i < 3; i++) itemsToSpawn.add(new TimeReverserModule());
+			for (int i = 0; i < 3; i++) itemsToSpawn.add(new RewardBoostModule());
 
 			Point itemPlacement = new Point(cellToPoint(arenaDoor));
 			if (itemPlacement.y == ROOM_TOP-1){

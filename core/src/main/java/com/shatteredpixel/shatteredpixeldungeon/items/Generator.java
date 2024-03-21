@@ -498,7 +498,7 @@ public class Generator {
 					PotionOfParalyticGas.class,
 					PotionOfPurity.class,
 					PotionOfExperience.class};
-			POTION.defaultProbs = new float[]{ 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
+			POTION.defaultProbs = new float[]{ 5, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10 };
 			POTION.probs = POTION.defaultProbs.clone();
 			
 			SEED.classes = new Class<?>[]{
