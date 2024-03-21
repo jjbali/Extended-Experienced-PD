@@ -485,6 +485,8 @@ public abstract class Level implements Bundlable {
 			} else {
 				Buff.affect(m, Stamina.class, Integer.MAX_VALUE);
 			}
+			assert m != null;
+			m.state = m.WANDERING;
 		}
 
 		if (Dungeon.branch == Dungeon.DIMENSIONAL) {
