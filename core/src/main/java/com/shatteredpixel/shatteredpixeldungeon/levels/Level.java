@@ -500,6 +500,7 @@ public abstract class Level implements Bundlable {
 			ChampionEnemy.rollForChampion(m);
 			m.defenseSkill *= 10;
 			m.EXP *= 10;
+			m.state = m.WANDERING;
 		}
 
 		return m;
