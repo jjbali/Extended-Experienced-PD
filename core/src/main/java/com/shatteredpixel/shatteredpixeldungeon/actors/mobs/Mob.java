@@ -940,23 +940,23 @@ public abstract class Mob extends Char {
 			if (Random.Float() < 0.2f) {
 				Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
 			}
-			if (Random.Float() < 0.1f) {
-				Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
-			}
+			//if (Random.Float() < 0.1f) {
+			//	Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
+			//}
 			if (Random.Float() < 0.2f) {
 				Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
 			}
-			if (Random.Float() < 0.1f) {
-				Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
-			}
-			if (Random.Float() < 0.1f) {
-				Dungeon.level.drop(new SpyGlass(), pos).sprite.drop();
-			}
+			//if (Random.Float() < 0.1f) {
+			//	Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
+			//}
+			//if (Random.Float() < 0.1f) {
+			//	Dungeon.level.drop(new SpyGlass(), pos).sprite.drop();
+			//}
 			if (Random.Float() < 0.2f) {
 				Dungeon.level.drop(new TelekineticGrab(), pos).sprite.drop();
 			}
 			if (Random.Float() < 0.01f) {
-				long lv = Random.LongRange(50L, 100L);
+				long lv = Random.LongRange(5L, 10L);
 				Dungeon.level.drop(RingOfWealth.genConsumableDrop(lv), pos).sprite.drop();
 			}
 
@@ -1007,16 +1007,6 @@ public abstract class Mob extends Char {
 
 		}
 
-		if (hero.grinding && buff(DanceFloor.RewardBoost.class) != null){
-			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
-		}
-
 		if (hero.grinding && hero.heroClass == HeroClass.MAGE){
 			Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
@@ -1045,20 +1035,6 @@ public abstract class Mob extends Char {
 			}
 		}
 
-		if (buff(DanceFloor.RewardBoost.class) != null) {
-			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
-			if (Dungeon.Int(6) == 0) {
-				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
-				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
-			} else {
-				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-			}
-		}
-
 		if (buff(SecondArenaLevel.SecondArenaBuff.class) != null){
 			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
@@ -1071,7 +1047,7 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 			}
-			//Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
+			Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 		}
 
 		if (buff(ThirdArenaLevel.ThirdArenaBuff.class) != null){
@@ -1088,7 +1064,7 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 			}
-			//Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
+			Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 		}
 
 		if (buff(FourthArenaLevel.FourthArenaBuff.class) != null){
@@ -1108,6 +1084,7 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 			}
+			Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 		}
 
 		if (buff(RewardBoostModule.RewardBoost2.class) != null){
@@ -1139,6 +1116,7 @@ public abstract class Mob extends Char {
 		}
 		 */
 
+		/*
 		if (Dungeon.hero.grinding && hero.lvl >= 50) {
 			int rolls = 25;
 			ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(rolls);
@@ -1147,6 +1125,7 @@ public abstract class Mob extends Char {
 				RingOfWealth.showFlareForBonusDrop(sprite);
 			}
 		}
+		 */
 
 		//lucky enchant logic
 		if (buff(Lucky.LuckProc.class) != null){
