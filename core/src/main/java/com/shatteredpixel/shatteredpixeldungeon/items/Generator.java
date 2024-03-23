@@ -110,6 +110,12 @@ import com.shatteredpixel.shatteredpixeldungeon.items.quest.CorpseDust;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.Embers;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.GooBlob;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.MetalShard;
+import com.shatteredpixel.shatteredpixeldungeon.items.remains.BowFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.remains.BrokenHilt;
+import com.shatteredpixel.shatteredpixeldungeon.items.remains.BrokenStaff;
+import com.shatteredpixel.shatteredpixeldungeon.items.remains.CloakScrap;
+import com.shatteredpixel.shatteredpixeldungeon.items.remains.RemainsItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.remains.SealShard;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
@@ -242,6 +248,7 @@ public class Generator {
 		DARTS(0, 0, Dart.class),
 		MODULES(0, 0, Item.class),
 		MODULES2(0, 0, Item.class),
+		REMAINS(1, 0, RemainsItem.class),
 
 		GOLD	( 3, 3,   Gold.class );
 
@@ -434,6 +441,15 @@ public class Generator {
 					EnergyCrystal.class
 			};
 			GOLD.probs = new float[]{ 1, 0 };
+
+			REMAINS.classes = new Class<?>[]{
+					BowFragment.class,
+					BrokenHilt.class,
+					BrokenStaff.class,
+					CloakScrap.class,
+					SealShard.class
+			};
+			REMAINS.probs = new float[]{ 1, 1, 1, 1, 1 };
 
 			TREASUREBAG.classes = new Class<?>[]{
 					AlchemyBag.class,
