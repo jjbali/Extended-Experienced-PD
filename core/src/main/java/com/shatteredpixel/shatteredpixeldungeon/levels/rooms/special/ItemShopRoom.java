@@ -59,6 +59,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.food.Pasty;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.SmallRation;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.StewedMeat;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfFrost;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHaste;
@@ -95,6 +96,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfHaste;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfMight;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfSharpshooting;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfTenacity;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMapping;
@@ -135,6 +137,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.spells.PhaseShift;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ReclaimTrap;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.Recycle;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.RespawnBooster;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.Spell;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.SummonElemental;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.TelekineticGrab;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.Vampirism;
@@ -146,6 +149,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.MiscBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.PotionBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.QualityBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.ScrollBag;
+import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.TreasureBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfBlastWave;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfCorrosion;
@@ -303,8 +307,16 @@ public class ItemShopRoom extends SpecialRoom {
 				} else {
 					level.drop(item.upgrade((Dungeon.NormalLongRange(50, 60) * depth) * (cycle + 1) ^ 2).identify(), cell).type = Heap.Type.FOR_SALE;
 				}
+			} else if (item instanceof Spell || item instanceof Scroll || item instanceof Potion) {
+				level.drop( item.quantity(Dungeon.NormalLongRange(20, 200) * depth), cell ).type = Heap.Type.FOR_ARENA_SALE;
+			} else if (item instanceof Ankh) {
+				level.drop( item, cell ).type = Heap.Type.FOR_SALE;
+			} else if (item instanceof TreasureBag) {
+				level.drop( item.quantity(Dungeon.NormalLongRange(1, 10) + 1), cell ).type = Heap.Type.FOR_SALE;
+			} else if (item instanceof RandomItemTicket) {
+				level.drop( item.quantity(Dungeon.NormalLongRange(20, 150) + 1), cell ).type = Heap.Type.FOR_ARENA_SALE;
 			} else {
-				level.drop( item.quantity(Dungeon.NormalLongRange(2, 6) * depth), cell ).type = Heap.Type.FOR_ARENA_SALE;
+				level.drop( item.quantity(Dungeon.NormalLongRange(100, 1000) + 1), cell ).type = Heap.Type.FOR_ARENA_SALE;
 			}
 			//level.drop( item, cell ).type = Heap.Type.FOR_SALE;
 			itemsToSpawn.remove(item);
