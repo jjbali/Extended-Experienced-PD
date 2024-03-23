@@ -54,8 +54,8 @@ public class BallisticCrossbow extends JjbaliWeapon {
 
     @Override
     public long max(long lvl) {
-        return  18L*(tier+1) +    //70
-                lvl*(tier+30);   //+12
+        return  14L*(tier+1) +    //70
+                lvl*(tier+6);   //+12
     }
 
 	@Override

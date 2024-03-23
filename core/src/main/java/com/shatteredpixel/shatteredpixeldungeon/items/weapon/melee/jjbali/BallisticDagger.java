@@ -73,7 +73,7 @@ public class BallisticDagger extends JjbaliWeapon implements PreparationAllowed 
     @Override
     public long max(long lvl) {
         return  8L*(tier+1) +    //70
-                lvl*(tier+8);   //+12
+                lvl*(tier+6);   //+12
     }
 
 	@Override

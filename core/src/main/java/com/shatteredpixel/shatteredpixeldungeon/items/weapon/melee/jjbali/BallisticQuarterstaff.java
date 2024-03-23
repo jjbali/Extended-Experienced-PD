@@ -57,8 +57,8 @@ public class BallisticQuarterstaff extends JjbaliWeapon {
 
     @Override
     public long max(long lvl) {
-        return  19L*(tier+1) +    //70
-                lvl*(tier+35);   //+12
+        return  12L*(tier+1) +    //70
+                lvl*(tier+15);   //+12
     }
 
 	@Override
