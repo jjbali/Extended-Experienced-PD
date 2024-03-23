@@ -858,6 +858,21 @@ public class ItemSpriteSheet {
 		assignItemRect(SHEATH		, 13, 13);
 	}
 
+	private static final int MISC_CONS	=		xy(1, 36);  //16 slots
+	public static final int SEAL_SHARD      = MISC_CONS +0;
+	public static final int BROKEN_STAFF    = MISC_CONS +1;
+	public static final int CLOAK_SCRAP     = MISC_CONS +2;
+	public static final int BOW_FRAGMENT    = MISC_CONS +3;
+	public static final int BROKEN_HILT     = MISC_CONS +4;
+	static{
+		//TODO improve these placeholder images
+		assignItemRect(SEAL_SHARD,      6,   9);
+		assignItemRect(BROKEN_STAFF,    15, 11);
+		assignItemRect(CLOAK_SCRAP,     5,   9);
+		assignItemRect(BOW_FRAGMENT,    12,  7);
+		assignItemRect(BROKEN_HILT,      6,  7);
+	}
+
 
 
 	private static final int NEW_SCROLL 	=			xy(1, 37);  //16 slots
