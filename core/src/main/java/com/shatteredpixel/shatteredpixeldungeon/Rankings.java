@@ -119,8 +119,6 @@ public enum Rankings {
 		rec.daily       = Dungeon.daily;
 
 		Badges.validateHighScore( rec.score );
-		Badges.validateNoPotionUse();
-		Badges.validateNoScrollUse();
 		
 		INSTANCE.saveGameData(rec);
 

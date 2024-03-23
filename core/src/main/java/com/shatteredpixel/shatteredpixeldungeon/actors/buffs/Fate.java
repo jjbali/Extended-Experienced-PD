@@ -94,7 +94,7 @@ public class Fate extends Buff {
 					break;
 			}
 		}
-		spend(0.1f);
+		spend(1f);
 		return true;
 	}
 

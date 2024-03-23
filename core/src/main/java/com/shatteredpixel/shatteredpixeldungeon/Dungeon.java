@@ -1064,6 +1064,8 @@ public class Dungeon {
 
 		updateLevelExplored();
 		Statistics.gameWon = true;
+		Badges.validateNoPotionUse();
+		Badges.validateNoScrollUse();
 
 		hero.belongings.identify();
 
