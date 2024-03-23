@@ -346,6 +346,10 @@ public class Dungeon {
 		if (Objects.equals(customSeedText, "MNS-TER-ULT")) {
 			Buff.affect(hero, OverloadBeacon.TemporaryOverload.class, Float.MAX_VALUE);
 		}
+
+		if (Dungeon.isChallenged(LUCK_IN)) {
+			Buff.affect(hero, Fate.class);
+		}
 	}
 
 	public static void goForNewCycle(){

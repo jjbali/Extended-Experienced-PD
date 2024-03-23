@@ -844,7 +844,7 @@ public class Hero extends Char {
 		if( isSubclass(HeroSubClass.WARDEN) && Dungeon.level.map[pos] == Terrain.FURROWED_GRASS){
 			Buff.affect(this, Barkskin.class).set( lvl + 5, 1 );
 		}
-
+		/*
 		if(Dungeon.isChallenged(LUCK_IN) && Random.Float() < 0.10f) {
 			int D = Random.Int(12);
 			switch (D) {
@@ -886,6 +886,7 @@ public class Hero extends Char {
 					break;
 			}
 		}
+		 */
 		
 		return actResult;
 	}
