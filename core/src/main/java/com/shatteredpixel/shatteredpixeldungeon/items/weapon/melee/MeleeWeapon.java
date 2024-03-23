@@ -515,7 +515,7 @@ private static boolean evaluatingTwinUpgrades = false;
 		public boolean act() {
 			if (charges < chargeCap()){
 				if (Regeneration.regenOn()){
-					partialCharge += 1/(4f); // 4 turns per charge
+					partialCharge += 1/(20f); // 20 turns per charge
 				}
 
 				if (((Hero) target).heroClass == HeroClass.DUELIST &&
