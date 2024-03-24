@@ -142,7 +142,7 @@ public class RingOfLuck extends Ring {
 
 				Item i;
 				do {
-					i = genEquipmentDrop((int) (equipBonus - 1));
+					i = genEquipmentDrop((equipBonus - 1));
 				} while (Challenges.isItemBlocked(i));
 				drops.add(i);
 				dropsToEquip = Random.NormalIntRange(5, 10);
