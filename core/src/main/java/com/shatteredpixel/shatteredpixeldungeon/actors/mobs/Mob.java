@@ -55,6 +55,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.bombs.StormBomb;
 import com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.FishingRod;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.RewardBoostModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfLuck;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.HandyBarricade;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicBridge;
@@ -1128,6 +1129,17 @@ public abstract class Mob extends Char {
 			}
 		}
 		 */
+
+		if (Ring.getBuffedBonus(Dungeon.hero, RingOfLuck.Wealth.class) > 0) {
+			int rolls = 1;
+			if (properties.contains(Property.BOSS)) rolls = 15;
+			else if (properties.contains(Property.MINIBOSS)) rolls = 5;
+			ArrayList<Item> bonus = RingOfLuck.tryForBonusDrop(Dungeon.hero, rolls);
+			if (bonus != null && !bonus.isEmpty()) {
+				for (Item b : bonus) Dungeon.level.drop(b, pos).sprite.drop();
+				RingOfWealth.showFlareForBonusDrop(sprite);
+			}
+		}
 
 		//lucky enchant logic
 		if (buff(Lucky.LuckProc.class) != null){
