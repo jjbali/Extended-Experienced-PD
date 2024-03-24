@@ -744,9 +744,9 @@ public class Item implements Bundlable {
 	}
 	
 	public String desc() {
-		return Messages.get(this, "desc") +
-				(!tagged && Dungeon.gold >= taggingCost() ?
-						"\n\n" + Messages.get(Item.class, "desc_tag", taggingCost()) : "");
+		return Messages.get(this, "desc");// +
+				//(!tagged && Dungeon.gold >= taggingCost() ?
+				//		"\n\n" + Messages.get(Item.class, "desc_tag", taggingCost()) : "");
 	}
 	
 	public long quantity() {
