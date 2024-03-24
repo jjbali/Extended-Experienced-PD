@@ -117,22 +117,25 @@ public class ScrollOfEnchantment extends ExoticScroll {
 			
 			if (item instanceof Weapon){
 				
-				final Weapon.Enchantment enchants[] = new Weapon.Enchantment[3];
+				final Weapon.Enchantment enchants[] = new Weapon.Enchantment[6];
 				
 				Class<? extends Weapon.Enchantment> existing = ((Weapon) item).enchantment != null ? ((Weapon) item).enchantment.getClass() : null;
 				enchants[0] = Weapon.Enchantment.randomCommon( existing );
-				enchants[1] = Weapon.Enchantment.randomUncommon( existing );
-				enchants[2] = Weapon.Enchantment.random( existing, enchants[0].getClass(), enchants[1].getClass());
+				enchants[1] = Weapon.Enchantment.randomCommon( existing, enchants[0].getClass() );
+				enchants[2] = Weapon.Enchantment.randomUncommon( existing );
+				enchants[3] = Weapon.Enchantment.randomRare( existing );
+				enchants[4] = Weapon.Enchantment.random( existing, enchants[0].getClass(), enchants[1].getClass(), enchants[2].getClass(), enchants[3].getClass() );
+				enchants[5] = Weapon.Enchantment.random( existing, enchants[0].getClass(), enchants[1].getClass(), enchants[2].getClass(), enchants[3].getClass() );
 
-				GameScene.show(new WndEnchantSelect((Weapon) item, enchants[0], enchants[1], enchants[2]));
+				GameScene.show(new WndEnchantSelect((Weapon) item, enchants[0], enchants[1], enchants[2], enchants[3], enchants[4], enchants[5]));
 			
 			} else if (item instanceof Armor) {
 				
 				final Armor.Glyph glyphs[] = new Armor.Glyph[3];
 				
 				Class<? extends Armor.Glyph> existing = ((Armor) item).glyph != null ? ((Armor) item).glyph.getClass() : null;
-				glyphs[0] = Armor.Glyph.randomCommon( existing );
-				glyphs[1] = Armor.Glyph.randomUncommon( existing );
+				glyphs[0] = Armor.Glyph.random( existing );
+				glyphs[1] = Armor.Glyph.random( existing );
 				glyphs[2] = Armor.Glyph.random( existing, glyphs[0].getClass(), glyphs[1].getClass());
 				
 				GameScene.show(new WndGlyphSelect((Armor) item, glyphs[0], glyphs[1], glyphs[2]));
@@ -153,11 +156,13 @@ public class ScrollOfEnchantment extends ExoticScroll {
 
 		//used in PixelScene.restoreWindows
 		public WndEnchantSelect(){
-			this(wep, enchantments[0], enchantments[1], enchantments[2]);
+			this(wep, enchantments[0], enchantments[1], enchantments[2], enchantments[3], enchantments[4], enchantments[5]);
 		}
 
 		public WndEnchantSelect(Weapon wep, Weapon.Enchantment ench1,
-		                           Weapon.Enchantment ench2, Weapon.Enchantment ench3){
+		                           Weapon.Enchantment ench2, Weapon.Enchantment ench3,
+								Weapon.Enchantment ench4, Weapon.Enchantment ench5,
+								Weapon.Enchantment ench6){
 			super(new ItemSprite(new ScrollOfEnchantment()),
 					Messages.titleCase(new ScrollOfEnchantment().name()),
 					Messages.get(ScrollOfEnchantment.class, "weapon") +
@@ -166,17 +171,23 @@ public class ScrollOfEnchantment extends ExoticScroll {
 					ench1.name(),
 					ench2.name(),
 					ench3.name(),
+					ench4.name(),
+					ench5.name(),
+					ench6.name(),
 					Messages.get(ScrollOfEnchantment.class, "cancel"));
 			this.wep = wep;
-			enchantments = new Weapon.Enchantment[3];
+			enchantments = new Weapon.Enchantment[6];
 			enchantments[0] = ench1;
 			enchantments[1] = ench2;
 			enchantments[2] = ench3;
+			enchantments[3] = ench4;
+			enchantments[4] = ench5;
+			enchantments[5] = ench6;
 		}
 
 		@Override
 		protected void onSelect(int index) {
-			if (index < 3) {
+			if (index < 6) {
 				wep.enchant(enchantments[index]);
 				GLog.p(Messages.get(StoneOfEnchantment.class, "weapon"));
 				((ScrollOfEnchantment)curItem).readAnimation();
@@ -192,7 +203,7 @@ public class ScrollOfEnchantment extends ExoticScroll {
 
 		@Override
 		protected boolean hasInfo(int index) {
-			return index < 3;
+			return index < 6;
 		}
 
 		@Override
