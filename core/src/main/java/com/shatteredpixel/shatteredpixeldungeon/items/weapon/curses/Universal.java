@@ -128,7 +128,7 @@ public class Universal extends Weapon.Enchantment {
 
     @Override
     public String desc() {
-        return super.desc() + "\n" + ListUtils.join( additional, "\n", Weapon.Enchantment::desc );
+        return super.desc() + "\n" + ListUtils.join( additional, "\n", Weapon.Enchantment::desc ) + "\n\n_From TCPD, curse variation_";
     }
 
     @Override
