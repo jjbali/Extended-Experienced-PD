@@ -261,10 +261,10 @@ public class RingOfLuck extends Ring {
 		}
 	}
 
-	private static Item genEquipmentDrop( int level ){
+	private static Item genEquipmentDrop( long level ){
 		Item result;
 		//each upgrade increases depth used for calculating drops by 1
-		int floorset = (Dungeon.depth + level)/5;
+		int floorset = (int) ((Dungeon.depth + level)/5);
 		switch (Random.Int(5)){
 			default: case 0: case 1:
 				Weapon w = Generator.randomWeapon(floorset, true);
@@ -287,7 +287,7 @@ public class RingOfLuck extends Ring {
 		}
 		//minimum level is 1/2/3/4/5/6 when ring level is 1/3/5/7/9/11
 		if (result.isUpgradable()){
-			int minLevel = (level+1)/2;
+			long minLevel = (level+1)/2;
 			if (result.level() < minLevel){
 				result.level(minLevel);
 			}

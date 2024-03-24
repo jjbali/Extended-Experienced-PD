@@ -55,6 +55,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.bombs.StormBomb;
 import com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.FishingRod;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.RewardBoostModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfLuck;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.HandyBarricade;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicBridge;
@@ -902,7 +903,22 @@ public abstract class Mob extends Char {
 	}
 
 	public float lootChance(){
-		return this.lootChance;
+		float lootChance = this.lootChance;
+
+		float dropBonus = RingOfLuck.dropChanceMultiplier( Dungeon.hero );
+
+		Talent.BountyHunterTracker bhTracker = Dungeon.hero.buff(Talent.BountyHunterTracker.class);
+		if (bhTracker != null){
+			Preparation prep = Dungeon.hero.buff(Preparation.class);
+			if (prep != null){
+				// 2/4/8/16% per prep level, multiplied by talent points
+				float bhBonus = 0.02f * (float)Math.pow(2, prep.attackLevel()-1);
+				bhBonus *= Dungeon.hero.pointsInTalent(Talent.BOUNTY_HUNTER);
+				dropBonus += bhBonus;
+			}
+		}
+
+		return lootChance * dropBonus;
 	}
 
 	public void rollToDropLoot(){
@@ -1128,6 +1144,17 @@ public abstract class Mob extends Char {
 			}
 		}
 		 */
+
+		if (Ring.getBuffedBonus(Dungeon.hero, RingOfLuck.Wealth.class) > 0) {
+			int rolls = 1;
+			if (properties.contains(Property.BOSS)) rolls = 15;
+			else if (properties.contains(Property.MINIBOSS)) rolls = 5;
+			ArrayList<Item> bonus = RingOfLuck.tryForBonusDrop(Dungeon.hero, rolls);
+			if (bonus != null && !bonus.isEmpty()) {
+				for (Item b : bonus) Dungeon.level.drop(b, pos).sprite.drop();
+				RingOfWealth.showFlareForBonusDrop(sprite);
+			}
+		}
 
 		//lucky enchant logic
 		if (buff(Lucky.LuckProc.class) != null){
