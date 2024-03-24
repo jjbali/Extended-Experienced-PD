@@ -61,10 +61,10 @@ public class RingOfLuck extends Ring {
 	public String statsInfo() {
 		if (isIdentified()){
 			String info = Messages.get(this, "stats",
-					Messages.decimalFormat("#.##", 100f * (Math.pow(1.20f, soloBuffedBonus()) - 1f)));
-			if (isEquipped(Dungeon.hero) && soloBuffedBonus() != combinedBuffedBonus(Dungeon.hero, Wealth.class)){
+					Messages.decimalFormat("#.##", 100f * (1.20f + soloBonus()*0.02 - 1f)));
+			if (isEquipped(Dungeon.hero) && soloBonus() != combinedBuffedBonus(Dungeon.hero, Wealth.class)){
 				info += "\n\n" + Messages.get(this, "combined_stats",
-						Messages.decimalFormat("#.##", 100f * (Math.pow(1.20f, combinedBuffedBonus(Dungeon.hero, Wealth.class)) - 1f)));
+						Messages.decimalFormat("#.##", 100f * (1.20f + combinedBuffedBonus(Dungeon.hero, Wealth.class)*0.02 - 1f)));
 			}
 			return info;
 		} else {
@@ -72,8 +72,8 @@ public class RingOfLuck extends Ring {
 		}
 	}
 
-	private static final String TRIES_TO_DROP = "tries_to_drop";
-	private static final String DROPS_TO_RARE = "drops_to_rare";
+	private static final String TRIES_TO_DROP = "tries_to_drop_v2";
+	private static final String DROPS_TO_RARE = "drops_to_rare_v2";
 
 	@Override
 	public void storeInBundle(Bundle bundle) {
