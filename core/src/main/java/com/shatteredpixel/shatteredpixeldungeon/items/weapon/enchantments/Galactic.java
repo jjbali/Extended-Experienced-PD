@@ -9,6 +9,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.ListUtils;
+import com.watabou.utils.Random;
 import com.watabou.utils.UnorderedPair;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class Galactic extends Weapon.Enchantment {
 
     private void generateEnchantments() {
         additional.clear();
-        int limit = 3;
+        int limit = Random.Int(3, 10) + 1;
         for (int i = 0; i < limit; i++) {
             Set<Class<? extends Weapon.Enchantment>> conflicts = incompatibles( false );
             Weapon.Enchantment enchantment = Weapon.Enchantment.random();
