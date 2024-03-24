@@ -21,9 +21,12 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.items.rings;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
+
 import com.shatteredpixel.shatteredpixeldungeon.Challenges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Perks;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Flare;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
@@ -54,19 +57,16 @@ public class RingOfLuck extends Ring {
 	{
 		icon = ItemSpriteSheet.Icons.RING_WEALTH;
 	}
-
-	private float triesToDrop = Float.MIN_VALUE;
-	private int dropsToRare = Integer.MIN_VALUE;
+	private static float triesToDrop = Float.MIN_VALUE;
+	private static int dropsToRare = Integer.MIN_VALUE;
+	public static int level = 0;
+	private long normal_roll = Math.min(5 * level, 1500);
+	private long miniboss_roll = Math.min(10 * level, 2500);
+	private long boss_roll = Math.min(15 * level, 4500);
 	
 	public String statsInfo() {
 		if (isIdentified()){
-			String info = Messages.get(this, "stats",
-					Messages.decimalFormat("#.##", 100f * (1.20f + soloBonus()*0.02 - 1f)));
-			if (isEquipped(Dungeon.hero) && soloBonus() != combinedBuffedBonus(Dungeon.hero, Wealth.class)){
-				info += "\n\n" + Messages.get(this, "combined_stats",
-						Messages.decimalFormat("#.##", 100f * (1.20f + combinedBuffedBonus(Dungeon.hero, Wealth.class)*0.02 - 1f)));
-			}
-			return info;
+			return Messages.get(this, "stats", normal_roll, miniboss_roll, boss_roll);
 		} else {
 			return Messages.get(this, "typical_stats", Messages.decimalFormat("#.##", 20f));
 		}
@@ -98,27 +98,11 @@ public class RingOfLuck extends Ring {
 		return (float)Math.pow(1.20, getBuffedBonus(target, Wealth.class));
 	}
 	
-	public static ArrayList<Item> tryForBonusDrop(Char target, int tries ){
-		int bonus = getBuffedBonus(target, Wealth.class);
-
-		if (bonus <= 0) return null;
-		
-		HashSet<Wealth> buffs = target.buffs(Wealth.class);
-		float triesToDrop = Float.MIN_VALUE;
-		int dropsToEquip = Integer.MIN_VALUE;
-		
-		//find the largest count (if they aren't synced yet)
-		for (Wealth w : buffs){
-			if (w.triesToDrop() > triesToDrop){
-				triesToDrop = w.triesToDrop();
-				dropsToEquip = w.dropsToRare();
-			}
-		}
-
+	public static ArrayList<Item> tryForBonusDrop(int tries){
 		//reset (if needed), decrement, and store counts
 		if (triesToDrop == Float.MIN_VALUE) {
-			triesToDrop = Random.NormalIntRange(0, 20);
-			dropsToEquip = Random.NormalIntRange(5, 10);
+			triesToDrop = Dungeon.NormalIntRange(4, 12);
+			dropsToRare = Dungeon.NormalIntRange(4, 8);
 		}
 
 		//now handle reward logic
@@ -126,43 +110,26 @@ public class RingOfLuck extends Ring {
 
 		triesToDrop -= tries;
 		while ( triesToDrop <= 0 ){
-			if (dropsToEquip <= 0){
-				long equipBonus = 0;
-
-				//A second ring of wealth can be at most +1 when calculating wealth bonus for equips
-				//This is to prevent using an upgraded wealth to farm another upgraded wealth and
-				//using the two to get substantially more upgrade value than intended
-				for (Wealth w : target.buffs(Wealth.class)){
-					if (w.buffedLvl() > equipBonus){
-						equipBonus = w.buffedLvl() + Math.min(equipBonus, 2);
-					} else {
-						equipBonus += Math.min(w.buffedLvl(), 2);
-					}
-				}
+			if (dropsToRare <= 0){
 
 				Item i;
 				do {
-					i = genEquipmentDrop((equipBonus - 1));
+					i = genEquipmentDrop(level - 1);
 				} while (Challenges.isItemBlocked(i));
 				drops.add(i);
-				dropsToEquip = Random.NormalIntRange(5, 10);
+				dropsToRare = Random.NormalIntRange(3, 8);
 			} else {
 				Item i;
 				do {
-					i = genConsumableDrop(bonus - 1);
+					i = genConsumableDrop(level - 1);
 				} while (Challenges.isItemBlocked(i));
+				if (Dungeon.hero.perks.contains(Perks.Perk.FISHING_PRO) && Random.Int(4) == 0) i.quantity(i.quantity()*2);
 				drops.add(i);
-				dropsToEquip--;
+				dropsToRare--;
 			}
 			triesToDrop += Random.NormalIntRange(0, 20);
 		}
 
-		//store values back into rings
-		for (Wealth w : buffs){
-			w.triesToDrop(triesToDrop);
-			w.dropsToRare(dropsToEquip);
-		}
-		
 		return drops;
 	}
 
@@ -172,10 +139,13 @@ public class RingOfLuck extends Ring {
 	private static int latestDropTier = 0;
 
 	public static void showFlareForBonusDrop( Visual vis ){
-		if (vis == null || vis.parent == null) return;
 		switch (latestDropTier){
 			default:
+				new Flare(6, 20).color(0xFF0000, true).show(vis, 3.5f);
 				break; //do nothing
+			case 0:
+				new Flare(6, 20).color(0xFFFFFF, true).show(vis, 1.5f);
+				break;
 			case 1:
 				new Flare(6, 20).color(0x00FF00, true).show(vis, 3f);
 				break;
@@ -192,7 +162,7 @@ public class RingOfLuck extends Ring {
 		latestDropTier = 0;
 	}
 	
-	public static Item genConsumableDrop(int level) {
+	public static Item genConsumableDrop(long level) {
 		float roll = Random.Float();
 		//60% chance - 4% per level. Starting from +15: 0%
 		if (roll < (0.6f - 0.04f * level)) {
@@ -303,22 +273,5 @@ public class RingOfLuck extends Ring {
 	}
 
 	public class Wealth extends RingBuff {
-		
-		private void triesToDrop( float val ){
-			triesToDrop = val;
-		}
-		
-		private float triesToDrop(){
-			return triesToDrop;
-		}
-
-		private void dropsToRare( int val ) {
-			dropsToRare = val;
-		}
-
-		private int dropsToRare(){
-			return dropsToRare;
-		}
-		
 	}
 }

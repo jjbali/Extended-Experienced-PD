@@ -40,14 +40,11 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.FloatingText;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Surprise;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Wound;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
-import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
-import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.SpyGlass;
-import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.SubtractionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.MasterThievesArmband;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.TimekeepersHourglass;
 import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Bomb;
@@ -92,6 +89,7 @@ import java.util.HashSet;
 
 import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 import static com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.FishingRod.AC_UNCAST;
+import static com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth.tryForBonusDrop;
 
 public abstract class Mob extends Char {
 
@@ -1115,8 +1113,8 @@ public abstract class Mob extends Char {
 //		//ring of wealth logic
 		if (Dungeon.hero.grinding && DivisionItem.streak_d >= 25) {
 			int rolls = 15 + DivisionItem.streak_d;
-			ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(rolls);
-		if (!bonus.isEmpty()) {
+			ArrayList<Item> bonus = tryForBonusDrop(rolls);
+			if (!bonus.isEmpty()) {
 				for (Item b : bonus) Dungeon.level.drop(b, pos).sprite.drop();
 				RingOfWealth.showFlareForBonusDrop(sprite);
 			}
@@ -1145,14 +1143,14 @@ public abstract class Mob extends Char {
 		}
 		 */
 
-		if (Ring.getBuffedBonus(Dungeon.hero, RingOfLuck.Wealth.class) > 0) {
-			int rolls = 1;
-			if (properties.contains(Property.BOSS)) rolls = 15;
-			else if (properties.contains(Property.MINIBOSS)) rolls = 5;
-			ArrayList<Item> bonus = RingOfLuck.tryForBonusDrop(Dungeon.hero, rolls);
+		if (buff(RingOfLuck.Wealth.class) != null) {
+			int rolls = 1 + hero.lvl;
+			if (properties.contains(Property.BOSS)) rolls = 10 + hero.lvl;
+			else if (properties.contains(Property.MINIBOSS)) rolls = 5 + hero.lvl;
+			ArrayList<Item> bonus = RingOfLuck.tryForBonusDrop(rolls);
 			if (bonus != null && !bonus.isEmpty()) {
 				for (Item b : bonus) Dungeon.level.drop(b, pos).sprite.drop();
-				RingOfWealth.showFlareForBonusDrop(sprite);
+				RingOfLuck.showFlareForBonusDrop(sprite);
 			}
 		}
 
