@@ -1,3 +1,4 @@
+
 buildscript {
     repositories {
         maven { url 'https://jitpack.io'}
@@ -17,8 +18,8 @@ allprojects {
         appName = 'Extended Experienced Pixel Dungeon'
         appPackageName = 'com.jjbali.experiencedpixeldungeon.extended'
 
-        appVersionCode = 505
-        appVersionName = 'EExpPD-8.9.0'
+        appVersionCode = 506
+        appVersionName = 'EExpPD-8.9.1'
 
         appJavaCompatibility = JavaVersion.VERSION_1_8
 
