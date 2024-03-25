@@ -69,6 +69,14 @@ public class DamageEnhance extends Buff {
 		BuffIndicator.refreshHero(); //refresh the buff visually on-hit
 	}
 
+	public void set(long lvl, long eduration) {
+		dmgBonus = 1 + 0.2f * lvl;
+		duration = eduration;
+		initialDuration = duration;
+
+		BuffIndicator.refreshHero(); //refresh the buff visually on-hit
+	}
+
 	public void addTime( float time ){
 		duration += time;
 	}

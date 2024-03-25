@@ -93,6 +93,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHo
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfIcyTouch;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfToxicEssence;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfUltimatum;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.ExoticPotion;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCorrosiveGas;
@@ -350,7 +351,8 @@ public class Generator {
 					ElixirOfHoneyedHealing.class,
 					ElixirOfIcyTouch.class,
 					ElixirOfMight.class,
-					ElixirOfToxicEssence.class
+					ElixirOfToxicEssence.class,
+					ElixirOfUltimatum.class
 			};
 
 			BREWS.classes = new Class<?>[]{
