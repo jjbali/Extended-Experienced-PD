@@ -35,7 +35,13 @@ public class Galactic extends Weapon.Enchantment {
 
     private void generateEnchantments() {
         additional.clear();
-        int limit = Random.Int(3, 10) + 1;
+        int limit = 3;
+        //Increases chance of adding new enchantment.
+        for (int l = 0; l < Random.Int(1, 10) + 1; l++) {
+            if (Random.Float() < 0.10f) {
+                limit++;
+            }
+        }
         for (int i = 0; i < limit; i++) {
             Set<Class<? extends Weapon.Enchantment>> conflicts = incompatibles( false );
             Weapon.Enchantment enchantment = Weapon.Enchantment.random();
