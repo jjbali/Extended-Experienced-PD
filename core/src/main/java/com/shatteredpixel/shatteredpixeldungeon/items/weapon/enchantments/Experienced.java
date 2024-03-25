@@ -27,6 +27,7 @@ package com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments;
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.BlobImmunity;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.items.Ankh;
@@ -51,6 +52,10 @@ public class Experienced extends Weapon.Enchantment {
 		int level = (int) Math.max( 0, weapon.buffedLvl() );
 		if (Random.Int(2) == 0) {
 			Buff.affect(attacker, BlobImmunity.class, 10f);
+		}
+		if (Random.Int(10) == 0) {
+			Buff.affect(attacker, Barrier.class).setShield(attacker.HT);
+			GLog.p("You've been shielded with a 10% chance!");
 		}
 		if (Random.Int(14) == 0 && level >= 30) {
 			Dungeon.level.drop(Generator.random(Generator.Category.SCROLL).quantity(level/10 + 1L), attacker.pos).sprite.drop();
