@@ -205,7 +205,8 @@ public abstract class Recipe {
         new Vampirism.Recipe(),
         new RespawnBooster.Recipe(),
         new FireBooster.Recipe(),
-		new WandOfEarthblast.Recipe()
+		new WandOfEarthblast.Recipe(),
+		new ElixirOfUltimatum.Recipe()
 	};
 	
 	public static ArrayList<Recipe> findRecipes(ArrayList<Item> ingredients){

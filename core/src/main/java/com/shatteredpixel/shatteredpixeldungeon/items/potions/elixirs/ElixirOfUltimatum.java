@@ -47,14 +47,20 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Recharging;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.WellFed;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.effects.FloatingText;
+import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.TicketToArena;
 import com.shatteredpixel.shatteredpixeldungeon.items.TicketToFourthArena;
 import com.shatteredpixel.shatteredpixeldungeon.items.TicketToThirdArena;
 import com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.BasicFishingRod;
 import com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.TheTrueFishingRod;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.Cheese;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
+import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.LeveledTieredCard;
+import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfEarthblast;
+import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfFireblast;
+import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfLivingEarth;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
@@ -117,16 +123,48 @@ public class ElixirOfUltimatum extends Elixir {
 		return quantity * (50 + 40);
 	}
 	
-	public static class Recipe extends com.shatteredpixel.shatteredpixeldungeon.items.Recipe.SimpleRecipe {
-		
-		{
-			inputs =  new Class[]{TicketToArena.class, BasicFishingRod.class, ScrollOfUpgrade.class};
-			inQuantity = new int[]{10, 1, 100};
-			
-			cost = 1000;
-			
-			output = ElixirOfUltimatum.class;
-			outQuantity = 5;
+	public static class Recipe extends com.shatteredpixel.shatteredpixeldungeon.items.Recipe {
+
+		@Override
+		public boolean testIngredients(ArrayList<Item> ingredients) {
+			boolean ticket = false;
+			boolean ltieredcard = false;
+			boolean sou = false;
+
+			for (Item ingredient : ingredients){
+				if (ingredient.quantity() > 0) {
+					if (ingredient instanceof TicketToThirdArena) {
+						ticket = true;
+					} else if (ingredient instanceof LeveledTieredCard) {
+						ltieredcard = true;
+					} else if (ingredient instanceof ScrollOfUpgrade) {
+						sou = true;
+					}
+				}
+			}
+
+			return ticket && ltieredcard && sou;
+		}
+
+		@Override
+		public long cost(ArrayList<Item> ingredients) {
+			return 1000;
+		}
+
+		@Override
+		public Item brew(ArrayList<Item> ingredients) {
+			if (!testIngredients(ingredients)) return null;
+
+			for (Item ingredient : ingredients){
+				ingredient.quantity(ingredient.quantity() - 1);
+			}
+
+			return sampleOutput(null);
+		}
+
+		@Override
+		public Item sampleOutput(ArrayList<Item> ingredients) {
+			return new ElixirOfUltimatum().quantity(5);
 		}
 		
 	}

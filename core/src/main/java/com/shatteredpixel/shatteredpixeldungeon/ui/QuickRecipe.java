@@ -39,9 +39,11 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.ShockingBrew
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.ExoticPotion;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.Runestone;
+import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.LeveledTieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfEarthblast;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfFireblast;
@@ -355,7 +357,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new ElixirOfIcyTouch.Recipe()));
 				result.add(new QuickRecipe(new ElixirOfToxicEssence.Recipe()));
 				result.add(new QuickRecipe(new ElixirOfArcaneArmor.Recipe()));
-				result.add(new QuickRecipe(new ElixirOfUltimatum.Recipe()));
+				result.add(new QuickRecipe(new ElixirOfUltimatum.Recipe(), new ArrayList<>(Arrays.asList(new TicketToThirdArena(), new LeveledTieredCard(), new ScrollOfUpgrade())), new ElixirOfUltimatum().quantity(5)));
 				return result;
 			case 9:
 				result.add(new QuickRecipe(new TelekineticGrab.Recipe()));
@@ -374,6 +376,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new Vampirism.Recipe()));
 				result.add(new QuickRecipe(new RespawnBooster.Recipe()));
 				result.add(new QuickRecipe(new FireBooster.Recipe()));
+				result.add(new QuickRecipe(new Metamorph.Recipe()));
 				return result;
 		}
 	}
