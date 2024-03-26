@@ -1150,7 +1150,6 @@ public abstract class Mob extends Char {
 			ArrayList<Item> bonus = RingOfLuck.tryForBonusDrop(Dungeon.hero, rolls);
 			if (bonus != null && !bonus.isEmpty()) {
 				for (Item b : bonus) Dungeon.level.drop(b, pos).sprite.drop();
-				RingOfLuck.showFlareForBonusDrop(sprite);
 			}
 		}
 
