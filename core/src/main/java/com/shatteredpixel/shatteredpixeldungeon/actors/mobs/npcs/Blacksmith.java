@@ -346,7 +346,7 @@ public class Blacksmith extends NPC {
 
 		private static boolean alternative;
 		private static boolean given;
-		private static boolean completed;
+		public static boolean completed;
 		private static boolean reforged;
 
 		public static void reset() {

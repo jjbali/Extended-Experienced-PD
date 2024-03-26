@@ -73,6 +73,7 @@ import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Plant;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Swiftthistle;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
+import com.shatteredpixel.shatteredpixeldungeon.scenes.InterlevelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.tiles.CustomTilemap;
 import com.shatteredpixel.shatteredpixeldungeon.utils.BArray;
@@ -130,6 +131,8 @@ public abstract class Level implements Bundlable {
 	
 	public int entrance;
 	public int exit;
+	protected Group visuals;
+	protected Group wallVisuals;
 
 	public ArrayList<LevelTransition> transitions;
 
@@ -145,8 +148,6 @@ public abstract class Level implements Bundlable {
 	public HashSet<CustomTilemap> customWalls;
 	
 	protected ArrayList<Item> itemsToSpawn = new ArrayList<>();
-
-	protected Group visuals;
 	
 	public int color1 = 0x004400;
 	public int color2 = 0x88CC44;
@@ -636,6 +637,17 @@ public abstract class Level implements Bundlable {
 			}
 		}
 		return Math.round(count);
+	}
+
+	//for visual effects that should render above wall overhang tiles
+	public Group addWallVisuals(){
+		if (wallVisuals == null || wallVisuals.parent == null){
+			wallVisuals = new Group();
+		} else {
+			wallVisuals.clear();
+			wallVisuals.camera = null;
+		}
+		return wallVisuals;
 	}
 
 	public Mob findMob( int pos ){
@@ -1537,6 +1549,23 @@ public abstract class Level implements Bundlable {
 			default:
 				return Messages.get(Level.class, "default_name");
 		}
+	}
+
+	public boolean activateTransition(Hero hero, LevelTransition transition){
+		if (locked){
+			return false;
+		}
+
+		beforeTransition();
+		InterlevelScene.curTransition = transition;
+		if (transition.type == LevelTransition.Type.REGULAR_EXIT
+				|| transition.type == LevelTransition.Type.BRANCH_EXIT) {
+			InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
+		} else {
+			InterlevelScene.mode = InterlevelScene.Mode.ASCEND;
+		}
+		Game.switchScene(InterlevelScene.class);
+		return true;
 	}
 	
 	public String tileDesc( int tile ) {

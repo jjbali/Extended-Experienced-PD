@@ -32,6 +32,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.CavesPainter;
+import com.shatteredpixel.shatteredpixeldungeon.levels.painters.MiningLevelPainter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.CaveRoom;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -73,10 +74,10 @@ public class MiningLevel extends Level {
 	@Override
 	protected boolean build() {
 
-		setSize(124, 124);
+		setSize(128, 128);
 
 		CaveRoom c = new CaveRoom();
-		c.set(1, 1, 31, 31);
+		c.set(1, 1, 100, 100);
 		c.paint(this);
 
 		Painter.fill(this, 15, 15, 3, 3, Terrain.EMPTY);
@@ -91,7 +92,7 @@ public class MiningLevel extends Level {
 
 		map[entrance] = Terrain.ENTRANCE;
 
-		Painter painter = new CavesPainter()
+		Painter painter = new MiningLevelPainter().setGold(100)
 				.setWater(0.35f, 6)
 				.setGrass(0.10f, 3);
 

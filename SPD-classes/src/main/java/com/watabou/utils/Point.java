@@ -69,7 +69,13 @@ public class Point {
 		y += dy;
 		return this;
 	}
-	
+
+	public static float distance( Point a, Point b ) {
+		float dx = a.x - b.x;
+		float dy = a.y - b.y;
+		return (float)Math.sqrt( dx * dx + dy * dy );
+	}
+
 	public Point offset( Point d ) {
 		x += d.x;
 		y += d.y;

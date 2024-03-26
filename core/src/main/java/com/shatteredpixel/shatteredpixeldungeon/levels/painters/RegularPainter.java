@@ -53,6 +53,10 @@ public abstract class RegularPainter extends Painter {
 		waterSmoothness = smoothness;
 		return this;
 	}
+
+	protected int padding(Level level){
+		return level.feeling == Level.Feeling.CHASM ? 2 : 1;
+	}
 	
 	private float grassFill = 0f;
 	private int grassSmoothness;
