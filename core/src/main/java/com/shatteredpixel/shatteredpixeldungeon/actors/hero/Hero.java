@@ -1891,7 +1891,7 @@ public class Hero extends Char {
 			}
 		}
 
-		int neededExp = 75 + hero.lvl;
+		int neededExp = 75;
 
         if (totalExp >= neededExp && grinding){
 			int souCount = 0;
