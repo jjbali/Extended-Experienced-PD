@@ -196,21 +196,22 @@ public class ItemShopRoom extends SpecialRoom {
 
 	@Override
 	public int minWidth() {
-		return 15;
+		return 14;
+	}
+
+	@Override
+	public int minHeight() {
+		return 14;
 	}
 
 	@Override
 	public int maxWidth() {
-		return 15;
-	}
-	@Override
-	public int minHeight() {
-		return 15;
+		return 14;
 	}
 
 	@Override
 	public int maxHeight() {
-		return 15;
+		return 14;
 	}
 
 

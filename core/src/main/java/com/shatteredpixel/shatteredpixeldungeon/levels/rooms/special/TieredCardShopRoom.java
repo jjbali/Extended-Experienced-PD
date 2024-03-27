@@ -58,12 +58,12 @@ public class TieredCardShopRoom extends SpecialRoom {
 	
 	@Override
 	public int minWidth() {
-		return Math.max(9, (int)(Math.sqrt(itemCount())+3));
+		return Math.max(6, (int)(Math.sqrt(itemCount())+3));
 	}
 	
 	@Override
 	public int minHeight() {
-		return Math.max(9, (int)(Math.sqrt(itemCount())+3));
+		return Math.max(6, (int)(Math.sqrt(itemCount())+3));
 	}
 
 	public int itemCount(){

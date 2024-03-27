@@ -121,7 +121,7 @@ public abstract class RegularLevel extends Level {
 		//force max standard rooms and multiple by 1.5x for large levels
 		int standards = standardRooms(feeling == Feeling.LARGE);
 		if (feeling == Feeling.LARGE){
-			standards = (int)Math.ceil(standards * 1.5f);
+			standards = (int)Math.ceil(standards * 1.2f);
 		}
 		for (int i = 0; i < standards; i++) {
 			StandardRoom s;
@@ -190,7 +190,7 @@ public abstract class RegularLevel extends Level {
 	protected abstract Painter painter();
 	
 	protected int nTraps() {
-		return Random.NormalIntRange( 40, 60 + Dungeon.depth );
+		return Random.NormalIntRange( 40, 60 );
 	}
 	
 	protected Class<?>[] trapClasses(){
@@ -208,7 +208,7 @@ public abstract class RegularLevel extends Level {
 			else                            return 10;
 		}
 
-		int mobs = 100 + Dungeon.depth % 5 + Dungeon.getAdditionalMobs();
+		int mobs = 65 + Dungeon.depth % 5 + Dungeon.getAdditionalMobs();
 		if (feeling == Feeling.LARGE){
 			mobs = (int)Math.ceil(mobs * 1.33f);
 		}
@@ -218,7 +218,7 @@ public abstract class RegularLevel extends Level {
 	@Override
 	protected void createMobs() {
 		//on floor 1, 8 pre-set mobs are created so the player can get level 2.
-		int mobsToSpawn = Dungeon.depth == 1 ? 90 : mobLimit();
+		int mobsToSpawn = Dungeon.depth == 1 ? 30 : mobLimit();
 
 		ArrayList<Room> stdRooms = new ArrayList<>();
 		for (Room room : rooms) {
@@ -352,10 +352,10 @@ public abstract class RegularLevel extends Level {
 	protected void createItems() {
 		
 		// drops 7/9/12 items 60%/30%/10% of the time
-		int nItems = 6 + Random.chances(new float[]{6, 3, 1});
+		int nItems = 25 + Random.chances(new float[]{6, 3, 1});
 
 		if (feeling == Feeling.LARGE){
-			nItems += 2;
+			nItems *= 2;
 		}
 		
 		for (int i=0; i < nItems; i++) {
