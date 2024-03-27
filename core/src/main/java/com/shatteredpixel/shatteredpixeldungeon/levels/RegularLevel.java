@@ -55,6 +55,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.keys.Key;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Document;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Notes;
 import com.shatteredpixel.shatteredpixeldungeon.levels.builders.Builder;
+import com.shatteredpixel.shatteredpixeldungeon.levels.builders.ClumpyLoopBuilder;
 import com.shatteredpixel.shatteredpixeldungeon.levels.builders.FigureEightBuilder;
 import com.shatteredpixel.shatteredpixeldungeon.levels.builders.LineBuilder;
 import com.shatteredpixel.shatteredpixeldungeon.levels.builders.LoopBuilder;
@@ -96,11 +97,12 @@ public abstract class RegularLevel extends Level {
 	protected boolean build() {
 		
 		builder = builder();
-		//setSize(1000, 1000);
+		setSize(1000, 1000);
 		
 		ArrayList<Room> initRooms = initRooms();
 		roomList = initRooms;
 		Random.shuffle(initRooms);
+
 		do {
 			for (Room r : initRooms){
 				r.neigbours.clear();
@@ -174,17 +176,25 @@ public abstract class RegularLevel extends Level {
 	}
 
 	protected Builder builder(){
-		if (Random.Int(2) == 0){
+		int tryn = Random.Int(3);
+		if (tryn == 0){
 			return new LoopBuilder()
-					.setLoopShape( 10 ,
-							Random.Float(0f, 10f),
-							Random.Float(0f, 10f));
-		} else {
-			return new FigureEightBuilder()
-					.setLoopShape( 10 ,
-							Random.Float(0.3f, 10f),
-							Random.Float(0.3f, 10f));
+					.setLoopShape( 3 ,
+							Random.Float(0f, 0.9f),
+							Random.Float(0f, 0.7f));
 		}
+		else if (tryn == 1){
+			return new FigureEightBuilder()
+					.setLoopShape( 3 ,
+							Random.Float(0.2f, 1.5f),
+							0f);
+		} else if (tryn == 2){
+			return new ClumpyLoopBuilder()
+					.setLoopShape( 3 ,
+							Random.Float(0f, 0.4f),
+							Random.Float(0f, 0.6f));
+		}
+		return null;
 	}
 	
 	protected abstract Painter painter();
