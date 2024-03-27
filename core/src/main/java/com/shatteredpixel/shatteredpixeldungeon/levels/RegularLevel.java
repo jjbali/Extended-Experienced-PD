@@ -39,7 +39,6 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Statue;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Ghost;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
@@ -67,15 +66,9 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.ItemShopRoo
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.MagicalFireRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.ModuleShopRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.PitRoom;
-import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.PotionShopRoom;
-import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.RingShopRoom;
-import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.ScrollShopRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.ShopRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.SpecialRoom;
-import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.SpellShopRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.TieredCardShopRoom;
-import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.TippedAndBombShopRoom;
-import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.WandShopRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.EntranceRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.ExitRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.StandardRoom;
@@ -103,7 +96,7 @@ public abstract class RegularLevel extends Level {
 	protected boolean build() {
 		
 		builder = builder();
-		setSize(200, 200);
+		setSize(128, 128);
 		
 		ArrayList<Room> initRooms = initRooms();
 		roomList = initRooms;
@@ -142,21 +135,8 @@ public abstract class RegularLevel extends Level {
 		if (Dungeon.shopOnLevel())
 			initRooms.add(new ShopRoom());
 
-		int shop = Random.Int(6);
-
-		if (Dungeon.shopOnLevel2() && AdditionItem.streak_a >= 10 && shop == 0)
-			initRooms.add(new PotionShopRoom());
-		if (Dungeon.shopOnLevel2() && AdditionItem.streak_a >= 10 && shop == 1)
-			initRooms.add(new ScrollShopRoom());
-		if (Dungeon.shopOnLevel2() && AdditionItem.streak_a >= 10 && shop == 2)
-			initRooms.add(new RingShopRoom());
-		if (Dungeon.shopOnLevel2() && AdditionItem.streak_a >= 10 && shop == 3)
-			initRooms.add(new SpellShopRoom());
-		if (Dungeon.shopOnLevel2() && AdditionItem.streak_a >= 10 && shop == 4)
-			initRooms.add(new TippedAndBombShopRoom());
-		if (Dungeon.shopOnLevel2() && AdditionItem.streak_a >= 10 && shop == 5)
-			initRooms.add(new WandShopRoom());
-
+		if (Dungeon.shopOnLevel2() && AdditionItem.streak_a >= 10)
+			initRooms.add(new ItemShopRoom());
 
 		if (Dungeon.shopOnLevel3() && SubtractionItem.streak_b >= 10)
 			initRooms.add(new ModuleShopRoom());
@@ -196,14 +176,14 @@ public abstract class RegularLevel extends Level {
 	protected Builder builder(){
 		if (Random.Int(2) == 0){
 			return new LoopBuilder()
-					.setLoopShape( 10 ,
-							Random.Float(0f, 10f),
-							Random.Float(0f, 10f));
+					.setLoopShape( 2 ,
+							Random.Float(0f, 0.65f),
+							Random.Float(0f, 0.50f));
 		} else {
 			return new FigureEightBuilder()
-					.setLoopShape( 10 ,
-							Random.Float(0.3f, 10f),
-							Random.Float(0.3f, 10f));
+					.setLoopShape( 2 ,
+							Random.Float(0.3f, 0.8f),
+							0f);
 		}
 	}
 	
