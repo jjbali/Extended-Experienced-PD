@@ -96,7 +96,7 @@ public abstract class RegularLevel extends Level {
 	protected boolean build() {
 		
 		builder = builder();
-		setSize(128, 128);
+		//setSize(1000, 1000);
 		
 		ArrayList<Room> initRooms = initRooms();
 		roomList = initRooms;
