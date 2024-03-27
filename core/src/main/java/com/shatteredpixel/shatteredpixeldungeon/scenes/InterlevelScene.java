@@ -344,8 +344,8 @@ public class InterlevelScene extends PixelScene {
 				} );
 				thread = null;
 				error = null;
-			} else if (thread != null && (int)waitingTime == 60){
-				waitingTime = 61f;
+			} else if (thread != null && (int)waitingTime == 10){
+				waitingTime = 11f;
 				String s = "";
 				for (StackTraceElement t : thread.getStackTrace()){
 					s += "\n";
