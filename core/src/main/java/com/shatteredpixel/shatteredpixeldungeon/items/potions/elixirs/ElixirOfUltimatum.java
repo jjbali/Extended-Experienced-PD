@@ -56,6 +56,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.TheTrueFishing
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Cheese;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.LeveledTieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfEarthblast;
@@ -103,6 +104,7 @@ public class ElixirOfUltimatum extends Elixir {
 		Buff.affect(hero, RageShield.class).set(500 * hero.lvl);
 		Buff.affect(hero, Recharging.class, 1000f * hero.lvl);
 		Buff.affect(hero, WellFed.class).reset();
+		Buff.affect(hero, PotionOfCleansing.Cleanse.class, 260f * hero.lvl);
 		for (int i = 0; i < 50; i++) {
 			hero.STR++;
 		}
