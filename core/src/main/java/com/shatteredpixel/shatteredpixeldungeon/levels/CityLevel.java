@@ -57,7 +57,7 @@ public class CityLevel extends RegularLevel {
 	@Override
 	protected int standardRooms(boolean forceMax) {
 		//6 to 8, average 7
-		return 35;
+		return 24;
 	}
 
 	@Override

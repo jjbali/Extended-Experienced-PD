@@ -290,7 +290,7 @@ public class AdditionItem extends Questionnaire {
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
                 + "\n- (0) Damage +1"
-                + "\n- (10) Item Shop available [reset if streak >= 10]"
+                + "\n- (10) Random Shop available [reset if streak >= 10]"
                 + "\n- (30) Storm Bomb available [reset if streak >= 30]";
     }
     private String STREAKS = "STREAKS";
