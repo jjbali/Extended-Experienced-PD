@@ -172,18 +172,18 @@ public abstract class RegularLevel extends Level {
 	protected int specialRooms(boolean forceMax){
 		return 0;
 	}
-	
+
 	protected Builder builder(){
 		if (Random.Int(2) == 0){
 			return new LoopBuilder()
-					.setLoopShape( 2 ,
-							Random.Float(0f, 0.65f),
-							Random.Float(0f, 0.50f));
+					.setLoopShape( 10 ,
+							Random.Float(0f, 10f),
+							Random.Float(0f, 10f));
 		} else {
 			return new FigureEightBuilder()
-					.setLoopShape( 2 ,
-							Random.Float(0.3f, 0.8f),
-							0f);
+					.setLoopShape( 10 ,
+							Random.Float(0.3f, 10f),
+							Random.Float(0.3f, 10f));
 		}
 	}
 	
