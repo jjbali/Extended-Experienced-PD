@@ -1143,10 +1143,10 @@ public abstract class Mob extends Char {
 		}
 		 */
 
-		if (Ring.getBuffedBonus(Dungeon.hero, RingOfLuck.Wealth.class) > 0) {
-			int rolls = 1;
-			if (properties.contains(Property.BOSS)) rolls = 15;
-			else if (properties.contains(Property.MINIBOSS)) rolls = 5;
+		if (Ring.getBonus(hero, RingOfLuck.Wealth.class) > 0) {
+			int rolls = 5 * Ring.getBonus(hero, RingOfLuck.Wealth.class);
+			if (properties.contains(Property.BOSS)) rolls = 20 * Ring.getBonus(hero, RingOfLuck.Wealth.class);
+			else if (properties.contains(Property.MINIBOSS)) rolls = 10 * Ring.getBonus(hero, RingOfLuck.Wealth.class);
 			ArrayList<Item> bonus = RingOfLuck.tryForBonusDrop(Dungeon.hero, rolls);
 			if (bonus != null && !bonus.isEmpty()) {
 				for (Item b : bonus) Dungeon.level.drop(b, pos).sprite.drop();

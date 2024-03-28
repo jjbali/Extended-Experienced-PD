@@ -54,7 +54,7 @@ public class RingOfLuck extends Ring {
 
 	public String statsInfo() {
 		if (isIdentified()){
-			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (soloBonus() - 1f)));
+			return Messages.get(this, "stats", new DecimalFormat("#.##").format(100f * (soloBonus()/10f)));
 		} else {
 			return Messages.get(this, "typical_stats", new DecimalFormat("#.##").format(20f));
 		}
