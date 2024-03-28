@@ -85,7 +85,7 @@ public class Chasm implements Hero.Doom {
 
 							@Override
 							protected boolean enabled(int index) {
-								if (index == 0 && Dungeon.depth > 26)
+								if (index == 0 && (Dungeon.depth > 26 || Dungeon.bossLevel()))
 									return false;
 								return super.enabled(index);
 							}
