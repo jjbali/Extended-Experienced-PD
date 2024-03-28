@@ -130,7 +130,7 @@ public class Galactic extends Weapon.Enchantment {
 
     @Override
     public String desc() {
-        return super.desc() + "\n" + ListUtils.join( additional, "\n", Weapon.Enchantment::desc ) + "\n\n_From TCPD, enchantment variation_";
+        return super.desc() + "\n\n_From TCPD, enchantment variation_";
     }
 
     @Override
