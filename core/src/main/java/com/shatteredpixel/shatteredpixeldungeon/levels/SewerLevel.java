@@ -31,6 +31,8 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Ripple;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.SewerPainter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.Room;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.DemonSpawnerRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.RatSpawnerRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.traps.*;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -43,6 +45,8 @@ import com.watabou.noosa.particles.PixelParticle;
 import com.watabou.utils.ColorMath;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
+
+import java.util.ArrayList;
 
 public class SewerLevel extends RegularLevel {
 
@@ -197,6 +201,15 @@ public class SewerLevel extends RegularLevel {
 			default:
 				return super.tileDesc( tile );
 		}
+	}
+
+	@Override
+	protected ArrayList<Room> initRooms() {
+		ArrayList<Room> rooms = super.initRooms();
+
+		rooms.add(new RatSpawnerRoom());
+
+		return rooms;
 	}
 	
 	private static class Sink extends Emitter {

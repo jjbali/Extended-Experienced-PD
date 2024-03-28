@@ -86,4 +86,18 @@ public class SpawnerSprite extends MobSprite {
 			super.bloodBurstA(from, damage);
 		}
 	}
+
+	public static class RatSpawner extends SpawnerSprite {
+
+		public RatSpawner(){
+			super();
+			tint(0.2f, 0.5f, 0.4f, 0.4f);
+		}
+
+		@Override
+		public void resetColor() {
+			super.resetColor();
+			tint(0.2f, 0.5f, 0.4f, 0.4f);
+		}
+	}
 }
