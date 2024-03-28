@@ -73,14 +73,12 @@ public class HallsLevel extends RegularLevel {
 
 	@Override
 	protected int standardRooms(boolean forceMax) {
-		//8 to 9, average 8.33
-		return 35;
+		return Random.Int(15, 25) + 1;
 	}
 
 	@Override
 	protected int specialRooms(boolean forceMax) {
-		//2 to 3, average 2.5
-		return 10;
+		return Random.Int(5, 10) + 1;
 	}
 	
 	@Override

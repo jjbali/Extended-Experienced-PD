@@ -60,14 +60,12 @@ public class SewerLevel extends RegularLevel {
 
 	@Override
 	protected int standardRooms(boolean forceMax) {
-		//4 to 6, average 5
-		return 35;
+		return Random.Int(15, 25) + 1;
 	}
 	
 	@Override
 	protected int specialRooms(boolean forceMax) {
-		//1 to 2, average 1.8
-		return 10;
+		return Random.Int(5, 10) + 1;
 	}
 	
 	@Override
