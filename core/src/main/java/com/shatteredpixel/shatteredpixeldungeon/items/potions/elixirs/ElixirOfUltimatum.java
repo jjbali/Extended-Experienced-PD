@@ -137,7 +137,7 @@ public class ElixirOfUltimatum extends Elixir {
 				if (ingredient.quantity() > 0) {
 					if (ingredient instanceof TicketToThirdArena) {
 						ticket = true;
-					} else if (ingredient instanceof LeveledTieredCard) {
+					} else if (ingredient instanceof PotionOfStrength) {
 						ltieredcard = true;
 					} else if (ingredient instanceof ScrollOfUpgrade) {
 						sou = true;

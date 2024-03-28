@@ -32,6 +32,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.bombs.Bomb;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.BlizzardBrew;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.CausticBrew;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.brews.InfernalBrew;
@@ -357,7 +358,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new ElixirOfIcyTouch.Recipe()));
 				result.add(new QuickRecipe(new ElixirOfToxicEssence.Recipe()));
 				result.add(new QuickRecipe(new ElixirOfArcaneArmor.Recipe()));
-				result.add(new QuickRecipe(new ElixirOfUltimatum.Recipe(), new ArrayList<>(Arrays.asList(new TicketToThirdArena(), new LeveledTieredCard(), new ScrollOfUpgrade())), new ElixirOfUltimatum().quantity(5)));
+				result.add(new QuickRecipe(new ElixirOfUltimatum.Recipe(), new ArrayList<>(Arrays.asList(new TicketToThirdArena(), new PotionOfStrength(), new ScrollOfUpgrade())), new ElixirOfUltimatum().quantity(5)));
 				return result;
 			case 9:
 				result.add(new QuickRecipe(new TelekineticGrab.Recipe()));
