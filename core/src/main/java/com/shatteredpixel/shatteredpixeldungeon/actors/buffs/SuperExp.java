@@ -57,7 +57,7 @@ public class SuperExp extends Buff {
 
 	@Override
 	public boolean act() {
-		multiplier += 0.01f;
+		multiplier += 0.001f;
 		spend(1f);
 		return true;
 	}
