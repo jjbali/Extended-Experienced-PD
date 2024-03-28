@@ -32,7 +32,10 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.DamageEnhance;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite.Glowing;
+<<<<<<< HEAD
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
+=======
+>>>>>>> origin/master
 
 public class Tiered extends Weapon.Enchantment {
 	//TODO make this available for a time.
@@ -43,7 +46,10 @@ public class Tiered extends Weapon.Enchantment {
 		//int level = (int) Math.max( 0, weapon.buffedLvl() );
 		if (Dungeon.Int(100) == 0) {
 			weapon.tier++;
+<<<<<<< HEAD
 			GLog.h("Your weapon's tier has been increased!");
+=======
+>>>>>>> origin/master
 		} else {
 			Buff.affect(attacker, BlobImmunity.class, 3f);
 			Buff.affect(attacker, PotionOfCleansing.Cleanse.class, 3f);
