@@ -47,6 +47,7 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.Room;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.MassGraveRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.RotGardenRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.exspawners.NecromancerSpawnerRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.RitualSiteRoom;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Rotberry;
@@ -458,6 +459,7 @@ public class Wandmaker extends NPC {
 				PsycheChest.questDepth = -1;
 				
 			}
+			rooms.add(new NecromancerSpawnerRoom());
 			return rooms;
 		}
 		
