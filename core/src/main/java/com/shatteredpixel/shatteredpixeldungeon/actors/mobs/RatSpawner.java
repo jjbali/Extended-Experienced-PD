@@ -37,6 +37,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Vertigo;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Pushing;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfMindVision;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Notes;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -61,7 +62,7 @@ public class RatSpawner extends Mob {
 
 		state = PASSIVE;
 
-		loot = PotionOfMindVision.class;
+		loot = ScrollOfUpgrade.class;
 		lootChance = 1f;
 
 		properties.add(Property.IMMOVABLE);
@@ -113,14 +114,8 @@ public class RatSpawner extends Mob {
 
 	private float spawnCooldown = 0;
 
-	public boolean spawnRecorded = false;
-
 	@Override
 	protected boolean act() {
-		if (!spawnRecorded){
-			Statistics.spawnersAlive++;
-			spawnRecorded = true;
-		}
 
 		if (Dungeon.hero.buff(AscensionChallenge.class) != null && spawnCooldown > 20){
 			spawnCooldown = 20;
@@ -163,7 +158,7 @@ public class RatSpawner extends Mob {
 
 	@Override
 	public void damage(long dmg, Object src) {
-		if (dmg >= 100 + Dungeon.cycle * 300 && Dungeon.cycle < 2){
+		if (dmg >= 50 + Dungeon.cycle * 300L && Dungeon.cycle < 2){
 			//halves the damage taken
 			dmg /= 2;
 		}
@@ -178,20 +173,17 @@ public class RatSpawner extends Mob {
 	}
 
 	public static final String SPAWN_COOLDOWN = "spawn_cooldown";
-	public static final String SPAWN_RECORDED = "spawn_recorded";
 
 	@Override
 	public void storeInBundle(Bundle bundle) {
 		super.storeInBundle(bundle);
 		bundle.put(SPAWN_COOLDOWN, spawnCooldown);
-		bundle.put(SPAWN_RECORDED, spawnRecorded);
 	}
 
 	@Override
 	public void restoreFromBundle(Bundle bundle) {
 		super.restoreFromBundle(bundle);
 		spawnCooldown = bundle.getFloat(SPAWN_COOLDOWN);
-		spawnRecorded = bundle.getBoolean(SPAWN_RECORDED);
 	}
 
 	{
