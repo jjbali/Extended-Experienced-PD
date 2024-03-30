@@ -71,6 +71,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMappi
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfChallenge;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfTheWinds;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfBlastWave;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfLivingEarth;
@@ -844,49 +845,10 @@ public class Hero extends Char {
 		if( isSubclass(HeroSubClass.WARDEN) && Dungeon.level.map[pos] == Terrain.FURROWED_GRASS){
 			Buff.affect(this, Barkskin.class).set( lvl + 5, 1 );
 		}
-		/*
-		if(Dungeon.isChallenged(LUCK_IN) && Random.Float() < 0.10f) {
-			int D = Random.Int(12);
-			switch (D) {
-				case 0: default:
-					Buff.prolong(this, Blindness.class, 2f);
-					break;
-				case 1:
-					Buff.affect(this, Burning.class).reignite(this, 2f);
-					break;
-				case 2:
-					Buff.affect(this, Corrosion.class).set(2f, 3);
-					break;
-				case 3:
-					Buff.prolong(this, Cripple.class, 2f);
-					break;
-				case 4:
-					Buff.prolong(this, Degrade.class, 2f);
-					break;
-				case 5:
-					Buff.prolong(this, Frost.class, 2f);
-					break;
-				case 6:
-					Buff.prolong(this, Hex.class, 2f);
-					break;
-				case 7:
-					Buff.prolong(this, Paralysis.class, 2f);
-					break;
-				case 8:
-					Buff.affect(this, Poison.class).set(2f);
-					break;
-				case 9:
-					Buff.prolong(this, Vulnerable.class, 2f);
-					break;
-				case 10:
-					Buff.prolong(this, Weakness.class, 2f);
-					break;
-				case 11:
-					Buff.prolong(this, Vertigo.class, 2f);
-					break;
-			}
+
+		if (belongings.getItem(TotemOfTheWinds.class) != null && buff(Haste.class) == null) {
+			Buff.affect(hero, Haste.class, 5f);
 		}
-		 */
 		
 		return actResult;
 	}
