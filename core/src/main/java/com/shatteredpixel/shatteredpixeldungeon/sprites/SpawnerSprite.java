@@ -100,4 +100,18 @@ public class SpawnerSprite extends MobSprite {
 			tint(0.2f, 0.5f, 0.4f, 0.4f);
 		}
 	}
+
+	public static class NecromancerSpawner extends SpawnerSprite {
+
+		public NecromancerSpawner(){
+			super();
+			tint(0.0f, 0.5f, 0.6f, 0.4f);
+		}
+
+		@Override
+		public void resetColor() {
+			super.resetColor();
+			tint(0.0f, 0.5f, 0.6f, 0.4f);
+		}
+	}
 }
