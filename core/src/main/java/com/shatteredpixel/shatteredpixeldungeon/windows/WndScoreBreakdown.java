@@ -53,19 +53,19 @@ public class WndScoreBreakdown extends Window {
 					num.format(Statistics.progressScore), pos, Statistics.progressScore >= 8_000_000);
 			pos = addInfo(this, Messages.get(this, "progress_desc"), pos);
 			pos = statSlot(this, Messages.get(this, "treasure_title"),
-					num.format(Statistics.treasureScore), pos, Statistics.treasureScore >= 1_000_000);
+					num.format(Statistics.treasureScore), pos, Statistics.treasureScore >= 8_000_000);
 			pos = addInfo(this, Messages.get(this, "treasure_desc"), pos);
 			pos = statSlot(this, Messages.get(this, "explore_title"),
-					num.format(Statistics.exploreScore), pos, Statistics.exploreScore >= 20_000);
+					num.format(Statistics.exploreScore), pos, Statistics.exploreScore >= 1_000_000);
 			pos = addInfo(this, Messages.get(this, "explore_desc"), pos);
 			pos = statSlot(this, Messages.get(this, "bosses_title"),
-					num.format(Statistics.totalBossScore), pos, Statistics.totalBossScore >= 15_000);
+					num.format(Statistics.totalBossScore), pos, Statistics.totalBossScore >= 1_000_000);
 			pos = addInfo(this, Messages.get(this, "bosses_desc"), pos);
 			pos = statSlot(this, Messages.get(this, "quests_title"),
-					num.format(Statistics.totalQuestScore), pos, Statistics.totalQuestScore >= 10_000);
+					num.format(Statistics.totalQuestScore), pos, Statistics.totalQuestScore >= 1_000_000);
 			pos = addInfo(this, Messages.get(this, "quests_desc"), pos);
 			pos = statSlot(this, Messages.get(this, "answered_questions"),
-					num.format(Statistics.answeredQuestions), pos, Statistics.answeredQuestions >= 500_000);
+					num.format(Statistics.answeredQuestions), pos, Statistics.answeredQuestions >= 1_000_000);
 			pos = addInfo(this, Messages.get(this, "answ_desc"), pos);
 		} else {
 			pos = statSlot(this, Messages.get(this, "progress_title"),

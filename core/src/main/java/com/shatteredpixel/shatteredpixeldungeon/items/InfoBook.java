@@ -134,6 +134,7 @@ public class InfoBook extends Item{
                 + "\nTreasure Score: " + Statistics.treasureScore
                 + "\nExplore Score: " + Statistics.exploreScore
                 + "\nAnswered Questions: " + Statistics.answeredQuestions
+                + "\nStreak Multiplier: " + Statistics.streakMultiplier
                 + "\nEnemies Slain: " + Statistics.enemiesSlain
                 + "\nItems Crafted: " + Statistics.itemsCrafted
                 + "\nFood Eaten: " + Statistics.foodEaten

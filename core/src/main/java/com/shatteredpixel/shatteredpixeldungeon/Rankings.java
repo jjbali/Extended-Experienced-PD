@@ -178,7 +178,7 @@ public enum Rankings {
 	public long calculateScore(){
 
 		if (Dungeon.initialVersion > 453){
-			Statistics.progressScore = Dungeon.hero.lvl * Statistics.deepestFloor * 25;
+			Statistics.progressScore = Dungeon.hero.lvl * Statistics.deepestFloor * 500;
 			Statistics.progressScore = Math.min(Statistics.progressScore, 8_000_000);
 
 			if (Statistics.heldItemValue == 0) {
@@ -191,7 +191,7 @@ public enum Rankings {
 				}
 			}
 			Statistics.treasureScore = Statistics.goldCollected + Statistics.heldItemValue;
-			Statistics.treasureScore = Math.min(Statistics.treasureScore, 1_000_000);
+			Statistics.treasureScore = Math.min(Statistics.treasureScore, 8_000_000);
 
 			Statistics.exploreScore = 0;
 			int scorePerFloor = Statistics.floorsExplored.size * 1500;
@@ -217,12 +217,11 @@ public enum Rankings {
 
 			Statistics.winMultiplier = 1f;
 			Statistics.streakMultiplier = 1f;
-			if (Statistics.gameWon) Statistics.streakMultiplier += 0.001f * (AdditionItem.streak_a + SubtractionItem.streak_b
+			if (Statistics.gameWon) 		Statistics.streakMultiplier += 0.001f * (AdditionItem.streak_a + SubtractionItem.streak_b
 					+ MultiplicationItem.streak_c + DivisionItem.streak_d
 					+ MixedOperationItem.streak_f + OddEvenItem.streak_g
 					+ ExponentialItem.streak_e + RectangularItem.streak_j
 					+ BinaryItem.streak_i + DivisibilityItem.streak_h);
-
 			if (Statistics.gameWon)         Statistics.winMultiplier += 0.7f;
 			if (Statistics.ascended)        Statistics.winMultiplier += 0.3f;
 
