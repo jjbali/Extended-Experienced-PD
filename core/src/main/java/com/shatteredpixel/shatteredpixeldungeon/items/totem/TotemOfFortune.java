@@ -1,15 +1,19 @@
 package com.shatteredpixel.shatteredpixeldungeon.items.totem;
 
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.FlavourBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
+import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
+import com.watabou.noosa.Image;
 
 import java.util.ArrayList;
 
-public class Totem extends Item {
+public class TotemOfFortune extends Totem {
 
     {
-        image = ItemSpriteSheet.NONE_TOTEM;
+        image = ItemSpriteSheet.FORTUNE;
     }
 
     @Override
@@ -22,21 +26,18 @@ public class Totem extends Item {
 
     @Override
     public boolean doPickUp(Hero hero) {
+        Buff.affect(hero, FortuneBuff.class);
         return doPickUp( hero, hero.pos );
     }
 
     @Override
     public void doDrop( Hero hero ) {
+        Buff.detach(hero, FortuneBuff.class);
         super.doDrop(hero);
     }
 
     @Override
     public void onDetach(){}
-
-    @Override
-    public boolean isUpgradable() {
-        return false;
-    }
 
     @Override
     public void onHeroGainExp( float levelPercent, Hero hero ){
@@ -45,10 +46,21 @@ public class Totem extends Item {
 
     @Override
     public String name() {
-        return "Totem";
+        return "Totem of Fortune";
     }
     @Override
     public String desc() {
-        return "A plain totem. Has no effects. Can be imbued with an effect through alchemy.";
+        return "This golden totem grants you great wealth and fortune. While in your inventory, you'll get twice as much gold as you normally would, shops offer a discount, but you'll deal less damage.";
+    }
+
+    public static class FortuneBuff extends FlavourBuff {
+        {
+            type = buffType.POSITIVE;
+        }
+
+        @Override
+        public int icon() {
+            return BuffIndicator.NONE;
+        }
     }
 }
