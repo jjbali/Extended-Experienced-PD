@@ -199,7 +199,7 @@ public enum Rankings {
 				if (b) Statistics.exploreScore += scorePerFloor;
 			}
 
-			Statistics.answeredQuestions += AdditionItem.totalAnswers_a + SubtractionItem.totalAnswers_b
+			Statistics.answeredQuestions = AdditionItem.totalAnswers_a + SubtractionItem.totalAnswers_b
 											+ MultiplicationItem.totalAnswers_c + DivisionItem.totalAnswers_d
 											+ MixedOperationItem.totalAnswers_f + OddEvenItem.totalAnswers_g
 											+ ExponentialItem.totalAnswers_e + RectangularItem.totalAnswers_j
