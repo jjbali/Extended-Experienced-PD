@@ -997,10 +997,13 @@ public class ItemSpriteSheet {
 	public static final int FORTUNE			= TOTEM+0;
 	public static final int NONE_TOTEM			= TOTEM+1;
 	public static final int THE_WINDS			= TOTEM+2;
+	public static final int FIRE			= TOTEM+3;
+	public static final int ICE			= TOTEM+4;
 	static{
 		assignItemRect(FORTUNE			, 8, 16);
 		assignItemRect(NONE_TOTEM			, 8, 16);
 		assignItemRect(THE_WINDS			, 8, 16);
+		assignItemRect(ICE			, 8, 16);
 	}
 
 	//for smaller 8x8 icons that often accompany an item sprite

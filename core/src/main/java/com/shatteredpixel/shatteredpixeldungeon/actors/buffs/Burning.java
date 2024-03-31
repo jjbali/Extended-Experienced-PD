@@ -24,6 +24,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.buffs;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
+
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
@@ -41,6 +43,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.food.ChargrilledMeat;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.FrozenCarpaccio;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.MysteryMeat;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
@@ -97,12 +100,19 @@ public class Burning extends Buff implements Hero.Doom {
 			long damage = Math.round(Dungeon.NormalLongRange( 1, 3 + Dungeon.scalingDepth()/4 )*Dungeon.fireDamage);
 			Buff.detach( target, Chill.class);
 
+
+
 			if (target instanceof Hero && target.buff(TimekeepersHourglass.timeStasis.class) == null) {
 				
 				Hero hero = (Hero)target;
 
+				if (hero.buff(TotemOfIce.IceBuff.class) != null) {
+					damage *= 2;
+				}
 				hero.damage( damage, this );
 				burnIncrement++;
+
+
 
 				//at 4+ turns, there is a (turns-3)/3 chance an item burns
 				if (Random.Int(3) < (burnIncrement - 3)){

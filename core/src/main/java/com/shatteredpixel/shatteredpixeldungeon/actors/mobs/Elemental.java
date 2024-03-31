@@ -43,6 +43,8 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlam
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.Embers;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.CursedWand;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Shocking;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
@@ -188,6 +190,22 @@ public abstract class Elemental extends Mob {
 	public long attackProc( Char enemy, long damage ) {
 		damage = super.attackProc( enemy, damage );
 		meleeProc( enemy, damage );
+
+		if (enemy == Dungeon.hero && Dungeon.hero.buff(TotemOfFire.FireBuff.class) != null && this instanceof FrostElemental) {
+			damage *= 1.5f;
+		}
+
+		if (enemy == Dungeon.hero && Dungeon.hero.buff(TotemOfIce.IceBuff.class) != null && this instanceof FireElemental) {
+			damage *= 1.5f;
+		}
+
+		if (enemy == Dungeon.hero && Dungeon.hero.buff(TotemOfFire.FireBuff.class) != null && this instanceof FireElemental) {
+			damage *= 0;
+		}
+
+		if (enemy == Dungeon.hero && Dungeon.hero.buff(TotemOfIce.IceBuff.class) != null && this instanceof FrostElemental) {
+			damage *= 0;
+		}
 		
 		return damage;
 	}

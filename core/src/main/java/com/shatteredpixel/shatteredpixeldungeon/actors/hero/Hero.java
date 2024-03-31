@@ -71,6 +71,8 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMappi
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfChallenge;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfTheWinds;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfBlastWave;
@@ -2273,6 +2275,13 @@ public class Hero extends Char {
 		if (effect == Burning.class
 				&& belongings.armor() != null
 				&& belongings.armor().hasGlyph(Brimstone.class, this)){
+			return true;
+		}
+		if (effect == Burning.class && this.buff(TotemOfFire.FireBuff.class) != null) {
+			return true;
+		}
+
+		if ((effect == Frost.class || effect == Chill.class) && this.buff(TotemOfIce.IceBuff.class) != null) {
 			return true;
 		}
 		return super.isImmune(effect);
