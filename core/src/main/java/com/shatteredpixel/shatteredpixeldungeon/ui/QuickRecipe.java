@@ -45,6 +45,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScrol
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.Runestone;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.LeveledTieredCard;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.Totem;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFortune;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
@@ -383,6 +384,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new FireBooster.Recipe()));
 				result.add(new QuickRecipe(new Metamorph.Recipe()));
 				result.add(null);
+				result.add(new QuickRecipe(new Totem.Recipe()));
 				result.add(new QuickRecipe(new TotemOfFire.Recipe()));
 				result.add(new QuickRecipe(new TotemOfIce.Recipe()));
 				result.add(new QuickRecipe(new TotemOfFortune.Recipe()));
