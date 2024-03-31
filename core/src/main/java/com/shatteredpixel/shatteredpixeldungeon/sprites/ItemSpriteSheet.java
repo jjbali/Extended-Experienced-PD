@@ -1003,6 +1003,7 @@ public class ItemSpriteSheet {
 		assignItemRect(FORTUNE			, 8, 16);
 		assignItemRect(NONE_TOTEM			, 8, 16);
 		assignItemRect(THE_WINDS			, 8, 16);
+		assignItemRect(FIRE			, 8, 16);
 		assignItemRect(ICE			, 8, 16);
 	}
 

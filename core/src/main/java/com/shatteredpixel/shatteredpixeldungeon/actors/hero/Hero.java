@@ -2277,11 +2277,13 @@ public class Hero extends Char {
 				&& belongings.armor().hasGlyph(Brimstone.class, this)){
 			return true;
 		}
-		if (effect == Burning.class && this.buff(TotemOfFire.FireBuff.class) != null) {
+		if (effect == Burning.class && hero.buff(TotemOfFire.FireBuff.class) != null) {
 			return true;
 		}
-
-		if ((effect == Frost.class || effect == Chill.class) && this.buff(TotemOfIce.IceBuff.class) != null) {
+		if (effect == Frost.class && hero.buff(TotemOfIce.IceBuff.class) != null) {
+			return true;
+		}
+		if (effect == Chill.class && hero.buff(TotemOfIce.IceBuff.class) != null) {
 			return true;
 		}
 		return super.isImmune(effect);
