@@ -403,27 +403,27 @@ public class Badges {
 	public static void validateGoldCollected() {
 		Badge badge = null;
 		
-		if (!local.contains( Badge.GOLD_COLLECTED_1 ) && Statistics.goldCollected >= 1000000) {
+		if (!local.contains( Badge.GOLD_COLLECTED_1 ) && Statistics.goldCollected >= 1000000L) {
 			if (badge != null) unlock(badge);
 			badge = Badge.GOLD_COLLECTED_1;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.GOLD_COLLECTED_2 ) && Statistics.goldCollected >= 2500000) {
+		if (!local.contains( Badge.GOLD_COLLECTED_2 ) && Statistics.goldCollected >= 200500000L) {
 			if (badge != null) unlock(badge);
 			badge = Badge.GOLD_COLLECTED_2;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.GOLD_COLLECTED_3 ) && Statistics.goldCollected >= 7500000) {
+		if (!local.contains( Badge.GOLD_COLLECTED_3 ) && Statistics.goldCollected >= 1700500000L) {
 			if (badge != null) unlock(badge);
 			badge = Badge.GOLD_COLLECTED_3;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.GOLD_COLLECTED_4 ) && Statistics.goldCollected >= 15000000) {
+		if (!local.contains( Badge.GOLD_COLLECTED_4 ) && Statistics.goldCollected >= 500700500000L) {
 			if (badge != null) unlock(badge);
 			badge = Badge.GOLD_COLLECTED_4;
 			local.add( badge );
 		}
-		if (!local.contains( Badge.GOLD_COLLECTED_5 ) && Statistics.goldCollected >= Integer.MAX_VALUE) {
+		if (!local.contains( Badge.GOLD_COLLECTED_5 ) && Statistics.goldCollected >= 23500700500000L) {
 			if (badge != null) unlock(badge);
 			badge = Badge.GOLD_COLLECTED_5;
 			local.add( badge );
