@@ -4,6 +4,10 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.FlavourBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPolymorph;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Firebloom;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.watabou.noosa.Image;
@@ -46,6 +50,18 @@ public class TotemOfFortune extends Totem {
     @Override
     public String desc() {
         return "This golden totem grants you great wealth and fortune. While in your inventory, you'll get twice as much gold as you normally would, shops offer a discount, but you'll deal less damage.";
+    }
+
+    public static class Recipe extends com.shatteredpixel.shatteredpixeldungeon.items.Recipe.SimpleRecipe {
+        {
+            inputs =  new Class[]{Totem.class, ScrollOfPolymorph.class, PotionOfStrength.class};
+            inQuantity = new int[]{1, 1, 1};
+
+            cost = 50;
+
+            output = TotemOfFortune.class;
+            outQuantity = 1;
+        }
     }
 
     public static class FortuneBuff extends FlavourBuff {

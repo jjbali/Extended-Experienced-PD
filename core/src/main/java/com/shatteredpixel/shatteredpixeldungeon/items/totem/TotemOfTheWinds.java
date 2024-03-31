@@ -3,6 +3,10 @@ package com.shatteredpixel.shatteredpixeldungeon.items.totem;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.FlavourBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHaste;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Firebloom;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Swiftthistle;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 
@@ -44,6 +48,18 @@ public class TotemOfTheWinds extends Totem {
     @Override
     public String desc() {
         return "This airy green totem invokes great swiftness to its bearer. While this totem is in your inventory, you automatically gain the Haste status, but enemy attacks have a chance to knock you far back every attack they land.";
+    }
+
+    public static class Recipe extends com.shatteredpixel.shatteredpixeldungeon.items.Recipe.SimpleRecipe {
+        {
+            inputs =  new Class[]{Totem.class, PotionOfHaste.class, Swiftthistle.class};
+            inQuantity = new int[]{1, 1, 1};
+
+            cost = 50;
+
+            output = TotemOfTheWinds.class;
+            outQuantity = 1;
+        }
     }
 
     public static class HasteBuff extends FlavourBuff {

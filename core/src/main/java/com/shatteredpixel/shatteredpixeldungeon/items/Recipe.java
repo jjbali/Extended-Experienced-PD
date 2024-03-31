@@ -40,6 +40,10 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.ExoticPotio
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.*;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFortune;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfTheWinds;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfEarthblast;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
@@ -206,7 +210,11 @@ public abstract class Recipe {
         new RespawnBooster.Recipe(),
         new FireBooster.Recipe(),
 		new WandOfEarthblast.Recipe(),
-		new ElixirOfUltimatum.Recipe()
+		new ElixirOfUltimatum.Recipe(),
+			new TotemOfFire.Recipe(),
+			new TotemOfFortune.Recipe(),
+			new TotemOfIce.Recipe(),
+			new TotemOfTheWinds.Recipe()
 	};
 	
 	public static ArrayList<Recipe> findRecipes(ArrayList<Item> ingredients){

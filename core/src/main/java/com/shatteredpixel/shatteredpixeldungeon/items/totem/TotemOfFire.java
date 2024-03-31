@@ -3,6 +3,9 @@ package com.shatteredpixel.shatteredpixeldungeon.items.totem;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.FlavourBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfFrost;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
+import com.shatteredpixel.shatteredpixeldungeon.plants.Firebloom;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 
@@ -44,6 +47,18 @@ public class TotemOfFire extends Totem {
     @Override
     public String desc() {
         return "This bright red totem crackles with blazing heat. While this totem is in your inventory, you become immune to fire damage, resist damage from fire elementals, but you become weak to the cold. Ice elementals will deal more damage, and being chilled or frozen will hurt you.";
+    }
+
+    public static class Recipe extends com.shatteredpixel.shatteredpixeldungeon.items.Recipe.SimpleRecipe {
+        {
+            inputs =  new Class[]{Totem.class, PotionOfLiquidFlame.class, Firebloom.class};
+            inQuantity = new int[]{1, 1, 1};
+
+            cost = 50;
+
+            output = TotemOfFire.class;
+            outQuantity = 1;
+        }
     }
 
     public static class FireBuff extends FlavourBuff {

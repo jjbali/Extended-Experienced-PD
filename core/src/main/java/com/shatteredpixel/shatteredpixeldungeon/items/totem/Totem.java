@@ -4,6 +4,11 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.TicketToArena;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPolymorph;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
@@ -54,6 +59,18 @@ public class Totem extends Item {
     }
     @Override
     public String desc() {
-        return "A plain totem. Has no effects. Can be imbued with an effect through alchemy.";
+        return "A plain totem. Has no effects, gives only barrier buff. Can be imbued with an effect through alchemy.";
+    }
+
+    public static class Recipe extends com.shatteredpixel.shatteredpixeldungeon.items.Recipe.SimpleRecipe {
+        {
+            inputs =  new Class[]{TicketToArena.class, ArcaneCatalyst.class, AlchemicalCatalyst.class};
+            inQuantity = new int[]{1, 1, 1};
+
+            cost = 20;
+
+            output = Totem.class;
+            outQuantity = 1;
+        }
     }
 }

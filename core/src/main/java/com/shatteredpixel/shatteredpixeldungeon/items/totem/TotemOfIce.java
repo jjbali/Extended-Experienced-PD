@@ -3,6 +3,11 @@ package com.shatteredpixel.shatteredpixeldungeon.items.totem;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.FlavourBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfFrost;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfSnapFreeze;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.Evolution;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 
@@ -44,6 +49,18 @@ public class TotemOfIce extends Totem {
     @Override
     public String desc() {
         return "This icy blue totem shivers with freezing cold. While this totem is in your inventory, you become immune to being chilled or frozen, resist damage from ice elementals, but you become weak to the heat. Fire elementals will deal more damage, and being set on fire will deal even more damage.";
+    }
+
+    public static class Recipe extends com.shatteredpixel.shatteredpixeldungeon.items.Recipe.SimpleRecipe {
+        {
+            inputs =  new Class[]{Totem.class, PotionOfFrost.class, PotionOfSnapFreeze.class};
+            inQuantity = new int[]{1, 1, 1};
+
+            cost = 50;
+
+            output = TotemOfIce.class;
+            outQuantity = 1;
+        }
     }
 
     public static class IceBuff extends FlavourBuff {
