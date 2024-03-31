@@ -1,8 +1,11 @@
 package com.shatteredpixel.shatteredpixeldungeon.items.totem;
 
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -40,7 +43,9 @@ public class Totem extends Item {
 
     @Override
     public void onHeroGainExp( float levelPercent, Hero hero ){
-        //do nothing by default
+        if (Random.Int(5) == 0 && levelPercent >= 0.50f) {
+            Buff.affect(hero, Barrier.class).setShield(10L * hero.lvl);
+        }
     }
 
     @Override

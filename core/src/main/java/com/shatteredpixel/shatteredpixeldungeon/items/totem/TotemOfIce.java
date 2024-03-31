@@ -38,11 +38,6 @@ public class TotemOfIce extends Totem {
     public void onDetach(){}
 
     @Override
-    public void onHeroGainExp( float levelPercent, Hero hero ){
-        //do nothing by default
-    }
-
-    @Override
     public String name() {
         return "Totem of Ice";
     }
