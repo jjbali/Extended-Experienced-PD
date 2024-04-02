@@ -1000,6 +1000,7 @@ public class ItemSpriteSheet {
 	public static final int FIRE			= TOTEM+3;
 	public static final int ICE			= TOTEM+4;
 	public static final int UNIFICATION			= TOTEM+5;
+	public static final int UNDEFINED			= TOTEM+6;
 	static{
 		assignItemRect(FORTUNE			, 16, 16);
 		assignItemRect(NONE_TOTEM			, 16, 16);
@@ -1007,6 +1008,7 @@ public class ItemSpriteSheet {
 		assignItemRect(FIRE			, 16, 16);
 		assignItemRect(ICE			, 16, 16);
 		assignItemRect(UNIFICATION			, 16, 16);
+		assignItemRect(UNDEFINED			, 16, 16);
 	}
 
 	//for smaller 8x8 icons that often accompany an item sprite
