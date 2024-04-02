@@ -45,6 +45,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFortune;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfTheWinds;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfUnification;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfEarthblast;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
@@ -216,7 +217,8 @@ public abstract class Recipe {
 			new TotemOfFortune.Recipe(),
 			new TotemOfIce.Recipe(),
 			new TotemOfTheWinds.Recipe(),
-			new Totem.Recipe()
+			new Totem.Recipe(),
+			new TotemOfUnification.Recipe()
 	};
 	
 	public static ArrayList<Recipe> findRecipes(ArrayList<Item> ingredients){

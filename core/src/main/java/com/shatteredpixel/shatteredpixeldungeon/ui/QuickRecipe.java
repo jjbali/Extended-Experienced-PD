@@ -50,6 +50,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFortune;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfTheWinds;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfUnification;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfEarthblast;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfFireblast;
@@ -389,6 +390,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new TotemOfIce.Recipe()));
 				result.add(new QuickRecipe(new TotemOfFortune.Recipe()));
 				result.add(new QuickRecipe(new TotemOfTheWinds.Recipe()));
+				result.add(new QuickRecipe(new TotemOfUnification.Recipe()));
 				return result;
 		}
 	}

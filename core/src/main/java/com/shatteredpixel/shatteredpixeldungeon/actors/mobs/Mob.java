@@ -37,6 +37,7 @@ import com.shatteredpixel.shatteredpixeldungeon.custom.messages.M;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.MobAttributeViewer;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.FloatingText;
+import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Surprise;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Wound;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
@@ -54,10 +55,12 @@ import com.shatteredpixel.shatteredpixeldungeon.items.modules.RewardBoostModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfLuck;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.HandyBarricade;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicBridge;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.TelekineticGrab;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfAggression;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfUnification;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Lootstreaker;
@@ -117,6 +120,7 @@ public abstract class Mob extends Char {
 	public AiState state = SLEEPING;
 	
 	public Class<? extends CharSprite> spriteClass;
+
 	
 	protected int target = -1;
 	
@@ -873,7 +877,6 @@ public abstract class Mob extends Char {
 				if (hero.pointsInTalent(Talent.HANDIFUL_EXPERIENCE) >= 1){
 					EXP *= 1 + (0.1f * hero.pointsInTalent(Talent.HANDIFUL_EXPERIENCE));
 				}
-
 			}
 
 		}
@@ -974,6 +977,18 @@ public abstract class Mob extends Char {
 			if (Random.Float() < 0.01f) {
 				long lv = Random.LongRange(5L, 10L);
 				Dungeon.level.drop(RingOfWealth.genConsumableDrop(lv), pos).sprite.drop();
+			}
+
+			if (hero.belongings.contains(new TotemOfUnification()) || hero.belongings.getItem(TotemOfUnification.class) != null) {
+				Dungeon.level.drop(new ScrollOfUpgrade(), pos).sprite.drop();
+				if (Random.Float() < 0.01f) {
+					int rolls = 30;
+					ArrayList<Item> bonus = tryForBonusDrop(rolls);
+					if (!bonus.isEmpty()) {
+						for (Item b : bonus) Dungeon.level.drop(b, pos).sprite.drop();
+						RingOfWealth.showFlareForBonusDrop(sprite);
+					}
+				}
 			}
 
 			if (hero.buff(Bless.class) != null) {
