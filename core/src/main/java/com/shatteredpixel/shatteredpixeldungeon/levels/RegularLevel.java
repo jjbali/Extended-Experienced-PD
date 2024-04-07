@@ -200,7 +200,7 @@ public abstract class RegularLevel extends Level {
 	protected abstract Painter painter();
 	
 	protected int nTraps() {
-		return Random.NormalIntRange( 40, 60 );
+		return Random.NormalIntRange( 10, 20 );
 	}
 	
 	protected Class<?>[] trapClasses(){

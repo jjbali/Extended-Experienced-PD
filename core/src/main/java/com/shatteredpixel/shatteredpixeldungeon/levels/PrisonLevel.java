@@ -65,12 +65,12 @@ public class PrisonLevel extends RegularLevel {
 
 	@Override
 	protected int standardRooms(boolean forceMax) {
-		return Random.Int(15, 25) + 1;
+		return Random.Int(7, 15) + 1;
 	}
 
 	@Override
 	protected int specialRooms(boolean forceMax) {
-		return Random.Int(5, 10) + 1;
+		return Random.Int(3, 7) + 1;
 	}
 	
 	@Override
