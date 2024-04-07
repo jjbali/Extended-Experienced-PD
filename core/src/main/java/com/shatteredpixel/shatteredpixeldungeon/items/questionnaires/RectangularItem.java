@@ -128,8 +128,8 @@ public class RectangularItem extends Questionnaire {
                     type = "Find The Area";
                     break;
                 case 1:
-                    CODE = Random.Int(200) + 1;
-                    CODE2 = Random.Int(200) + 1;
+                    CODE = Random.Int(100) + 1;
+                    CODE2 = Random.Int(100) + 1;
                     ANSWER = String.valueOf(perimeter(CODE, CODE2));
                     GLog.h("\n[Type: Find The Perimeter]");
                     BODY = "The rectangle has a/an " + CODE + "cm length and " + CODE2 + "cm width, what is the perimeter of the rectangle?";
