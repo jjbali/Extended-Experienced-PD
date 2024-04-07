@@ -82,6 +82,11 @@ public class DivisionItem extends Questionnaire {
     }
 
     @Override
+    public long quantity() {
+        return totalAnswers_d;
+    }
+
+    @Override
     public boolean isIdentified() {
         return true;
     }

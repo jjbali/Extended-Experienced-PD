@@ -85,6 +85,11 @@ public class ExponentialItem extends Questionnaire {
     }
 
     @Override
+    public long quantity() {
+        return totalAnswers_e;
+    }
+
+    @Override
     public boolean isIdentified() {
         return true;
     }

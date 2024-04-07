@@ -87,6 +87,11 @@ public class RectangularItem extends Questionnaire {
     }
 
     @Override
+    public long quantity() {
+        return totalAnswers_j;
+    }
+
+    @Override
     public boolean isIdentified() {
         return true;
     }

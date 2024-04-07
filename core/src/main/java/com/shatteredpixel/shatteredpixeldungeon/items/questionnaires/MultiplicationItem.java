@@ -82,6 +82,11 @@ public class MultiplicationItem extends Questionnaire {
     }
 
     @Override
+    public long quantity() {
+        return totalAnswers_c;
+    }
+
+    @Override
     public boolean isIdentified() {
         return true;
     }

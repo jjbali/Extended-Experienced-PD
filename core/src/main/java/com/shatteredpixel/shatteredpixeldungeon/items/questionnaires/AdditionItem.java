@@ -96,6 +96,11 @@ public class AdditionItem extends Questionnaire {
     }
 
     @Override
+    public long quantity() {
+        return totalAnswers_a;
+    }
+
+    @Override
     public boolean isIdentified() {
         return true;
     }

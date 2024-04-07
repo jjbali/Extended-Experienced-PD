@@ -87,6 +87,12 @@ public class DivisibilityItem extends Questionnaire {
         return actions;
     }
 
+
+    @Override
+    public long quantity() {
+        return totalAnswers_h;
+    }
+
     @Override
     public boolean isIdentified() {
         return true;

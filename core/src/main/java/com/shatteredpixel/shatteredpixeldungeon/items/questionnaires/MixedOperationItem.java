@@ -92,6 +92,11 @@ public class MixedOperationItem extends Questionnaire {
     }
 
     @Override
+    public long quantity() {
+        return totalAnswers_f;
+    }
+
+    @Override
     public boolean isIdentified() {
         return true;
     }

@@ -87,6 +87,11 @@ public class TriangularItem extends Questionnaire {
     }
 
     @Override
+    public long quantity() {
+        return totalAnswers_k;
+    }
+
+    @Override
     public boolean isIdentified() {
         return true;
     }

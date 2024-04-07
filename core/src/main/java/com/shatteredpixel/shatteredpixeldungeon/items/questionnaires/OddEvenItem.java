@@ -82,6 +82,11 @@ public class OddEvenItem extends Questionnaire {
     }
 
     @Override
+    public long quantity() {
+        return totalAnswers_g;
+    }
+
+    @Override
     public boolean isIdentified() {
         return true;
     }
