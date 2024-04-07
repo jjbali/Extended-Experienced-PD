@@ -53,7 +53,7 @@ import java.util.ArrayList;
 
 public class TriangularItem extends Questionnaire {
     {
-        image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
+        image = ItemSpriteSheet.TRIANGULAR;
         unique = true;
         identify();
         defaultAction = AC_ANSWER;

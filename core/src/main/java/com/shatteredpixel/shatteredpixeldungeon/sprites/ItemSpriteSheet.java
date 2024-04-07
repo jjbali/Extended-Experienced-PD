@@ -1011,6 +1011,23 @@ public class ItemSpriteSheet {
 		assignItemRect(UNDEFINED			, 16, 16);
 	}
 
+	private static final int QUESTIONNAIRES			=			xy(1, 48);  //16 slots
+	public static final int PLUS			= QUESTIONNAIRES+0;
+	public static final int MINUS			= QUESTIONNAIRES+1;
+	public static final int MULTIPLY			= QUESTIONNAIRES+2;
+	public static final int DIVISION			= QUESTIONNAIRES+3;
+	public static final int MULTI_OPERATION			= QUESTIONNAIRES+4;
+	public static final int EXPONENT			= QUESTIONNAIRES+5;
+	public static final int ODD_EVEN			= QUESTIONNAIRES+6;
+	public static final int DIVISIBILITY			= QUESTIONNAIRES+7;
+	public static final int BINARY			= QUESTIONNAIRES+8;
+	public static final int RECTANGULAR			= QUESTIONNAIRES+9;
+	public static final int TRIANGULAR			= QUESTIONNAIRES+10;
+	static{
+		for (int i = QUESTIONNAIRES; i < QUESTIONNAIRES+1; i++)
+			assignItemRect(i, 16, 16);
+	}
+
 	//for smaller 8x8 icons that often accompany an item sprite
 	public static class Icons {
 

@@ -53,7 +53,7 @@ import java.util.ArrayList;
 
 public class OddEvenItem extends Questionnaire {
     {
-        image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
+        image = ItemSpriteSheet.ODD_EVEN;
         unique = true;
         identify();
         defaultAction = AC_ANSWER;

@@ -53,7 +53,7 @@ import java.util.ArrayList;
 
 public class MultiplicationItem extends Questionnaire {
     {
-        image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
+        image = ItemSpriteSheet.MULTIPLY;
         unique = true;
         identify();
         defaultAction = AC_ANSWER;

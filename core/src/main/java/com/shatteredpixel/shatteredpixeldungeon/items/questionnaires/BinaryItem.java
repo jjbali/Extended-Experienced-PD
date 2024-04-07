@@ -58,7 +58,7 @@ import java.util.ArrayList;
 
 public class BinaryItem extends Questionnaire {
     {
-        image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
+        image = ItemSpriteSheet.BINARY;
         unique = true;
         identify();
         defaultAction = AC_ANSWER;

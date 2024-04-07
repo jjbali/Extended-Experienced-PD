@@ -66,7 +66,7 @@ import java.util.ArrayList;
 
 public class AdditionItem extends Questionnaire {
     {
-        image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
+        image = ItemSpriteSheet.PLUS;
         unique = true;
         identify();
         defaultAction = AC_ANSWER;

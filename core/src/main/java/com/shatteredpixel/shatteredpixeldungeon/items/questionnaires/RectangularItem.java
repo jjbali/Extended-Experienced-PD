@@ -54,7 +54,7 @@ import java.util.ArrayList;
 
 public class RectangularItem extends Questionnaire {
     {
-        image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
+        image = ItemSpriteSheet.RECTANGULAR;
         unique = true;
         identify();
         defaultAction = AC_ANSWER;

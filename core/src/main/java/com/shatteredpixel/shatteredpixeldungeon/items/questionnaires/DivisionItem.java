@@ -53,7 +53,7 @@ import java.util.ArrayList;
 
 public class DivisionItem extends Questionnaire {
     {
-        image = ItemSpriteSheet.EXOTIC_SCROLL_PLUS;
+        image = ItemSpriteSheet.DIVISION;
         unique = true;
         identify();
         defaultAction = AC_ANSWER;

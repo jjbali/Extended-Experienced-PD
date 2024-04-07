@@ -53,7 +53,7 @@ import java.util.ArrayList;
 
 public class MixedOperationItem extends Questionnaire {
     {
-        image = ItemSpriteSheet.TOKEN;
+        image = ItemSpriteSheet.MULTI_OPERATION;
         unique = true;
         identify();
         defaultAction = AC_ANSWER;
