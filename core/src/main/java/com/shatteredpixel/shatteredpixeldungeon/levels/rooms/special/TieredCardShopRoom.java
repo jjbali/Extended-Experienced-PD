@@ -35,6 +35,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.bags.MagicalHolster;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.PotionBandolier;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.ScrollHolder;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.VelvetPouch;
+import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.EquinoxTieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.LeveledTieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.GambleBag;
@@ -191,6 +192,9 @@ public class TieredCardShopRoom extends SpecialRoom {
 		itemsToSpawn.add(new LeveledTieredCard().upgrade(Random.Int(2, 5) + 1));
 		itemsToSpawn.add(new LeveledTieredCard().upgrade(Random.Int(2, 5) + 1));
 		itemsToSpawn.add(new LeveledTieredCard().upgrade(Random.Int(2, 5) + 1));
+
+		itemsToSpawn.add(new EquinoxTieredCard());
+		itemsToSpawn.add(new EquinoxTieredCard());
 
 		itemsToSpawn.add(new RandomBuffGiver());
 		itemsToSpawn.add(new RandomBuffGiver());
