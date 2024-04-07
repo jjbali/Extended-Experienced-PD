@@ -44,6 +44,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.Subtraction
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.CorpseDust;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Notes;
@@ -203,7 +204,8 @@ public enum Rankings {
 											+ MultiplicationItem.totalAnswers_c + DivisionItem.totalAnswers_d
 											+ MixedOperationItem.totalAnswers_f + OddEvenItem.totalAnswers_g
 											+ ExponentialItem.totalAnswers_e + RectangularItem.totalAnswers_j
-											+ BinaryItem.streak_i + DivisibilityItem.streak_h;
+											+ BinaryItem.totalAnswers_i + DivisibilityItem.totalAnswers_h
+											+ TriangularItem.totalAnswers_k;
 
 			Statistics.totalBossScore = 0;
 			for (int i : Statistics.bossScores){
@@ -221,7 +223,8 @@ public enum Rankings {
 					+ MultiplicationItem.streak_c + DivisionItem.streak_d
 					+ MixedOperationItem.streak_f + OddEvenItem.streak_g
 					+ ExponentialItem.streak_e + RectangularItem.streak_j
-					+ BinaryItem.streak_i + DivisibilityItem.streak_h);
+					+ BinaryItem.streak_i + DivisibilityItem.streak_h
+					+ TriangularItem.streak_k);
 			if (Statistics.gameWon)         Statistics.winMultiplier += 0.7f;
 			if (Statistics.ascended)        Statistics.winMultiplier += 0.3f;
 

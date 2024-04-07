@@ -99,6 +99,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfInvisibility;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfMindVision;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfMagicMissile;
@@ -180,6 +181,7 @@ public enum HeroClass {
 		new DivisibilityItem().collect();
 		new BinaryItem().collect();
 		new RectangularItem().collect();
+		new TriangularItem().collect();
 		new ParallelUniverse().collect();
 		//new DictBook().collect();
 		new ExtendedDictBook().collect();
