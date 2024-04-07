@@ -45,6 +45,9 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.TenguBomb;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfLuck;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
+import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.BiggerGambleBag;
+import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.BurntBag;
+import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.GambleBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.Dart;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.TippedDart;
@@ -247,23 +250,29 @@ public class Heap implements Bundlable {
 		
 		for (Item item : items.toArray( new Item[0] )) {
 			if (item instanceof Scroll && !item.unique) {
-				items.remove( item );
+				items.remove(item);
 				burnt = true;
 			} else if (item instanceof Dewdrop) {
-				items.remove( item );
+				items.remove(item);
 				evaporated = true;
 			} else if (item instanceof MysteryMeat || item instanceof FrozenCarpaccio) {
-				replace( item, ChargrilledMeat.cook( item.quantity ) );
+				replace(item, ChargrilledMeat.cook(item.quantity));
 				burnt = true;
 			} else if (item instanceof Bomb && !(item instanceof TenguBomb)) {
-				items.remove( item );
-				((Bomb) item).explode( pos );
+				items.remove(item);
+				((Bomb) item).explode(pos);
 				if (((Bomb) item).explodesDestructively()) {
 					//stop processing the burning, it will be replaced by the explosion.
 					return;
 				} else {
 					burnt = true;
 				}
+			} else if (item instanceof GambleBag || item instanceof BiggerGambleBag) {
+				for (int i = 0; i < item.quantity(); i++) {
+					drop(BurntBag.burningRoll());
+				}
+				items.remove(item);
+				burnt = true;
 			}
 		}
 		

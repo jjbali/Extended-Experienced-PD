@@ -1,12 +1,13 @@
+
 /*
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,8 +51,8 @@ public class RingOfForce extends Ring {
 	protected RingBuff buff( ) {
 		return new Force();
 	}
-	
-	public static int armedDamageBonus( Char ch ){
+
+	public static long armedDamageBonus( Char ch ){
 		return getBuffedBonus( ch, Force.class);
 	}
 
@@ -67,7 +68,7 @@ public class RingOfForce extends Ring {
 			return false;
 		}
 	}
-	
+
 	// *** Weapon-like properties ***
 
 	private static float tier(int str){
@@ -79,35 +80,35 @@ public class RingOfForce extends Ring {
 		return tier;
 	}
 
-	public static int damageRoll( Hero hero ){
+	public static long damageRoll( Hero hero ){
 		if (hero.buff(Force.class) != null
 				&& hero.buff(MonkEnergy.MonkAbility.UnarmedAbilityTracker.class) == null) {
-			int level = getBuffedBonus(hero, Force.class);
+			long level = getBuffedBonus(hero, Force.class);
 			float tier = tier(hero.STR());
-			return Dungeon.NormalIntRange(min(level, tier), max(level, tier));
+			return Dungeon.NormalLongRange(min(level, tier), max(level, tier));
 		} else {
 			//attack without any ring of force influence
-			return Dungeon.NormalIntRange(1, Math.max(hero.STR()-8, 1));
+			return Dungeon.NormalLongRange(1, Math.max(hero.STR()-8, 1));
 		}
 	}
 
 	//same as equivalent tier weapon
-	private static int min(long lvl, float tier){
+	private static long min(long lvl, float tier){
 		if (lvl <= 0) tier = 1; //tier is forced to 1 if cursed
 
 		return Math.max( 0, Math.round(
 				tier +  //base
-				lvl     //level scaling
+						lvl*1d     //level scaling
 		));
 	}
 
 	//same as equivalent tier weapon
-	private static int max(long lvl, float tier){
+	private static long max(long lvl, float tier){
 		if (lvl <= 0) tier = 1; //tier is forced to 1 if cursed
 
 		return Math.max( 0, Math.round(
-				5*(tier+1) +    //base
-				lvl*(tier+1)    //level scaling
+				5d*(tier+1) +    //base
+						lvl*(tier+1)    //level scaling
 		));
 	}
 
@@ -196,7 +197,7 @@ public class RingOfForce extends Ring {
 		String info = super.info();
 
 		if (Dungeon.hero.isClass(HeroClass.DUELIST)
-			&& (anonymous || isIdentified() || isEquipped(Dungeon.hero))){
+				&& (anonymous || isIdentified() || isEquipped(Dungeon.hero))){
 			info += "\n\n" + Messages.get(this, "ability_desc");
 		}
 
@@ -205,7 +206,7 @@ public class RingOfForce extends Ring {
 
 	public static boolean fightingUnarmed( Hero hero ){
 		if (hero.belongings.attackingWeapon() == null
-			|| hero.buff(MonkEnergy.MonkAbility.UnarmedAbilityTracker.class) != null){
+				|| hero.buff(MonkEnergy.MonkAbility.UnarmedAbilityTracker.class) != null){
 			return true;
 		}
 		if (hero.belongings.thrownWeapon != null || hero.belongings.abilityWeapon != null){
@@ -241,7 +242,7 @@ public class RingOfForce extends Ring {
 
 	public static boolean unarmedGetsWeaponAugment(Hero hero ){
 		if (hero.belongings.attackingWeapon() == null
-			|| hero.buff(MonkEnergy.MonkAbility.UnarmedAbilityTracker.class) != null){
+				|| hero.buff(MonkEnergy.MonkAbility.UnarmedAbilityTracker.class) != null){
 			return false;
 		}
 		BrawlersStance stance = hero.buff(BrawlersStance.class);
@@ -253,7 +254,7 @@ public class RingOfForce extends Ring {
 
 	public static class BrawlersStance extends Buff {
 
-		public static float HIT_CHARGE_USE = 0.25f;
+		public static float HIT_CHARGE_USE = 1/6f;
 
 		{
 			announced = true;
@@ -300,4 +301,3 @@ public class RingOfForce extends Ring {
 		}
 	}
 }
-

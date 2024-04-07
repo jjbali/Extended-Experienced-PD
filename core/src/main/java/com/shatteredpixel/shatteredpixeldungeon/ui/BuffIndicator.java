@@ -124,6 +124,7 @@ public class BuffIndicator extends Component {
 	public static final int DAZE        = 70;
 	public static final int CIRCLOUS        = 71;
 	public static final int STICK        = 72;
+	public static final int OSMISHIELD        = 73;
 
 	public static final int SIZE_SMALL  = 7;
 	public static final int SIZE_LARGE  = 16;

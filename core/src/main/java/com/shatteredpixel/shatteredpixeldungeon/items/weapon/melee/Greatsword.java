@@ -223,7 +223,7 @@ public class Greatsword extends MeleeWeapon {
 
         @Override
         public long drRoll() {
-            return Random.Long(5L * Dungeon.hero.lvl, 10L * Dungeon.hero.lvl);
+            return Dungeon.escalatingDepth();
         }
     }
 

@@ -1853,7 +1853,14 @@ public class Hero extends Char {
 			}
 		}
 
-		int neededExp = 75;
+		long neededExp = 100;
+		switch (Dungeon.cycle){
+			case 1: neededExp = 200; break;
+			case 2: neededExp = 1250; break;
+			case 3: neededExp = 11750; break;
+			case 4: neededExp = 75000; break;
+			case 5: neededExp = 500000; break;
+		}
 
         if (totalExp >= neededExp && grinding){
 			int souCount = 0;

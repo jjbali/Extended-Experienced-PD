@@ -65,6 +65,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfCha
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfPsionicBlast;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFortune;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfTheWinds;
+import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.IdealBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfBlastWave;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfFireblast;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfFrost;
@@ -747,6 +748,13 @@ public abstract class Char extends Actor {
 			buff( Paralysis.class ).processDamage(dmg);
 		}
 
+		long overflow = 0;
+
+		if (buff(IdealBag.OsmirdiumShield.class) != null){
+			overflow = dmg / 2;
+			dmg = 0;
+		}
+
 		long shielded = dmg;
 		//FIXME: when I add proper damage properties, should add an IGNORES_SHIELDS property to use here.
 		if (!(src instanceof Hunger)){
@@ -866,6 +874,12 @@ public abstract class Char extends Actor {
 			sprite.showStatusWithIcon(CharSprite.NEGATIVE, Long.toString(dmg + shielded), icon);
 		}
 
+		if (overflow > 0) {
+			HP += overflow;
+			if (sprite != null)
+				sprite.showStatusWithIcon(CharSprite.NEGATIVE, Long.toString(overflow), FloatingText.HEALING);
+		}
+
 		if (HP < 0) HP = 0;
 
 		if (!isAlive()) {
@@ -913,7 +927,7 @@ public abstract class Char extends Actor {
 	
 	public void die( Object src ) {
 		destroy();
-		if (src != Chasm.class && !(this instanceof Hook)) sprite.die();
+		if (src != Chasm.class) sprite.die();
 	}
 
 	//we cache this info to prevent having to call buff(...) in isAlive.

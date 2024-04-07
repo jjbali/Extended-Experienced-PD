@@ -63,6 +63,7 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.SpecialRoom
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.InterlevelScene;
+import com.shatteredpixel.shatteredpixeldungeon.ui.GameLog;
 import com.shatteredpixel.shatteredpixeldungeon.ui.QuickSlotButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Toolbar;
 import com.shatteredpixel.shatteredpixeldungeon.utils.BArray;
@@ -370,7 +371,9 @@ public class Dungeon {
         Notes.reset();
         if (cycle < 4) cycle += 1;
 		Badges.validateCycleReached();
-        //GameLog.wipe();
+		SpecialRoom.initForRun();
+		SecretRoom.initForRun();
+        GameLog.wipe();
         Generator.generalReset();
 			generatedLevels.clear();
 			BeaconOfReturning beacon = Dungeon.hero.belongings.getItem(BeaconOfReturning.class);
@@ -1236,7 +1239,7 @@ public class Dungeon {
 	public static double Double(){
 		double highest = Double.MIN_VALUE;
 		for (int i = 0; i < luck; i++){
-			float roll = Random.Float();
+			double roll = Random.Double();
 			if (roll > highest) highest = roll;
 		}
 		return highest;

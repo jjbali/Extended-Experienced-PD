@@ -723,6 +723,10 @@ public class ItemSpriteSheet {
 	public static final int BLOB    = QUEST+7;
 	public static final int SHARD   = QUEST+8;
 	public static final int TICKET_TO_ARENA_2ND = QUEST+9;
+	public static final int PLUTONIUM = QUEST+10;
+	public static final int OSMIRIDIUM = QUEST+11;
+	public static final int ENDERIUM = QUEST+12;
+	public static final int ENERGITE = QUEST+13;
 	static{
 		assignItemRect(SKULL,   16, 11);
 		assignItemRect(DUST,    12, 11);
@@ -734,6 +738,10 @@ public class ItemSpriteSheet {
 		assignItemRect(BLOB,    10,  9);
 		assignItemRect(SHARD,    8, 10);
 		assignItemRect(TICKET_TO_ARENA_2ND,   12, 12);
+		assignItemRect(PLUTONIUM,    12, 10);
+		assignItemRect(OSMIRIDIUM,   10, 11);
+		assignItemRect(ENDERIUM,    9, 10);
+		assignItemRect(ENERGITE,    12, 14);
 	}
 
 	private static final int BAGS       =                                   xy(1, 31);  //16 slots
@@ -746,6 +754,8 @@ public class ItemSpriteSheet {
 	public static final int VIAL        = BAGS+6;
 	public static final int SPELL_BAG        = BAGS+7;
 	public static final int TIPPED_DART_BAG        = BAGS+8;
+	public static final int BURNT_BAG = BAGS+9;
+	public static final int IDEAL_BAG = BAGS+10;
 	static{
 		assignItemRect(WATERSKIN,   16, 14);
 		assignItemRect(BACKPACK,    16, 16);
@@ -756,6 +766,8 @@ public class ItemSpriteSheet {
 		assignItemRect(VIAL,        12, 12);
 		assignItemRect(SPELL_BAG,        14, 15);
 		assignItemRect(TIPPED_DART_BAG,        14, 15);
+		assignItemRect(BURNT_BAG, 14, 15);
+		assignItemRect(IDEAL_BAG, 14, 15);
 	}
 	
 	//TODO fix?

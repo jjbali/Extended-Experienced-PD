@@ -78,6 +78,7 @@ public class ElementalBlast extends ArmorAbility {
 		effectTypes.put(WandOfTransfusion.class,    MagicMissile.BLOOD_CONE);
 		effectTypes.put(WandOfCorruption.class,     MagicMissile.SHADOW_CONE);
 		effectTypes.put(WandOfRegrowth.class,       MagicMissile.FOLIAGE_CONE);
+		effectTypes.put(WandOfEarthblast.class, MagicMissile.EARTHBLAST_CONE);
 	}
 
 	private static final HashMap<Class<?extends Wand>, Float> damageFactors = new HashMap<>();
@@ -128,6 +129,12 @@ public class ElementalBlast extends ArmorAbility {
 			wandCls = hero.belongings.getItem(MagesStaff.class).wandClass();
 		}
 
+		boolean isUnstable = false;
+		if (wandCls == WandOfUnstable.class){
+			isUnstable = true;
+			wandCls = Random.element(WandOfUnstable.wands);
+		}
+
 		if (wandCls == null){
 			GLog.w(Messages.get(this, "no_staff"));
 			return;
@@ -163,7 +170,7 @@ public class ElementalBlast extends ArmorAbility {
 			);
 		}
 
-		final float effectMulti = 1f + 0.25f*hero.pointsInTalent(Talent.ELEMENTAL_POWER);
+		final float effectMulti = (1f + 0.25f*hero.pointsInTalent(Talent.ELEMENTAL_POWER)) * (isUnstable ? 1.5f : 1f);
 
 		//cast a ray 2/3 the way, and do effects
 		Class<? extends Wand> finalWandCls = wandCls;
