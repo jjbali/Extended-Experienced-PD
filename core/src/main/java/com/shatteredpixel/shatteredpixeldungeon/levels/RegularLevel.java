@@ -218,7 +218,7 @@ public abstract class RegularLevel extends Level {
 			else                            return 10;
 		}
 
-		int mobs = 65 + Dungeon.depth % 5 + Dungeon.getAdditionalMobs();
+		int mobs = 20 + Dungeon.depth % 5 + Dungeon.getAdditionalMobs();
 		if (feeling == Feeling.LARGE){
 			mobs = (int)Math.ceil(mobs * 1.33f);
 		}
@@ -228,7 +228,7 @@ public abstract class RegularLevel extends Level {
 	@Override
 	protected void createMobs() {
 		//on floor 1, 8 pre-set mobs are created so the player can get level 2.
-		int mobsToSpawn = Dungeon.depth == 1 ? 30 : mobLimit();
+		int mobsToSpawn = Dungeon.depth == 1 ? 15 : mobLimit();
 
 		ArrayList<Room> stdRooms = new ArrayList<>();
 		for (Room room : rooms) {
