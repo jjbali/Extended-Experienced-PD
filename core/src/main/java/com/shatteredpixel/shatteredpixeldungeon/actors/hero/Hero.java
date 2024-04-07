@@ -219,7 +219,7 @@ public class Hero extends Char {
 
 		int subtractionmulti = SubtractionItem.totalAnswers_b;
 		if (subtractionmulti >= 1) {
-			HT += (20f * subtractionmulti);
+			HT += (5f * subtractionmulti);
 		}
 		
 		if (boostHP){

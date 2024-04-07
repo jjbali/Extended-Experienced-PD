@@ -143,7 +143,7 @@ public class SubtractionItem extends Questionnaire {
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(ANSWER)) {
                     Buff.affect(hero, CodeCooldown5.class).set(3);
-                    GLog.h("You answered the question correctly, +20HP!");
+                    GLog.h("You answered the question correctly, +5HP!");
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
                         Buff.affect(hero, EnhancedRings.class, 3f);
                     }
