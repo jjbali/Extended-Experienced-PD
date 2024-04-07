@@ -13,7 +13,6 @@ Some features
 - Seed Finding
 - Some dimensional branch
 - Mathematical Items
-- Some bugs (usually from the update that got a very "long numbers")
 - Note taking
 - Rename Heroes/Items
 - Aiming (Wands, Darts, etc..)
