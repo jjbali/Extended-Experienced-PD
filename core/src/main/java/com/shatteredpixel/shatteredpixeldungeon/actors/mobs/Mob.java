@@ -943,13 +943,13 @@ public abstract class Mob extends Char {
 		if (hero.grinding){
 			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-			if (Random.Float() < 0.3f) {
+			if (Random.Float() < 0.5f) {
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			}
-			if (Random.Float() < 0.2f) {
+			if (Random.Float() < 0.05f) {
 				Dungeon.level.drop(new MagicBridge(), pos).sprite.drop();
 			}
-			if (Random.Float() < 0.2f) {
+			if (Random.Float() < 0.05f) {
 				Dungeon.level.drop(new HandyBarricade(), pos).sprite.drop();
 			}
 			if (Random.Float() < 0.01f) {
@@ -959,24 +959,11 @@ public abstract class Mob extends Char {
 			if (Random.Float() < 0.2f) {
 				Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
 			}
-			//if (Random.Float() < 0.1f) {
-			//	Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
-			//}
 			if (Random.Float() < 0.2f) {
 				Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
 			}
-			//if (Random.Float() < 0.1f) {
-			//	Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
-			//}
-			//if (Random.Float() < 0.1f) {
-			//	Dungeon.level.drop(new SpyGlass(), pos).sprite.drop();
-			//}
-			if (Random.Float() < 0.2f) {
+			if (Random.Float() < 0.05f) {
 				Dungeon.level.drop(new TelekineticGrab(), pos).sprite.drop();
-			}
-			if (Random.Float() < 0.01f) {
-				long lv = Random.LongRange(5L, 10L);
-				Dungeon.level.drop(RingOfWealth.genConsumableDrop(lv), pos).sprite.drop();
 			}
 
 			if (hero.belongings.contains(new TotemOfUnification()) || hero.belongings.getItem(TotemOfUnification.class) != null) {
@@ -993,8 +980,8 @@ public abstract class Mob extends Char {
 
 			if (hero.buff(Bless.class) != null) {
 				Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
-				Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
-				Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
+				if (Random.Float() < 0.2f) Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
+				if (Random.Float() < 0.2f) Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
 				Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
 			}
 			if (hero.perks.contains(Perks.Perk.POTION_COLLECTOR) && Random.Float() < 0.2f) {
@@ -1040,14 +1027,14 @@ public abstract class Mob extends Char {
 
 		if (hero.grinding && hero.heroClass == HeroClass.MAGE){
 			Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
+			if (Random.Float() < 0.2f) Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
 		}
 		if (hero.grinding && hero.heroClass == HeroClass.ROGUE){
 			Dungeon.level.drop(new Bomb(), pos).sprite.drop();
-			Dungeon.level.drop(new Bomb(), pos).sprite.drop();
+			if (Random.Float() < 0.2f) Dungeon.level.drop(new Bomb(), pos).sprite.drop();
 		}
 		if (hero.grinding && hero.heroClass == HeroClass.HUNTRESS){
-			int quantity = Dungeon.IntRange(3, 8);
+			int quantity = Dungeon.IntRange(2, 4);
 			hero.sprite.showStatusWithIcon( 0x44CCFF, Integer.toString(quantity), FloatingText.ENERGY );
 			Dungeon.energy += quantity;
 		}
@@ -1056,7 +1043,7 @@ public abstract class Mob extends Char {
 			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
-			Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
+			if (Random.Float() < 0.2f) Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 			if (Dungeon.Int(6) == 0) {
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
@@ -1078,7 +1065,7 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 			}
-			Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
+			if (Random.Float() < 0.2f) Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 		}
 
 		if (buff(ThirdArenaLevel.ThirdArenaBuff.class) != null){
@@ -1095,7 +1082,7 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 			}
-			Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
+			if (Random.Float() < 0.2f) Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 		}
 
 		if (buff(FourthArenaLevel.FourthArenaBuff.class) != null){
@@ -1115,14 +1102,14 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 			}
-			Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
+			if (Random.Float() < 0.2f) Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 		}
 
 		if (buff(RewardBoostModule.RewardBoost2.class) != null){
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
+			if (Random.Float() < 0.2f) Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 		}
 
 //		//ring of wealth logic
