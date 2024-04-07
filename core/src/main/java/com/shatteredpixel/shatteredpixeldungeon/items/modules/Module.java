@@ -5,6 +5,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -75,4 +76,30 @@ public class Module extends Item {
     public String desc() {
         return "This is the new item from Extended Experienced Pixel Dungeon, The Module. Provides a specific buff based on the description below.";
     }
+
+    public Item random(long x){
+        switch (Random.Int(1, 10)) {
+            case 0: default:
+                return new ChampionModule().quantity(x);
+            case 1:
+                return new DimensionalRiftModule().quantity(x);
+            case 2:
+                return new GoldModule().quantity(x);
+            case 3:
+                return new HasteModule().quantity(x);
+            case 4:
+                return new ItemModule().quantity(x);
+            case 5:
+                return new MindVisionModule().quantity(x);
+            case 6:
+                return new PotionModule().quantity(x);
+            case 7:
+                return new ScrollModule().quantity(x);
+            case 8:
+                return new PurityModule().quantity(x);
+            case 9:
+                return new TimeReverserModule().quantity(x);
+        }
+    }
+
 }

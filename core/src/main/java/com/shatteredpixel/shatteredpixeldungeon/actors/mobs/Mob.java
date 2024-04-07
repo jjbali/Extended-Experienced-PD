@@ -41,6 +41,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Surprise;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Wound;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
+import com.shatteredpixel.shatteredpixeldungeon.items.modules.Module;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
@@ -943,6 +944,7 @@ public abstract class Mob extends Char {
 		if (hero.grinding){
 			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
 			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
+			if (Random.Float() < 0.01f) Dungeon.level.drop(new Module().random(1), pos).sprite.drop();
 			if (Random.Float() < 0.5f) {
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			}
