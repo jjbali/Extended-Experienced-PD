@@ -193,8 +193,8 @@ public class TieredCardShopRoom extends SpecialRoom {
 		itemsToSpawn.add(new LeveledTieredCard().upgrade(Random.Int(2, 5) + 1));
 		itemsToSpawn.add(new LeveledTieredCard().upgrade(Random.Int(2, 5) + 1));
 
-		itemsToSpawn.add(new EquinoxTieredCard());
-		itemsToSpawn.add(new EquinoxTieredCard());
+		itemsToSpawn.add(new EquinoxTieredCard().upgrade(Random.Int(2, 5) + 1));
+		itemsToSpawn.add(new EquinoxTieredCard().upgrade(Random.Int(2, 5) + 1));
 
 		itemsToSpawn.add(new RandomBuffGiver());
 		itemsToSpawn.add(new RandomBuffGiver());
