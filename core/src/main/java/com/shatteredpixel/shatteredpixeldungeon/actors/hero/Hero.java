@@ -235,7 +235,7 @@ public class Hero extends Char {
 		int strBonus = 0;
 
 		strBonus += RingOfMight.strengthBonus( this );
-		STR += MultiplicationItem.totalAnswers_c;
+		strBonus += MultiplicationItem.totalAnswers_c;
 		
 		AdrenalineSurge buff = buff(AdrenalineSurge.class);
 		if (buff != null){
