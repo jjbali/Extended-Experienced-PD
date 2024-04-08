@@ -249,7 +249,8 @@ public class TriangularItem extends Questionnaire {
         return "This item represents your intelligence, it may also give you some rewards.\n\nQuestion: " + BODY + "\nAnswered Correctly: " + totalAnswers_k + "\nStreak: " + streak_k
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (0) Loot Rolls: _(50 * streak)_";
+                + "\n- (0) Loot Rolls: _(50 * streak)_"
+                + "\n- (1) Buff Duration: _+(5 * streak)%_";
     }
     private String STREAKS = "STREAKS";
     private String TOTAL_ANSWERS = "TOTAL_ANSWERS";

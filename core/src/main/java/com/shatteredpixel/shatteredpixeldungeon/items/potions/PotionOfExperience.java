@@ -51,7 +51,7 @@ public class PotionOfExperience extends Potion {
 			new Flare( 6, 32 ).color(0xFFFF00, true).show( curUser.sprite, 2f );
 			GLog.h("I guess... You may abuse it somehow...");
 		} else {
-			float duration = Bless.DURATION * 3;
+			float duration = Bless.DURATION;
 			if (hero.perks.contains(Perks.Perk.POTIONS)) duration *= 2;
 			Buff.prolong(hero, Bless.class, duration);
 			new Flare( 6, 32 ).color(0xFFFF00, true).show( curUser.sprite, 2f );

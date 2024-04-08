@@ -26,6 +26,7 @@ package com.shatteredpixel.shatteredpixeldungeon.actors.buffs;
 
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.watabou.noosa.Image;
@@ -157,6 +158,7 @@ public class Buff extends Actor {
 
 	public static<T extends FlavourBuff> T append( Char target, Class<T> buffClass, float duration ) {
 		T buff = append( target, buffClass );
+		if (TriangularItem.streak_k > 0 && buff.type != buffType.NEGATIVE) duration += duration + (0.05f * TriangularItem.streak_k);
 		buff.spend( duration * target.resist(buffClass) );
 		return buff;
 	}
@@ -173,6 +175,7 @@ public class Buff extends Actor {
 	
 	public static<T extends FlavourBuff> T affect( Char target, Class<T> buffClass, float duration ) {
 		T buff = affect( target, buffClass );
+		if (TriangularItem.streak_k > 0 && buff.type != buffType.NEGATIVE) duration += duration + (0.05f * TriangularItem.streak_k);
 		buff.spend( duration * target.resist(buffClass) );
 		return buff;
 	}
@@ -180,6 +183,7 @@ public class Buff extends Actor {
 	//postpones an already active buff, or creates & attaches a new buff and delays that.
 	public static<T extends FlavourBuff> T prolong( Char target, Class<T> buffClass, float duration ) {
 		T buff = affect( target, buffClass );
+		if (TriangularItem.streak_k > 0 && buff.type != buffType.NEGATIVE) duration += duration + (0.05f * TriangularItem.streak_k);
 		buff.postpone( duration * target.resist(buffClass) );
 		return buff;
 	}
