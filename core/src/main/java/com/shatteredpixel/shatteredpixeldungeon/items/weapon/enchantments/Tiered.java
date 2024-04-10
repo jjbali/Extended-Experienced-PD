@@ -41,7 +41,7 @@ public class Tiered extends Weapon.Enchantment {
 	@Override
 	public long proc( Weapon weapon, Char attacker, Char defender, long damage ) {
 		//int level = (int) Math.max( 0, weapon.buffedLvl() );
-		if (Dungeon.Int(100) == 0) {
+		if (Dungeon.Int(50) == 0) {
 			weapon.tier++;
 			GLog.h("Your weapon's tier has been increased!");
 		} else {
