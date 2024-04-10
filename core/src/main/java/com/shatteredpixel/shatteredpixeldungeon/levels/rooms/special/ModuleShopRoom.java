@@ -92,10 +92,8 @@ public class ModuleShopRoom extends SpecialRoom {
 		placeItems( level );
 		
 		for (Door door : connected.values()) {
-			door.set( Door.Type.CRYSTAL );
+			door.set( Door.Type.REGULAR );
 		}
-
-		level.addItemToSpawn( new CrystalKey( Dungeon.depth ) );
 	}
 
 	protected void placeItems( Level level ){
