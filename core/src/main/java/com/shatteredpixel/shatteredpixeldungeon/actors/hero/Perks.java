@@ -149,16 +149,7 @@ public class Perks {
         if (hero.perks.contains(Perk.DIRECTIVE)
                 && enemy instanceof Mob && ((Mob) enemy).surprisedBy(hero)
                 && enemy.buff(DirectiveTracker.class) == null){
-            Actor.addDelayed(new Actor() {
-                @Override
-                protected boolean act() {
-                    Buff.count(hero, DirectiveMovingTracker.class, -1);
-                    diactivate();
-                    return true;
-                }
-            }, 0);
-
-            Buff.affect(enemy, DirectiveTracker.class);
+            Buff.affect(hero, Haste.class, 1.5f);
         }
         if (hero.perks.contains(Perk.FOLLOW_UP_STRIKE)) {
             if (hero.belongings.weapon instanceof MissileWeapon) {

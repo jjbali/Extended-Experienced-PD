@@ -128,6 +128,7 @@ public class PsycheChest extends Item {
                 }
             }
             InterlevelScene.mode = InterlevelScene.Mode.RESET;
+            Dungeon.resetDamage *= 1.16d;
             Game.switchScene(InterlevelScene.class);
             Dungeon.level.reset();
         }

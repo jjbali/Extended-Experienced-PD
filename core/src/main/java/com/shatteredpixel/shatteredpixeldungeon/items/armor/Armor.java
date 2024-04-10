@@ -345,9 +345,9 @@ public class Armor extends EquipableItem {
 					break;
 				}
 			}
-			if (!enemyNear) speed *= (1.2f + 0.04f * buffedLvl()) * glyph.procChanceMultiplier(owner);
+			if (!enemyNear) speed *= (0.95f - 0.05f * buffedLvl()) / glyph.procChanceMultiplier(owner);
 		} else if (hasGlyph(Flow.class, owner) && Dungeon.level.water[owner.pos]){
-			speed *= (2f + 0.5f*buffedLvl()) * glyph.procChanceMultiplier(owner);
+			speed *= (1.25f + 0.0005f*buffedLvl()) * glyph.procChanceMultiplier(owner);
 		}
 
 		if (hasGlyph(Bulk.class, owner) &&
@@ -600,7 +600,7 @@ public class Armor extends EquipableItem {
 	public static abstract class Glyph implements Bundlable {
 
 		public static final Class<?>[] common = new Class<?>[]{
-				Obfuscation.class, Swiftness.class, Viscosity.class, Potential.class };
+				Obfuscation.class, Viscosity.class, Potential.class };
 
 		public static final Class<?>[] uncommon = new Class<?>[]{
 				Brimstone.class, Stone.class, Entanglement.class,
@@ -617,7 +617,7 @@ public class Armor extends EquipableItem {
 
 		private static final Class<?>[] curses = new Class<?>[]{
 				AntiEntropy.class, Corrosion.class, Displacement.class, Metabolism.class,
-				Multiplicity.class, Stench.class, Overgrowth.class, Bulk.class
+				Multiplicity.class, Stench.class, Overgrowth.class, Bulk.class, Swiftness.class
 		};
 
 		public abstract long proc( Armor armor, Char attacker, Char defender, long damage );

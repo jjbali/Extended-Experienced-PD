@@ -729,7 +729,8 @@ public abstract class Mob extends Char {
 
 	@Override
 	public float speed() {
-		return super.speed() * AscensionChallenge.enemySpeedModifier(this);
+		return super.speed() * AscensionChallenge.enemySpeedModifier(this) *
+				(float)(1f + (Dungeon.resetDamage() - 1d) * 0.65f);
 	}
 
 	public int cycledDrRoll(){
@@ -1042,7 +1043,9 @@ public abstract class Mob extends Char {
 		}
 
 		if (buff(ArenaLevel.ArenaBuff.class) != null){
-			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
+			Item gold = new Gold().random();
+			gold.quantity(Math.round(gold.quantity()*0.65f));
+			gold.doPickUp(Dungeon.hero, Dungeon.hero.pos, 0);
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			if (Random.Float() < 0.2f) Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
@@ -1050,8 +1053,8 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			} else {
-				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
+				gold.doPickUp(Dungeon.hero, Dungeon.hero.pos, 0);
+				gold.doPickUp(Dungeon.hero, Dungeon.hero.pos, 0);
 			}
 		}
 
