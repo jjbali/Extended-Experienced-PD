@@ -87,7 +87,6 @@ public class MiscBag extends TreasureBag {
                 ArcaneCatalyst.class,
                 Torch.class,
                 Stylus.class,
-                SpyGlass.class,
                 RandomBuffGiver.class
         );
         int amount = Random.Int(5, 10);
