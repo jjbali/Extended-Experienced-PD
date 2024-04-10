@@ -86,6 +86,11 @@ public class IdealBag extends TreasureBag {
         return items;
     }
 
+    @Override
+    public long value() {
+        return 15000 * quantity;
+    }
+
     public static class Plutonium extends Item {
         {
             image = ItemSpriteSheet.PLUTONIUM;
