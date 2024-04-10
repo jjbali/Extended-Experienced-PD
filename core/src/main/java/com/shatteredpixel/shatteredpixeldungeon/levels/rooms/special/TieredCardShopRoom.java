@@ -40,6 +40,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.LeveledTieredC
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.GambleBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.IdealBag;
+import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.TreasureBagsofTreasureBags;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.FantasmalStabber;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.FiringSnapper;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.blacksmith.GleamingStaff;
@@ -205,6 +206,10 @@ public class TieredCardShopRoom extends SpecialRoom {
 
 		if (Random.Int(10) == 0) {
 			itemsToSpawn.add(new IdealBag());
+		}
+
+		if (Random.Int(5) == 0) {
+			itemsToSpawn.add(new TreasureBagsofTreasureBags());
 		}
 
 		if (Random.Int(50) == 0) {
