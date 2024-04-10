@@ -756,6 +756,7 @@ public class ItemSpriteSheet {
 	public static final int TIPPED_DART_BAG        = BAGS+8;
 	public static final int BURNT_BAG = BAGS+9;
 	public static final int IDEAL_BAG = BAGS+10;
+	public static final int TREASURE_OF_TREASURE = BAGS+11;
 	static{
 		assignItemRect(WATERSKIN,   16, 14);
 		assignItemRect(BACKPACK,    16, 16);
@@ -768,6 +769,7 @@ public class ItemSpriteSheet {
 		assignItemRect(TIPPED_DART_BAG,        14, 15);
 		assignItemRect(BURNT_BAG, 14, 15);
 		assignItemRect(IDEAL_BAG, 14, 15);
+		assignItemRect(TREASURE_OF_TREASURE, 14, 15);
 	}
 	
 	//TODO fix?

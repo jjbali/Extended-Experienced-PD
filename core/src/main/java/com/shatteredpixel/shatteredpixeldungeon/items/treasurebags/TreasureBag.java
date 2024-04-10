@@ -28,8 +28,10 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfElements;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -81,6 +83,27 @@ public abstract class TreasureBag extends Item {
             }
             hero.spendAndNext(Actor.TICK);
         }
+    }
+
+    public Item randombag() {
+        Item bag = null;
+        switch (Random.Int(26)) {
+            case 0: case 7: case 13:  case 18:
+               bag = new AlchemyBag(); break;
+            case 1: case 8:
+               bag = new BiggerGambleBag(); break;
+            case 2:
+               bag = new IdealBag(); break;
+            case 3: case 9: case 14:
+               bag = new GambleBag(); break;
+            case 4: case 10: case 15:  case 19:  case 22:  case 24:
+               bag = new PotionBag(); break;
+            case 5: case 11: case 16:  case 20: case 23:  case 25:
+               bag = new ScrollBag(); break;
+            case 6: case 12:  case 17:  case 21:
+               bag = new SpellBag(); break;
+        }
+        return bag;
     }
 
 }
