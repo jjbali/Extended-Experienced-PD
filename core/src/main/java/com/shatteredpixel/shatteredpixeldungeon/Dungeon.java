@@ -394,19 +394,13 @@ public class Dungeon {
 
 	    switch (cycle){
             case 0: return depth;
-            case 1: return (int) ( depth * 1.4f);
-            case 2: return depth*5;
-            case 3: return depth*50;
-            case 4: return depth*100;
-			case 5: return depth*150;
-			case 6: return depth*200;
-			case 7: return depth*250;
-			case 8: return depth*300;
-			case 9: return depth*500;
-			case 10: return depth*1000 * 100;
-			case 11: default: return (((depth * 1000) + Dungeon.IntRange(350, 500)) * cycle);
+			case 1: return (int) (depth*2f + 55);
+			case 2: return depth*25+750;
+			case 3: return depth*300+12500;
+			case 4: return depth*3000 + 100000;
+			case 5: return depth*40000 + 410000;
 		}
-        //return depth;
+        return depth;
     }
 
 	public static boolean isChallenged( int mask ) {
@@ -750,7 +744,7 @@ public class Dungeon {
 	}
 
 	public static double resetDamage(){
-		return resetDamage + Statistics.duration * 0.000075d;
+		return resetDamage;
 	}
 
 	private static final String INIT_VER	= "init_ver";

@@ -70,33 +70,33 @@ public class DwarfKing extends Mob {
 	{
 		spriteClass = KingSprite.class;
 
-		HP = HT = 40L * theSubjectConstant();
+		HP = HT = 75 * theSubjectConstant();
 		EXP = 200;
 		defenseSkill = 22;
 
 		properties.add(Property.BOSS);
 		properties.add(Property.UNDEAD);
         switch (Dungeon.cycle){
-            case 1:
-                HP = HT = 323L * theSubjectConstant();
-                defenseSkill = 89;
-                EXP = 1420;
-                break;
-            case 2:
-                HP = HT = 5025L * theSubjectConstant();
-                defenseSkill = 324;
-                EXP = 250000;
-                break;
-            case 3:
-                HP = HT = 125000L * theSubjectConstant();
-                defenseSkill = 780;
-                EXP = 4000000;
-                break;
-            case 4:
-                HP = HT = 15000000L * theSubjectConstant();
-                defenseSkill = 7000;
-                EXP = 999999999;
-                break;
+			case 1:
+				HP = HT = 969 * theSubjectConstant();
+				defenseSkill = 89;
+				EXP = 725;
+				break;
+			case 2:
+				HP = HT = 15075 * theSubjectConstant();
+				defenseSkill = 324;
+				EXP = 25000;
+				break;
+			case 3:
+				HP = HT = 475000 * theSubjectConstant();
+				defenseSkill = 780;
+				EXP = 400000;
+				break;
+			case 4:
+				HP = HT = 45000000 * theSubjectConstant();
+				defenseSkill = 7000;
+				EXP = 99999999;
+				break;
         }
 
 		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
@@ -465,18 +465,18 @@ public class DwarfKing extends Mob {
 				sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "invulnerable"));
 				ScrollOfTeleportation.appear(this, CityBossLevel.throne);
 				properties.add(Property.IMMOVABLE);
-				phase = 2;
+				phase = 3;
 				summonsMade = 0;
 				sprite.idle();
-				Buff.affect(this, DKBarrior.class).setShield(HT);
-				for (Summoning s : buffs(Summoning.class)) {
-					s.detach();
-				}
-				for (Mob m : Dungeon.level.mobs.toArray(new Mob[0])) {
-					if (m instanceof Ghoul || m instanceof Monk || m instanceof Warlock || m instanceof Golem) {
-						m.die(null);
-					}
-				}
+				//				Buff.affect(this, DKBarrior.class).setShield(HT);
+//				for (Summoning s : buffs(Summoning.class)) {
+//					s.detach();
+//				}
+//				for (Mob m : Dungeon.level.mobs.toArray(new Mob[0])) {
+//					if (m instanceof Ghoul || m instanceof Monk || m instanceof Warlock || m instanceof Golem) {
+//						m.die(null);
+//					}
+//				}
 			}
 		} else if (phase == 2 && shielding() == 0) {
 			properties.remove(Property.IMMOVABLE);
