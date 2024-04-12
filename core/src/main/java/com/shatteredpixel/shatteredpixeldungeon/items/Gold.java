@@ -31,6 +31,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Perks;
 import com.shatteredpixel.shatteredpixeldungeon.effects.FloatingText;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.RectangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFortune;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
@@ -95,6 +96,7 @@ public class Gold extends Item {
 		quantity = (Dungeon.IntRange( 15 + Dungeon.escalatingDepth() * 3, 30 + Dungeon.escalatingDepth() * 6 ));
 		if (Dungeon.hero.perks.contains(Perks.Perk.MORE_COINS)) quantity *= 5;
 		if (Dungeon.hero.buff(TotemOfFortune.FortuneBuff.class) != null) quantity *= 5;
+		if (RectangularItem.totalAnswers_j > 0) quantity *= 1 + (RectangularItem.totalAnswers_j * 0.5f);
 		return this;
 	}
 
