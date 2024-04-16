@@ -65,7 +65,7 @@ public class DimensionalRiftModule extends Module {
                 InterlevelScene.curTransition = new LevelTransition(Dungeon.level, -1, LevelTransition.Type.BRANCH_EXIT, 107, 7, LevelTransition.Type.BRANCH_ENTRANCE);
                 InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
                 Game.switchScene( InterlevelScene.class );
-                Buff.affect(hero, DimensionalLevel.DimensionalCounter.class).clearTime();
+                Buff.affect(hero, DimensionalLevel.DimensionalCounter.class);
                 hero.grinding = false;
             } else {
 //              InterlevelScene.curTransition = new LevelTransition(Dungeon.level, -1, LevelTransition.Type.BRANCH_ENTRANCE, depth, branch, LevelTransition.Type.BRANCH_EXIT);
