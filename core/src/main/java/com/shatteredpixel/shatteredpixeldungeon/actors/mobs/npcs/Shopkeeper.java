@@ -40,6 +40,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.glyphs.Viscosity;
 import com.shatteredpixel.shatteredpixeldungeon.items.keys.KeyToTruth;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MixedOperationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFortune;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.Clayball;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Notes;
@@ -70,6 +71,7 @@ public class Shopkeeper extends NPC {
 
 	public static int MAX_BUYBACK_HISTORY = 3;
 	public static float inflation_increment = 0f;
+	public static float inflation_decrement = 0f;
 	public ArrayList<Item> buybackItems = new ArrayList<>();
 
 	@Override
@@ -146,6 +148,7 @@ if (sprite != null) {
 		long i = item.value() * 5 * (Dungeon.escalatingDepth() / 5 + 1);
 		if (item.wereOofed) i *= 5;
 		if (Dungeon.isChallenged(COND_INFLATION)) i += i * inflation_increment;
+		if (MixedOperationItem.totalAnswers_f > 0) i -= i * inflation_decrement;
 		if (Dungeon.hero.belongings.getItem(TotemOfFortune.class) != null) i /= 2;
 		return i;
 	}
@@ -263,12 +266,14 @@ if (sprite != null) {
 
 	public static String BUYBACK_ITEMS = "buyback_items";
 	public static String INFL = "inflation";
+	public static String DEFL = "deflation";
 
 	@Override
 	public void storeInBundle(Bundle bundle) {
 		super.storeInBundle(bundle);
 		bundle.put(BUYBACK_ITEMS, buybackItems);
 		bundle.put(INFL, inflation_increment);
+		bundle.put(DEFL, inflation_decrement);
 	}
 
 	@Override
@@ -281,5 +286,6 @@ if (sprite != null) {
 			}
 		}
 		inflation_increment = bundle.getFloat(INFL);
+		inflation_decrement = bundle.getFloat(DEFL);
 	}
 }

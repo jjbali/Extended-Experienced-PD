@@ -35,6 +35,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ShieldBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Shopkeeper;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
@@ -278,6 +279,7 @@ public class MixedOperationItem extends Questionnaire {
                         Buff.affect(hero, CodeCooldown7.class).set(3);
                         totalAnswers_f += 1;
                         streak_f += 1;
+                        Shopkeeper.inflation_decrement += 0.01f;
                         if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
                             Buff.affect(hero, EnhancedRings.class, 3f);
                         }
@@ -351,7 +353,7 @@ public class MixedOperationItem extends Questionnaire {
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\nEvery correct answer changes the operation"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (0) None.";
+                + "\n- (0) Shop Price: -1%";
     }
 
     private String STREAKS = "STREAKS";
