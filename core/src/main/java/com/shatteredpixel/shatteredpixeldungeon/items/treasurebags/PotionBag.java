@@ -51,6 +51,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShr
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfSnapFreeze;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStamina;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStormClouds;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.BinaryItem;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
@@ -97,6 +98,7 @@ public class PotionBag extends TreasureBag {
         );
         int amount = Random.Int(2, 6);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 3.5f;
+        if (BinaryItem.streak_i >= 20) amount *= 10f;
         items.add(Reflection.newInstance(Random.element(normal)).quantity(amount));
         items.add(Reflection.newInstance(Random.element(exotic)).quantity(amount));
         return items;

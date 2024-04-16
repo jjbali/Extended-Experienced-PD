@@ -28,6 +28,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Perks;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.BinaryItem;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
 
@@ -43,6 +44,7 @@ public class BiggerGambleBag extends TreasureBag {
         ArrayList<Item> items = new ArrayList<>();
         int amount = Dungeon.IntRange(5, 30);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 1.5f;
+        if (BinaryItem.streak_i >= 20) amount *= 10f;
         for(int i = 0; i < amount; i++) items.add(Generator.random());
         for (Item item: items){
             if (item.stackable && Random.Float() < 0.5f) item.quantity(item.quantity()+1);

@@ -42,6 +42,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.modules.MagicalSightModule
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.OverloadModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.TimeReverserModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.BinaryItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.utils.Random;
@@ -71,6 +72,7 @@ public class TreasureBagsofTreasureBags extends TreasureBag {
         int amount = Random.Int(2, 3);
         int amount_2 = Random.Int(2, 5);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount_2 *= 3.5f;
+        if (BinaryItem.streak_i >= 20) amount *= 10f;
         if (Random.Int(4) == 0) {
             items.add(Reflection.newInstance(Random.element(normal)).quantity(amount));
         }

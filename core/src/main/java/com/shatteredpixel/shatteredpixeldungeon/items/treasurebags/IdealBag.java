@@ -35,6 +35,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Perks;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Gold;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.BinaryItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfElements;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.Spell;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Blocking;
@@ -57,6 +58,7 @@ public class IdealBag extends TreasureBag {
         ArrayList<Item> items = new ArrayList<>();
         int amount = Random.Int(0, 15)*10;
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 1.5f;
+        if (BinaryItem.streak_i >= 20) amount *= 10f;
         for(int i = 0; i < amount; i++) {
             if (Dungeon.Float(1) <= 0.045f){
                 Item gift = null;

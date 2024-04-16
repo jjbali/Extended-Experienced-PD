@@ -27,6 +27,7 @@ package com.shatteredpixel.shatteredpixeldungeon.items.treasurebags;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Perks;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.BinaryItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfIdentify;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfLullaby;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMapping;
@@ -99,6 +100,7 @@ public class ScrollBag extends TreasureBag {
         );
         int amount = Random.Int(2, 6);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 3.5f;
+        if (BinaryItem.streak_i >= 20) amount *= 10f;
         items.add(Reflection.newInstance(Random.element(normal)).quantity(amount));
         items.add(Reflection.newInstance(Random.element(exotic)).quantity(amount));
         return items;

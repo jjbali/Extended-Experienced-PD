@@ -27,6 +27,7 @@ package com.shatteredpixel.shatteredpixeldungeon.items.treasurebags;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Perks;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.BinaryItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.AdrenalineDart;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.BlindingDart;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.ChillingDart;
@@ -71,6 +72,7 @@ public class TippedDartBag extends TreasureBag {
         );
         int amount = Random.Int(2, 4);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 3.5f;
+        if (BinaryItem.streak_i >= 20) amount *= 10f;
         items.add(Reflection.newInstance(Random.element(normal)).quantity(amount));
         return items;
     }

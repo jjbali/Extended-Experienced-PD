@@ -31,6 +31,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.ExoticPotion;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.BinaryItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
@@ -51,6 +52,7 @@ public class QualityBag extends TreasureBag {
         ArrayList<Item> items = new ArrayList<>();
         int amount = 1;
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG) && Random.Int(2) == 0) amount = 2;
+        if (BinaryItem.streak_i >= 20) amount *= 10f;
         for (int i = 0; i < amount; i++) {
             Weapon wep = Generator.randomWeapon(Dungeon.depth + 1);
             wep.cursed = false;
