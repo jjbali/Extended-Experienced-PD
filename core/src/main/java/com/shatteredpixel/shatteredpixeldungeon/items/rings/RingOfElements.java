@@ -77,7 +77,8 @@ public class RingOfElements extends Ring {
 		RESISTS.addAll( AntiMagic.RESISTS );
 	}
 	
-	public static float resist( Char target, Class effect ){
+	@SuppressWarnings("SuspiciousIndentation")
+	public static float resist(Char target, Class effect ){
 		
 		for (Class c : RESISTS){
 			if (c.isAssignableFrom(effect)){
