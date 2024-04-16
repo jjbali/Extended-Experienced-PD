@@ -72,7 +72,7 @@ public class TieredCard extends Item {
 
     @Override
     public boolean isUpgradable() {
-        return level() <= 100;
+        return true;
     }
 
     @Override
