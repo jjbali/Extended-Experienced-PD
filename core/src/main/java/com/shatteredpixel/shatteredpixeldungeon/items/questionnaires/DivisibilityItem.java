@@ -231,7 +231,7 @@ public class DivisibilityItem extends Questionnaire {
         return "This item represents your intelligence, it may also give you some rewards.\n\nDivisible or Not: " + CODE + " to " + CODE2 + "\nAnswered Correctly: " + totalAnswers_h + "\nStreak: " + streak_h
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (0) None.";
+                + "\n- (1) Ring's Initial Level: +1";
     }
     private String STREAKS = "STREAKS";
     private String TOTAL_ANSWERS = "TOTAL_ANSWERS";
