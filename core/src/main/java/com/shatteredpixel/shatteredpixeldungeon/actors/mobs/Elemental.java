@@ -24,6 +24,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
+
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.Statistics;
@@ -191,19 +193,19 @@ public abstract class Elemental extends Mob {
 		damage = super.attackProc( enemy, damage );
 		meleeProc( enemy, damage );
 
-		if (enemy == Dungeon.hero && Dungeon.hero.buff(TotemOfFire.FireBuff.class) != null && this instanceof FrostElemental) {
+		if (enemy == Dungeon.hero && (hero.buff(TotemOfFire.FireBuff.class) != null || hero.belongings.contains(new TotemOfFire())) && this instanceof FrostElemental) {
 			damage *= 1.5f;
 		}
 
-		if (enemy == Dungeon.hero && Dungeon.hero.buff(TotemOfIce.IceBuff.class) != null && this instanceof FireElemental) {
+		if (enemy == Dungeon.hero && (hero.buff(TotemOfIce.IceBuff.class) != null || hero.belongings.contains(new TotemOfIce())) && this instanceof FireElemental) {
 			damage *= 1.5f;
 		}
 
-		if (enemy == Dungeon.hero && Dungeon.hero.buff(TotemOfFire.FireBuff.class) != null && this instanceof FireElemental) {
+		if (enemy == Dungeon.hero && (hero.buff(TotemOfFire.FireBuff.class) != null || hero.belongings.contains(new TotemOfFire())) && this instanceof FireElemental) {
 			damage *= 0;
 		}
 
-		if (enemy == Dungeon.hero && Dungeon.hero.buff(TotemOfIce.IceBuff.class) != null && this instanceof FrostElemental) {
+		if (enemy == Dungeon.hero && (hero.buff(TotemOfIce.IceBuff.class) != null || hero.belongings.contains(new TotemOfIce())) && this instanceof FrostElemental) {
 			damage *= 0;
 		}
 		
