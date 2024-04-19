@@ -60,6 +60,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.DarkGold;
+import com.shatteredpixel.shatteredpixeldungeon.items.quest.KingBlade;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.Pickaxe;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
@@ -79,6 +80,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfBlastWave;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfLivingEarth;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Unstable;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticDagger;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
@@ -2282,14 +2284,20 @@ public class Hero extends Char {
 				&& belongings.armor().hasGlyph(Brimstone.class, this)){
 			return true;
 		}
-		if (effect == Burning.class && (hero.buff(TotemOfFire.FireBuff.class) != null || hero.belongings.contains(new TotemOfFire()))) {
-			return true;
-		}
-		if (effect == Frost.class && (hero.buff(TotemOfIce.IceBuff.class) != null || hero.belongings.contains(new TotemOfIce()))) {
-			return true;
-		}
-		if (effect == Chill.class && (hero.buff(TotemOfIce.IceBuff.class) != null || hero.belongings.contains(new TotemOfIce()))) {
-			return true;
+		for (Item item: hero.belongings.backpack){
+			if (item instanceof TotemOfFire){
+				if (effect == Burning.class) {
+					return true;
+				}
+			}
+			if (item instanceof TotemOfIce){
+				if (effect == Frost.class) {
+					return true;
+				}
+				if (effect == Chill.class) {
+					return true;
+				}
+			}
 		}
 		return super.isImmune(effect);
 	}
