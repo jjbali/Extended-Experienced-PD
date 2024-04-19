@@ -35,20 +35,24 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Blob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Fire;
 import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Freezing;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.*;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Lightning;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Splash;
 import com.shatteredpixel.shatteredpixeldungeon.effects.TargetedCell;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ElmoParticle;
+import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfFrost;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.Embers;
+import com.shatteredpixel.shatteredpixeldungeon.items.quest.KingBlade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.CursedWand;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Shocking;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Unstable;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -193,25 +197,26 @@ public abstract class Elemental extends Mob {
 		damage = super.attackProc( enemy, damage );
 		meleeProc( enemy, damage );
 
-		if (enemy == Dungeon.hero && (hero.buff(TotemOfFire.FireBuff.class) != null || hero.belongings.contains(new TotemOfFire())) && this instanceof FrostElemental) {
-			damage *= 1.5f;
-		}
-
-		if (enemy == Dungeon.hero && (hero.buff(TotemOfIce.IceBuff.class) != null || hero.belongings.contains(new TotemOfIce())) && this instanceof FireElemental) {
-			damage *= 1.5f;
-		}
-
-		if (enemy == Dungeon.hero && (hero.buff(TotemOfFire.FireBuff.class) != null || hero.belongings.contains(new TotemOfFire())) && this instanceof FireElemental) {
-			damage *= 0;
-		}
-
-		if (enemy == Dungeon.hero && (hero.buff(TotemOfIce.IceBuff.class) != null || hero.belongings.contains(new TotemOfIce())) && this instanceof FrostElemental) {
-			damage *= 0;
+		for (Item item: hero.belongings.backpack){
+			if (item instanceof TotemOfFire){
+				if (this instanceof FrostElemental) {
+					damage *= 1.5f;
+				} else if (this instanceof FireElemental) {
+					damage *= 0;
+				}
+			}
+			if (item instanceof TotemOfIce){
+				if (this instanceof FireElemental) {
+					damage *= 1.5f;
+				} else if (this instanceof FrostElemental) {
+					damage *= 0;
+				}
+			}
 		}
 		
 		return damage;
 	}
-	
+
 	protected void zap() {
 		spend( 1f );
 
