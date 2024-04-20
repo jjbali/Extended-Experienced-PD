@@ -892,14 +892,18 @@ public class ItemSpriteSheet {
 
 	private static final int NEW_SCROLL 	=			xy(1, 37);  //16 slots
 	public static final int SCROLL_PLUS		= NEW_SCROLL+0;
+	public static final int TEST_TUBE_HOLDER	= NEW_SCROLL+1;
 	static{
 		assignItemRect(SCROLL_PLUS, 15, 14);
+		assignItemRect(TEST_TUBE_HOLDER, 6, 15);
 	}
 
 	private static final int NEW_EXOTIC_SCROLL 	=		xy(1, 38);  //16 slots
 	public static final int EXOTIC_SCROLL_PLUS	= NEW_EXOTIC_SCROLL+0;
+
 	static{
 		assignItemRect(EXOTIC_SCROLL_PLUS, 15, 14);
+		assignItemRect(TEST_TUBE_HOLDER, 6, 15);
 	}
 
 	private static final int NEW_RING		=			xy(1, 39);  //16 slots
@@ -1040,6 +1044,20 @@ public class ItemSpriteSheet {
 	static{
 		for (int i = QUESTIONNAIRES; i < QUESTIONNAIRES+1; i++)
 			assignItemRect(i, 16, 16);
+	}
+
+	private static final int TEST_TUBES 	=			xy(1, 37);  //16 slots
+	public static final int RED_TEST_TUBE		= TEST_TUBES+0;
+	public static final int ORANGE_TEST_TUBE	= TEST_TUBES+1;
+	public static final int YELLOW_TEST_TUBE	= TEST_TUBES+2;
+	public static final int GREEN_TEST_TUBE	= TEST_TUBES+3;
+	public static final int CYAN_TEST_TUBE	= TEST_TUBES+4;
+	public static final int BLUE_TEST_TUBE	= TEST_TUBES+5;
+	public static final int VIOLET_TEST_TUBE	= TEST_TUBES+6;
+	public static final int PINK_TEST_TUBE	= TEST_TUBES+7;
+	static{
+		for (int i = TEST_TUBES; i < TEST_TUBES+1; i++)
+			assignItemRect(i, 6, 15);
 	}
 
 	//for smaller 8x8 icons that often accompany an item sprite
