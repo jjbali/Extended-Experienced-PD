@@ -263,7 +263,7 @@ public class QuestionaireItem extends Item {
 
         @Override
         public float iconFadePercent() {
-            return Math.max(0, (maxDuration - duration) / maxDuration);
+            return Math.max(0, (duration - visualcooldown()) / duration);
         }
 
         @Override
