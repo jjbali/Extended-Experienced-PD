@@ -24,6 +24,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.items;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.FALL_ECONOMY;
+
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
@@ -97,6 +99,7 @@ public class Gold extends Item {
 		if (Dungeon.hero.perks.contains(Perks.Perk.MORE_COINS)) quantity *= 5;
 		if (Dungeon.hero.buff(TotemOfFortune.FortuneBuff.class) != null) quantity *= 5;
 		if (RectangularItem.totalAnswers_j > 0) quantity *= 1 + (RectangularItem.totalAnswers_j * 0.5f);
+		if (Dungeon.isChallenged(FALL_ECONOMY)) quantity *= 0.1f;
 		return this;
 	}
 

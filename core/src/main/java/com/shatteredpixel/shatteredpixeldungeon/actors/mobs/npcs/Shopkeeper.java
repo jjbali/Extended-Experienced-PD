@@ -25,6 +25,7 @@
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs;
 
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.COND_INFLATION;
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.FALL_ECONOMY;
 
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
@@ -58,6 +59,7 @@ import com.watabou.noosa.Image;
 import com.watabou.utils.Bundlable;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Callback;
+import com.watabou.utils.Random;
 
 import java.util.ArrayList;
 
@@ -150,6 +152,7 @@ if (sprite != null) {
 		if (Dungeon.isChallenged(COND_INFLATION)) i += i * inflation_increment;
 		if (MixedOperationItem.totalAnswers_f > 0) i -= i * inflation_decrement;
 		if (Dungeon.hero.belongings.getItem(TotemOfFortune.class) != null) i /= 2;
+		if (Dungeon.isChallenged(FALL_ECONOMY)) i *= Random.Int(3, 10) + 1;
 		return i;
 	}
 

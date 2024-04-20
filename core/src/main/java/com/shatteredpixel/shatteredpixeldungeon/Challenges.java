@@ -47,8 +47,9 @@ public class Challenges {
 	public static final int ENDLESS_MOMENTUM = 512;
 	public static final int COND_INFLATION = 1024;
 	public static final int DISP_ENEMIES = 2048;
+	public static final int FALL_ECONOMY = 4096;
 
-	public static final int MAX_VALUE           = 4096;
+	public static final int MAX_VALUE           = 8192;
 
 	public static final String[] NAME_IDS = {
 			"champion_enemies",
@@ -61,7 +62,8 @@ public class Challenges {
 			"the_true_fatality",
 			"endless_momentum",
 			"cond_inflation",
-			"disp_enemies"
+			"disp_enemies",
+			"fall_economy"
 	};
 
 	public static final int[] MASKS = {
@@ -75,7 +77,8 @@ public class Challenges {
 			THE_TRUE_FATALITY,
 			ENDLESS_MOMENTUM,
 			COND_INFLATION,
-			DISP_ENEMIES
+			DISP_ENEMIES,
+			FALL_ECONOMY
 	};
 
     public static int activeChallenges(){

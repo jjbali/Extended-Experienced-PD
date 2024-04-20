@@ -91,6 +91,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.FALL_ECONOMY;
 import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 import static com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.FishingRod.AC_UNCAST;
 import static com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth.tryForBonusDrop;
@@ -925,6 +926,11 @@ public abstract class Mob extends Char {
 	}
 
 	public void rollToDropLoot(){
+
+		if (Dungeon.isChallenged(FALL_ECONOMY) && Random.Int(5) == 0) {
+			GLog.h("The chances of getting the items lost are higher than your luck. Try to kill a mob again.");
+			return;
+		}
 
 		if (hero.lvl <= maxLvl && buff(DanceFloor.RewardBoost.class) != null) {
 			Dungeon.level.drop(Lucky.genLoot(), pos).sprite.drop();
