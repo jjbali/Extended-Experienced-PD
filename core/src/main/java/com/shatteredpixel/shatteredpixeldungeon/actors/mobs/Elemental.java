@@ -197,20 +197,19 @@ public abstract class Elemental extends Mob {
 		damage = super.attackProc( enemy, damage );
 		meleeProc( enemy, damage );
 
-		for (Item item: hero.belongings.backpack){
-			if (item instanceof TotemOfFire){
-				if (this instanceof FrostElemental) {
-					damage *= 1.5f;
-				} else if (this instanceof FireElemental) {
-					damage *= 0;
-				}
+		if (enemy == hero && hero.belongings.getItem(TotemOfFire.class) != null) {
+			if (this instanceof FrostElemental) {
+				damage *= 1.5f;
+			} else if (this instanceof FireElemental) {
+				damage *= 0f;
 			}
-			if (item instanceof TotemOfIce){
-				if (this instanceof FireElemental) {
-					damage *= 1.5f;
-				} else if (this instanceof FrostElemental) {
-					damage *= 0;
-				}
+		}
+
+		if (enemy == hero && hero.belongings.getItem(TotemOfIce.class) != null) {
+			if (this instanceof FrostElemental) {
+				damage *= 0f;
+			} else if (this instanceof FireElemental) {
+				damage *= 1.5f;
 			}
 		}
 		

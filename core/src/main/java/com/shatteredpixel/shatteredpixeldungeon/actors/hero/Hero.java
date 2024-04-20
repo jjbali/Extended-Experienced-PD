@@ -2284,21 +2284,14 @@ public class Hero extends Char {
 				&& belongings.armor().hasGlyph(Brimstone.class, this)){
 			return true;
 		}
-		for (Item item: hero.belongings.backpack){
-			if (item instanceof TotemOfFire){
-				if (effect == Burning.class) {
-					return true;
-				}
-			}
-			if (item instanceof TotemOfIce){
-				if (effect == Frost.class) {
-					return true;
-				}
-				if (effect == Chill.class) {
-					return true;
-				}
-			}
+
+		if (effect == Burning.class && hero.belongings.getItem(TotemOfFire.class) != null) {
+			return true;
 		}
+		if ((effect == Frost.class || effect == Chill.class) && hero.belongings.getItem(TotemOfIce.class) != null) {
+			return true;
+		}
+
 		return super.isImmune(effect);
 	}
 
