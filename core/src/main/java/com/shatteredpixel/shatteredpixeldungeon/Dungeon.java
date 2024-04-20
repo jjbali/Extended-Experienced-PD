@@ -254,7 +254,7 @@ public class Dungeon {
 
 			Scroll.initLabels();
 			Potion.initColors();
-			Tubes.initColors();
+			//Tubes.initColors();
 			Ring.initGems();
 
 			SpecialRoom.initForRun();

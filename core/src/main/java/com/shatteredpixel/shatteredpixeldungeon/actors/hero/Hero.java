@@ -24,6 +24,7 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.hero;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.DISP_ENEMIES;
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.LUCK_IN;
 import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 
@@ -1390,6 +1391,23 @@ public class Hero extends Char {
 						return true;
 					}
 				});
+			}
+		}
+
+		if (Dungeon.isChallenged(DISP_ENEMIES)) {
+			int oldpos = enemy.pos;
+			if (ScrollOfTeleportation.teleportChar(enemy)){
+				if (Dungeon.level.heroFOV[oldpos]) {
+					CellEmitter.get( oldpos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
+				}
+
+				if (enemy instanceof Mob && ((Mob) enemy).state == ((Mob) enemy).HUNTING){
+					((Mob) enemy).state = ((Mob) enemy).WANDERING;
+				}
+			}
+
+			if (damage >= enemy.HT) {
+				enemy.HP = 1;
 			}
 		}
 		
