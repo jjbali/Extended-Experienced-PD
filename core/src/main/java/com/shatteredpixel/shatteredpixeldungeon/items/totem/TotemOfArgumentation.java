@@ -93,7 +93,7 @@ public class TotemOfArgumentation extends Totem {
                 Buff.affect(hero, Bless.class, Bless.DURATION * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 7:
-                Buff.affect(hero, AdrenalineSurge.class).reset(2, 500);
+                Buff.affect(hero, AdrenalineSurge.class).reset(2, 20 * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 8:
                 Buff.affect(hero, Adrenaline.class, Adrenaline.DURATION * (0.40f + (hero.lvl * 0.01f)));
