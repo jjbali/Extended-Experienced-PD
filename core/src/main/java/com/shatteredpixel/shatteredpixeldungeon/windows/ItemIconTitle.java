@@ -90,7 +90,7 @@ public class ItemIconTitle extends IconTitle {
     }//vjm-dww-rxl
 
     public static Image noteIconByText(String text) {
-        return new ItemSprite(ItemSpriteSheet.SCROLL_PLUS, text.isEmpty() ? null : new ItemSprite.Glowing(0xFFFFFF, 3f));
+        return new ItemSprite(ItemSpriteSheet.ICEMAKER, text.isEmpty() ? null : new ItemSprite.Glowing(0xFFFFFF, 3f));
     }
 
     private static class Notes extends Window {
