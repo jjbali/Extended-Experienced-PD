@@ -18,8 +18,8 @@ allprojects {
         appName = 'Extended Experienced Pixel Dungeon'
         appPackageName = 'com.jjbali.experiencedpixeldungeon.extended'
 
-        appVersionCode = 520
-        appVersionName = 'EExpPD-9.3.5'
+        appVersionCode = 521
+        appVersionName = 'EExpPD-9.4.0'
 
         appJavaCompatibility = JavaVersion.VERSION_1_8
 
@@ -28,7 +28,7 @@ allprojects {
         appAndroidTargetSDK = 33
 
         gdxVersion = '1.11.0'
-        gdxControllersVersion = '2.2.3-SNAPSHOT'
+        gdxControllersVersion = '2.2.3'
         robovmVersion = '2.3.16'
     }
     version = appVersionName
