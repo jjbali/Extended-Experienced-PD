@@ -99,10 +99,10 @@ public class TotemOfArgumentation extends Totem {
                 Buff.affect(hero, Adrenaline.class, Adrenaline.DURATION * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 9:
-                Buff.affect(hero, BlobImmunity.class, BlobImmunity.DURATION * (0.40f + (hero.lvl * 0.01f)));
+                Buff.affect(hero, BlobImmunity.class, 2f * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 10:
-                Buff.affect(hero, Recharging.class, Recharging.DURATION * (0.40f + (hero.lvl * 0.01f)));
+                Buff.affect(hero, Recharging.class, 5f * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 11:
                 Buff.affect(hero, AnkhInvulnerability.class, AnkhInvulnerability.DURATION * (0.40f + (hero.lvl * 0.01f)));
@@ -114,25 +114,25 @@ public class TotemOfArgumentation extends Totem {
                 Buff.affect(hero, EnhancedRings.class, Random.Int(2, 10) * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 14:
-                Buff.affect(hero, Foresight.class, Foresight.DURATION * (0.40f + (hero.lvl * 0.01f)));
+                Buff.affect(hero, Foresight.class, 20f * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 15:
                 Buff.affect(hero, Levitation.class, Levitation.DURATION * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 16:
-                Buff.affect(hero, Light.class, Light.DURATION * (0.40f + (hero.lvl * 0.01f)));
+                Buff.affect(hero, Light.class, 10f * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 17:
                 Buff.affect(hero, LifeLink.class, Random.Int(2, 10) * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 18:
-                Buff.affect(hero, MagicalSight.class, MagicalSight.DURATION * 0.40f + (hero.lvl* 1.5f));
+                Buff.affect(hero, MagicalSight.class, 10f* 0.40f + (hero.lvl* 1.5f));
                 break;
             case 19:
-                Buff.affect(hero, MagicImmune.class, MagicImmune.DURATION * (0.40f + (hero.lvl * 0.01f)));
+                Buff.affect(hero, MagicImmune.class, 10f * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 20:
-                Buff.affect(hero, Overload.class, Overload.DURATION * (0.40f + (hero.lvl * 0.01f)));
+                Buff.affect(hero, Overload.class, 10f * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 21:
                 Buff.affect(hero, PrismaticGuard.class).set(15 + hero.lvl);
@@ -144,10 +144,10 @@ public class TotemOfArgumentation extends Totem {
                 Buff.affect(hero, ScrollEmpower.class).reset(1);
                 break;
             case 24:
-                Buff.affect(hero, Stamina.class, Stamina.DURATION * (0.40f + (hero.lvl * 0.01f)));
+                Buff.affect(hero, Stamina.class, 5f * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 25:
-                Buff.affect(hero, ThunderImbue.class).set(15 * level());
+                Buff.affect(hero, ThunderImbue.class).set(15 * (0.40f + (hero.lvl * 0.01f)));
                 break;
             case 26:
                 Buff.affect(hero, WandEmpower.class).set(15 + hero.lvl, 3 + hero.lvl);
@@ -156,7 +156,7 @@ public class TotemOfArgumentation extends Totem {
                 Buff.affect(hero, WellFed.class).reset();
                 break;
             case 28:
-                Buff.affect(hero, Barkskin.class).set((int) (5 * level()), 20 + hero.lvl);
+                Buff.affect(hero, Barkskin.class).set((int) (5 * (0.40f + (hero.lvl * 0.01f))), 20 + hero.lvl);
                 break;
             case 29:
                 Buff.affect(hero, Barrier.class).setShield(10 + hero.lvl);
