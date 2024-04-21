@@ -8,7 +8,7 @@ buildscript {
     dependencies {
         //FIXME the version of R8 coming with gradle plugin 4.0.0 causes serious problems
         //noinspection GradleDependency
-        classpath 'com.android.tools.build:gradle:7.4.0-rc03'
+        classpath 'com.android.tools.build:gradle:7.4.2'
     }
 }
 
@@ -28,7 +28,7 @@ allprojects {
         appAndroidTargetSDK = 33
 
         gdxVersion = '1.12.1'
-        gdxControllersVersion = '2.2.3'
+        gdxControllersVersion = '2.2.3-SNAPSHOT'
         robovmVersion = '2.3.20'
     }
     version = appVersionName

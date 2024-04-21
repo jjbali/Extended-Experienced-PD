@@ -31,8 +31,8 @@ android {
         //noinspection MinSdkTooLow
         minSdkVersion appAndroidMinSDK
         targetSdkVersion appAndroidTargetSDK
+        resConfigs 'en_US'
 
-        resConfigs "en_US"
     }
 
     buildTypes {
