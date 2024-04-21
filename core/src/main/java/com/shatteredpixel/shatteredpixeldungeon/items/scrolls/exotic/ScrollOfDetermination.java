@@ -32,7 +32,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.watabou.noosa.audio.Sample;
 
-public class ScrollOfConfusion extends ExoticScroll {
+public class ScrollOfDetermination extends ExoticScroll {
 	
 	{
 		icon = ItemSpriteSheet.Icons.SCROLL_CHALLENGE;
