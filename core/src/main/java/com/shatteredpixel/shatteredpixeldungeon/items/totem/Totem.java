@@ -53,9 +53,7 @@ public class Totem extends Item {
 
     @Override
     public void onHeroGainExp( float levelPercent, Hero hero ){
-        if (Random.Int(5) == 0 && levelPercent >= 0.50f) {
-            Buff.affect(hero, Barrier.class).setShield(10L * hero.lvl);
-        }
+        Buff.affect(hero, Barrier.class).setShield(10L);
     }
 
     @Override
