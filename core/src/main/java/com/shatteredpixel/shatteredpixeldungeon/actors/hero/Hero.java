@@ -73,9 +73,11 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfMagicMappi
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfChallenge;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfArgumentation;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfTheWinds;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfUnification;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfBlastWave;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfLivingEarth;
@@ -1944,8 +1946,11 @@ public class Hero extends Char {
 	
 	public static long maxExp( long lvl ){
 		HeroClass heroClass = hero == null ? GamesInProgress.selectedClass: hero.heroClass;
-		if (heroClass == HeroClass.RAT_KING) return (long) ((20 + lvl * 5L) * Math.pow(1.1, Math.max(0, lvl - 30)));
-		return (long) ((40 + lvl * 5L)*Math.pow(1.25, Math.max(0, lvl - 30)));
+		long max = (long) (heroClass == HeroClass.RAT_KING ? (20 + lvl * 5L) * Math.pow(1.1, Math.max(0, lvl - 30)) : (40 + lvl * 5L)*Math.pow(1.25, Math.max(0, lvl - 30)));
+		//if (heroClass == HeroClass.RAT_KING) return (long) ();
+		assert hero != null;
+		if (hero.belongings.getItem(TotemOfArgumentation.class) != null) max *= 0.9f;
+		return max;
 	}
 	
 	public boolean isStarving() {

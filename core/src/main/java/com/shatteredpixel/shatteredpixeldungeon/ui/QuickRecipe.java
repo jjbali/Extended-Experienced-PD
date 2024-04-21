@@ -46,6 +46,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.spells.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.Runestone;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.LeveledTieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.Totem;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfArgumentation;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFortune;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
@@ -393,6 +394,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new TotemOfTheWinds.Recipe()));
 				result.add(new QuickRecipe(new TotemOfUnification.Recipe()));
 				result.add(new QuickRecipe(new TotemOfUndefined.Recipe()));
+				result.add(new QuickRecipe(new TotemOfArgumentation.Recipe()));
 				return result;
 		}
 	}

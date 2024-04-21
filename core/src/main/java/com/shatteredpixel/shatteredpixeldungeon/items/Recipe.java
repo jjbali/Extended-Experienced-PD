@@ -41,6 +41,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ExoticScroll;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.Totem;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfArgumentation;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFortune;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
@@ -220,7 +221,8 @@ public abstract class Recipe {
 			new TotemOfTheWinds.Recipe(),
 			new Totem.Recipe(),
 			new TotemOfUnification.Recipe(),
-			new TotemOfUndefined.Recipe()
+			new TotemOfUndefined.Recipe(),
+			new TotemOfArgumentation.Recipe()
 	};
 	
 	public static ArrayList<Recipe> findRecipes(ArrayList<Item> ingredients){

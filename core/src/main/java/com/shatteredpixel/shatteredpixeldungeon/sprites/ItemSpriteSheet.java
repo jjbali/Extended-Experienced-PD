@@ -1019,6 +1019,7 @@ public class ItemSpriteSheet {
 	public static final int ICE			= TOTEM+4;
 	public static final int UNIFICATION			= TOTEM+5;
 	public static final int UNDEFINED			= TOTEM+6;
+	public static final int ARGUMENTATIVE			= TOTEM+7;
 	static{
 		assignItemRect(FORTUNE			, 16, 16);
 		assignItemRect(NONE_TOTEM			, 16, 16);
@@ -1027,6 +1028,7 @@ public class ItemSpriteSheet {
 		assignItemRect(ICE			, 16, 16);
 		assignItemRect(UNIFICATION			, 16, 16);
 		assignItemRect(UNDEFINED			, 16, 16);
+		assignItemRect(ARGUMENTATIVE			, 16, 16);
 	}
 
 	private static final int QUESTIONNAIRES			=			xy(1, 48);  //16 slots
