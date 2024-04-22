@@ -1048,7 +1048,7 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 16, 16);
 	}
 
-	private static final int TEST_TUBES 	=			xy(1, 37);  //16 slots
+	private static final int TEST_TUBES 	=			xy(1, 49);  //16 slots
 	public static final int RED_TEST_TUBE		= TEST_TUBES+0;
 	public static final int ORANGE_TEST_TUBE	= TEST_TUBES+1;
 	public static final int YELLOW_TEST_TUBE	= TEST_TUBES+2;
