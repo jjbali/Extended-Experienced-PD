@@ -27,6 +27,7 @@ package com.shatteredpixel.shatteredpixeldungeon.items.test_tubes;
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.GOLDFISH_MEMORY;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
+import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
@@ -38,6 +39,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Ooze;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Roots;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Perks;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Splash;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.LeafParticle;
@@ -45,43 +47,13 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.ItemStatusHandler;
 import com.shatteredpixel.shatteredpixeldungeon.items.Recipe;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfFrost;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHaste;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfInvisibility;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLevitation;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfMindVision;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfParalyticGas;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfPurity;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfToxicGas;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfHoneyedHealing;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.ExoticPotion;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCorrosiveGas;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfShroudingFog;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfSnapFreeze;
-import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfStormClouds;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.*;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Catalog;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Blindweed;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Earthroot;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Fadeleaf;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Firebloom;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Icecap;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Mageroyal;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Plant;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Rotberry;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Sorrowmoss;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Starflower;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Stormvine;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Sungrass;
-import com.shatteredpixel.shatteredpixeldungeon.plants.Swiftthistle;
+import com.shatteredpixel.shatteredpixeldungeon.plants.*;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
@@ -107,7 +79,6 @@ public class Tubes extends Item {
 
 	//used internally for potions that can be drunk or thrown
 	public static final String AC_CHOOSE = "CHOOSE";
-	public static int potion_uses = 0;
 
 	private static final float TIME_TO_DRINK = 1f;
 
@@ -124,6 +95,36 @@ public class Tubes extends Item {
 		}
 	};
 
+	private static final HashSet<Class<?extends Tubes>> mustThrowPots = new HashSet<>();
+	static{
+		//mustThrowPots.add(PotionOfToxicGas.class);
+		//mustThrowPots.add(PotionOfLiquidFlame.class);
+		//mustThrowPots.add(PotionOfParalyticGas.class);
+		//mustThrowPots.add(PotionOfFrost.class);
+
+		//exotic
+		//mustThrowPots.add(PotionOfCorrosiveGas.class);
+		//mustThrowPots.add(PotionOfSnapFreeze.class);
+		//mustThrowPots.add(PotionOfShroudingFog.class);
+		//mustThrowPots.add(PotionOfStormClouds.class);
+
+		//also all brews, hardcoded
+	}
+
+	private static final HashSet<Class<?extends Tubes>> canThrowPots = new HashSet<>();
+	static{
+		//canThrowPots.add(AlchemicalCatalyst.class);
+
+		//canThrowPots.add(PotionOfPurity.class);
+		//canThrowPots.add(PotionOfLevitation.class);
+
+		//exotic
+		//canThrowPots.add(PotionOfCleansing.class);
+
+		//elixirs
+		//canThrowPots.add(ElixirOfHoneyedHealing.class);
+	}
+
 	protected static ItemStatusHandler<Tubes> handler;
 
 	public String color;
@@ -135,7 +136,7 @@ public class Tubes extends Item {
 
 	@SuppressWarnings("unchecked")
 	public static void initColors() {
-		handler = new ItemStatusHandler<>( (Class<? extends Tubes>[])Generator.Category.POTION.classes, colors );
+		handler = new ItemStatusHandler<>( (Class<? extends Tubes>[])Generator.Category.TUBES.classes, colors );
 	}
 
 	public static void save( Bundle bundle ) {
@@ -145,7 +146,11 @@ public class Tubes extends Item {
 	public static void saveSelectively( Bundle bundle, ArrayList<Item> items ) {
 		ArrayList<Class<?extends Item>> classes = new ArrayList<>();
 		for (Item i : items){
-			if (i instanceof Tubes){
+			if (i instanceof ExoticPotion){
+				if (!classes.contains(ExoticPotion.exoToReg.get(i.getClass()))){
+					classes.add(ExoticPotion.exoToReg.get(i.getClass()));
+				}
+			} else if (i instanceof Tubes){
 				if (!classes.contains(i.getClass())){
 					classes.add(i.getClass());
 				}
@@ -156,14 +161,14 @@ public class Tubes extends Item {
 
 	@SuppressWarnings("unchecked")
 	public static void restore( Bundle bundle ) {
-		//handler = new ItemStatusHandler<>( (Class<? extends Tubes>[])Generator.Category.POTION.classes, colors, bundle );
+		handler = new ItemStatusHandler<>( (Class<? extends Tubes>[])Generator.Category.TUBES.classes, colors, bundle );
 	}
 
 	public Tubes() {
 		super();
 		reset();
 	}
-	
+
 	//anonymous potions are always IDed, do not affect ID status,
 	//and their sprite is replaced by a placeholder if they are not known,
 	//useful for items that appear in UIs, or which are only spawned for their effects
@@ -184,7 +189,13 @@ public class Tubes extends Item {
 
 	@Override
 	public String defaultAction() {
-		return AC_DRINK;
+		if (isKnown() && mustThrowPots.contains(this.getClass())) {
+			return AC_THROW;
+		} else if (isKnown() &&canThrowPots.contains(this.getClass())){
+			return AC_CHOOSE;
+		} else {
+			return AC_DRINK;
+		}
 	}
 
 	@Override
@@ -192,69 +203,107 @@ public class Tubes extends Item {
 		quantity = 1;
 		return this;
 	}
-	
+
 	@Override
 	public ArrayList<String> actions( Hero hero ) {
 		ArrayList<String> actions = super.actions( hero );
 		actions.add( AC_DRINK );
 		return actions;
 	}
-	
+
 	@Override
 	public void execute( final Hero hero, String action ) {
 
 		super.execute( hero, action );
-		
+
 		if (action.equals( AC_CHOOSE )){
-			
+
 			GameScene.show(new WndUseItem(null, this) );
-			
+
 		} else if (action.equals( AC_DRINK )) {
-			
-			drink(hero);
+
+			if (isKnown() && mustThrowPots.contains(getClass())) {
+
+				GameScene.show(
+						new WndOptions(new ItemSprite(this),
+								Messages.get(Tubes.class, "harmful"),
+								Messages.get(Tubes.class, "sure_drink"),
+								Messages.get(Tubes.class, "yes"), Messages.get(Tubes.class, "no") ) {
+							@Override
+							protected void onSelect(int index) {
+								if (index == 0) {
+									drink( hero );
+								}
+							}
+						}
+				);
+
+			} else {
+				drink( hero );
+			}
 		}
 	}
-	
+
 	@Override
 	public void doThrow( final Hero hero ) {
 
-		super.doThrow(hero);
+		if (isKnown()
+				&& !mustThrowPots.contains(this.getClass())
+				&& !canThrowPots.contains(this.getClass())) {
+
+			GameScene.show(
+					new WndOptions(new ItemSprite(this),
+							Messages.get(Tubes.class, "beneficial"),
+							Messages.get(Tubes.class, "sure_throw"),
+							Messages.get(Tubes.class, "yes"), Messages.get(Tubes.class, "no") ) {
+						@Override
+						protected void onSelect(int index) {
+							if (index == 0) {
+								Tubes.super.doThrow( hero );
+							}
+						}
+					}
+			);
+
+		} else {
+			super.doThrow( hero );
+		}
 	}
-	
+
 	protected void drink( Hero hero ) {
-		
+
 		detach( hero.belongings.backpack );
-		
+
 		hero.spend( TIME_TO_DRINK );
 		hero.busy();
 		apply( hero );
-		
-		Sample.INSTANCE.play( Assets.Sounds.DRINK );
-		
-		hero.sprite.operate( hero.pos );
-		//if (!anonymous){
 
-		//}
+		Sample.INSTANCE.play( Assets.Sounds.DRINK );
+
+		hero.sprite.operate( hero.pos );
+		if (!anonymous){
+
+		}
 	}
-	
+
 	@Override
 	protected void onThrow( int cell ) {
 		if (Dungeon.level.map[cell] == Terrain.WELL || Dungeon.level.pit[cell]) {
-			
+
 			super.onThrow( cell );
-			
+
 		} else  {
 
 			Dungeon.level.pressCell( cell );
 			shatter( cell );
-			
+
 		}
 	}
-	
+
 	public void apply( Hero hero ) {
 		shatter( hero.pos );
 	}
-	
+
 	public void shatter( int cell ) {
 		if (Dungeon.level.heroFOV[cell]) {
 			GLog.i( Messages.get(Tubes.class, "shatter") );
@@ -265,27 +314,27 @@ public class Tubes extends Item {
 
 	@Override
 	public void cast( final Hero user, int dst ) {
-			super.cast(user, dst);
+		super.cast(user, dst);
 	}
-	
+
 	public boolean isKnown() {
 		if (Dungeon.isChallenged(GOLDFISH_MEMORY)) return false;
 		return anonymous || (handler != null && handler.isKnown( this ));
 	}
-	
+
 	public void setKnown() {
 		if (!anonymous) {
 			if (!isKnown()) {
 				handler.know(this);
 				updateQuickslot();
 			}
-			
+
 			if (Dungeon.hero.isAlive()) {
 				Catalog.setSeen(getClass());
 			}
 		}
 	}
-	
+
 	@Override
 	public Item identify( boolean byHero ) {
 		super.identify(byHero);
@@ -295,39 +344,43 @@ public class Tubes extends Item {
 		}
 		return this;
 	}
-	
+
 	@Override
 	public String name() {
 		return isKnown() ? super.name() : Messages.get(this, color);
 	}
-	
+
 	@Override
 	public String info() {
 		return isKnown() ? desc() : Messages.get(this, "unknown_desc");
 	}
-	
+
 	@Override
 	public boolean isIdentified() {
 		return !Dungeon.isChallenged(GOLDFISH_MEMORY) && isKnown();
 	}
-	
+
 	@Override
 	public boolean isUpgradable() {
 		return false;
 	}
-	
+
 	public static HashSet<Class<? extends Tubes>> getKnown() {
 		return handler.known();
 	}
-	
+
 	public static HashSet<Class<? extends Tubes>> getUnknown() {
 		return handler.unknown();
 	}
-	
+
+	public static boolean allKnown() {
+		return handler.known().size() == Generator.Category.TUBES.classes.length;
+	}
+
 	protected int splashColor(){
 		return anonymous ? 0x00AAFF : ItemSprite.pick( image, 6, 15 );
 	}
-	
+
 	protected void splash( int cell ) {
 
 		Fire fire = (Fire)Dungeon.level.blobs.get( Fire.class );
@@ -345,7 +398,7 @@ public class Tubes extends Item {
 			Splash.at( cell, color, 5 );
 		}
 	}
-	
+
 	@Override
 	public long value() {
 		return 30 * quantity;
@@ -357,20 +410,120 @@ public class Tubes extends Item {
 	}
 
 	public static class PlaceHolder extends Tubes {
-		
+
 		{
 			image = ItemSpriteSheet.TEST_TUBE_HOLDER;
 		}
-		
+
 		@Override
 		public boolean isSimilar(Item item) {
 			return ExoticPotion.regToExo.containsKey(item.getClass())
 					|| ExoticPotion.regToExo.containsValue(item.getClass());
 		}
-		
+
 		@Override
 		public String info() {
 			return "";
+		}
+	}
+
+	public static class SeedToPotion extends Recipe {
+
+		public static HashMap<Class<?extends Plant.Seed>, Class<?extends Tubes>> types = new HashMap<>();
+		static {
+			//types.put(Blindweed.Seed.class,     PotionOfInvisibility.class);
+			//types.put(Mageroyal.Seed.class,     PotionOfPurity.class);
+			//types.put(Earthroot.Seed.class,     PotionOfParalyticGas.class);
+			//types.put(Fadeleaf.Seed.class,      PotionOfMindVision.class);
+			//types.put(Firebloom.Seed.class,     PotionOfLiquidFlame.class);
+			//types.put(Icecap.Seed.class,        PotionOfFrost.class);
+			//types.put(Rotberry.Seed.class,      PotionOfStrength.class);
+			//types.put(Sorrowmoss.Seed.class,    PotionOfToxicGas.class);
+			types.put(Starflower.Seed.class,    TubeOfExperience.class);
+			//types.put(Stormvine.Seed.class,     PotionOfLevitation.class);
+			//types.put(Sungrass.Seed.class,      PotionOfHealing.class);
+			//types.put(Swiftthistle.Seed.class,  PotionOfHaste.class);
+		}
+
+		@Override
+		public boolean testIngredients(ArrayList<Item> ingredients) {
+			if (ingredients.size() != 3) {
+				return false;
+			}
+
+			for (Item ingredient : ingredients){
+				if (!(ingredient instanceof Plant.Seed
+						&& ingredient.quantity() >= 1
+						&& types.containsKey(ingredient.getClass()))){
+					return false;
+				}
+			}
+			return true;
+		}
+
+		@Override
+		public long cost(ArrayList<Item> ingredients) {
+			return 0;
+		}
+
+		@Override
+		public Item brew(ArrayList<Item> ingredients) {
+			if (!testIngredients(ingredients)) return null;
+
+			for (Item ingredient : ingredients){
+				ingredient.quantity(ingredient.quantity() - 1);
+			}
+
+			ArrayList<Class<?extends Plant.Seed>> seeds = new ArrayList<>();
+			for (Item i : ingredients) {
+				if (!seeds.contains(i.getClass())) {
+					seeds.add((Class<? extends Plant.Seed>) i.getClass());
+				}
+			}
+
+			Tubes result;
+
+			if ( (seeds.size() == 2 && Random.Int(4) == 0)
+					|| (seeds.size() == 3 && Random.Int(2) == 0)) {
+
+				result = (Tubes) Generator.randomUsingDefaults( Generator.Category.TUBES );
+
+			} else {
+				result = Reflection.newInstance(types.get(Random.element(ingredients).getClass()));
+
+			}
+
+			if (seeds.size() == 1){
+				result.identify();
+			}
+
+			//while (result instanceof PotionOfHealing
+			//		&& Random.Int(10) < Dungeon.LimitedDrops.COOKING_HP.count) {
+//
+			//	result = (Tubes) Generator.randomUsingDefaults(Generator.Category.POTION);
+			//}
+
+			//if (result instanceof PotionOfHealing) {
+			//	Dungeon.LimitedDrops.COOKING_HP.count++;
+			//}
+
+			return result;
+		}
+
+		@Override
+		public Item sampleOutput(ArrayList<Item> ingredients) {
+			return new WndBag.Placeholder(ItemSpriteSheet.TEST_TUBE_HOLDER){
+
+				@Override
+				public String name() {
+					return Messages.get(Tubes.SeedToPotion.class, "name");
+				}
+
+				@Override
+				public String info() {
+					return "";
+				}
+			};
 		}
 	}
 }
