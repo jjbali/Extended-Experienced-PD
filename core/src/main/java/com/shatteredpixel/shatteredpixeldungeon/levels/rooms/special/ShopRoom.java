@@ -251,6 +251,10 @@ public class ShopRoom extends SpecialRoom {
 			itemsToSpawn.add(new StormBomb());
 		}
 
+		if (Dungeon.Int(10) == 0) {
+			itemsToSpawn.add(Generator.random(Generator.Category.TUBES).quantity(Random.Int(1, 5) + 1));
+		}
+
 		if (!Dungeon.oofedItems.isEmpty()) {
 			Item lol = Dungeon.oofedItems.get(Random.index(Dungeon.oofedItems));
 			if (lol != null){
