@@ -35,7 +35,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 
-public class TubeOfPrismaticSensation extends Potion {
+public class TubeOfPrismaticSensation extends Tubes {
 
 	{
 		icon = ItemSpriteSheet.Icons.SCROLL_PRISIMG;

@@ -34,7 +34,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 
-public class TubeOfStrength extends Potion {
+public class TubeOfStrength extends Tubes {
 
 	{
 		icon = ItemSpriteSheet.Icons.POTION_STRENGTH;
