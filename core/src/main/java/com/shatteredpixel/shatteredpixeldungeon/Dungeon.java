@@ -846,6 +846,7 @@ public class Dungeon {
 
 			Scroll.save( bundle );
 			Potion.save( bundle );
+			Tubes.save( bundle );
 			Ring.save( bundle );
 
             RingOfWealth.store(bundle);
@@ -923,6 +924,7 @@ public class Dungeon {
 		Scroll.restore( bundle );
 		Potion.restore( bundle );
 		Ring.restore( bundle );
+		Tubes.restore( bundle );
 
 		RingOfWealth.restore(bundle);
 
