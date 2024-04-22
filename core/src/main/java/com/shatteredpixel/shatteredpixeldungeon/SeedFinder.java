@@ -46,6 +46,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfEvasion;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfForce;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfFuror;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfHaste;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfLuck;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfMight;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfSharpshooting;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfTenacity;
@@ -541,6 +542,7 @@ public Map<String, String> logSeedItems(String seed, int floors) {
 		indexString += ringString(new RingOfSharpshooting());
 		indexString += ringString(new RingOfTenacity());
 		indexString += ringString(new RingOfWealth());
+		indexString += ringString(new RingOfLuck());
 
 		//SJC
 //		out.close();
