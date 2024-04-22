@@ -151,6 +151,8 @@ import com.shatteredpixel.shatteredpixeldungeon.items.spells.TelekineticGrab;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.WildEnergy;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfExperience;
+import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfPureImmunity;
+import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfStrength;
 import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.Tubes;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.AlchemyBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.BiggerGambleBag;
@@ -293,7 +295,9 @@ public class Generator {
 
 		static {
 			TUBES.classes = new Class<?>[] {
-					TubeOfExperience.class
+					TubeOfExperience.class,
+					TubeOfPureImmunity.class,
+					TubeOfStrength.class
 			};
 			TUBES.probs = new float[]{ 1 };
 
