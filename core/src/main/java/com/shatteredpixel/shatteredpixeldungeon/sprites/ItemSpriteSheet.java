@@ -1058,7 +1058,7 @@ public class ItemSpriteSheet {
 	public static final int VIOLET_TEST_TUBE	= TEST_TUBES+6;
 	public static final int PINK_TEST_TUBE	= TEST_TUBES+7;
 	static{
-		for (int i = TEST_TUBES; i < TEST_TUBES+1; i++)
+		for (int i = TEST_TUBES; i < TEST_TUBES+8; i++)
 			assignItemRect(i, 6, 15);
 	}
 
