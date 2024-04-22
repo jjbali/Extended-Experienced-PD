@@ -150,6 +150,8 @@ import com.shatteredpixel.shatteredpixeldungeon.items.spells.SummonElemental;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.TelekineticGrab;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.WildEnergy;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.*;
+import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfExperience;
+import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.Tubes;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.AlchemyBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.BiggerGambleBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.DKTreasureBag;
@@ -225,6 +227,7 @@ public class Generator {
 		ARTIFACT( 2, 0, Artifact.class),
 		FOOD	( 10, 3, Food.class ),
 		POTION	( 5, 3, Potion.class ),
+		TUBES (1, 1, Tubes.class),
 		SEED	( 5, 5, Plant.Seed.class ),
 		
 		SCROLL	( 5, 5, Scroll.class ),
@@ -289,6 +292,11 @@ public class Generator {
 		}
 
 		static {
+			TUBES.classes = new Class<?>[] {
+					TubeOfExperience.class
+			};
+			TUBES.probs = new float[]{ 1 };
+
 			MODULES2.classes = new Class<?>[]{
 					LuckModule.class,
 					MindVisionModule.class,
