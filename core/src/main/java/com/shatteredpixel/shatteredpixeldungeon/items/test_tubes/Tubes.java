@@ -115,7 +115,7 @@ public class Tubes extends Item {
 	static{
 		//canThrowPots.add(AlchemicalCatalyst.class);
 
-		//canThrowPots.add(PotionOfPurity.class);
+		canThrowPots.add(TubeOfPureImmunity.class);
 		//canThrowPots.add(PotionOfLevitation.class);
 
 		//exotic
