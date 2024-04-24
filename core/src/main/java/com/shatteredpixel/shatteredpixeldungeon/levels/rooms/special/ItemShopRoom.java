@@ -31,6 +31,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.items.Ankh;
 import com.shatteredpixel.shatteredpixeldungeon.items.ArcaneResin;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.OverloadBeacon;
@@ -458,6 +459,9 @@ public class ItemShopRoom extends SpecialRoom {
 				itemsToSpawn.add( new WildEnergy());
 				itemsToSpawn.add( new MagicBridge());
 				itemsToSpawn.add( new HandyBarricade());
+
+				for (int i = 0; i < 5; i++)
+					itemsToSpawn.add(Generator.random(Generator.Category.TUBES));
 
 				if (Dungeon.Int(3) == 0) itemsToSpawn.add( new Metamorph());
 

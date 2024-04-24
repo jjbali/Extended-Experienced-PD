@@ -154,6 +154,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfExperienc
 import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfPrismaticSensation;
 import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfPureImmunity;
 import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfStrength;
+import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfTranscendingTime;
 import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfUltimatePower;
 import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.Tubes;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.AlchemyBag;
@@ -301,9 +302,10 @@ public class Generator {
 					TubeOfPureImmunity.class,
 					TubeOfStrength.class,
 					TubeOfUltimatePower.class,
-					TubeOfPrismaticSensation.class
+					TubeOfPrismaticSensation.class,
+					TubeOfTranscendingTime.class
 			};
-			TUBES.probs = new float[]{ 1, 1, 1, 1, 1 };
+			TUBES.probs = new float[]{ 1, 1, 1, 1, 1, 1};
 
 			MODULES2.classes = new Class<?>[]{
 					LuckModule.class,
