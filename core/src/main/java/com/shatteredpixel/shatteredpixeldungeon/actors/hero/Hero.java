@@ -1398,7 +1398,7 @@ public class Hero extends Char {
 
 		if (Dungeon.isChallenged(DISP_ENEMIES)) {
 			int oldpos = enemy.pos;
-			if (ScrollOfTeleportation.teleportChar(enemy)){
+			if (ScrollOfTeleportation.teleportChar(enemy) && Random.Float() < 0.33f){
 				if (Dungeon.level.heroFOV[oldpos]) {
 					CellEmitter.get( oldpos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
 				}
@@ -1408,8 +1408,26 @@ public class Hero extends Char {
 				}
 			}
 
-			if (damage >= enemy.HT) {
-				enemy.HP = 1;
+			if (damage >= enemy.HT && Random.Float() < 0.50f) {
+				enemy.HP = enemy.HT;
+				int randomtext = Random.Int(5);
+				switch (randomtext) {
+					case 0:
+						GLog.w("Any last words, " + hero.className() + "?");
+						break;
+					case 1:
+						GLog.w("I thought that it was lethal, but it's not.");
+						break;
+					case 2:
+						GLog.w("Did I use ankh even I don't know what it is?");
+						break;
+					case 3:
+						GLog.w("Mission failed, I win.");
+						break;
+					case 4:
+						GLog.w("Use Option 2: Die");
+						break;
+				}
 			}
 		}
 		
