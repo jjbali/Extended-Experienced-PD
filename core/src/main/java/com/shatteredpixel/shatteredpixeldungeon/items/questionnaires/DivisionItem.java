@@ -62,9 +62,9 @@ public class DivisionItem extends Questionnaire {
     private static final String AC_ANSWER = "ANSWER";
     private static final String AC_REFRESH = "REFRESH";
 
-    private float CODE = Random.Int(10)+1;
-    private float CODE2 = Random.Int(10)+1;
-    private String ANSWER = String.valueOf(Math.round(CODE / CODE2));
+    private int CODE = Random.Int(10)+1;
+    private int CODE2 = Random.Int(10)+1;
+    private String ANSWER = String.valueOf((float) CODE / CODE2);
     public static int totalAnswers_d = 0;
     public static int streak_d = 0;
     public static int t = totalAnswers_d;
@@ -110,31 +110,31 @@ public class DivisionItem extends Questionnaire {
             if (streak_d < 11) {
                 CODE = Random.Int(10)+1;
                 CODE2 = Random.Int(10)+1;
-                ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                ANSWER = String.valueOf(CODE / CODE2);
             } else if (streak_d < 21 && streak_d >= 11 || totalAnswers_d >= 30 && totalAnswers_d < 50) {
                 CODE = Random.Int(100)+1;
                 CODE2 = Random.Int(10)+1;
-                ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                ANSWER = String.valueOf(CODE / CODE2);
             } else if (streak_d < 31 && streak_d >= 21 || totalAnswers_d >= 50 && totalAnswers_d < 70) {
                 CODE = Random.Int(100)+1;
                 CODE2 = Random.Int(100)+1;
-                ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                ANSWER = String.valueOf(CODE / CODE2);
             } else if (streak_d < 41 && streak_d >= 31 || totalAnswers_d >= 70 && totalAnswers_d < 100) {
                 CODE = Random.Int(1000)+1;
                 CODE2 = Random.Int(100)+1;
-                ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                ANSWER = String.valueOf(CODE / CODE2);
             } else if (streak_d < 51 && streak_d >= 41 || totalAnswers_d >= 100 && totalAnswers_d < 130) {
                 CODE = Random.Int(1000)+1;
                 CODE2 = Random.Int(1000)+1;
-                ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                ANSWER = String.valueOf(CODE / CODE2);
             } else if (streak_d > 51 || totalAnswers_d >= 130) {
                 CODE = Random.Int(10000)+1;
                 CODE2 = Random.Int(10000)+1;
-                ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                ANSWER = String.valueOf(CODE / CODE2);
             } else {
                 CODE = Random.Int(100)+1;
                 CODE2 = Random.Int(100)+1;
-                ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                ANSWER = String.valueOf(CODE / CODE2);
             }
         }
         else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
@@ -143,7 +143,7 @@ public class DivisionItem extends Questionnaire {
     }
 
     private void askCode() {
-        GameScene.show(new WndTextInput( "Input Answer","Divide the following: " + CODE + " / " + CODE2 + "\n_Should be rounded off._", "", 10, false, "Done", "Cancel" ) {
+        GameScene.show(new WndTextInput( "Input Answer","Divide the following: " + CODE + " / " + CODE2 + "\n_Should be rounded down._", "", 10, false, "Done", "Cancel" ) {
             @Override
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(ANSWER)) {
@@ -172,31 +172,31 @@ public class DivisionItem extends Questionnaire {
                     if (streak_d < 11) {
                         CODE = Random.Int(10)+1;
                         CODE2 = Random.Int(10)+1;
-                        ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                        ANSWER = String.valueOf(CODE / CODE2);
                     } else if (streak_d < 21 && streak_d >= 11 || totalAnswers_d >= 30 && totalAnswers_d < 50) {
                         CODE = Random.Int(100)+1;
                         CODE2 = Random.Int(10)+1;
-                        ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                        ANSWER = String.valueOf(CODE / CODE2);
                     } else if (streak_d < 31 && streak_d >= 21 || totalAnswers_d >= 50 && totalAnswers_d < 70) {
                         CODE = Random.Int(100)+1;
                         CODE2 = Random.Int(100)+1;
-                        ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                        ANSWER = String.valueOf(CODE / CODE2);
                     } else if (streak_d < 41 && streak_d >= 31 || totalAnswers_d >= 70 && totalAnswers_d < 100) {
                         CODE = Random.Int(1000)+1;
                         CODE2 = Random.Int(100)+1;
-                        ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                        ANSWER = String.valueOf(CODE / CODE2);
                     } else if (streak_d < 51 && streak_d >= 41 || totalAnswers_d >= 100 && totalAnswers_d < 130) {
                         CODE = Random.Int(1000)+1;
                         CODE2 = Random.Int(1000)+1;
-                        ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                        ANSWER = String.valueOf(CODE / CODE2);
                     } else if (streak_d > 51 || totalAnswers_d >= 130) {
                         CODE = Random.Int(10000)+1;
                         CODE2 = Random.Int(10000)+1;
-                        ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                        ANSWER = String.valueOf(CODE / CODE2);
                     } else {
                         CODE = Random.Int(100)+1;
                         CODE2 = Random.Int(100)+1;
-                        ANSWER = String.valueOf(Math.round(CODE / CODE2));
+                        ANSWER = String.valueOf(CODE / CODE2);
                     }
                     totalAnswers_d += 1;
                     streak_d += 1;
