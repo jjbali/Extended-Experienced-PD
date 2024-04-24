@@ -33,7 +33,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 public class TubeOfUltimatePower extends Tubes {
 
 	{
-		icon = ItemSpriteSheet.Icons.POTION_EXP;
+		icon = ItemSpriteSheet.Icons.RING_WEALTH;
 
 		bones = true;
 	}
