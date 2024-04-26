@@ -128,9 +128,6 @@ public class TotemOfArgumentation extends Totem {
             case 18:
                 Buff.affect(hero, MagicalSight.class, 10f* 0.40f + (hero.lvl* 1.5f));
                 break;
-            case 19:
-                Buff.affect(hero, MagicImmune.class, 10f * (0.40f + (hero.lvl * 0.01f)));
-                break;
             case 20:
                 Buff.affect(hero, Overload.class, 10f * (0.40f + (hero.lvl * 0.01f)));
                 break;
