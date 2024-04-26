@@ -375,7 +375,7 @@ public class SecondArenaLevel extends Level {
 			timerBasis = 15f;
 
 
-			if (count < 50) {
+			if (count < 100) {
 
 				Mob mob = Dungeon.level.createMob();
 				mob.state = mob.WANDERING;
