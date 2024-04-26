@@ -57,7 +57,7 @@ public class DistortionTrap extends Trap{
 	@Override
 	public void activate() {
 
-		int nMobs = 3;
+		int nMobs = 5;
 		if (Random.Int( 2 ) == 0) {
 			nMobs++;
 			if (Random.Int( 2 ) == 0) {
@@ -98,12 +98,12 @@ public class DistortionTrap extends Trap{
 				case 3: case 5 : default:
 					int floor;
 					do {
-						floor = Random.Int(25);
+						floor = Random.Int(25) + 1;
 					} while( Dungeon.bossLevel(floor));
-					mob = Reflection.newInstance(Bestiary.getMobRotation(floor).get(0));
+					mob = Reflection.newInstance(Bestiary.getMobRotation(floor).get(1));
 					break;
 				case 2:
-					switch (2){
+					switch (Random.Int(4)){
 						case 0: default:
 							Wraith.spawnAt(point);
 							continue; //wraiths spawn themselves, no need to do more
@@ -121,15 +121,13 @@ public class DistortionTrap extends Trap{
 							break;
 					}
 					break;
-				case 4:
-					mob = Reflection.newInstance(Random.element(RARE));
-					break;
 			}
 
 			if (Char.hasProp(mob, Char.Property.LARGE) && !Dungeon.level.openSpace[point]){
 				continue;
 			}
 
+			assert mob != null;
 			mob.maxLvl = Integer.MAX_VALUE;
 			mob.state = mob.WANDERING;
 			mob.pos = point;
