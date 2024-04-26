@@ -94,6 +94,12 @@ public class Goo extends Mob {
 			defenseSkill *= 3;
 			EXP *= 3;
 		}
+
+		if (Dungeon.branch == Dungeon.DIMENSIONAL) {
+			HP = HT += HT * 10.6666f;
+			defenseSkill *= 20;
+			EXP *= 100;
+		}
 	}
 
 	private int pumpedUp = 0;
@@ -122,6 +128,12 @@ public class Goo extends Mob {
                 max = (HP*2 <= HT) ? 26000 : 11000;
                 break;
         }
+
+		if (Dungeon.branch == 8) {
+			min *= 100;
+			max *= 10000;
+		}
+
 		if (pumpedUp > 0) {
 			pumpedUp = 0;
 			if (enemy == Dungeon.hero) {

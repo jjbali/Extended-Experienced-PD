@@ -74,8 +74,8 @@ public class DimensionalBestiary {
 	
 	//has a chance to add a rarely spawned mobs to the rotation
 	public static void addRareMobs( int depth, ArrayList<Class<?extends Mob>> rotation ){
+		if (Random.Float() < 0.75f) rotation.add(Goo.class);
 		switch (depth){
-			
 			// Sewers
 			case 19: default:
 				if (Random.Float() < 0.25f) rotation.add(Thief.class);
