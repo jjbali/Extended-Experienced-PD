@@ -188,7 +188,7 @@ public class IdealBag extends TreasureBag {
 
         @Override
         public long value() {
-            return new Gold().quantity()*15 * quantity;
+            return Dungeon.hero.lvl*15 * quantity;
         }
     }
 
@@ -210,7 +210,7 @@ public class IdealBag extends TreasureBag {
 
         @Override
         public long value() {
-            return new Gold().quantity()*4 * quantity;
+            return Dungeon.hero.lvl*4 * quantity;
         }
 
         @Override
