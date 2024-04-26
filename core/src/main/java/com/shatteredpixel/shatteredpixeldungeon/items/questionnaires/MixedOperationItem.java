@@ -279,7 +279,7 @@ public class MixedOperationItem extends Questionnaire {
                         Buff.affect(hero, CodeCooldown7.class).set(3);
                         totalAnswers_f += 1;
                         streak_f += 1;
-                        Shopkeeper.inflation_decrement += 0.01f;
+                        Shopkeeper.inflation_decrement += 0.001f;
                         if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
                             Buff.affect(hero, EnhancedRings.class, 3f);
                         }
@@ -353,7 +353,7 @@ public class MixedOperationItem extends Questionnaire {
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\nEvery correct answer changes the operation"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (0) Shop Price: -1%";
+                + "\n- (0) Shop Price: -0.1%";
     }
 
     private String STREAKS = "STREAKS";
