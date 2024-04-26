@@ -32,10 +32,7 @@ public class ChampionModule extends Module {
         super.execute(hero, action);
         if (action.equals(AC_USE)) {
             switch (Random.Int(7)) {
-                case 0:
-                    Buff.affect(hero, ChampionEnemy.AntiMagic.class);
-                    break;
-                case 1:
+                case 1: default:
                     Buff.affect(hero, ChampionEnemy.Blazing.class);
                     break;
                 case 2:
