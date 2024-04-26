@@ -202,7 +202,6 @@ public abstract class Recipe {
 		new StewedMeat.twoMeat(),
 		new MagicBridge.Recipe(),
 		new HandyBarricade.Recipe(),
-		new Evolution.Recipe(),
 		new Metamorph.Recipe()
 	};
 	
