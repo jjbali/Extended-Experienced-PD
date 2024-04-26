@@ -386,6 +386,7 @@ public class QuickRecipe extends Component {
 				result.add(new QuickRecipe(new RespawnBooster.Recipe()));
 				result.add(new QuickRecipe(new FireBooster.Recipe()));
 				result.add(new QuickRecipe(new Metamorph.Recipe()));
+				result.add(new QuickRecipe(new MagicalTierUpgrader.Recipe()));
 				result.add(null);
 				result.add(new QuickRecipe(new Totem.Recipe()));
 				result.add(new QuickRecipe(new TotemOfFire.Recipe()));

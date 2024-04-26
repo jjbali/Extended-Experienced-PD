@@ -202,7 +202,8 @@ public abstract class Recipe {
 		new StewedMeat.twoMeat(),
 		new MagicBridge.Recipe(),
 		new HandyBarricade.Recipe(),
-		new Metamorph.Recipe()
+		new Metamorph.Recipe(),
+		new MagicalTierUpgrader.Recipe()
 	};
 	
 	private static Recipe[] threeIngredientRecipes = new Recipe[]{
