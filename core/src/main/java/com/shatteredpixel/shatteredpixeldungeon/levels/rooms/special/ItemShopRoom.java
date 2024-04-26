@@ -135,6 +135,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.spells.SummonElemental;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.TelekineticGrab;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.Vampirism;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.WildEnergy;
+import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.Tubes;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.AlchemyBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.BiggerGambleBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.GambleBag;
@@ -303,6 +304,8 @@ public class ItemShopRoom extends SpecialRoom {
 				level.drop( item.quantity(Dungeon.NormalLongRange(1, 10) + 1), cell ).type = Heap.Type.FOR_SALE;
 			} else if (item instanceof RandomItemTicket) {
 				level.drop( item.quantity(Dungeon.NormalLongRange(20, 150) + 1), cell ).type = Heap.Type.FOR_ARENA_SALE;
+			} else if (item instanceof Tubes) {
+				level.drop( item.quantity(Dungeon.NormalLongRange(5, 10) + 1), cell ).type = Heap.Type.FOR_SALE;
 			} else {
 				level.drop( item.quantity(Dungeon.NormalLongRange(100, 1000) + 1), cell ).type = Heap.Type.FOR_ARENA_SALE;
 			}
