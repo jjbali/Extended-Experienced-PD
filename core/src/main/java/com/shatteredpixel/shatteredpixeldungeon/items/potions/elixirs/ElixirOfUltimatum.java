@@ -87,7 +87,7 @@ public class ElixirOfUltimatum extends Elixir {
 		identify();
 
 		Buff.affect(hero, Adrenaline.class, 350f * hero.lvl);
-		Buff.affect(hero, AnkhInvulnerability.class, 85f * hero.lvl);
+		Buff.prolong(hero, AnkhInvulnerability.class, 10f * hero.lvl);
 		Buff.affect(hero, ArcaneArmor.class).set(963L * hero.lvl, Integer.MAX_VALUE);
 		Buff.affect(hero, ArtifactRecharge.class).set(745f * hero.lvl);
 		Buff.affect(hero, Barrier.class).setShield(850L * hero.lvl);
