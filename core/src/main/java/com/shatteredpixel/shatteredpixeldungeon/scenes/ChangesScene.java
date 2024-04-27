@@ -198,7 +198,7 @@ if (Messages.lang() != Languages.ENGLISH){
 				panel.innerHeight() + 2);
 		list.scrollTo(0, 0);
 
-        RedButton btnEXP = new RedButton("ExpPD"){
+        RedButton btnEXP = new RedButton("Announcements/Events"){
             @Override
             protected void onClick() {
                 super.onClick();
