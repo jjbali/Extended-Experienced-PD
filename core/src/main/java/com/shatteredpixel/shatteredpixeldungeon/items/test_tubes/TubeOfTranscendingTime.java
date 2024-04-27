@@ -52,10 +52,10 @@ public class TubeOfTranscendingTime extends Tubes {
 		GameScene.flash(0x4c006699);
 		GLog.h("Show me what you can do, don't be slow!");
 	}
-	
+
 	@Override
 	public long value() {
-		return isKnown() ? 50 * quantity : super.value();
+		return isKnown() ? 250 * quantity : super.value();
 	}
 
 	@Override

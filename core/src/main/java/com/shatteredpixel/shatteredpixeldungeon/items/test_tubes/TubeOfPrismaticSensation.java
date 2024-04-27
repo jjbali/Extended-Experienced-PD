@@ -53,7 +53,7 @@ public class TubeOfPrismaticSensation extends Tubes {
 
 	@Override
 	public long value() {
-		return isKnown() ? 50 * quantity : super.value();
+		return isKnown() ? 250 * quantity : super.value();
 	}
 
 	@Override

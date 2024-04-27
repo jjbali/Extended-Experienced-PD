@@ -45,11 +45,15 @@ public class TubeOfStrength extends Tubes {
 	@Override
 	public void apply( Hero hero ) {
 		identify();
-		
-		hero.STR++;
-		Dungeon.luck++;
-		hero.sprite.showStatusWithIcon(CharSprite.POSITIVE, "1", FloatingText.STRENGTH);
-		hero.sprite.showStatusWithIcon(CharSprite.POSITIVE, "1", FloatingText.LUCK);
+
+		for (int i = 0; i < 5; i++) {
+			hero.STR++;
+		}
+		for (int i = 0; i < 5; i++) {
+			Dungeon.luck++;
+		}
+		hero.sprite.showStatusWithIcon(CharSprite.POSITIVE, "5", FloatingText.STRENGTH);
+		hero.sprite.showStatusWithIcon(CharSprite.POSITIVE, "5", FloatingText.LUCK);
 		GLog.p( "I feel something lucky...." );
 		
 		Badges.validateStrengthAttained();
@@ -58,7 +62,7 @@ public class TubeOfStrength extends Tubes {
 
 	@Override
 	public long value() {
-		return isKnown() ? 50 * quantity : super.value();
+		return isKnown() ? 250 * quantity : super.value();
 	}
 
 	@Override

@@ -45,10 +45,10 @@ public class TubeOfUltimatePower extends Tubes {
 		Buff.affect(hero, Bless.class, 50f * hero.lvl);
 		Buff.affect(hero, Overload.class, 50f * hero.lvl);
 	}
-	
+
 	@Override
 	public long value() {
-		return isKnown() ? 50 * quantity : super.value();
+		return isKnown() ? 250 * quantity : super.value();
 	}
 
 	@Override

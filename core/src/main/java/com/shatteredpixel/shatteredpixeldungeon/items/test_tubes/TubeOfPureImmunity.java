@@ -102,9 +102,9 @@ public class TubeOfPureImmunity extends Tubes {
 		SpellSprite.show(hero, SpellSprite.PURITY);
 		identify();
 	}
-	
+
 	@Override
 	public long value() {
-		return isKnown() ? 40 * quantity : super.value();
+		return isKnown() ? 250 * quantity : super.value();
 	}
 }
