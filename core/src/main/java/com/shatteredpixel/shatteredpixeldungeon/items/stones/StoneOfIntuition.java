@@ -24,6 +24,7 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.items.stones;
 
+import com.badlogic.gdx.utils.Null;
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Identification;
@@ -58,7 +59,11 @@ public class StoneOfIntuition extends InventoryStone {
 	@Override
 	protected boolean usableOnItem(Item item) {
 		if (item instanceof Ring){
-			return !((Ring) item).isKnown();
+			try {
+				return !((Ring) item).isKnown();
+			} catch ( NullPointerException e ) {
+				GLog.w( "NullPointerException is detected?!" );
+			}
 		} else if (item instanceof Potion){
 			return !((Potion) item).isKnown();
 		} else if (item instanceof Scroll){
