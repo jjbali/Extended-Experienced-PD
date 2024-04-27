@@ -279,7 +279,17 @@ public class MixedOperationItem extends Questionnaire {
                         Buff.affect(hero, CodeCooldown7.class).set(3);
                         totalAnswers_f += 1;
                         streak_f += 1;
-                        Shopkeeper.inflation_decrement += 0.001f;
+                        if (streak_f >= 50 && streak_f <= 99) {
+                            Shopkeeper.inflation_decrement = 0.45f;
+                        } else if (streak_f >= 100 && streak_f <= 149) {
+                            Shopkeeper.inflation_decrement = 0.675f;
+                        } else if (streak_f >= 150 && streak_f <= 199) {
+                            Shopkeeper.inflation_decrement = 0.7875f;
+                        } else if (streak_f >= 200 && streak_f <= 249) {
+                            Shopkeeper.inflation_decrement = 0.84375f;
+                        } else if (streak_f >= 250) {
+                            Shopkeeper.inflation_decrement = 0.871875f;
+                        }
                         if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
                             Buff.affect(hero, EnhancedRings.class, 3f);
                         }
@@ -307,6 +317,7 @@ public class MixedOperationItem extends Questionnaire {
                     GameScene.flash(0xFFFF0000);
                     GLog.w("That answer is not equals as the given, try again.");
                     streak_f = 0;
+                    Shopkeeper.inflation_decrement = 0;
                 }
             }
 
@@ -353,7 +364,11 @@ public class MixedOperationItem extends Questionnaire {
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\nEvery correct answer changes the operation"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (0) Shop Price: -0.1%";
+                + "\n- (50) -45% Discount On Shops"
+                + "\n- (100) -67.5% Discount On Shops"
+                + "\n- (150) -78.75% Discount On Shops"
+                + "\n- (200) -84.375% Discount On Shops"
+                + "\n- (250) -87.1875% Discount On Shops";
     }
 
     private String STREAKS = "STREAKS";

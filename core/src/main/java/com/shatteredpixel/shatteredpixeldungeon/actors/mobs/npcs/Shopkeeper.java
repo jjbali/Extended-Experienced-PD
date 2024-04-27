@@ -150,7 +150,7 @@ if (sprite != null) {
 		long i = item.value() * 5 * (Dungeon.escalatingDepth() / 5 + 1);
 		if (item.wereOofed) i *= 5;
 		if (Dungeon.isChallenged(COND_INFLATION)) i += i * inflation_increment;
-		if (MixedOperationItem.totalAnswers_f > 0) i -= i * inflation_decrement;
+		if (MixedOperationItem.streak_f > 0) i -= i * inflation_decrement;
 		if (Dungeon.hero.belongings.getItem(TotemOfFortune.class) != null) i /= 2;
 		if (Dungeon.isChallenged(FALL_ECONOMY)) i *= Random.Int(3, 10) + 1;
 		return i;
