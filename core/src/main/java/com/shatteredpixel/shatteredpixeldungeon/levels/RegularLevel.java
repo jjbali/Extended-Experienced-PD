@@ -379,7 +379,7 @@ public abstract class RegularLevel extends Level {
 				losBlocking[cell] = false;
 			}
 
-			Heap.Type type = null;
+			Heap.Type type;
 			switch (Random.Int( 20 )) {
 			case 0:
 				type = Heap.Type.SKELETON;

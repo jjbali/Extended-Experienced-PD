@@ -38,9 +38,9 @@ public abstract class StandardRoom extends Room {
 	
 	public enum SizeCategory {
 		//TODO add huge category prob
-		NORMAL(7, 12, 1),
-		LARGE(13, 18, 2),
-		GIANT(19, 23, 3);
+		NORMAL(4, 10, 1),
+		LARGE(10, 14, 2),
+		GIANT(14, 18, 3);
 		
 		public final int minDim, maxDim;
 		public final int roomValue;
