@@ -128,19 +128,21 @@ public class InfoBook extends Item{
                 + spell_counter
                 + potion_counter
                 + stone_counter
-                + "\n\nAlso portrays some of the dungeon."
+                + "\n\nAlso portrays some of on the dungeon."
                 + "\n\nTotal Score: " + Statistics.totalScore
                 + "\nProgress Score: " + Statistics.progressScore
                 + "\nTreasure Score: " + Statistics.treasureScore
                 + "\nExplore Score: " + Statistics.exploreScore
                 + "\nAnswered Questions: " + Statistics.answeredQuestions
-                + "\nStreak Multiplier: " + Statistics.streakMultiplier
                 + "\nEnemies Slain: " + Statistics.enemiesSlain
                 + "\nItems Crafted: " + Statistics.itemsCrafted
                 + "\nFood Eaten: " + Statistics.foodEaten
                 + "\nUpgrades Used: " + Statistics.upgradesUsed
                 + "\nSneak Attacks: " + Statistics.sneakAttacks
                 + "\nThrown Attacks: " + Statistics.thrownAttacks
-                + "\nAnkh Used: " + Statistics.ankhsUsed;
+                + "\nAnkh Used: " + Statistics.ankhsUsed
+                + "\nDungeon Luck: " + Dungeon.luck
+                + "\nTurns Passed: " + Statistics.turnsPassed
+                + "\nTotal Gold Collected: " + Statistics.goldCollected;
     }
 }
