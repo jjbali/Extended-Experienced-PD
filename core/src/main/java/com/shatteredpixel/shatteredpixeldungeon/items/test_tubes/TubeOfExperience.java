@@ -46,7 +46,7 @@ public class TubeOfExperience extends Tubes {
 	@Override
 	public void apply( Hero hero ) {
 		identify();
-		hero.earnExp(6L * hero.lvl, TubeOfExperience.class);
+		hero.earnExp(15L * hero.lvl, TubeOfExperience.class);
 	}
 	
 	@Override
