@@ -281,7 +281,7 @@ public class SubtractionItem extends Questionnaire {
         return "This item represents your intelligence, it may also give you some rewards.\n\nSubtract the following: " + CODE + " - " + CODE2 + "\nAnswered Correctly: " + totalAnswers_b + "\nStreak: " + streak_b
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (0) Health +20"
+                + "\n- (0) Health +5"
                 + "\n- (10) Module Shop available [reset if streak >= 10]";
     }
 
