@@ -209,22 +209,8 @@ if (Messages.lang() != Languages.ENGLISH){
             }
         };
         if (changesSelected == 0) btnEXP.textColor(Window.TITLE_COLOR);
-        btnEXP.setRect(list.left()-4f, list.bottom()+5, 70, 14);
+        btnEXP.setRect(list.left()-4f, list.bottom()+5, 140, 14);
         add(btnEXP);
-
-		RedButton btn0_8 = new RedButton("ShPD"){
-			@Override
-			protected void onClick() {
-				super.onClick();
-				if (changesSelected != 1) {
-					changesSelected = 1;
-					ShatteredPixelDungeon.seamlessResetScene();
-				}
-			}
-		};
-		if (changesSelected == 1) btn0_8.textColor(Window.TITLE_COLOR);
-		btn0_8.setRect(btnEXP.right() + 1, btnEXP.top(), 70, 14);
-		add(btn0_8);
 
 		Archs archs = new Archs();
 		archs.setSize( Camera.main.width, Camera.main.height );

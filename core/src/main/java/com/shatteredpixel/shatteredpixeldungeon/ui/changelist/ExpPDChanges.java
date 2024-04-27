@@ -63,34 +63,13 @@ import com.watabou.noosa.Image;
 import java.util.ArrayList;
 
 public class ExpPDChanges {
-    public static String SEEDLESS = DungeonSeed.convertToCode(DungeonSeed.randomSeed());
-
     public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
-        ChangeInfo changes = new ChangeInfo("EExpPD-1.1.0", true, "");
+        ChangeInfo changes = new ChangeInfo("I", true, "");
         changes.hardlight(Window.TITLE_COLOR);
         changeInfos.add(changes);
-        changes.addButton( new ChangeButton(Icons.get(Icons.BOBBY_IS_VERY_STRANGE_PERSON_BECAUSE_HE_TRIES_TO_REFERENCE_HIMSELF_IN_NEW_SHATTERED_CREDITS_SCREEN), "Developer Commentary",
-                "_-_ Released January 27th, 2024"));
-        changes.addButton( new ChangeButton(new ItemSprite(ItemSpriteSheet.EXOTIC_SCROLL_PLUS, null), "Questionnaires",
-                        "_-_ Added some questionnaires." +
-                        "\n_-_ New questionnaire mechanics (like battlepasses)" +
-                                "\n_-_ This item (4 types) may help you during in-game. But first, you need to answer those questions given. As you expand your streak, some items will be available. Remember, there are cooldowns."
-        ));
+        changes.addButton( new ChangeButton(Icons.get(Icons.JJBALI_IS_NOT_A_PURE_HUMAN), "????????????",
+                "I'm a little bit confused to this? Announcement boards are just useless....."));
 
-
-
-        changes = new ChangeInfo("EExpPD-1.0.0", true, "");
-        changes.hardlight(Window.TITLE_COLOR);
-        changeInfos.add(changes);
-        changes.addButton( new ChangeButton(Icons.get(Icons.BOBBY_IS_VERY_STRANGE_PERSON_BECAUSE_HE_TRIES_TO_REFERENCE_HIMSELF_IN_NEW_SHATTERED_CREDITS_SCREEN), "Developer Commentary",
-                "_-_ Released December 22th, 2023"));
-        changes.addButton( new ChangeButton(Icons.get(Icons.CHALLENGE_ON), "Notes",
-                "_-_ No more update list here [IN PROGRESS]\n\n" +
-                        "_-_ Tests\n"+
-                        "_-_ Seed: " + SEEDLESS +"\n" +
-                        "_-_ Name (Dynasty): " + NamesGenerator.dynastyName(true) + "\n" +
-                        "_-_ Name (Code): " + NamesGenerator.chromaKey()
-        ));
     }
 
 }
