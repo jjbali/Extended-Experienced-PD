@@ -64,12 +64,12 @@ public class CavesLevel extends RegularLevel {
 
 	@Override
 	protected int standardRooms(boolean forceMax) {
-		return Random.Int(7, 15) + 1;
+		return 15;
 	}
 
 	@Override
 	protected int specialRooms(boolean forceMax) {
-		return Random.Int(3, 7) + 1;
+		return 7;
 	}
 	
 	@Override
