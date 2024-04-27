@@ -64,7 +64,7 @@ public class DivisionItem extends Questionnaire {
 
     private int CODE = Random.Int(10)+1;
     private int CODE2 = Random.Int(10)+1;
-    private String ANSWER = String.valueOf((float) CODE / CODE2);
+    private String ANSWER = String.valueOf(CODE / CODE2);
     public static int totalAnswers_d = 0;
     public static int streak_d = 0;
     public static int t = totalAnswers_d;
