@@ -52,6 +52,7 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ExponentialItem extends Questionnaire {
     {
@@ -150,6 +151,9 @@ public class ExponentialItem extends Questionnaire {
                     ANSWER = String.valueOf((long) Math.pow(CODE, CODE2));
                     totalAnswers_e += 1;
                     streak_e += 1;
+                    if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                        streak_e += 2;
+                    }
                     GameScene.flash(0xFF008000);
                     switch (Random.Int(9)) {
                         //TODO something todo with those rewards

@@ -63,6 +63,7 @@ import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.SpawnRingOrWand;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.SpawnWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.TestPotion;
 import com.shatteredpixel.shatteredpixeldungeon.items.ExtendedDictBook;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.InfoBook;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.PlateArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.lottery.LotteryItem;
@@ -116,6 +117,9 @@ import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.watabou.utils.DeviceCompat;
 import com.zrp200.scrollofdebug.ScrollOfDebug;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public enum HeroClass {
 
 	WARRIOR( HeroSubClass.BERSERKER, HeroSubClass.GLADIATOR ),
@@ -133,6 +137,7 @@ public enum HeroClass {
 
 	public void initHero( Hero hero ) {
 
+		GregorianCalendar gregcal = new GregorianCalendar();
 		hero.heroClass = this;
 		Talent.initClassTalents(hero);
 
@@ -145,6 +150,28 @@ public enum HeroClass {
 
 		new VelvetPouch().collect();
 		Dungeon.LimitedDrops.VELVET_POUCH.drop();
+
+		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) {
+			i = Generator.random(Generator.Category.POTION);
+			for (int j = 0; j < 5; j++) {
+				i.collect();
+			}
+		}
+		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
+			i = Generator.random(Generator.Category.WEAPON);
+			for (int j = 0; j < 2; j++) {
+				i.collect();
+			}
+		}
+		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
+			i = Generator.random(Generator.Category.FOOD);
+			for (int j = 0; j < 5; j++) {
+				i.collect();
+			}
+
+			i = Generator.random(Generator.Category.ARTIFACT);
+			i.collect();
+		}
 
 		Waterskin waterskin = new Waterskin();
 		waterskin.collect();

@@ -62,6 +62,8 @@ import com.watabou.utils.Callback;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Shopkeeper extends NPC {
 
@@ -144,6 +146,7 @@ if (sprite != null) {
 	public boolean reset() {
 		return true;
 	}
+	static GregorianCalendar gregcal = new GregorianCalendar();
 
 	//shopkeepers are greedy!
 	public static long sellPrice(Item item){
@@ -153,6 +156,7 @@ if (sprite != null) {
 		if (MixedOperationItem.streak_f > 0) i -= i * inflation_decrement;
 		if (Dungeon.hero.belongings.getItem(TotemOfFortune.class) != null) i /= 2;
 		if (Dungeon.isChallenged(FALL_ECONOMY)) i *= Random.Int(3, 10) + 1;
+		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) i -= i * 0.1f;
 		return i;
 	}
 

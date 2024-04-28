@@ -50,6 +50,7 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class OddEvenItem extends Questionnaire {
     {
@@ -146,6 +147,9 @@ public class OddEvenItem extends Questionnaire {
                     ANSWER = CODE % 2 == 0 ? "even" : "odd";
                     totalAnswers_g += 1;
                     streak_g += 1;
+                    if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                        streak_g += 2;
+                    }
                     GameScene.flash(0xFF008000);
                     switch (Random.Int(9)) {
                         case 0:

@@ -51,6 +51,7 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class MixedOperationItem extends Questionnaire {
     {
@@ -279,6 +280,9 @@ public class MixedOperationItem extends Questionnaire {
                         Buff.affect(hero, CodeCooldown7.class).set(3);
                         totalAnswers_f += 1;
                         streak_f += 1;
+                        if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                            streak_f += 2;
+                        }
                         if (streak_f >= 50 && streak_f <= 99) {
                             Shopkeeper.inflation_decrement = 0.45f;
                         } else if (streak_f >= 100 && streak_f <= 149) {

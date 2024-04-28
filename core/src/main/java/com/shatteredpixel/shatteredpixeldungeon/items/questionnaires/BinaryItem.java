@@ -55,6 +55,7 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class BinaryItem extends Questionnaire {
     {
@@ -152,6 +153,9 @@ public class BinaryItem extends Questionnaire {
                     ANSWER = Integer.toBinaryString(CODE);
                     totalAnswers_i += 1;
                     streak_i += 1;
+                    if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                        streak_i += 2;
+                    }
                     GameScene.flash(0xFF008000);
                     switch (Random.Int(9)) {
                         case 0:

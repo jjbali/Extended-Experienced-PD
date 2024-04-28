@@ -50,6 +50,7 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class SubtractionItem extends Questionnaire {
     {
@@ -200,6 +201,9 @@ public class SubtractionItem extends Questionnaire {
                     }
                     totalAnswers_b += 1;
                     streak_b += 1;
+                    if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                        streak_b += 2;
+                    }
                     hero.updateHT(false);
                     GameScene.flash(0xFF008000);
                     switch (Random.Int(9)) {

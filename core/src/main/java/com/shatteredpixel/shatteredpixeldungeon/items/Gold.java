@@ -42,6 +42,8 @@ import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class Gold extends Item {
 
@@ -51,6 +53,7 @@ public class Gold extends Item {
 		image = ItemSpriteSheet.GOLD;
 		stackable = true;
 	}
+	GregorianCalendar gregcal = new GregorianCalendar();
 	
 	public Gold() {
 		this( 1 );
@@ -100,6 +103,7 @@ public class Gold extends Item {
 		if (Dungeon.hero.buff(TotemOfFortune.FortuneBuff.class) != null) quantity *= 5;
 		if (RectangularItem.totalAnswers_j > 0) quantity *= 1 + (RectangularItem.totalAnswers_j * 0.5f);
 		if (Dungeon.isChallenged(FALL_ECONOMY)) quantity *= 0.1f;
+		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) quantity *= 4;
 		return this;
 	}
 

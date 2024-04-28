@@ -50,6 +50,7 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DivisionItem extends Questionnaire {
     {
@@ -200,6 +201,9 @@ public class DivisionItem extends Questionnaire {
                     }
                     totalAnswers_d += 1;
                     streak_d += 1;
+                    if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                        streak_d += 2;
+                    }
                     GameScene.flash(0xFF008000);
                     switch (Random.Int(9)) {
                         case 0:

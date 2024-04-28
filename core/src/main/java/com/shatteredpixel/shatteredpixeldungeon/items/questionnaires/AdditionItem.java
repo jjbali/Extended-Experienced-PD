@@ -55,6 +55,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
+import com.shatteredpixel.shatteredpixeldungeon.utils.Holiday;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndTextInput;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
@@ -62,7 +63,10 @@ import com.watabou.utils.Random;
 import com.watabou.utils.Reflection;
 import com.zrp200.scrollofdebug.ScrollOfDebug;
 
+import java.time.DayOfWeek;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class AdditionItem extends Questionnaire {
     {
@@ -217,6 +221,9 @@ public class AdditionItem extends Questionnaire {
                     }
                     totalAnswers_a += 1;
                     streak_a += 1;
+                    if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
+                        streak_a += 2;
+                    }
                     GameScene.flash(0xFF008000);
                     switch (Random.Int(9)) {
                         case 0:
