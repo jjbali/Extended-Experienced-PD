@@ -64,12 +64,24 @@ import java.util.ArrayList;
 
 public class ExpPDChanges {
     public static void addAllChanges( ArrayList<ChangeInfo> changeInfos ){
-        ChangeInfo changes = new ChangeInfo("I", true, "");
+        ChangeInfo changes = new ChangeInfo("??????", true, "");
         changes.hardlight(Window.TITLE_COLOR);
         changeInfos.add(changes);
         changes.addButton( new ChangeButton(Icons.get(Icons.JJBALI_IS_NOT_A_PURE_HUMAN), "????????????",
                 "I'm a little bit confused to this? Announcement boards are just useless....."));
 
+
+        changes = new ChangeInfo("I", true, "");
+        changes.hardlight(Window.TITLE_COLOR);
+        changeInfos.add(changes);
+        changes.addButton( new ChangeButton(Icons.get(Icons.CALENDAR), "Calibrated Days",
+                "_-_ Monday: +2 Streaks On Questionnaires\n" +
+                        "_-_ Tuesday: -10% Discount On Shops\n" +
+                        "_-_ Wednesday: x5 Score\n" +
+                        "_-_ Thursday: 5 Random Potions\n" +
+                        "_-_ Friday: 2 Random Weapons\n" +
+                        "_-_ Saturday: 5 Random Foods, 1 Random Artifact\n" +
+                        "_-_ Sunday: x4 Gold"));
     }
 
 }
