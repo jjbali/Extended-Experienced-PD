@@ -244,7 +244,9 @@ public enum Rankings {
 		}
 
 		Statistics.chalMultiplier = (float)Math.pow(1.3, Challenges.activeChallenges());
+		Statistics.modiMultiplier = (float)Math.pow(1.3, Modifiers.activeModifiers());
 		Statistics.chalMultiplier = Math.round(Statistics.chalMultiplier*15f)/15f;
+		Statistics.modiMultiplier = Math.round(Statistics.modiMultiplier*15f)/15f;
 		Statistics.cycleMultiplier = Math.max(1, 2 * (float)Math.pow(5, Dungeon.cycle-1));
 		Statistics.cycleMultiplier = Math.round(Statistics.cycleMultiplier*15f)/15f;
 		Statistics.answeredQuestions *= Statistics.winMultiplier + Statistics.cycleMultiplier;

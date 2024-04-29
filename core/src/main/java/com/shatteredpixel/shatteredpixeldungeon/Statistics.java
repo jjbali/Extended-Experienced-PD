@@ -51,6 +51,7 @@ public class Statistics {
 	public static int totalQuestScore;
 	public static float winMultiplier;
 	public static float chalMultiplier;
+	public static float modiMultiplier;
 	public static float streakMultiplier;
 	public static float cycleMultiplier;
 	public static long totalScore;
@@ -102,6 +103,7 @@ public class Statistics {
 		winMultiplier   = 1;
 		streakMultiplier   = 1;
 		chalMultiplier  = 1;
+		modiMultiplier  = 1;
 		totalScore      = 0;
 		second_elapsed = 0;
 		real_seconds = 0;
@@ -166,6 +168,7 @@ public class Statistics {
 	private static final String ASCENDED		= "ascended";
 	private static final String ANSWERED_Q		= "answeredquestion";
 	private static final String STREAK_Q		= "streakonquestion";
+	private static final String MODI_MULT		= "modi_mult";
 	
 	public static void storeInBundle( Bundle bundle ) {
 		bundle.put( GOLD,		goldCollected );
@@ -192,6 +195,7 @@ public class Statistics {
 		bundle.put( TOT_QUEST,   totalQuestScore );
 		bundle.put( WIN_MULT,    winMultiplier );
 		bundle.put( CHAL_MULT,   chalMultiplier );
+		bundle.put( MODI_MULT,   modiMultiplier);
 		bundle.put( CYCLE_MULT,   cycleMultiplier );
 		bundle.put( TOTAL_SCORE, totalScore );
 		
@@ -241,6 +245,7 @@ public class Statistics {
 		totalQuestScore = bundle.getInt( TOT_QUEST );
 		winMultiplier   = bundle.getFloat( WIN_MULT );
 		chalMultiplier  = bundle.getFloat( CHAL_MULT );
+		modiMultiplier  = bundle.getFloat( MODI_MULT );
 		totalScore      = bundle.getLong( TOTAL_SCORE );
 		
 		upgradesUsed    = bundle.getInt( UPGRADES );

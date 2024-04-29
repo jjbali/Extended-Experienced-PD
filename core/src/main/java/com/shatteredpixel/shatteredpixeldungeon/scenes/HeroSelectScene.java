@@ -347,6 +347,8 @@ public class HeroSelectScene extends PixelScene {
 			btnOptions.icon().hardlight(1f, 1.5f, 0.67f);
 		} else if (SPDSettings.challenges() != 0){
 			btnOptions.icon().hardlight(2f, 1.33f, 0.5f);
+		} else if (SPDSettings.modifiers() != 0){
+			btnOptions.icon().hardlight(1f, 3f, 2f);
 		} else {
 			btnOptions.icon().resetColor();
 		}
@@ -725,6 +727,23 @@ public class HeroSelectScene extends PixelScene {
 				challengeButton.icon(Icons.get(SPDSettings.challenges() > 0 ? Icons.CHALLENGE_ON : Icons.CHALLENGE_OFF));
 				add(challengeButton);
 				buttons.add(challengeButton);
+
+				StyledButton modifierButton = new StyledButton(Chrome.Type.BLANK, "Modifiers", 6){
+					@Override
+					protected void onClick() {
+						ShatteredPixelDungeon.scene().addToFront(new WndModifiers(SPDSettings.modifiers(), true) {
+							public void onBackPressed() {
+								super.onBackPressed();
+								icon(Icons.get(SPDSettings.modifiers() > 0 ? Icons.CHALLENGE_ON : Icons.CHALLENGE_OFF));
+								updateOptionsColor();
+							}
+						} );
+					}
+				};
+				modifierButton.leftJustify = true;
+				modifierButton.icon(Icons.get(SPDSettings.modifiers() > 0 ? Icons.CHALLENGE_ON : Icons.CHALLENGE_OFF));
+				add(modifierButton);
+				buttons.add(modifierButton);
 			}
 
 			for (int i = 1; i < buttons.size(); i++){

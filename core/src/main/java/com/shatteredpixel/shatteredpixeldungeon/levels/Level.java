@@ -26,6 +26,7 @@ package com.shatteredpixel.shatteredpixeldungeon.levels;
 
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.ENDLESS_MOMENTUM;
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.THE_TRUE_FATALITY;
+import static com.shatteredpixel.shatteredpixeldungeon.Modifiers.FIFTYPERCENTMOREHP;
 
 import com.shatteredpixel.shatteredpixeldungeon.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
@@ -502,6 +503,11 @@ public abstract class Level implements Bundlable {
 			m.defenseSkill *= 10;
 			m.EXP *= 10;
 			m.state = m.WANDERING;
+		}
+
+		if (Dungeon.isModified(FIFTYPERCENTMOREHP)) {
+			assert m != null;
+			m.HP = m.HT += m.HT * 0.5f;
 		}
 
 		return m;

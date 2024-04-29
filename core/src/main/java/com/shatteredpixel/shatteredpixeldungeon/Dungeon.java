@@ -172,6 +172,7 @@ public class Dungeon {
 	}
 
 	public static int challenges;
+	public static int modifiers;
 	public static int mobsToChampion;
 
 	public static Hero hero;
@@ -230,6 +231,7 @@ public class Dungeon {
 
 		initialVersion = version = Game.versionCode;
 		challenges = SPDSettings.challenges();
+		modifiers = SPDSettings.modifiers();
 		mobsToChampion = -1;
 
 		if (daily) {
@@ -407,6 +409,10 @@ public class Dungeon {
 
 	public static boolean isChallenged( int mask ) {
 		return (challenges & mask) != 0;
+	}
+
+	public static boolean isModified( int mask ) {
+		return (modifiers & mask) != 0;
 	}
 
 	public static boolean levelHasBeenGenerated(int depth, int branch){
@@ -779,6 +785,7 @@ public class Dungeon {
 	private static final String CHAPTERS	= "chapters";
 	private static final String QUESTS		= "quests";
 	private static final String BADGES		= "badges";
+	private static final String MODIFIERS		= "modifiers";
 	
 	public static void saveGame( int save ) {
 		try {
@@ -791,6 +798,7 @@ public class Dungeon {
 			bundle.put( DAILY, daily );
 			bundle.put( DAILY_REPLAY, dailyReplay );
 			bundle.put( CHALLENGES, challenges );
+			bundle.put( MODIFIERS, modifiers );
 			bundle.put( MOBS_TO_CHAMPION, mobsToChampion );
 			bundle.put( HERO, hero );
 			bundle.put( DEPTH, depth );
@@ -916,6 +924,7 @@ public class Dungeon {
 		Toolbar.swappedQuickslots = false;
 
 		Dungeon.challenges = bundle.getInt( CHALLENGES );
+		Dungeon.modifiers = bundle.getInt( MODIFIERS );
 		Dungeon.mobsToChampion = bundle.getInt( MOBS_TO_CHAMPION );
 
 		Dungeon.level = null;

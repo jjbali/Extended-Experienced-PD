@@ -86,6 +86,18 @@ public class WndGame extends Window {
 			curBtn.icon(Icons.get(Icons.CHALLENGE_ON));
 		}
 
+		//	Modifiers Window
+		if (Dungeon.modifiers > 0) {
+			addButton( curBtn = new RedButton( "Modifiers" ) {
+				@Override
+				protected void onClick() {
+					hide();
+					GameScene.show( new WndModifiers( Dungeon.modifiers, false ) );
+				}
+			} );
+			curBtn.icon(Icons.get(Icons.CHALLENGE_ON));
+		}
+
 		// Restart
 		if (Dungeon.hero == null || !Dungeon.hero.isAlive()) {
 

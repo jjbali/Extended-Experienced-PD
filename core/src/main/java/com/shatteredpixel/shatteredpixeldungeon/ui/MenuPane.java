@@ -47,6 +47,11 @@ public class MenuPane extends Component {
 	private BitmapText challengeText;
 	private Button challengeButton;
 
+	private Image modifierIcon;
+	private BitmapText modifierText;
+	private Button modifierButton;
+
+
 	private Image cycleIcon;
 	private BitmapText cycleText;
 
@@ -131,7 +136,29 @@ public class MenuPane extends Component {
 			cycleText.measure();
 			add( cycleText );
 		}
+		/*if (Modifiers.activeModifiers() > 0){
+			modifierIcon = Icons.get(Icons.COIN_SML);
+			add(modifierIcon);
 
+			modifierText = new BitmapText( Integer.toString( Modifiers.activeModifiers() ), PixelScene.pixelFont);
+			modifierText.hardlight( 0xCACFC2 );
+			modifierText.measure();
+			add( modifierText );
+
+			modifierButton = new Button(){
+				@Override
+				protected void onClick() {
+					GameScene.show(new WndModifiers(Dungeon.modifiers, false));
+				}
+
+				@Override
+				protected String hoverText() {
+					return Messages.get(WndModifiers.class, "title");
+				}
+			};
+			add(modifierButton);
+		}
+*/
 		btnJournal = new JournalButton();
 		add( btnJournal );
 
@@ -185,6 +212,21 @@ public class MenuPane extends Component {
 
 			challengeButton.setRect(challengeIcon.x, challengeIcon.y, challengeIcon.width(), challengeIcon.height() + challengeText.height());
 		}
+
+		/*if (modifierIcon != null){
+			modifierIcon.x = btnJournal.left() - 34 + (7 - modifierIcon.width())/2f - 0.1f;
+			modifierIcon.y = y + 1;
+			if (SPDSettings.interfaceSize() == 0) modifierIcon.y++;
+			PixelScene.align(modifierIcon);
+
+			modifierText.scale.set(PixelScene.align(0.67f));
+			modifierText.x = modifierText.x + (modifierText.width() - modifierText.width())/2f;
+			modifierText.y = modifierText.y + modifierText.height();
+			PixelScene.align(modifierText);
+
+			modifierButton.setRect(modifierIcon.x, modifierIcon.y, modifierIcon.width(), modifierIcon.height() + modifierText.height());
+		}*/
+
 		if (cycleIcon != null){
 			cycleIcon.x = btnJournal.left() - 24 + (10 - cycleIcon.width())/2f - 0.1f;
 			cycleIcon.y = y + 1;
