@@ -471,6 +471,10 @@ public abstract class Level implements Bundlable {
 
 		Mob m = Reflection.newInstance(mobsToSpawn.remove(0));
 		ChampionEnemy.rollForChampion(m);
+		if (Dungeon.isModified(FIFTYPERCENTMOREHP)) {
+			assert m != null;
+			m.HP = m.HT *= 1.5f;
+		}
 		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
 			assert m != null;
 			m.HP = m.HT *= Dungeon.NormalIntRange(1, 10) + 1;
@@ -503,11 +507,6 @@ public abstract class Level implements Bundlable {
 			m.defenseSkill *= 10;
 			m.EXP *= 10;
 			m.state = m.WANDERING;
-		}
-
-		if (Dungeon.isModified(FIFTYPERCENTMOREHP)) {
-			assert m != null;
-			m.HP = m.HT += m.HT * 0.5f;
 		}
 
 		return m;

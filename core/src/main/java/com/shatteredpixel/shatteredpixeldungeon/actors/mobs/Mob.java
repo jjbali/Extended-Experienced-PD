@@ -31,6 +31,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.DanceFloor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.duelist.Feint;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Bbat;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.DirectableAlly;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Hook;
 import com.shatteredpixel.shatteredpixeldungeon.custom.messages.M;
@@ -38,6 +39,7 @@ import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.MobAttributeView
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.FloatingText;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
+import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Surprise;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Wound;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
@@ -839,6 +841,32 @@ public abstract class Mob extends Char {
 				}
 			}
 		}
+	}
+
+	@Override
+	public synchronized boolean isAlive() {
+		if (!super.isAlive()) {
+			if (!hasRaged) {
+				triggerEnrage();
+			} else {
+				return super.isAlive();
+			}
+		}
+		return true;
+	}
+
+	protected void triggerEnrage(){
+		HP = HT;
+		Buff.affect(this, AnkhInvulnerability.class, 3f);
+		if (Dungeon.level.heroFOV[pos]) {
+			SpellSprite.show( this, SpellSprite.BERSERK);
+		}
+		hasRaged = true;
+	}
+
+	@Override
+	public boolean isInvulnerable(Class effect) {
+		return super.isInvulnerable(effect) || buff(AnkhInvulnerability.class) != null;
 	}
 	
 	@Override
