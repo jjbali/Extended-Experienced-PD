@@ -95,6 +95,7 @@ import java.util.HashSet;
 
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.FALL_ECONOMY;
 import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
+import static com.shatteredpixel.shatteredpixeldungeon.Modifiers.ONEMORETIME;
 import static com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.FishingRod.AC_UNCAST;
 import static com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth.tryForBonusDrop;
 
@@ -845,7 +846,7 @@ public abstract class Mob extends Char {
 
 	@Override
 	public synchronized boolean isAlive() {
-		if (!super.isAlive()) {
+		if (!super.isAlive() && Dungeon.isModified(ONEMORETIME)) {
 			if (!hasRaged) {
 				triggerEnrage();
 			} else {
