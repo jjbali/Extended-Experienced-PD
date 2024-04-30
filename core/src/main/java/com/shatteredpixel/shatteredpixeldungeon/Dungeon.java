@@ -473,6 +473,9 @@ public class Dungeon {
 				case 26:
 					level = new LastLevel();
 					break;
+				case -999:
+					level = new SecretLevel();
+					break;
 				default:
 					level = new DeadEndLevel();
 			}
@@ -530,7 +533,7 @@ public class Dungeon {
 		}
 
 		//dead end levels get cleared, don't count as generated
-		if (!(level instanceof GlitchedLevel || level instanceof DeadEndLevel)){
+		if (!(level instanceof GlitchedLevel || level instanceof DeadEndLevel || level instanceof SecretLevel)){
 			//this assumes that we will never have a depth value outside the range 0 to 999
 			// or -500 to 499, etc.
 			if (!generatedLevels.contains(depth + 1000*branch)) {

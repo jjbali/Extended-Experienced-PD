@@ -35,6 +35,8 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.items.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Cheese;
+import com.shatteredpixel.shatteredpixeldungeon.levels.RegularLevel;
+import com.shatteredpixel.shatteredpixeldungeon.levels.SecretLevel;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.RatKingSprite;
@@ -58,7 +60,7 @@ public class RatKing extends NPC {
 	{
 		spriteClass = RatKingSprite.class;
 		
-		state = SLEEPING;
+		state = Dungeon.level instanceof SecretLevel ? WANDERING : SLEEPING;
 
 		HP = HT = 2000;
 	}
@@ -107,15 +109,15 @@ public class RatKing extends NPC {
 	@Override
 	protected boolean act() {
 
-        Heap heap = Dungeon.level.heaps.get(pos );
+        Heap heap = Dungeon.level.heaps.get(pos);
         Barter barter = Buff.affect(this, Barter.class);
-		if (heap != null && heap.peek().throwPos(this, Dungeon.hero.pos) == Dungeon.hero.pos){
+		if (heap != null && heap.peek().throwPos(this, Dungeon.hero.pos) == Dungeon.hero.pos && !(Dungeon.level instanceof SecretLevel)){
 		    Item item = heap.pickUp();
 		    barter.stick(item);
             CellEmitter.get( pos ).burst( Speck.factory( Speck.WOOL ), 6 );
             Sample.INSTANCE.play( Assets.Sounds.PUFF );
         }
-		if (!barter.items.isEmpty()){
+		if (!barter.items.isEmpty() && !(Dungeon.level instanceof SecretLevel)){
 		    if (!Dungeon.hero.perks.contains(Perks.Perk.BETTER_BARTERING) || Random.Int(3) != 0)
 		        barter.items.remove(barter.items.size() - 1);
 			for (int i = 0; i < level*(Dungeon.cycle+1); i++) {
@@ -151,6 +153,8 @@ public class RatKing extends NPC {
 			notice();
 			yell( Messages.get(this, "not_sleeping") );
 			state = WANDERING;
+		} else if (Dungeon.level instanceof SecretLevel) {
+			yell( "Hey! What are you doing here? YOU'RE JUST LOCKED OUT OF SIGHT!" );
 		} else {
 			yell( Messages.get(this, "what_is_it") );
 		}
@@ -195,7 +199,9 @@ public class RatKing extends NPC {
 		} else if (Dungeon.hero.armorAbility instanceof Ratmogrify) {
 			yell( Messages.get(RatKing.class, "crown_after") );
 		} else {
-			yell( Messages.get(this, "what_is_it") );
+			if (Dungeon.level instanceof RegularLevel) {
+				yell( Messages.get(this, "what_is_it") );
+			}
 		}
 		return true;
 	}
