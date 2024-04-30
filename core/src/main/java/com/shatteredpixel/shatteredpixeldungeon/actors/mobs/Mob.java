@@ -853,7 +853,7 @@ public abstract class Mob extends Char {
 				return super.isAlive();
 			}
 		}
-		return true;
+		return HP > 0 || deathMarked;
 	}
 
 	protected void triggerEnrage(){
