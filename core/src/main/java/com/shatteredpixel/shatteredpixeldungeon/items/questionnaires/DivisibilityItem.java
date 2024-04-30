@@ -43,13 +43,16 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
+import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
+import com.shatteredpixel.shatteredpixeldungeon.scenes.InterlevelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.BuffIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndTextInput;
+import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
 import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
@@ -199,6 +202,11 @@ public class DivisibilityItem extends Questionnaire {
                     }
                 } else if (text.equals("")) {
                     GLog.w("You didn't answer the question.");
+                } else if (text.equals("31718")) {
+                    GLog.h("We can't say that you found this bs...\n");
+                    InterlevelScene.curTransition = new LevelTransition(Dungeon.level, -1, LevelTransition.Type.BRANCH_EXIT, -999, 0, LevelTransition.Type.BRANCH_ENTRANCE);
+                    InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
+                    Game.switchScene( InterlevelScene.class );
                 } else {
                     GameScene.flash(0xFFFF0000);
                     GLog.w("That answer is not equals as the given, try again.");
