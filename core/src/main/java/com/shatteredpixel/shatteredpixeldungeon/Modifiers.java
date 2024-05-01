@@ -33,18 +33,21 @@ public class Modifiers {
 	public static final int FIFTYPERCENTMOREHP			= 1;
 	public static final int ONEMORETIME			= 2;
 	public static final int LETHAL_POTIONS			= 3;
+	public static final int BLINDNESS			= 4;
 	public static final int MAX_VALUE           = 128;
 
 	public static final String[] NAME_IDS = {
 			"fiftypercentmorehp",
 			"onemoretime",
-			"lethal_potions"
+			"lethal_potions",
+			"blind"
 	};
 
 	public static final int[] MASKS = {
 			FIFTYPERCENTMOREHP,
 			ONEMORETIME,
-			LETHAL_POTIONS
+			LETHAL_POTIONS,
+			BLINDNESS
 	};
 
     public static int activeModifiers(){

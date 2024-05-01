@@ -27,6 +27,7 @@ package com.shatteredpixel.shatteredpixeldungeon.actors.hero;
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.DISP_ENEMIES;
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.LUCK_IN;
 import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
+import static com.shatteredpixel.shatteredpixeldungeon.Modifiers.BLINDNESS;
 
 import com.shatteredpixel.shatteredpixeldungeon.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
@@ -853,6 +854,10 @@ public class Hero extends Char {
 
 		if (belongings.getItem(TotemOfTheWinds.class) != null && buff(Haste.class) == null) {
 			Buff.affect(hero, Haste.class, 5f);
+		}
+
+		if (Dungeon.isModified(BLINDNESS) && buff(Blindness.class) == null) {
+			Buff.affect(hero, Blindness.class, 1f);
 		}
 		
 		return actResult;
