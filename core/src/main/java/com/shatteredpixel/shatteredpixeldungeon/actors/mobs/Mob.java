@@ -31,14 +31,12 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.DanceFloor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.*;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.duelist.Feint;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Bbat;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.DirectableAlly;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Hook;
 import com.shatteredpixel.shatteredpixeldungeon.custom.messages.M;
 import com.shatteredpixel.shatteredpixeldungeon.custom.testmode.MobAttributeViewer;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.FloatingText;
-import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Surprise;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Wound;
@@ -77,6 +75,7 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.SecondArenaLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.ThirdArenaLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.Chasm;
+import com.shatteredpixel.shatteredpixeldungeon.levels.traps.TeleportationTrap;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.plants.Swiftthistle;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -93,6 +92,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Challenges.DISP_ENEMIES;
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.FALL_ECONOMY;
 import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 import static com.shatteredpixel.shatteredpixeldungeon.Modifiers.ONEMORETIME;
@@ -856,7 +856,8 @@ public abstract class Mob extends Char {
 		return HP > 0 || deathMarked;
 	}
 
-	protected void triggerEnrage(){
+	@Override
+	public void triggerEnrage(){
 		HP = HT;
 		Buff.affect(this, AnkhInvulnerability.class, 3f);
 		if (Dungeon.level.heroFOV[pos]) {
@@ -932,6 +933,11 @@ public abstract class Mob extends Char {
 					Sample.INSTANCE.play(Assets.Sounds.CURSED);
 				}
 			}
+		}
+
+		if (Dungeon.isChallenged(DISP_ENEMIES) && Random.Float() < 0.4f) {
+			TeleportationTrap tl = new TeleportationTrap();
+			tl.activate();
 		}
 	}
 

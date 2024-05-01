@@ -1357,23 +1357,23 @@ public class Hero extends Char {
 	
 	@Override
 	public long attackProc( final Char enemy, long damage ) {
-		damage = super.attackProc( enemy, damage );
+		damage = super.attackProc(enemy, damage);
 
 		KindOfWeapon wep;
-		if (RingOfForce.fightingUnarmed(this) && !RingOfForce.unarmedGetsWeaponEnchantment(this)){
+		if (RingOfForce.fightingUnarmed(this) && !RingOfForce.unarmedGetsWeaponEnchantment(this)) {
 			wep = null;
 		} else {
 			wep = belongings.attackingWeapon();
 		}
 
-		if (heroClass == HeroClass.DUELIST){
+		if (heroClass == HeroClass.DUELIST) {
 			Buff.affect(this, ElementalStrike.DirectedPowerTracker.class, 1f).enchBoost = 0.5f;
 		}
 
-		if (wep != null) damage = (int)wep.proc( this, enemy, damage );
-		damage = Talent.onAttackProc( this, enemy, damage );
+		if (wep != null) damage = (int) wep.proc(this, enemy, damage);
+		damage = Talent.onAttackProc(this, enemy, damage);
 
-		damage = Perks.onAttackProc( this, enemy, damage );
+		damage = Perks.onAttackProc(this, enemy, damage);
 
 		if (isSubclass(HeroSubClass.SNIPER)) {
 			if (wep instanceof MissileWeapon && !(wep instanceof SpiritBow.SpiritArrow) && enemy != this) {
@@ -1398,39 +1398,31 @@ public class Hero extends Char {
 
 		if (Dungeon.isChallenged(DISP_ENEMIES)) {
 			int oldpos = enemy.pos;
-			if (ScrollOfTeleportation.teleportChar(enemy) && Random.Float() < 0.33f){
-				if (Dungeon.level.heroFOV[oldpos]) {
-					CellEmitter.get( oldpos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
-				}
+			if (Random.Float() < 0.33f && wep instanceof MeleeWeapon) {
+				if (ScrollOfTeleportation.teleportChar(enemy)) {
+					if (Dungeon.level.heroFOV[oldpos]) {
+						CellEmitter.get(oldpos).start(Speck.factory(Speck.LIGHT), 0.2f, 3);
+					}
 
-				if (enemy instanceof Mob && ((Mob) enemy).state == ((Mob) enemy).HUNTING){
-					((Mob) enemy).state = ((Mob) enemy).WANDERING;
+					if (enemy instanceof Mob && ((Mob) enemy).state == ((Mob) enemy).HUNTING) {
+						((Mob) enemy).state = ((Mob) enemy).WANDERING;
+					}
 				}
 			}
 
-			if (damage >= enemy.HT && Random.Float() < 0.50f) {
-				enemy.HP = enemy.HT;
-				int randomtext = Random.Int(5);
-				switch (randomtext) {
-					case 0:
-						GLog.w("Any last words, " + hero.className() + "?");
-						break;
-					case 1:
-						GLog.w("I thought that it was lethal, but it's not.");
-						break;
-					case 2:
-						GLog.w("Did I use ankh even I don't know what it is?");
-						break;
-					case 3:
-						GLog.w("Mission failed, I win.");
-						break;
-					case 4:
-						GLog.w("Use Option 2: Die");
-						break;
+			if (Random.Float() < 0.2f && wep instanceof MagesStaff) {
+				if (ScrollOfTeleportation.teleportChar(enemy)) {
+					if (Dungeon.level.heroFOV[oldpos]) {
+						CellEmitter.get(oldpos).start(Speck.factory(Speck.LIGHT), 0.2f, 3);
+					}
+
+					if (enemy instanceof Mob && ((Mob) enemy).state == ((Mob) enemy).HUNTING) {
+						((Mob) enemy).state = ((Mob) enemy).WANDERING;
+					}
 				}
 			}
 		}
-		
+
 		return damage;
 	}
 	
@@ -1484,6 +1476,17 @@ public class Hero extends Char {
 			//and to monk meditate damage reduction
 			if (buff(MonkEnergy.MonkAbility.Meditate.MeditateResistance.class) != null){
 				dmg *= 0.2f;
+			}
+		}
+
+		if (Dungeon.isChallenged(DISP_ENEMIES)) {
+			int oldpos = hero.pos;
+			if (Random.Float() < 0.25f) {
+				if (ScrollOfTeleportation.teleportChar(hero)){
+					if (Dungeon.level.heroFOV[oldpos]) {
+						CellEmitter.get( oldpos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
+					}
+				}
 			}
 		}
 

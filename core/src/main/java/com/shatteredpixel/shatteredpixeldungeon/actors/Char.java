@@ -264,6 +264,14 @@ public abstract class Char extends Actor {
 		}
 	}
 
+	public void triggerEnrage(){
+		HP = HT;
+		if (Dungeon.level.heroFOV[pos]) {
+			SpellSprite.show( this, SpellSprite.BERSERK);
+		}
+		hasRaged = true;
+	}
+
 	public void hitSound( float pitch ){
 		Sample.INSTANCE.play(Assets.Sounds.HIT, 1, pitch);
 	}

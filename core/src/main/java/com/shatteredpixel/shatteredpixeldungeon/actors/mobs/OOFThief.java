@@ -187,7 +187,7 @@ public class OOFThief extends Mob {
         return true;
     }
 
-	protected void triggerEnrage(){
+	public void triggerEnrage(){
 		HP = 1;
 		Buff.affect(this, AnkhInvulnerability.class, 3f);
 		if (Dungeon.level.heroFOV[pos]) {
