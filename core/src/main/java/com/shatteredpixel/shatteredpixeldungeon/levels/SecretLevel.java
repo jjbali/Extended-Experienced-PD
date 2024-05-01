@@ -51,12 +51,12 @@ public class SecretLevel extends Level {
 
 	@Override
 	public String tilesTex() {
-		return Assets.Environment.TILES_CAVES;
+		return Assets.Environment.WATER_ARENA;
 	}
 
 	@Override
 	public String waterTex() {
-		return Assets.Environment.WATER_HALLS;
+		return Assets.Environment.TILES_ARENA;
 	}
 
 	@Override
