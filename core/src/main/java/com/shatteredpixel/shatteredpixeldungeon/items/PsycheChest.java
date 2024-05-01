@@ -34,6 +34,8 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Ghost;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Imp;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Wandmaker;
 import com.shatteredpixel.shatteredpixeldungeon.levels.DimensionalLevel;
+import com.shatteredpixel.shatteredpixeldungeon.levels.SecretLevel;
+import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.InterlevelScene;
@@ -105,6 +107,11 @@ public class PsycheChest extends Item {
             }
         }
         if (action.contains(AC_RESET)){
+            if (Objects.equals(Dungeon.level, new SecretLevel())) {
+                GLog.p("Are you serious men? You escaped the (reality) glitch.");
+                InterlevelScene.curTransition = new LevelTransition(Dungeon.level, -1, LevelTransition.Type.REGULAR_EXIT, 1, Dungeon.branch, null);
+                InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
+            }
             for (Mob m: Dungeon.level.mobs) {
                 if (m instanceof Ghost) {
                     questDepth = Dungeon.depth;
