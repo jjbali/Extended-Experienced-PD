@@ -855,10 +855,6 @@ public class Hero extends Char {
 		if (belongings.getItem(TotemOfTheWinds.class) != null && buff(Haste.class) == null) {
 			Buff.affect(hero, Haste.class, 5f);
 		}
-
-		if (Dungeon.isModified(BLINDNESS) && buff(Blindness.class) == null) {
-			Buff.affect(hero, Blindness.class, 1f);
-		}
 		
 		return actResult;
 	}
