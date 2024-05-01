@@ -25,6 +25,7 @@
 package com.shatteredpixel.shatteredpixeldungeon.items.potions;
 
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.GOLDFISH_MEMORY;
+import static com.shatteredpixel.shatteredpixeldungeon.Modifiers.LETHAL_POTIONS;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
@@ -246,6 +247,9 @@ public class Potion extends Item {
 					
 				} else {
 					potion_uses++;
+					if (Dungeon.isModified(LETHAL_POTIONS)) {
+						hero.HP -= 5L * hero.lvl;
+					}
 					drink( hero );
 				}
 			if (!(this instanceof PotionOfHealing || this instanceof PotionOfStrength)) {
