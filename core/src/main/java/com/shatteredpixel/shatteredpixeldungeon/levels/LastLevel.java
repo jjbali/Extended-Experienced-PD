@@ -172,7 +172,7 @@ public class LastLevel extends Level {
 	@Override
 	protected void createItems() {
 		if (Dungeon.branch == 8) {
-			drop( new TheTrueFishingRod(), AMULET_POS );
+			drop( new TheTrueFishingRod().upgrade(40L), AMULET_POS );
 			drop( new Cheese().quantity(500L), AMULET_POS );
 			drop( new TubeOfExperience().quantity(500L), AMULET_POS );
 			drop( new TreasureBagsofTreasureBags().quantity(100L), AMULET_POS );
