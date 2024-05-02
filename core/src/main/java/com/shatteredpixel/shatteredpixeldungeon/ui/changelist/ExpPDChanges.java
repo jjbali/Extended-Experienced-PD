@@ -71,7 +71,7 @@ public class ExpPDChanges {
                 "I'm a little bit confused to this? Announcement boards are just useless....."));
 
 
-        changes = new ChangeInfo("I", true, "");
+        changes = new ChangeInfo("I", false, "");
         changes.hardlight(Window.TITLE_COLOR);
         changeInfos.add(changes);
         changes.addButton( new ChangeButton(Icons.get(Icons.CALENDAR), "Calibrated Days",
@@ -82,6 +82,13 @@ public class ExpPDChanges {
                         "_-_ Friday: 2 Random Weapons\n" +
                         "_-_ Saturday: 5 Random Foods, 1 Random Artifact\n" +
                         "_-_ Sunday: x4 Gold"));
+
+        changes = new ChangeInfo("II", false, "");
+        changes.hardlight(Window.TITLE_COLOR);
+        changeInfos.add(changes);
+        changes.addButton( new ChangeButton(new ItemSprite(new QuestionaireItem()), "Codex Mechanics",
+                "You'll need some memorization in this questionnaire, just 20 combined letters and numbers\n\n"
+                        + "_-_ 200 Loot Rolls is rewarded."));
     }
 
 }
