@@ -101,6 +101,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfInvisibili
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlame;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfMindVision;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TypingItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.WandOfMagicMissile;
@@ -153,9 +154,8 @@ public enum HeroClass {
 
 		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.THURSDAY) {
 			i = Generator.random(Generator.Category.POTION);
-			for (int j = 0; j < 5; j++) {
-				i.collect();
-			}
+			i.collect();
+			i.quantity(5);
 		}
 		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
 			i = Generator.random(Generator.Category.WEAPON);
@@ -165,9 +165,8 @@ public enum HeroClass {
 		}
 		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
 			i = Generator.random(Generator.Category.FOOD);
-			for (int j = 0; j < 5; j++) {
-				i.collect();
-			}
+			i.collect();
+			i.quantity(5);
 
 			i = Generator.random(Generator.Category.ARTIFACT);
 			i.collect();
@@ -209,6 +208,7 @@ public enum HeroClass {
 		new BinaryItem().collect();
 		new RectangularItem().collect();
 		new TriangularItem().collect();
+		new TypingItem().collect();
 		new ParallelUniverse().collect();
 		//new DictBook().collect();
 		new ExtendedDictBook().collect();

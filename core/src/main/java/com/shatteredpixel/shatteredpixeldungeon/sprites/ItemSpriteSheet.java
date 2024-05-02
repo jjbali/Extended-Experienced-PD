@@ -1043,6 +1043,7 @@ public class ItemSpriteSheet {
 	public static final int BINARY			= QUESTIONNAIRES+8;
 	public static final int RECTANGULAR			= QUESTIONNAIRES+9;
 	public static final int TRIANGULAR			= QUESTIONNAIRES+10;
+	public static final int TYPING			= QUESTIONNAIRES+11;
 	static{
 		for (int i = QUESTIONNAIRES; i < QUESTIONNAIRES+1; i++)
 			assignItemRect(i, 16, 16);
