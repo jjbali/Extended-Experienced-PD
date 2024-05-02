@@ -56,12 +56,12 @@ public class CityLevel extends RegularLevel {
 
 	@Override
 	protected int standardRooms(boolean forceMax) {
-		return 20;
+		return Random.Int(6, 12) + 1;
 	}
 
 	@Override
 	protected int specialRooms(boolean forceMax) {
-		return 8;
+		return Random.Int(3, 5) + 1;
 	}
 	
 	@Override
