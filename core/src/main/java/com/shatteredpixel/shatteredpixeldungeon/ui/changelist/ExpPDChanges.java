@@ -106,6 +106,10 @@ public class ExpPDChanges {
         changes.addButton( new ChangeButton(new ItemSprite(new TypingItem()), "Memorization Questionnaire",
                 "You'll need some memorization in this questionnaire, it's just a combined string with a desired length.\n\n"
                         + "_-_ 400 Loot Rolls is rewarded."));
+        changes.addButton( new ChangeButton(Icons.get(Icons.DEPTH_TRAPS), "Glitched Branch",
+                "_-_ Gives OP items.\n"
+                        + "_-_ Glitched thing.\n"
+                        + "_-_ The most powerful fishing rod is also dropped on last level."));
 
     }
 
