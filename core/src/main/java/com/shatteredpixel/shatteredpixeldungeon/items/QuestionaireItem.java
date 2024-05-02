@@ -100,7 +100,7 @@ public class QuestionaireItem extends Item {
     }
 
     private void askCode() {
-        GameScene.show(new WndTextInput( "Input Code","", "", 6, false, "Done", "Cancel" ) {
+        GameScene.show(new WndTextInput( "Input Code","", "", 100, true, "Done", "Cancel" ) {
             @Override
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(CODE)) {
