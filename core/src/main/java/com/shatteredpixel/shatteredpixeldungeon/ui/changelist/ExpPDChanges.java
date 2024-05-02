@@ -39,6 +39,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMi
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMastery;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.RectangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TypingItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfSirensSong;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ReclaimTrap;
@@ -98,6 +99,14 @@ public class ExpPDChanges {
         changes.addButton( new ChangeButton(new ItemSprite(new TriangularItem()), "Triangular Questionnaire Mechanics",
                 "This is also an advantage.\n\n"
                         + "_-_ +50 Loot Rolls is also added."));
+
+        changes = new ChangeInfo("III", false, "");
+        changes.hardlight(Window.TITLE_COLOR);
+        changeInfos.add(changes);
+        changes.addButton( new ChangeButton(new ItemSprite(new TypingItem()), "Memorization Questionnaire",
+                "You'll need some memorization in this questionnaire, it's just a combined string with a desired length.\n\n"
+                        + "_-_ 400 Loot Rolls is rewarded."));
+
     }
 
 }
