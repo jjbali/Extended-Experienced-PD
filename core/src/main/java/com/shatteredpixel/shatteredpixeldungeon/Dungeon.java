@@ -47,6 +47,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.OddEvenItem
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.RectangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.SubtractionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TypingItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.Scroll;
@@ -300,6 +301,7 @@ public class Dungeon {
 		BinaryItem.streak_i = 0;
 		RectangularItem.streak_j = 0;
 		TriangularItem.streak_k = 0;
+		TypingItem.streak_l = 0;
 
 		AdditionItem.totalAnswers_a= 0;
 		SubtractionItem.totalAnswers_b = 0;
@@ -312,6 +314,7 @@ public class Dungeon {
 		BinaryItem.totalAnswers_i = 0;
 		RectangularItem.totalAnswers_j = 0;
 		TriangularItem.totalAnswers_k = 0;
+		TypingItem.totalAnswers_l = 0;
 
 		Shopkeeper.inflation_increment = 0f;
 
