@@ -40,6 +40,8 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Imp;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Wandmaker;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Flare;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.LevelModule;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
 import com.shatteredpixel.shatteredpixeldungeon.levels.DimensionalLevel;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -66,7 +68,7 @@ public class QuestionaireItem extends Item {
 
     private static final String AC_ANSWER = "ANSWER";
 
-    private static String CODE = String.valueOf(Random.Int(999999));
+    private static String CODE = getAlphaNumericString(20);
 
 
     @Override
@@ -102,90 +104,19 @@ public class QuestionaireItem extends Item {
             @Override
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(CODE)) {
-                    Buff.affect(hero, CodeCooldown.class).set(50);
+                    Buff.affect(hero, CodeCooldown.class).set(20);
                     CODE = String.valueOf(Random.Int(999999));
                     GLog.h("You entered the code correctly.");
-                    switch (Random.Int(7)) {
-                        case 0: default:
-                            if (Random.Int(2) == 0) {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Dungeon.level.drop(Generator.random(Generator.Category.POTION), curUser.pos).sprite.drop();
-                            } else {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), curUser.pos).sprite.drop();
-                            }
+                    switch (Random.Int(9)) {
+                        case 0:
+                            updateQuickslot();
+                            hero.earnExp(hero.maxExp(), TriangularItem.class);
                             break;
-                        case 1:
-                            if (Random.Int(2) == 0) {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), curUser.pos).sprite.drop();
-                            } else {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 2:
-                            if (Random.Int(2) == 0) {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Dungeon.level.drop(Generator.random(), curUser.pos).sprite.drop();
-                            } else {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 3:
-                            if (Random.Int(4) == 0) {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Dungeon.level.drop(new Ankh(), curUser.pos).sprite.drop();
-                            } else {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Dungeon.level.drop(Generator.random(Generator.Category.POTION), curUser.pos).sprite.drop();
-                                Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), curUser.pos).sprite.drop();
-                                Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), curUser.pos).sprite.drop();
-                                Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 4:
-                            if (Random.Int(4) == 0) {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Dungeon.level.drop(Generator.random(Generator.Category.RING), curUser.pos).sprite.drop();
-                            } else {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Dungeon.level.drop(Generator.random(Generator.Category.ARMOR), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 5:
-                            if (Random.Int(4) == 0) {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                hero.earnExp(hero.maxExp(), QuestionaireItem.class);
-                            } else {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                float duration = Bless.DURATION * 2;
-                                Buff.prolong(hero, Bless.class, duration);
-                                new Flare( 6, 32 ).color(0xFFFF00, true).show( curUser.sprite, 2f );
-                            }
-                            break;
-                        case 6:
-                            if (Random.Int(3) == 0) {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Buff.prolong(hero, Stamina.class, Stamina.DURATION);
-                            } else {
-                                GameScene.flash(0xFF008000);
-                                updateQuickslot();
-                                Buff.prolong(hero, Haste.class, Haste.DURATION);
+                        case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
+                            int rolls = 200;
+                            ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(rolls);
+                            if (!bonus.isEmpty()) {
+                                for (Item b : bonus) Dungeon.level.drop(b, hero.pos).sprite.drop();
                             }
                             break;
                     }
@@ -193,7 +124,8 @@ public class QuestionaireItem extends Item {
                     GLog.w("You didn't redeem any code.");
                 } else {
                     GameScene.flash(0xFFFF0000);
-                    GLog.w("That code is not the same as the given, try again.");
+                    GLog.w("That code is not the same as the ID, try again.");
+                    CODE = getAlphaNumericString(20);
                 }
             }
 
@@ -213,12 +145,39 @@ public class QuestionaireItem extends Item {
 
     @Override
     public String name() {
-        return "Codex #" + CODE;
+        return "Codex";
     }
 
     @Override
     public String desc() {
-        return "This is like a promo codes that you can enter, it may give you some rewards";
+        return "This is like a promo codes that you can enter, it may give you some rewards\n\nID: " + CODE;
+    }
+
+    static String getAlphaNumericString(int n)
+    {
+
+        // choose a Character random from this String
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+
+        // create StringBuffer size of AlphaNumericString
+        StringBuilder sb = new StringBuilder(n);
+
+        for (int i = 0; i < n; i++) {
+
+            // generate a random number between
+            // 0 to AlphaNumericString variable length
+            int index
+                    = (int)(AlphaNumericString.length()
+                    * Math.random());
+
+            // add Character one by one in end of sb
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+
+        return sb.toString();
     }
 
     public static class CodeCooldown extends Buff {
