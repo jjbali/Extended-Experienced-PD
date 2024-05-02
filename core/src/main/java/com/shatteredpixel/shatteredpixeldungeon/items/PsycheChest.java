@@ -69,7 +69,7 @@ public class PsycheChest extends Item {
         ArrayList<String> actions = super.actions( hero );
         if (!hero.grinding) actions.add( AC_ACTIVATE );
         else actions.add( AC_DEACTIVATE );
-        if (!(Dungeon.branch == 7)) actions.add(AC_RESET);
+        if (!(Dungeon.branch == 7 || Dungeon.branch == 8)) actions.add(AC_RESET);
         actions.remove(AC_DROP);
         actions.remove(AC_THROW);
         actions.add(AC_STORAGE);
