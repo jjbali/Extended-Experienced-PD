@@ -32,9 +32,9 @@ public class Modifiers {
 
 	public static final int FIFTYPERCENTMOREHP			= 1;
 	public static final int ONEMORETIME			= 2;
-	public static final int LETHAL_POTIONS			= 3;
-	public static final int BLINDNESS			= 4;
-	public static final int MAX_VALUE           = 128;
+	public static final int LETHAL_POTIONS			= 4;
+	public static final int BLINDNESS			= 8;
+	public static final int MAX_VALUE           = 16;
 
 	public static final String[] NAME_IDS = {
 			"fiftypercentmorehp",
