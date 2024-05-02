@@ -1968,7 +1968,7 @@ public class Hero extends Char {
 	
 	public static long maxExp( long lvl ){
 		HeroClass heroClass = hero == null ? GamesInProgress.selectedClass: hero.heroClass;
-		long max = (long) (heroClass == HeroClass.RAT_KING ? (20 + lvl * 5L) * Math.pow(1.1, Math.max(0, lvl - 30)) : (40 + lvl * 5L)*Math.pow(1.25, Math.max(0, lvl - 30)));
+		long max = (long) (heroClass == HeroClass.RAT_KING ? (40 + lvl * 5L) * Math.pow(1.1, Math.max(0, lvl - 30)) : (80 + lvl * 5L) * Math.pow(1.25, Math.max(0, lvl - 30)));
 		//if (heroClass == HeroClass.RAT_KING) return (long) ();
 		if (hero != null && hero.belongings.getItem(TotemOfArgumentation.class) != null) max *= 0.9f;
 		return max;
