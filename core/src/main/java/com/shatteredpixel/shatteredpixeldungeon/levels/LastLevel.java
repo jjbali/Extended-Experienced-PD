@@ -31,8 +31,12 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.items.BlackPsycheChest;
+import com.shatteredpixel.shatteredpixeldungeon.items.ExpGenerator;
 import com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.TheTrueFishingRod;
+import com.shatteredpixel.shatteredpixeldungeon.items.food.Cheese;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.ExpBoostModule;
+import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfExperience;
+import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.TreasureBagsofTreasureBags;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -169,6 +173,10 @@ public class LastLevel extends Level {
 	protected void createItems() {
 		if (Dungeon.branch == 8) {
 			drop( new TheTrueFishingRod(), AMULET_POS );
+			drop( new Cheese().quantity(500L), AMULET_POS );
+			drop( new TubeOfExperience().quantity(500L), AMULET_POS );
+			drop( new TreasureBagsofTreasureBags().quantity(100L), AMULET_POS );
+			drop( new ExpGenerator().upgrade(1000L), AMULET_POS );
 			drop( new ExpBoostModule(), AMULET_POS );
 		} else {
 			drop( new BlackPsycheChest(), AMULET_POS );

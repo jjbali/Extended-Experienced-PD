@@ -81,12 +81,12 @@ public class GlitchedLevel extends RegularLevel {
 	
 	@Override
 	public String tilesTex() {
-		return Assets.Environment.TILES_CITY;
+		return Assets.Environment.WATER_ARENA;
 	}
 	
 	@Override
 	public String waterTex() {
-		return Assets.Environment.WATER_CITY;
+		return Assets.Environment.TILES_ARENA;
 	}
 	
 	@Override
