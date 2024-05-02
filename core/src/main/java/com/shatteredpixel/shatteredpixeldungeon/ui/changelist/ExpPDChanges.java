@@ -37,8 +37,11 @@ import com.shatteredpixel.shatteredpixeldungeon.items.food.Cheese;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMastery;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.RectangularItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfSirensSong;
+import com.shatteredpixel.shatteredpixeldungeon.items.spells.ReclaimTrap;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.Vampirism;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.GambleBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.TenguTreasureBag;
@@ -89,6 +92,12 @@ public class ExpPDChanges {
         changes.addButton( new ChangeButton(new ItemSprite(new QuestionaireItem()), "Codex Mechanics",
                 "You'll need some memorization in this questionnaire, just 20 combined letters and numbers\n\n"
                         + "_-_ 200 Loot Rolls is rewarded."));
+        changes.addButton( new ChangeButton(new ItemSprite(new RectangularItem()), "Rectangular Questionnaire Mechanics",
+                "This is just an advantage.\n\n"
+                        + "_-_ +50 Loot Rolls is added."));
+        changes.addButton( new ChangeButton(new ItemSprite(new TriangularItem()), "Triangular Questionnaire Mechanics",
+                "This is also an advantage.\n\n"
+                        + "_-_ +50 Loot Rolls is also added."));
     }
 
 }
