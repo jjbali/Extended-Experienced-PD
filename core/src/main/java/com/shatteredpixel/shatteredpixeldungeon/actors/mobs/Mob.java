@@ -990,23 +990,23 @@ public abstract class Mob extends Char {
 			if (Random.Float() < 0.5f) {
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			}
-			if (Random.Float() < 0.05f) {
+			if (Random.Float() < 0.01f) {
 				Dungeon.level.drop(new MagicBridge(), pos).sprite.drop();
 			}
-			if (Random.Float() < 0.05f) {
+			if (Random.Float() < 0.02f) {
 				Dungeon.level.drop(new HandyBarricade(), pos).sprite.drop();
 			}
-			if (Random.Float() < 0.01f) {
+			if (Random.Float() < 0.001f) {
 				Dungeon.level.drop(new StormBomb(), pos).sprite.drop();
 				GLog.p("Storm bomb dropped.");
 			}
-			if (Random.Float() < 0.2f) {
+			if (Random.Float() < 0.15f) {
 				Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
 			}
-			if (Random.Float() < 0.2f) {
+			if (Random.Float() < 0.15f) {
 				Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
 			}
-			if (Random.Float() < 0.05f) {
+			if (Random.Float() < 0.03f) {
 				Dungeon.level.drop(new TelekineticGrab(), pos).sprite.drop();
 			}
 
@@ -1024,8 +1024,8 @@ public abstract class Mob extends Char {
 
 			if (hero.buff(Bless.class) != null) {
 				Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
-				if (Random.Float() < 0.2f) Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
-				if (Random.Float() < 0.2f) Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
+				if (Random.Float() < 0.12f) Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), pos).sprite.drop();
+				if (Random.Float() < 0.12f) Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), pos).sprite.drop();
 				Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
 			}
 			if (hero.perks.contains(Perks.Perk.POTION_COLLECTOR) && Random.Float() < 0.2f) {
