@@ -37,6 +37,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.blobs.Fire;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Burning;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Ooze;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Poison;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Roots;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Perks;
@@ -248,7 +249,7 @@ public class Potion extends Item {
 				} else {
 					potion_uses++;
 					if (Dungeon.isModified(LETHAL_POTIONS)) {
-						hero.HP -= 5L * hero.lvl;
+						Buff.affect(hero, Poison.class).set(3f * (Math.ceil(hero.lvl / 5)));
 					}
 					drink( hero );
 				}
