@@ -82,9 +82,9 @@ public class ExpPDChanges {
                 "_-_ Monday: +2 Streaks On Questionnaires\n" +
                         "_-_ Tuesday: -10% Discount On Shops\n" +
                         "_-_ Wednesday: x5 Score\n" +
-                        "_-_ Thursday: 5 Random Potions\n" +
-                        "_-_ Friday: 2 Random Weapons\n" +
-                        "_-_ Saturday: 5 Random Foods, 1 Random Artifact\n" +
+                        "_-_ Thursday: (x5) Potion\n" +
+                        "_-_ Friday: (+2) Weapon\n" +
+                        "_-_ Saturday: (x5) Food, 1 Random Artifact\n" +
                         "_-_ Sunday: x4 Gold"));
 
         changes = new ChangeInfo("II", false, "");

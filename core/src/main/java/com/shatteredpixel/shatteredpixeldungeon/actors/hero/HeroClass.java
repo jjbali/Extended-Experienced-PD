@@ -159,14 +159,13 @@ public enum HeroClass {
 		}
 		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.FRIDAY) {
 			i = Generator.random(Generator.Category.WEAPON);
-			for (int j = 0; j < 2; j++) {
-				i.collect();
-			}
+			i.collect();
+			i.upgrade(2);
 		}
 		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
 			i = Generator.random(Generator.Category.FOOD);
-			i.collect();
 			i.quantity(5);
+			i.collect();
 
 			i = Generator.random(Generator.Category.ARTIFACT);
 			i.collect();
