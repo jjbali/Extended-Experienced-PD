@@ -214,32 +214,32 @@ public class Generator {
 
     public enum Category {
 		WEAPON	( 2, 2, MeleeWeapon.class),
-		WEP_T1	( 5, 0, MeleeWeapon.class),
-		WEP_T2	( 4, 0, MeleeWeapon.class),
-		WEP_T3	( 3, 0, MeleeWeapon.class),
-		WEP_T4	( 2, 0, MeleeWeapon.class),
-		WEP_T5	( 1, 0, MeleeWeapon.class),
+		WEP_T1	( 0, 0, MeleeWeapon.class),
+		WEP_T2	( 0, 0, MeleeWeapon.class),
+		WEP_T3	( 0, 0, MeleeWeapon.class),
+		WEP_T4	( 0, 0, MeleeWeapon.class),
+		WEP_T5	( 0, 0, MeleeWeapon.class),
 		WEP_JJBALI	( 1, 0, MeleeWeapon.class),
 		ARMOR	( 2, 1, Armor.class ),
 		MISSILE ( 1, 2, MissileWeapon.class ),
-		MIS_T1  ( 1, 0, MissileWeapon.class ),
-		MIS_T2  ( 1, 0, MissileWeapon.class ),
-		MIS_T3  ( 1, 0, MissileWeapon.class ),
-		MIS_T4  ( 1, 0, MissileWeapon.class ),
-		MIS_T5  ( 1, 0, MissileWeapon.class ),
+		MIS_T1  ( 0, 0, MissileWeapon.class ),
+		MIS_T2  ( 0, 0, MissileWeapon.class ),
+		MIS_T3  ( 0, 0, MissileWeapon.class ),
+		MIS_T4  ( 0, 0, MissileWeapon.class ),
+		MIS_T5  ( 0, 0, MissileWeapon.class ),
 		WAND	( 1, 1, Wand.class ),
-		RING	( 1, 1, Ring.class ),
-		ARTIFACT( 2, 0, Artifact.class),
-		FOOD	( 10, 3, Food.class ),
-		POTION	( 5, 3, Potion.class ),
-		TUBES (1, 1, Tubes.class),
-		SEED	( 5, 5, Plant.Seed.class ),
+		RING	( 1, 0, Ring.class ),
+		ARTIFACT( 0, 1, Artifact.class),
+		FOOD	( 1, 0, Food.class ),
+		POTION	( 8, 8, Potion.class ),
+		TUBES (0, 1, Tubes.class),
+		SEED	( 1, 1, Plant.Seed.class ),
 		
-		SCROLL	( 5, 5, Scroll.class ),
-		STONE   ( 5, 5, Runestone.class),
-		TREASUREBAG(2, 0, TreasureBag.class),
-		EXPOTION(2, 0, ExoticPotion.class),
-		EXSCROLL(2, 0, ExoticScroll.class),
+		SCROLL	( 8, 8, Scroll.class ),
+		STONE   ( 1, 1, Runestone.class),
+		TREASUREBAG(0, 1, TreasureBag.class),
+		EXPOTION(0, 1, ExoticPotion.class),
+		EXSCROLL(0, 1, ExoticScroll.class),
 		//new generator, because of potionofdebug.
 		TICKETS (0, 0, TicketToArena.class),
 		SPELLS (0, 0, Spell.class),
@@ -253,9 +253,9 @@ public class Generator {
 		DARTS(0, 0, Dart.class),
 		MODULES(0, 0, Item.class),
 		MODULES2(0, 0, Item.class),
-		REMAINS(1, 0, RemainsItem.class),
+		REMAINS(0, 1, RemainsItem.class),
 
-		GOLD	( 3, 3,   Gold.class );
+		GOLD	( 10, 10,   Gold.class );
 
 		
 		public Class<?>[] classes;
@@ -266,7 +266,6 @@ public class Generator {
 		//Artifacts in particular don't reset, no duplicates!
 		public float[] probs;
 		public float[] defaultProbs = null;
-		public float[] defaultProbsTotal = null;
 		//These variables are used as a part of the deck system, to ensure that drops are consistent
 		// regardless of when they occur (either as part of seeded levelgen, or random item drops)
 		public Long seed = null;

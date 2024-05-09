@@ -97,7 +97,6 @@ public abstract class RegularLevel extends Level {
 	protected boolean build() {
 		
 		builder = builder();
-		setSize(1000, 1000);
 		
 		ArrayList<Room> initRooms = initRooms();
 		roomList = initRooms;
@@ -218,7 +217,7 @@ public abstract class RegularLevel extends Level {
 			else                            return 10;
 		}
 
-		int mobs = 15 + Dungeon.depth % 5 + Dungeon.getAdditionalMobs();
+		int mobs = 12 + Dungeon.depth % 5 + Dungeon.getAdditionalMobs();
 		if (feeling == Feeling.LARGE){
 			mobs = (int)Math.ceil(mobs * 1.33f);
 		}
