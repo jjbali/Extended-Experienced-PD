@@ -1,9 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
+ *
+ * Experienced Pixel Dungeon
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.ui;
@@ -27,6 +35,7 @@ import com.shatteredpixel.shatteredpixeldungeon.journal.Document;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
+import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.shatteredpixel.shatteredpixeldungeon.windows.*;
 import com.watabou.input.GameAction;
 import com.watabou.noosa.BitmapText;
@@ -92,6 +101,7 @@ public class MenuPane extends Component {
 					case LARGE:     return Messages.get(GameScene.class, "large");
 					case TRAPS:     return Messages.get(GameScene.class, "traps");
 					case SECRETS:   return Messages.get(GameScene.class, "secrets");
+					case INFINITY: GLog.w(Messages.get(this, "infinity")); break;
 				}
 				return null;
 			}

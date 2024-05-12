@@ -713,7 +713,7 @@ public class Dungeon {
 	}
 
 	public static float getRespawnTimer() {
-		if (Dungeon.hero.buff(OverloadBeacon.TemporaryOverload.class) != null)
+		if (Dungeon.hero.buff(OverloadBeacon.TemporaryOverload.class) != null || Dungeon.level.feeling == Level.Feeling.INFINITY)
 			return 0.50f;
 		return respawn_timer;
 	}

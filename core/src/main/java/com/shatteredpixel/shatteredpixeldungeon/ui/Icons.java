@@ -1,9 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
+ *
+ * Experienced Pixel Dungeon
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.ui;
@@ -115,6 +123,8 @@ public enum Icons {
 	DEPTH_LARGE,
 	DEPTH_TRAPS,
 	DEPTH_SECRETS,
+	DEPTH_INFINITY,
+	DEPTH_CARVED,
 	CHAL_COUNT,
 	CYCLE_COUNT,
 
@@ -360,6 +370,12 @@ public enum Icons {
 			case DEPTH_SECRETS:
 				icon.frame( icon.texture.uvRectBySize( 104, 64 + runTypeOfs(), 7, 7 ) );
 				break;
+			case DEPTH_INFINITY:
+				icon.frame( icon.texture.uvRectBySize( 128, 64 + runTypeOfs(), 7, 7 ) );
+				break;
+			case DEPTH_CARVED:
+				icon.frame( icon.texture.uvRectBySize( 136, 64 + runTypeOfs(), 7, 7 ) );
+				break;
 			case CHAL_COUNT:
 				icon.frame( icon.texture.uvRectBySize( 112, 64, 7, 7 ) );
 				break;
@@ -473,6 +489,10 @@ public enum Icons {
 				return get(DEPTH_TRAPS);
 			case SECRETS:
 				return get(DEPTH_SECRETS);
+			case INFINITY:
+				return get(DEPTH_INFINITY);
+			case CARVED:
+				return get(DEPTH_CARVED);
 		}
 	}
 }

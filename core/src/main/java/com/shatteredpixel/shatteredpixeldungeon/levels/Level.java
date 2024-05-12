@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.levels;
@@ -97,7 +102,9 @@ public abstract class Level implements Bundlable {
 		DARK,
 		LARGE,
 		TRAPS,
-		SECRETS
+		SECRETS,
+		INFINITY,
+		CARVED
 	}
 
 	protected int width;
@@ -240,6 +247,9 @@ public abstract class Level implements Bundlable {
 						break;
 					case 6:
 						feeling = Feeling.SECRETS;
+						break;
+					case 7:
+						feeling = Feeling.INFINITY;
 						break;
 				}
 			}
@@ -471,7 +481,7 @@ public abstract class Level implements Bundlable {
 
 		Mob m = Reflection.newInstance(mobsToSpawn.remove(0));
 		ChampionEnemy.rollForChampion(m);
-		if (Dungeon.isModified(FIFTYPERCENTMOREHP)) {
+		if (Dungeon.isModified(FIFTYPERCENTMOREHP) || Dungeon.level.feeling == Feeling.INFINITY) {
 			assert m != null;
 			m.HP = m.HT *= 1.5f;
 		}
