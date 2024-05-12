@@ -719,7 +719,7 @@ public class Dungeon {
 	}
 
 	public static int getAdditionalMobs() {
-		if (Dungeon.hero.buff(OverloadBeacon.TemporaryOverload.class) != null)
+		if (Dungeon.hero.buff(OverloadBeacon.TemporaryOverload.class) != null || Dungeon.level.feeling == Level.Feeling.INFINITY)
 			return 50;
 		return additionalMobs;
 	}
