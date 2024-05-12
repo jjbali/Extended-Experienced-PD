@@ -1,9 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
+ *
+ * Experienced Pixel Dungeon
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.scenes;
@@ -163,7 +171,7 @@ public class SeedFinderScene extends PixelScene {
 		content.add(text7);
 //				list.scrollTo(0, 0);
 
-		StyledButton seedButton = new StyledButton(Chrome.Type.RED_BUTTON, "Enter Seed", 8){
+		StyledButton seedButton = new StyledButton(Chrome.Type.RED_BUTTON, "Seed", 8){
 			@Override
 			protected void onClick() {
 				System.out.println("++++++++++++++++SJC - Clicked++++++++++++++++++");
