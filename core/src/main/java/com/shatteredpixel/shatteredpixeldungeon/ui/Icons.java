@@ -491,7 +491,7 @@ public enum Icons {
 				return get(DEPTH_SECRETS);
 			case INFINITY:
 				return get(DEPTH_INFINITY);
-			case CARVED:
+			case CHAMPION:
 				return get(DEPTH_CARVED);
 		}
 	}

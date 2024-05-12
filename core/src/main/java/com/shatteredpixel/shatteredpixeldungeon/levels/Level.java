@@ -104,7 +104,7 @@ public abstract class Level implements Bundlable {
 		TRAPS,
 		SECRETS,
 		INFINITY,
-		CARVED
+		CHAMPION
 	}
 
 	protected int width;

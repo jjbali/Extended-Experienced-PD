@@ -502,6 +502,7 @@ public class GameScene extends PixelScene {
 				case TRAPS:     GLog.w(Messages.get(this, "traps"));    break;
 				case SECRETS:   GLog.w(Messages.get(this, "secrets"));  break;
 				case INFINITY: GLog.w(Messages.get(this, "infinity")); break;
+				case CHAMPION: GLog.w(Messages.get(this, "champion")); break;
 			}
 
 			for (Mob mob : Dungeon.level.mobs) {

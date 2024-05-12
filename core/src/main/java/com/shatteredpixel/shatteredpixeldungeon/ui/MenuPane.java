@@ -101,7 +101,8 @@ public class MenuPane extends Component {
 					case LARGE:     return Messages.get(GameScene.class, "large");
 					case TRAPS:     return Messages.get(GameScene.class, "traps");
 					case SECRETS:   return Messages.get(GameScene.class, "secrets");
-					case INFINITY: GLog.w(Messages.get(this, "infinity")); break;
+					case INFINITY:  return Messages.get(this, "infinity");
+					case CHAMPION:  return Messages.get(this, "champion");
 				}
 				return null;
 			}
