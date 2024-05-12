@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
@@ -996,7 +1001,7 @@ public abstract class Mob extends Char {
 			if (Random.Float() < 0.02f) {
 				Dungeon.level.drop(new HandyBarricade(), pos).sprite.drop();
 			}
-			if (Random.Float() < 0.001f) {
+			if (Random.Float() < 0.0001f) {
 				Dungeon.level.drop(new StormBomb(), pos).sprite.drop();
 				GLog.p("Storm bomb dropped.");
 			}
@@ -1159,7 +1164,7 @@ public abstract class Mob extends Char {
 		}
 
 //		//ring of wealth logic
-		if (Dungeon.hero.grinding && DivisionItem.streak_d >= 25) {
+		if (Dungeon.hero.grinding && DivisionItem.streak_d >= 40) {
 			int rolls = 15 + DivisionItem.streak_d;
 			ArrayList<Item> bonus = tryForBonusDrop(rolls);
 			if (!bonus.isEmpty()) {

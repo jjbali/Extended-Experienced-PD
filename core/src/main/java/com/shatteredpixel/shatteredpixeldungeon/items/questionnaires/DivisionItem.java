@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2020 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.questionnaires;
@@ -303,8 +308,7 @@ public class DivisionItem extends Questionnaire {
         return "This item represents your intelligence, it may also give you some rewards.\n\nDivide the following: " + CODE + " / " + CODE2 + "\nAnswered Correctly: " + totalAnswers_d + "\nStreak: " + streak_d
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (0) Accuracy +1"
-                + "\n- (25) More Loots [based on ring of wealth]";
+                + "\n- (40) More Loots [based on ring of wealth]";
     }
 
     private String STREAKS = "STREAKS";

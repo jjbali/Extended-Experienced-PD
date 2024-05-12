@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2020 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.questionnaires;
@@ -65,7 +70,7 @@ public class TypingItem extends Questionnaire {
 
     private static final String AC_ANSWER = "ANSWER";
     private static final String AC_REFRESH = "REFRESH";
-    private String ANSWER = getAlphaNumericString(4);
+    private String ANSWER = getAlphaNumericString(6);
     public static int totalAnswers_l = 0;
     public static int streak_l = 0;
     public static int t = totalAnswers_l;
@@ -135,19 +140,19 @@ public class TypingItem extends Questionnaire {
         if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) == null){
             Buff.affect(hero, RefreshCooldown.class).set(50);
             if (totalAnswers_l <= 10) {
-                ANSWER = getAlphaNumericString(4);
-            } else if (totalAnswers_l >= 11 && totalAnswers_l <= 30) {
-                ANSWER = getAlphaNumericString(5);
-            } else if (totalAnswers_l >= 31 && totalAnswers_l <= 70) {
                 ANSWER = getAlphaNumericString(6);
-            } else if (totalAnswers_l >= 71 && totalAnswers_l <= 110) {
-                ANSWER = getAlphaNumericString(7);
-            } else if (totalAnswers_l >= 111 && totalAnswers_l <= 200) {
+            } else if (totalAnswers_l >= 11 && totalAnswers_l <= 30) {
                 ANSWER = getAlphaNumericString(8);
-            } else if (totalAnswers_l >= 201 && totalAnswers_l <= 320) {
+            } else if (totalAnswers_l >= 31 && totalAnswers_l <= 70) {
                 ANSWER = getAlphaNumericString(10);
+            } else if (totalAnswers_l >= 71 && totalAnswers_l <= 110) {
+                ANSWER = getAlphaNumericString(12);
+            } else if (totalAnswers_l >= 111 && totalAnswers_l <= 200) {
+                ANSWER = getAlphaNumericString(14);
+            } else if (totalAnswers_l >= 201 && totalAnswers_l <= 320) {
+                ANSWER = getAlphaNumericString(16);
             } else {
-                ANSWER = getAlphaNumericString(10 + (totalAnswers_l % 20));
+                ANSWER = getAlphaNumericString((int) (18 + ( Math.ceil((totalAnswers_l - 320)/20) )));
             }
         }
         else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
