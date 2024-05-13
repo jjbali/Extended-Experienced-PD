@@ -234,7 +234,7 @@ public class ShopRoom extends SpecialRoom {
 		}
 		itemsToSpawn.add(new RandomItemTicket());
 
-		if (Dungeon.depth == 1) {
+		if (Dungeon.depth == 2) {
 			//note added in the first shop
 			itemsToSpawn.add(new VelvetPouch());
 			itemsToSpawn.add(new ScrollHolder());
