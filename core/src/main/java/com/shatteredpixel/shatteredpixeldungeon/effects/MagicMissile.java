@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.effects;
@@ -71,6 +76,7 @@ public class MagicMissile extends Emitter {
 	public static final int INVISI          = 16;
 	public static final int HOLYEXP         = 17;
 	public static final int EARTHBLAST = 19;
+	public static final int POISON = 20;
 
 	public static final int MAGIC_MISS_CONE = 100;
 	public static final int FROST_CONE      = 101;
@@ -169,6 +175,10 @@ public class MagicMissile extends Emitter {
 			case EARTHBLAST:
 				size( 6 );
 				pour( EarthblastParticle.FACTORY, 0.01f );
+				break;
+			case POISON:
+				size( 4 );
+				pour( PoisonParticle.MISSILE, 0.01f );
 				break;
 			case WARD:
 				size( 4 );
