@@ -42,6 +42,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Overload;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RageShield;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Stamina;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
+import com.shatteredpixel.shatteredpixeldungeon.items.Ankh;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
@@ -170,9 +171,10 @@ public class DimensionalLevel extends Level {
 
 		{
 			itemsToSpawn = new ArrayList<>();
-			for (int i = 0; i < 6; i++) itemsToSpawn.add(Generator.randomWeapon());
-			for (int i = 0; i < 6; i++) itemsToSpawn.add(Generator.randomMissile());
-			for (int i = 0; i < 6; i++) itemsToSpawn.add(Generator.randomArmor());
+			for (int i = 0; i < 6; i++) itemsToSpawn.add(Generator.random());
+			for (int i = 0; i < 6; i++) itemsToSpawn.add(Generator.random(Generator.Category.TREASUREBAG));
+			for (int i = 0; i < 3; i++) itemsToSpawn.add(new Ankh());
+			for (int i = 0; i < 3; i++) itemsToSpawn.add(Generator.random(Generator.Category.TUBES));
 
 			Point itemPlacement = new Point(cellToPoint(arenaDoor));
 			if (itemPlacement.y == ROOM_TOP-1){
