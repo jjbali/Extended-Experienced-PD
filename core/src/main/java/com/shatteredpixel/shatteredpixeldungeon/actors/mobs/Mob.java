@@ -46,6 +46,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Surprise;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Wound;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
+import com.shatteredpixel.shatteredpixeldungeon.items.modules.DimensionalRiftModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.Module;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
@@ -75,6 +76,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.Longsword;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.Dart;
 import com.shatteredpixel.shatteredpixeldungeon.levels.ArenaLevel;
+import com.shatteredpixel.shatteredpixeldungeon.levels.DimensionalLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.FourthArenaLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.SecondArenaLevel;
@@ -1161,6 +1163,20 @@ public abstract class Mob extends Char {
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			if (Random.Float() < 0.2f) Dungeon.level.drop(Generator.random(), pos).sprite.drop();
+		}
+
+		if (buff(DimensionalLevel.DimensionalBuff.class) != null){
+			if (Random.Float() < 0.1f) {
+				Dungeon.level.drop(new DimensionalRiftModule(), pos).sprite.drop();
+				GLog.h("Dimensional Rift Module has been dropped");
+			}
+			if (Random.Float() < 0.4f) Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
+			if (Random.Float() < 0.4f) Dungeon.level.drop(Generator.random(), pos).sprite.drop();
+			if (Random.Float() < 0.1f) Dungeon.level.drop(Generator.randomWeapon(), pos).sprite.drop();
+			if (Random.Float() < 0.1f) Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), pos).sprite.drop();
+			if (Random.Float() < 0.25f) Dungeon.level.drop(Generator.random(Generator.Category.POTION), pos).sprite.drop();
+			if (Random.Float() < 0.25f) Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), pos).sprite.drop();
+			if (Random.Float() < 0.4f) Dungeon.level.drop(Generator.random(Generator.Category.SEED).quantity(Random.Int(3, 11)), pos).sprite.drop();
 		}
 
 //		//ring of wealth logic

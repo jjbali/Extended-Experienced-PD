@@ -479,8 +479,13 @@ public abstract class Level implements Bundlable {
 	
 	public Mob createMob() {
 		if (mobsToSpawn == null || mobsToSpawn.isEmpty()) {
-			mobsToSpawn = Bestiary.getMobRotation(Dungeon.depth);
+			if (Dungeon.branch == 7) {
+				mobsToSpawn = DimensionalBestiary.getMobRotation(Dungeon.depth);
+			} else {
+				mobsToSpawn = Bestiary.getMobRotation(Dungeon.depth);
+			}
 		}
+
 
 		Mob m = Reflection.newInstance(mobsToSpawn.remove(0));
 		ChampionEnemy.rollForChampion(m);
@@ -510,9 +515,6 @@ public abstract class Level implements Bundlable {
 
 		if (Dungeon.branch == Dungeon.DIMENSIONAL) {
 			assert m != null;
-			if (mobsToSpawn == null || mobsToSpawn.isEmpty()) {
-				mobsToSpawn = DimensionalBestiary.getMobRotation(Dungeon.depth);
-			}
 			Buff.affect(m, AnkhInvulnerability.class, 10f);
 			m.HP = m.HT *= Dungeon.NormalIntRange(10, 50);
 			ChampionEnemy.rollForChampion(m);

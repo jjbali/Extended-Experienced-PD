@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,10 +24,12 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.sewerboss.GooBossRoom;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
@@ -67,47 +73,15 @@ public class DimensionalBestiary {
 					Succubus.class,
 					Eye.class,
 					Scorpio.class,
-					RipperDemon.class,
-					OOFThief.class
+					RipperDemon.class
 			));
 	}
 	
 	//has a chance to add a rarely spawned mobs to the rotation
 	public static void addRareMobs( int depth, ArrayList<Class<?extends Mob>> rotation ){
-		if (Random.Float() < 0.75f) rotation.add(Goo.class);
-		switch (depth){
-			// Sewers
-			case 19: default:
-				if (Random.Float() < 0.25f) rotation.add(Thief.class);
-				if (Random.Float() < 0.25f) rotation.add(Thief.class);
-				rotation.add(Wraith.class);
-				rotation.add(Wraith.class);
-				return;
-				
-			// Prison
-			case 39:
-				if (Random.Float() < 0.25f) rotation.add(Bat.class);
-				if (Random.Float() < 0.25f) rotation.add(Bat.class);
-				rotation.add(Wraith.class);
-				rotation.add(Wraith.class);
-				return;
-				
-			// Caves
-			case 59:
-				if (Random.Float() < 0.25f) rotation.add(Ghoul.class);
-				if (Random.Float() < 0.25f) rotation.add(Ghoul.class);
-				rotation.add(Wraith.class);
-				rotation.add(Wraith.class);
-				return;
-				
-			// City
-			case 79:
-				if (Random.Float() < 0.25f) rotation.add(Succubus.class);
-				if (Random.Float() < 0.25f) rotation.add(Succubus.class);
-				rotation.add(Wraith.class);
-				rotation.add(Wraith.class);
-				return;
-		}
+		if (Random.Float() < 0.1f) rotation.add(Wraith.class);
+		if (Random.Float() < 0.05f) rotation.add(OOFThief.class);
+		if (Random.Float() < 0.01f) rotation.add(Goo.class);
 	}
 	
 	//switches out regular mobs for their alt versions when appropriate
