@@ -1,9 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2024 Evan Debenham
+ *
+ * Experienced Pixel Dungeon
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs;
@@ -26,6 +34,10 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Flare;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.AlchemicalCatalyst;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfDragonsBreath;
+import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
@@ -41,7 +53,7 @@ import com.watabou.utils.Bundle;
 public class ElixirOfDivineInspiration extends Elixir {
 
     {
-        icon = ItemSpriteSheet.Icons.POTION_DIVINE;
+        image = ItemSpriteSheet.BREW_TALENT;
     }
 
     @Override
@@ -159,4 +171,17 @@ public class ElixirOfDivineInspiration extends Elixir {
 
     }
 
+    public static class Recipe extends com.shatteredpixel.shatteredpixeldungeon.items.Recipe.SimpleRecipe {
+
+        {
+            inputs =  new Class[]{PotionOfStrength.class, ScrollOfUpgrade.class};
+            inQuantity = new int[]{2, 1};
+
+            cost = 20;
+
+            output = ElixirOfDivineInspiration.class;
+            outQuantity = 2;
+        }
+
+    }
 }

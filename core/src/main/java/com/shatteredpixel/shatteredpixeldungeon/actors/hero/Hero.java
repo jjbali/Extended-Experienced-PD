@@ -65,6 +65,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.modules.HealthModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.Potion;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfDivineInspiration;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.DarkGold;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.KingBlade;
@@ -392,6 +393,10 @@ public class Hero extends Char {
 	}
 
 	public int bonusTalentPoints(int tier){
+		if (buff(ElixirOfDivineInspiration.DivineInspirationTracker.class) != null
+				&& buff(ElixirOfDivineInspiration.DivineInspirationTracker.class).isBoosted(tier)) {
+			return 2;
+		}
 		return tier;
 	}
 

@@ -1,9 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
+ *
+ * Experienced Pixel Dungeon
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.hero;
@@ -332,7 +340,7 @@ public enum Talent {
 	int maxPoints;
 
 	// tiers 1/2/3/4 start at levels 2/7/13/21
-	public static int[] tierLevelThresholds = new int[]{0, 2, 7, 13, 21, 31};
+	public static int[] tierLevelThresholds = new int[]{0, 2, 12, 32, 60, 85};
 
 	Talent( int icon ){
 		this(icon, 2);

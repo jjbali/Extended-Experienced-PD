@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.sprites;
@@ -984,10 +989,10 @@ public class ItemSpriteSheet {
 	}
 
 	private static final int NEW_BREWS			=			xy(1, 45);  //16 slots
-	public static final int BREW_SATISFACTION	= +0;
-	public static final int BREW_TALENT			= +1;
+	public static final int BREW_SATISFACTION	= NEW_BREWS+0;
+	public static final int BREW_TALENT			= NEW_BREWS+1;
 	static{
-		for (int i = NEW_BREWS; i < NEW_BREWS+1; i++)
+		for (int i = NEW_BREWS; i < NEW_BREWS+2; i++)
 			assignItemRect(i, 12, 14);
 	}
 
