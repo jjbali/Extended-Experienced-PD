@@ -157,7 +157,11 @@ public class MultiplicationItem extends Questionnaire {
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(ANSWER)) {
                     Buff.affect(hero, CodeCooldown3.class).set(3);
-                    GLog.h("You answered the question correctly, +1STR!");
+                    if (streak_c % 10 == 0) {
+                        GLog.h("You answered the question correctly, +1STR!");
+                    } else {
+                        GLog.h("You answered the question correctly!");
+                    }
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
                         Buff.affect(hero, EnhancedRings.class, 3f);
                     }
