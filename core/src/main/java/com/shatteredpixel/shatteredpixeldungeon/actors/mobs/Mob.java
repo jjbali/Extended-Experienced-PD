@@ -854,7 +854,7 @@ public abstract class Mob extends Char {
 	@Override
 	public synchronized boolean isAlive() {
 		if (!super.isAlive() && Dungeon.isModified(ONEMORETIME)) {
-			if (!hasRaged) {
+			if (!hasRaged && !(this instanceof ArmoredBrute || this instanceof Brute)) {
 				triggerEnrage();
 			} else {
 				return super.isAlive();
