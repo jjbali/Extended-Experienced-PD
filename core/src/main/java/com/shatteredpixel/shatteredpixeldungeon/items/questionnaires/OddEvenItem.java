@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2020 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.questionnaires;
@@ -35,6 +40,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ShieldBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Shopkeeper;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
@@ -72,6 +78,7 @@ public class OddEvenItem extends Questionnaire {
     public static int streak_g = 0;
     public int t = totalAnswers_g;
     public static int s = streak_g;
+    public static float score_multi = 1f;
 
 
 
@@ -153,6 +160,21 @@ public class OddEvenItem extends Questionnaire {
                     if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
                         streak_g += 2;
                     }
+
+                    if (streak_g >= 20 && streak_g <= 39) {
+                        score_multi = 1.45f;
+                    } else if (streak_g >= 40 && streak_g <= 59) {
+                        score_multi = 1.675f;
+                    } else if (streak_g >= 60 && streak_g <= 79) {
+                        score_multi = 1.7875f;
+                    } else if (streak_g >= 80 && streak_g <= 99) {
+                        score_multi = 1.84375f;
+                    } else if (streak_g >= 100 && streak_g <= 119) {
+                        score_multi = 1.871875f;
+                    } else if (streak_g >= 120) {
+                        score_multi = (float) (1.9f + (0.01f*Math.ceil(streak_g/20)));
+                    }
+
                     GameScene.flash(0xFF008000);
                     switch (Random.Int(9)) {
                         case 0:
@@ -234,7 +256,12 @@ public class OddEvenItem extends Questionnaire {
         return "This item represents your intelligence, it may also give you some rewards.\n\nOdd or Even: " + CODE + "\nAnswered Correctly: " + totalAnswers_g + "\nStreak: " + streak_g
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (0) None.";
+                + "\n- (20) +45% Score Multi"
+                + "\n- (40) +67.5% Score Multi"
+                + "\n- (60) +78.75% Score Multi"
+                + "\n- (80) +84.375% Score Multi"
+                + "\n- (100) +87.1875% Score Multi"
+                + "\n- (120+) +90% * (streak/20 * 1%) Score Multi";
     }
     private String STREAKS = "STREAKS";
     private String TOTAL_ANSWERS = "TOTAL_ANSWERS";

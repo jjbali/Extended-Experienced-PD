@@ -322,6 +322,7 @@ public class Dungeon {
 		TypingItem.totalAnswers_l = 0;
 
 		Shopkeeper.inflation_increment = 0f;
+		OddEvenItem.score_multi = 1f;
 
 		Scroll.scroll_uses = 0;
 		Potion.potion_uses = 0;
