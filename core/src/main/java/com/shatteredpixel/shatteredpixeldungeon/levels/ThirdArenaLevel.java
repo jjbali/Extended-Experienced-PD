@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2019 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.levels;
@@ -89,8 +94,8 @@ public class ThirdArenaLevel extends Level {
 		Music.INSTANCE.play(Assets.Music.ARENA, true);
 	}
 
-	private static final int WIDTH = 75;
-	private static final int HEIGHT = 75;
+	private static final int WIDTH = 56;
+	private static final int HEIGHT = 56;
 
 	private static final int ROOM_LEFT		= WIDTH / 2 - 3;
 	private static final int ROOM_RIGHT		= WIDTH / 2 + 1;
@@ -372,7 +377,7 @@ public class ThirdArenaLevel extends Level {
 			float timerBasis;
 			timerBasis = 30f;
 
-			if (count < 150) {
+			if (count < 113) {
 
 				Mob mob = Dungeon.level.createMob();
 				mob.state = mob.WANDERING;
@@ -388,7 +393,7 @@ public class ThirdArenaLevel extends Level {
 						timerBasis = 30f + power / 2f;
 
 						if (power >= 50){
-							for (int i = 0; i < 5; i++){
+								for (int i = 0; i < Math.min(200, power); i++){
 								Buff.affect(mob, Longsword.HolyExpEffect.class).stacks++;
 							}
 						}
@@ -396,17 +401,17 @@ public class ThirdArenaLevel extends Level {
 							Buff.affect(mob, Stamina.class, power * 3);
 							mob.aggro(Dungeon.hero);
 						}
-						if (power >= 500){
+						if (power >= 200){
 							Buff.affect(mob, ElixirOfAquaticRejuvenation.AquaHealing.class)
 									.set(power*5);
 						}
-						if (power >= 1000){
+						if (power >= 300){
 							Buff.affect(mob, MagicalSight.class, MagicalSight.DURATION * 10);
 						}
-						if (power >= 1500){
+						if (power >= 400){
 							Buff.affect(mob, BlobImmunity.class, power);
 						}
-						if (power >= 3000){
+						if (power >= 500){
 							Class<?extends ChampionEnemy> buffCls;
 							switch (Random.Int(6)){
 								case 0: default:    buffCls = ChampionEnemy.Blazing.class;      break;
@@ -422,14 +427,14 @@ public class ThirdArenaLevel extends Level {
 								GLog.n("KEEPER: I HAVE NOW THE ABILITY TO SPAWN CHAMPIONS!");
 							}
 						}
-						if (power >= 4500){
+						if (power >= 600){
 							Buff.affect(mob, Levitation.class, 200f);
 							Buff.affect(mob, BlobImmunity.class, BlobImmunity.DURATION);
 						}
-						if (power >= 5200){
+						if (power >= 700){
 							Buff.affect(mob, MagicalSight.class, MagicalSight.DURATION);
 							mob.HP = mob.HT *= 10;
-						} if (power >= 8000){
+						} if (power >= 750){
 							mob.EXP *= 10;
 							mob.HP = mob.HT *= 10;
 							Class<?extends ChampionEnemy> buffCls;
@@ -443,7 +448,7 @@ public class ThirdArenaLevel extends Level {
 							}
 							Buff.affect(mob, buffCls);
 							Buff.affect(mob, buffCls);
-							if (power == 8000) {
+							if (power == 750) {
 								GLog.n("KEEPER: THERE'S NOWHERE TO RUN!");
 								Badges.validatePowerReached();
 							}

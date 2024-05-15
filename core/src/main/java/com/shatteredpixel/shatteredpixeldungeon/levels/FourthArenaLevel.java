@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2019 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.levels;
@@ -90,8 +95,8 @@ public class FourthArenaLevel extends Level {
 		Music.INSTANCE.play(Assets.Music.ARENA, true);
 	}
 
-	private static final int WIDTH = 100;
-	private static final int HEIGHT = 100;
+	private static final int WIDTH = 75;
+	private static final int HEIGHT = 75;
 
 	private static final int ROOM_LEFT		= WIDTH / 2 - 3;
 	private static final int ROOM_RIGHT		= WIDTH / 2 + 1;
@@ -361,7 +366,7 @@ public class FourthArenaLevel extends Level {
 			timerBasis = 50f;
 
 
-			if (count < 200) {
+			if (count < 150) {
 
 				Mob mob = Dungeon.level.createMob();
 				mob.state = mob.WANDERING;
@@ -376,26 +381,26 @@ public class FourthArenaLevel extends Level {
 						int power = (int) counter.count();
 						timerBasis = 50f + power / 2f;
 
-						if (power >= 200){
-							for (int i = 0; i < 5; i++){
+						if (power >= 50){
+							for (int i = 0; i < Math.min(250, power); i++){
 								Buff.affect(mob, Longsword.HolyExpEffect.class).stacks++;
 							}
 						}
-						if (power >= 500){
+						if (power >= 100){
 							Buff.affect(mob, Stamina.class, power * 25);
 							mob.aggro(Dungeon.hero);
 						}
-						if (power >= 850){
+						if (power >= 150){
 							Buff.affect(mob, ElixirOfAquaticRejuvenation.AquaHealing.class)
 									.set(power*15);
 						}
-						if (power >= 1500){
+						if (power >= 200){
 							Buff.affect(mob, MagicalSight.class, MagicalSight.DURATION * power);
 						}
-						if (power >= 2000){
+						if (power >= 250){
 							Buff.affect(mob, BlobImmunity.class, power);
 						}
-						if (power >= 3920){
+						if (power >= 300){
 							Class<?extends ChampionEnemy> buffCls;
 							switch (Random.Int(6)){
 								case 0: default:    buffCls = ChampionEnemy.Blazing.class;      break;
@@ -408,18 +413,18 @@ public class FourthArenaLevel extends Level {
 							Buff.affect(mob, buffCls);
 							Buff.affect(mob, buffCls);
 							mob.HP = mob.HT *= 3;
-							if (power == 3920) {
+							if (power == 300) {
 								GLog.n("KEEPER: I HAVE NOW THE ABILITY TO SPAWN CHAMPIONS!");
 							}
 						}
-						if (power >= 4950){
+						if (power >= 350){
 							Buff.affect(mob, Levitation.class, 200f);
 							Buff.affect(mob, BlobImmunity.class, BlobImmunity.DURATION);
 						}
-						if (power >= 7510){
+						if (power >= 400){
 							Buff.affect(mob, MagicalSight.class, MagicalSight.DURATION);
 							mob.HP = mob.HP * 10;
-						} if (power >= 9540){
+						} if (power >= 450){
 							mob.EXP *= 10;
 							mob.HP = mob.HT *= 10;
 							Class<?extends ChampionEnemy> buffCls;
@@ -435,7 +440,7 @@ public class FourthArenaLevel extends Level {
 							Buff.affect(mob, buffCls);
 							Buff.affect(mob, buffCls);
 							Buff.affect(mob, buffCls);
-							if (power == 9540) {
+							if (power == 450) {
 								GLog.n("KEEPER: Somehow, you reach the highest limit....");
 								Badges.validatePowerReached();
 							}
