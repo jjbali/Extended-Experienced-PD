@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2020 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.questionnaires;
@@ -31,16 +36,20 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Adrenaline;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ArcaneArmor;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barkskin;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Bless;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.BlobImmunity;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.EnhancedRings;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Foresight;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Healing;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RageShield;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ShieldBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.modules.RewardBoostModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
@@ -163,42 +172,49 @@ public class BinaryItem extends Questionnaire {
                     switch (Random.Int(9)) {
                         case 0:
                             updateQuickslot();
-                            Buff.affect(hero, PotionOfCleansing.Cleanse.class, 30f * streak_i);
+                            hero.earnExp(hero.maxExp() * 4, BinaryItem.class);
                             break;
                         case 1:
                             updateQuickslot();
-                            Buff.affect(hero, ArcaneArmor.class).set(6, 50 * streak_i);
+                            for (int q = 0; q < 20; q++) {
+                                Dungeon.level.drop(Generator.random(Generator.Category.POTION), curUser.pos).sprite.drop();
+                            }
                             break;
                         case 2:
                             updateQuickslot();
-                            Buff.affect(hero, Barkskin.class).set(6, 50 * streak_i);
+                            for (int q = 0; q < 20; q++) {
+                                Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), curUser.pos).sprite.drop();
+                            }
                             break;
                         case 3:
                             updateQuickslot();
-                            Buff.affect(hero, Adrenaline.class, 30 * streak_i);
+                            for (int q = 0; q < 20; q++) {
+                                Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), curUser.pos).sprite.drop();
+                            }
                             break;
                         case 4:
                             updateQuickslot();
-                            Buff.affect(hero, BlobImmunity.class, 60 * streak_i);
+                            for (int q = 0; q < 20; q++) {
+                                Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), curUser.pos).sprite.drop();
+                            }
                             break;
                         case 5:
                             updateQuickslot();
-                            Dungeon.level.drop(Generator.randomArmor(), curUser.pos).sprite.drop();
-                            Dungeon.level.drop(Generator.randomArmor(), curUser.pos).sprite.drop();
+                            Buff.affect(hero, RageShield.class).set(hero.HT);
                             break;
                         case 6:
                             updateQuickslot();
-                            Dungeon.level.drop(Generator.randomArtifact(), curUser.pos).sprite.drop();
+                            Buff.affect(hero, Bless.class, Bless.DURATION * hero.lvl);
                             break;
                         case 7:
                             updateQuickslot();
-                            Dungeon.level.drop(Generator.randomMissile(), curUser.pos).sprite.drop();
-                            Dungeon.level.drop(Generator.randomMissile(), curUser.pos).sprite.drop();
+                            for (int q = 0; q < 5; q++) {
+                                Dungeon.level.drop(Generator.randomMissile().upgrade(Random.Long(20L * hero.lvl, 60L * hero.lvl)).quantity(1), curUser.pos).sprite.drop();
+                            }
                             break;
                         case 8:
                             updateQuickslot();
-                            Dungeon.level.drop(Generator.randomWeapon(), curUser.pos).sprite.drop();
-                            Dungeon.level.drop(Generator.randomWeapon(), curUser.pos).sprite.drop();
+                            Dungeon.level.drop(Generator.randomWeapon().upgrade(Random.Long(40L * hero.lvl, 120L * hero.lvl)), curUser.pos).sprite.drop();
                             break;
                     }
                 } else if (text.equals("")) {
