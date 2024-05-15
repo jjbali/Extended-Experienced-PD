@@ -188,19 +188,19 @@ public class TypingItem extends Questionnaire {
                     }
                     GLog.h("You answered the question correctly");
                     if (totalAnswers_l <= 10) {
-                        ANSWER = getAlphaNumericString(4);
-                    } else if (totalAnswers_l >= 11 && totalAnswers_l <= 30) {
-                        ANSWER = getAlphaNumericString(5);
-                    } else if (totalAnswers_l >= 31 && totalAnswers_l <= 70) {
                         ANSWER = getAlphaNumericString(6);
-                    } else if (totalAnswers_l >= 71 && totalAnswers_l <= 110) {
-                        ANSWER = getAlphaNumericString(7);
-                    } else if (totalAnswers_l >= 111 && totalAnswers_l <= 200) {
+                    } else if (totalAnswers_l >= 11 && totalAnswers_l <= 30) {
                         ANSWER = getAlphaNumericString(8);
-                    } else if (totalAnswers_l >= 201 && totalAnswers_l <= 320) {
+                    } else if (totalAnswers_l >= 31 && totalAnswers_l <= 70) {
                         ANSWER = getAlphaNumericString(10);
+                    } else if (totalAnswers_l >= 71 && totalAnswers_l <= 110) {
+                        ANSWER = getAlphaNumericString(12);
+                    } else if (totalAnswers_l >= 111 && totalAnswers_l <= 200) {
+                        ANSWER = getAlphaNumericString(14);
+                    } else if (totalAnswers_l >= 201 && totalAnswers_l <= 320) {
+                        ANSWER = getAlphaNumericString(16);
                     } else {
-                        ANSWER = getAlphaNumericString(10 + (totalAnswers_l % 20));
+                        ANSWER = getAlphaNumericString((int) (18 + ( Math.ceil((totalAnswers_l - 320)/20) )));
                     }
 
                     totalAnswers_l += 1;
