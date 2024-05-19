@@ -46,6 +46,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Surprise;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Wound;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.Fragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.DimensionalRiftModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.Module;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
@@ -889,6 +890,10 @@ public abstract class Mob extends Char {
 
 		if (buff(Longsword.HolyExpEffect.class) != null){
 			EXP = Math.round(EXP * Math.pow(1.15f, buff(Longsword.HolyExpEffect.class).stacks));
+		}
+
+		if (Dungeon.hero.belongings.getAllItems(Fragment.class) != null) {
+			EXP = Math.round(EXP * Math.pow(1.02f, Fragment.enemyExpDropFactor()));
 		}
 
 		if (this.buff(Overload.class) != null) {

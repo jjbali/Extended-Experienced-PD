@@ -63,6 +63,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.armor.glyphs.Potential;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.glyphs.Viscosity;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.DriedRose;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.TimekeepersHourglass;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.Fragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.Pickaxe;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfElements;
@@ -388,6 +389,10 @@ public abstract class Char extends Actor {
 				dmg *= buff.meleeDamageFactor();
 			}
 
+			if (Dungeon.hero.belongings.getAllItems(Fragment.class) != null) {
+				dmg *= Fragment.enemyDamageFactor();
+			}
+
 			dmg *= AscensionChallenge.statModifier(this);
 
 			//flat damage bonus is applied after positive multipliers, but before negative ones
@@ -622,6 +627,10 @@ public abstract class Char extends Actor {
 		for (ChampionEnemy buff : buffs(ChampionEnemy.class)){
 			buff.onAttackProc( enemy );
 		}
+		if (Dungeon.hero.belongings.getAllItems(Fragment.class) != null) {
+			Fragment.onAttackProc( enemy );
+		}
+
 		return damage;
 	}
 	
@@ -681,6 +690,10 @@ public abstract class Char extends Actor {
 
 		for (ChampionEnemy buff : buffs(ChampionEnemy.class)){
 			dmg = (long) Math.ceil(dmg * buff.damageTakenFactor());
+		}
+
+		if (Dungeon.hero.belongings.getAllItems(Fragment.class) != null) {
+			dmg = (long) Math.ceil(dmg * Fragment.enemyTakenDamageFactor());
 		}
 
 		if (!(src instanceof LifeLink) && buff(LifeLink.class) != null){
