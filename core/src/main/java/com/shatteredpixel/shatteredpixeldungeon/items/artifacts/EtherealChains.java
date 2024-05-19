@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.artifacts;
@@ -35,6 +40,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Chains;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Effects;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Pushing;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfEnergy;
+import com.shatteredpixel.shatteredpixeldungeon.levels.MiningLevel;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.CellSelector;
@@ -42,9 +48,9 @@ import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.tiles.DungeonTilemap;
-import com.shatteredpixel.shatteredpixeldungeon.utils.BArray;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
+import com.watabou.utils.BArray;
 import com.watabou.utils.Callback;
 import com.watabou.utils.PathFinder;
 import com.watabou.utils.Random;
@@ -61,7 +67,7 @@ public class EtherealChains extends Artifact {
 		levelCap = 5;
 		exp = 0;
 
-		charge = 0;
+		charge = 5;
 
 		defaultAction = AC_CAST;
 		usesTargeting = true;
@@ -70,7 +76,7 @@ public class EtherealChains extends Artifact {
 	@Override
 	public ArrayList<String> actions(Hero hero) {
 		ArrayList<String> actions = super.actions( hero );
-		if (isEquipped(hero) && !cursed && hero.buff(MagicImmune.class) == null) {
+		if (isEquipped(hero) && charge > 0 && !cursed && hero.buff(MagicImmune.class) == null) {
 			actions.add(AC_CAST);
 		}
 		return actions;
@@ -91,7 +97,15 @@ public class EtherealChains extends Artifact {
 
 			curUser = hero;
 
-			if (cursed) {
+			if (!isEquipped( hero )) {
+				GLog.i( Messages.get(Artifact.class, "need_to_equip") );
+				usesTargeting = false;
+
+			} else if (charge < 1) {
+				GLog.i( Messages.get(this, "no_charge") );
+				usesTargeting = false;
+
+			} else if (cursed) {
 				GLog.w( Messages.get(this, "cursed") );
 				usesTargeting = false;
 
@@ -111,7 +125,7 @@ public class EtherealChains extends Artifact {
 
 				//chains cannot be used to go where it is impossible to walk to
 				PathFinder.buildDistanceMap(target, BArray.or(Dungeon.level.passable, Dungeon.level.avoid, null));
-				if (PathFinder.distance[curUser.pos] == Integer.MAX_VALUE){
+				if (!(Dungeon.level instanceof MiningLevel) && PathFinder.distance[curUser.pos] == Integer.MAX_VALUE){
 					GLog.w( Messages.get(EtherealChains.class, "cant_reach") );
 					return;
 				}
@@ -161,6 +175,10 @@ public class EtherealChains extends Artifact {
 		final int pulledPos = bestPos;
 
 		int chargeUse = Dungeon.level.distance(enemy.pos, pulledPos);
+		if (chargeUse > charge) {
+			GLog.w( Messages.get(this, "no_charge") );
+			return;
+		}
 
 		hero.busy();
 		throwSound();
@@ -178,7 +196,7 @@ public class EtherealChains extends Artifact {
 								GameScene.updateFog();
 								hero.spendAndNext(1f);
 
-								//charge -= chargeUse;
+								charge -= chargeUse;
 								Invisibility.dispel(hero);
 								Talent.onArtifactUsed(hero);
 								updateQuickslot();
@@ -222,10 +240,10 @@ public class EtherealChains extends Artifact {
 		final int newHeroPos = chain.collisionPos;
 
 		int chargeUse = Dungeon.level.distance(hero.pos, newHeroPos);
-		//if (chargeUse > charge){
-		//	GLog.w( Messages.get(EtherealChains.class, "no_charge") );
-		//	return;
-		//}
+		if (chargeUse > charge){
+			GLog.w( Messages.get(EtherealChains.class, "no_charge") );
+			return;
+		}
 
 		hero.busy();
 		throwSound();
@@ -243,7 +261,7 @@ public class EtherealChains extends Artifact {
 								Dungeon.observe();
 								GameScene.updateFog();
 
-								//charge -= chargeUse;
+								charge -= chargeUse;
 								Invisibility.dispel(hero);
 								Talent.onArtifactUsed(hero);
 								updateQuickslot();
@@ -262,8 +280,8 @@ public class EtherealChains extends Artifact {
 	@Override
 	public void charge(Hero target, float amount) {
 		if (cursed || target.buff(MagicImmune.class) != null) return;
-		//int chargeTarget = 5+(level()*2);
-		if (charge < 1){
+		long chargeTarget = 5+(level()*2);
+		if (charge < chargeTarget*2){
 			partialCharge += 0.5f*amount;
 			if (partialCharge >= 1){
 				partialCharge--;
@@ -297,7 +315,7 @@ public class EtherealChains extends Artifact {
 					&& target.buff(MagicImmune.class) == null
 					&& Regeneration.regenOn()) {
 				//gains a charge in 40 - 2*missingCharge turns
-				float chargeGain = (1 / (40f - (chargeTarget - charge)*2f)) * 10;
+				float chargeGain = (1 / (40f - (chargeTarget - charge)*2f));
 				chargeGain *= RingOfEnergy.artifactChargeMultiplier(target);
 				partialCharge += chargeGain;
 			} else if (cursed && Random.Int(100) == 0){
