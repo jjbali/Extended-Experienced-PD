@@ -156,6 +156,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.spells.TelekineticGrab;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.WildEnergy;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfExperience;
+import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfGodspeed;
 import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfPrismaticSensation;
 import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfPureImmunity;
 import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfStrength;
@@ -308,9 +309,10 @@ public class Generator {
 					TubeOfStrength.class,
 					TubeOfUltimatePower.class,
 					TubeOfPrismaticSensation.class,
-					TubeOfTranscendingTime.class
+					TubeOfTranscendingTime.class,
+					TubeOfGodspeed.class
 			};
-			TUBES.probs = new float[]{ 1, 1, 1, 1, 1, 1};
+			TUBES.probs = new float[]{ 1, 1, 1, 1, 1, 1, 1};
 
 			MODULES2.classes = new Class<?>[]{
 					LuckModule.class,
