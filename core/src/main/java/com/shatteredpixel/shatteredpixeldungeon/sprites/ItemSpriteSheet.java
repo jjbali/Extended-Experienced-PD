@@ -213,8 +213,9 @@ public class ItemSpriteSheet {
 	public static final int NEUTRONIUM_HOOK = FISHING_HOOKS+2;
 	public static final int AVARITIA_HOOK = FISHING_HOOKS+3;
     public static final int CHAOS_HOOK = FISHING_HOOKS+4;
+	public static final int TRUE_HOOK = FISHING_HOOKS+5;
 	static {
-        for (int i = FISHING_HOOKS; i < FISHING_HOOKS+5; i++)
+        for (int i = FISHING_HOOKS; i < FISHING_HOOKS+6; i++)
             assignItemRect(i, 14, 13);
     }
 
@@ -1075,8 +1076,8 @@ public class ItemSpriteSheet {
 	public static final int LEVELED_TIERED		= TICKETS+1;
 	public static final int EQUINOX_TIERED		= TICKETS+2;
 	static{
-		for (int i = TICKETS; i < TICKETS+2; i++)
-			assignItemRect(i, 6, 15);
+		for (int i = TICKETS; i < TICKETS+3; i++)
+			assignItemRect(i, 10, 10);
 	}
 
 	//for smaller 8x8 icons that often accompany an item sprite
