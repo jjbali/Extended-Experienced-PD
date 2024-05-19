@@ -77,11 +77,11 @@ public class BallisticWhip extends JjbaliWeapon {
 	public long proc(Char attacker, Char defender, long damage) {
 		Ballistica path = new Ballistica(attacker.pos, defender.pos, Ballistica.STOP_TARGET | Ballistica.STOP_SOLID);
 		for (int cell: path.subPath(1, path.dist)){
-			CellEmitter.center(cell).burst(EarthParticle.FACTORY, 10);
+			//CellEmitter.center(cell).burst(EarthParticle.FACTORY, 10);
 			CellEmitter.center(cell).burst(RainbowParticle.BURST, 5);
 			if (Actor.findChar(cell) != null){
 				attacker.sprite.parent.add(new TargetedCell(cell, 0xFF7F00));
-				CellEmitter.center(cell).burst(EarthParticle.FACTORY, 15);
+				//CellEmitter.center(cell).burst(EarthParticle.FACTORY, 15);
 				CellEmitter.center(cell).burst(RainbowParticle.BURST, 10);
 				this.hitSound(0.85f);
 				ArrayList<Char> affected = new ArrayList<>();
