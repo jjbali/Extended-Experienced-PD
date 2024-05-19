@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items;
@@ -185,6 +190,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.Ballis
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticQuarterstaff;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticRapier;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticSword;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticWhip;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.AdrenalineDart;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.BlindingDart;
@@ -668,9 +674,10 @@ public class Generator {
 					BallisticDagger.class,
 					BallisticRapier.class,
 					BallisticCrossbow.class,
-					BallisticQuarterstaff.class
+					BallisticQuarterstaff.class,
+					BallisticWhip.class
 			};
-			WEP_JJBALI.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2 };
+			WEP_JJBALI.defaultProbs = new float[]{ 2, 2, 2, 2, 2, 2, 2 };
 			WEP_JJBALI.probs = WEP_JJBALI.defaultProbs.clone();
 			
 			//see Generator.randomArmor
