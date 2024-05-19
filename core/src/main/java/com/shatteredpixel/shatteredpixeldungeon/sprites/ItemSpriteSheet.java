@@ -1070,6 +1070,15 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 6, 15);
 	}
 
+	private static final int TICKETS 	=			xy(1, 50);  //16 slots
+	public static final int TIERED		= TICKETS+0;
+	public static final int LEVELED_TIERED		= TICKETS+1;
+	public static final int EQUINOX_TIERED		= TICKETS+2;
+	static{
+		for (int i = TICKETS; i < TICKETS+2; i++)
+			assignItemRect(i, 6, 15);
+	}
+
 	//for smaller 8x8 icons that often accompany an item sprite
 	public static class Icons {
 
