@@ -261,7 +261,7 @@ public class OddEvenItem extends Questionnaire {
                 + "\n- (60) +78.75% Score Multi"
                 + "\n- (80) +84.375% Score Multi"
                 + "\n- (100) +87.1875% Score Multi"
-                + "\n- (120+) +90% * (streak/20 * 1%) Score Multi";
+                + "\n- (120+) +90% + (streak/20 * 1%) Score Multi";
     }
     private String STREAKS = "STREAKS";
     private String TOTAL_ANSWERS = "TOTAL_ANSWERS";
