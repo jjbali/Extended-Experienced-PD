@@ -204,7 +204,9 @@ public class Perks {
         }
         if (hero.perks.contains(Perk.PROTECTIVE_BARRIER)) {
             damage *= 1f + Random.Float();
-            Buff.affect(hero, Barrier.class).setShield((20L * Dungeon.hero.lvl));
+            if (hero.buff(Barrier.class) == null) {
+                Buff.affect(hero, Barrier.class).setShield((15L * Dungeon.hero.lvl));
+            }
         }
         if (hero.perks.contains(Perk.MIND_GAZER)) {
             damage *= 1.1f;
