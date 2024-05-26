@@ -42,6 +42,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -208,7 +209,7 @@ public class DivisionItem extends Questionnaire {
                         ANSWER = String.valueOf(CODE / CODE2);
                     }
                     totalAnswers_d += 1;
-                    streak_d += 1;
+                    streak_d += 1 + YellowFragment.questionnairesStreakAdd();
                     if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
                         streak_d += 2;
                     }

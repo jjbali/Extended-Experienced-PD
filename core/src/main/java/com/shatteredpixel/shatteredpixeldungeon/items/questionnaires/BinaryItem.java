@@ -49,6 +49,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.RewardBoostModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfCleansing;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
@@ -164,7 +165,7 @@ public class BinaryItem extends Questionnaire {
                     CODE = Random.Int(1000) + 1;
                     ANSWER = Integer.toBinaryString(CODE);
                     totalAnswers_i += 1;
-                    streak_i += 1;
+                    streak_i += 1 + YellowFragment.questionnairesStreakAdd();
                     if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
                         streak_i += 2;
                     }

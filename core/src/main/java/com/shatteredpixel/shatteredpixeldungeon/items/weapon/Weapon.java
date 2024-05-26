@@ -45,6 +45,8 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.items.EquipableItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.KindOfWeapon;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.BlueFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.RedFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.KingBlade;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.ExponentialItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfArcana;
@@ -338,6 +340,7 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 		//+2: 5%  (1/20)
 		int n = 0;
 		n += ExponentialItem.streak_e;
+		n += BlueFragment.weaponInitialLevel();
 		if (Random.Int(4) == 0) {
 			n++;
 			if (Random.Int(5) == 0) {
@@ -349,7 +352,7 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 
 		//30% chance to be cursed
 		//10% chance to be enchanted
-		float effectRoll = Dungeon.Float();
+		float effectRoll = Dungeon.Float() + RedFragment.weaponEnchantChance();
 		if (effectRoll < 0.3f) {
 			enchant(Enchantment.randomCurse());
 			cursed = true;

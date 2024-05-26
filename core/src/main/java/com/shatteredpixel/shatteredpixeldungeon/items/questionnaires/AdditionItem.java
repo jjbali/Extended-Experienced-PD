@@ -51,6 +51,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.PotionOfDebug;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.KingBlade;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Unstable;
@@ -228,7 +229,7 @@ public class AdditionItem extends Questionnaire {
                         ANSWER = String.valueOf(CODE + CODE2);
                     }
                     totalAnswers_a += 1;
-                    streak_a += 1;
+                    streak_a += 1 + YellowFragment.questionnairesStreakAdd();
                     if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
                         streak_a += 2;
                     }

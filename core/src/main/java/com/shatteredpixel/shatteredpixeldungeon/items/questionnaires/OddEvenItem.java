@@ -43,6 +43,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Shopkeeper;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -156,7 +157,7 @@ public class OddEvenItem extends Questionnaire {
                     CODE = Random.Int(Integer.MAX_VALUE);
                     ANSWER = CODE % 2 == 0 ? "even" : "odd";
                     totalAnswers_g += 1;
-                    streak_g += 1;
+                    streak_g += 1 + YellowFragment.questionnairesStreakAdd();
                     if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
                         streak_g += 2;
                     }

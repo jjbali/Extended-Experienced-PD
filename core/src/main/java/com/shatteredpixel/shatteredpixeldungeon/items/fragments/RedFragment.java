@@ -29,37 +29,31 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.items.fragments;
 
-import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
-import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
-import com.shatteredpixel.shatteredpixeldungeon.items.Item;
-
-public class Fragment extends Item {
+public class RedFragment extends Fragment {
     {
         levelKnown = true;
         identify();
     }
 
-    protected static long fragmentLevel(Class<? extends Fragment> fragmentType ){
-        if (Dungeon.hero == null || Dungeon.hero.belongings == null){
-            return 0;
-        }
-
-        Fragment fragment = Dungeon.hero.belongings.getItem(fragmentType);
-
-        if (fragment != null){
-            return fragment.buffedLvl();
-        } else {
-            return 0;
-        }
-    }
-
     @Override
     public String name() {
-        return "Fragment";
+        return "Red Fragment";
     }
 
     @Override
     public String desc() {
-        return "A plain fragment. Has no effects, can be used to craft a new fragment.";
+        return "A primary colored fragment, it can increase the chance of the weapons being enchanted based on this level\n\nEnchantment Chance: " + weaponEnchantChance();
+    }
+
+    public static float weaponEnchantChance(){
+        return weaponEnchantChance(fragmentLevel(RedFragment.class));
+    }
+
+    public static float weaponEnchantChance( long level ){
+        if (level == -1){
+            return 0.0001f;
+        } else {
+            return 0.0002f*level;
+        }
     }
 }

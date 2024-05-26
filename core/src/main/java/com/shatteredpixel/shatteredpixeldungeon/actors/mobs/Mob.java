@@ -892,10 +892,6 @@ public abstract class Mob extends Char {
 			EXP = Math.round(EXP * Math.pow(1.15f, buff(Longsword.HolyExpEffect.class).stacks));
 		}
 
-		if (Dungeon.hero.belongings.getAllItems(Fragment.class) != null) {
-			EXP = Math.round(EXP * Math.pow(1.02f, Fragment.enemyExpDropFactor()));
-		}
-
 		if (this.buff(Overload.class) != null) {
 			Dungeon.level.spawnMob(6);
 		}
