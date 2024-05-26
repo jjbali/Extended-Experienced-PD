@@ -39,6 +39,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.bags.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.bombs.StormBomb;
 import com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Cheese;
+import com.shatteredpixel.shatteredpixeldungeon.items.modules.DimensionalRiftModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.Metamorph;
@@ -215,6 +216,7 @@ public class ShopRoom extends SpecialRoom {
 		itemsToSpawn.add(new ScrollBag());
 		itemsToSpawn.add(new PotionBag());
 		itemsToSpawn.add(new Ankh());
+		itemsToSpawn.add(new DimensionalRiftModule());
 		itemsToSpawn.add(Generator.randomWeapon());
 		itemsToSpawn.add(Generator.randomMissile());
 		itemsToSpawn.add(Generator.randomArtifact());
