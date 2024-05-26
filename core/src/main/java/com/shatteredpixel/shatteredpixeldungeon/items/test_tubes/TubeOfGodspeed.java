@@ -49,7 +49,7 @@ public class TubeOfGodspeed extends Tubes {
 	@Override
 	public void apply( Hero hero ) {
 		identify();
-		Buff.affect(hero, Godspeed.class);
+		Buff.affect(hero, Godspeed.class, Godspeed.DURATION);
 	}
 
 	@Override
