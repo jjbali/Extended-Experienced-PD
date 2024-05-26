@@ -29,10 +29,13 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.items.fragments;
 
+import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
+
 public class YellowFragment extends Fragment {
     {
         levelKnown = true;
         identify();
+        image = ItemSpriteSheet.YELLOW;
     }
 
     @Override

@@ -1080,6 +1080,15 @@ public class ItemSpriteSheet {
 			assignItemRect(i, 10, 10);
 	}
 
+	private static final int FRAGMENTS 	=			xy(1, 51);  //16 slots
+	public static final int RED		= FRAGMENTS+0;
+	public static final int BLUE		= FRAGMENTS+1;
+	public static final int YELLOW		= FRAGMENTS+2;
+	static{
+		for (int i = FRAGMENTS; i < FRAGMENTS+99; i++)
+			assignItemRect(i, 8, 10);
+	}
+
 	//for smaller 8x8 icons that often accompany an item sprite
 	public static class Icons {
 
