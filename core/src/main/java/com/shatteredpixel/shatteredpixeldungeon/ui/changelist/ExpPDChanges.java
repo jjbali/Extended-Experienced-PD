@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2019 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.ui.changelist;
@@ -81,7 +86,7 @@ public class ExpPDChanges {
         changes.addButton( new ChangeButton(Icons.get(Icons.CALENDAR), "Calibrated Days",
                 "_-_ Monday: +2 Streaks On Questionnaires\n" +
                         "_-_ Tuesday: -10% Discount On Shops\n" +
-                        "_-_ Wednesday: x5 Score\n" +
+                        "_-_ Wednesday: None\n" +
                         "_-_ Thursday: (x5) Potion\n" +
                         "_-_ Friday: (+2) Weapon\n" +
                         "_-_ Saturday: (x5) Food, 1 Random Artifact\n" +

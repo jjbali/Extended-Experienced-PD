@@ -80,7 +80,7 @@ public enum Rankings {
 	public static final String RANKINGS_FILE = "rankings.dat";
 	
 	public ArrayList<Record> records;
-	GregorianCalendar gregcal = new GregorianCalendar();
+	//GregorianCalendar gregcal = new GregorianCalendar();
 	public int lastRecord;
 	public int totalNumber;
 	public int wonNumber;
@@ -261,7 +261,7 @@ public enum Rankings {
 					+ Statistics.totalBossScore + Statistics.totalQuestScore + Statistics.answeredQuestions;
 
 		Statistics.totalScore *= Statistics.winMultiplier * Statistics.chalMultiplier * Statistics.cycleMultiplier * Statistics.streakMultiplier * OddEvenItem.score_multi;
-		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) Statistics.totalScore *= 5;
+		//if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) Statistics.totalScore *= 5;
 
 		return Statistics.totalScore;
 	}
