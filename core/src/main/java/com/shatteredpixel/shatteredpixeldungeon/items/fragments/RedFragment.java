@@ -45,7 +45,7 @@ public class RedFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A primary colored fragment, it can increase the chance of the weapons being enchanted based on this level\n\nEnchantment Chance: +" + 100 * equipmentEnchantChance() + "%";
+        return "A primary colored fragment, it can increase the chance of the weapons and armors being enchanted based on this level\n\nEnchantment Chance: +" + 100 * equipmentEnchantChance() + "%";
     }
 
     @Override
