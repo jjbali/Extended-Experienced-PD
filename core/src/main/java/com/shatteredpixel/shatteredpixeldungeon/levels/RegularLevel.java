@@ -44,7 +44,9 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Statue;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Ghost;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.BrownFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.FragmentCatalyst;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.MagentaFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
@@ -205,7 +207,7 @@ public abstract class RegularLevel extends Level {
 	protected abstract Painter painter();
 	
 	protected int nTraps() {
-		return Random.NormalIntRange( 10, 20 );
+		return Random.NormalIntRange( 6, 14 ) + BrownFragment.trapsAdd();
 	}
 	
 	protected Class<?>[] trapClasses(){
@@ -223,7 +225,7 @@ public abstract class RegularLevel extends Level {
 			else                            return 10;
 		}
 
-		int mobs = 12 + Dungeon.depth % 5 + Dungeon.getAdditionalMobs();
+		int mobs = 12 + Dungeon.depth % 5 + Dungeon.getAdditionalMobs() + MagentaFragment.mobsAdd();
 		if (feeling == Feeling.LARGE){
 			mobs = (int)Math.ceil(mobs * 1.33f);
 		}

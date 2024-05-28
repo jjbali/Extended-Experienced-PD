@@ -1087,6 +1087,9 @@ public class ItemSpriteSheet {
 	public static final int GREEN		= FRAGMENTS+3;
 	public static final int ORANGE		= FRAGMENTS+4;
 	public static final int VIOLET		= FRAGMENTS+5;
+	public static final int BROWN		= FRAGMENTS+6;
+	public static final int TEAL		= FRAGMENTS+7;
+	public static final int MAGENTA		= FRAGMENTS+8;
 	static{
 		for (int i = FRAGMENTS; i < FRAGMENTS+99; i++)
 			assignItemRect(i, 8, 10);

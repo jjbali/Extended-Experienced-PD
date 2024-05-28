@@ -47,6 +47,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Surprise;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Wound;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.Fragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.TealFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.DimensionalRiftModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.Module;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
@@ -973,6 +974,10 @@ public abstract class Mob extends Char {
 		if (Dungeon.isChallenged(FALL_ECONOMY) && Random.Int(5) == 0) {
 			GLog.h("The chances of getting the items lost are higher than your luck. Try to kill a mob again.");
 			return;
+		}
+
+		for (int i = 0; i < TealFragment.droppedItems(); i++) {
+			Dungeon.level.drop(Generator.randomUsingDefaults(), pos).sprite.drop();
 		}
 
 		if (hero.lvl <= maxLvl && buff(DanceFloor.RewardBoost.class) != null) {
