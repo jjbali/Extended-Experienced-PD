@@ -41,6 +41,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.ItemStatusHandler;
 import com.shatteredpixel.shatteredpixeldungeon.items.KindofMisc;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.GreenFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisibilityItem;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Catalog;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -233,6 +234,7 @@ public class Ring extends KindofMisc {
 		//+2: 6.67%  (1/15)
 		int n = 0;
 		n += DivisibilityItem.streak_h;
+		n += GreenFragment.ringInitialLevel();
 		if (Dungeon.Int(3) == 0) {
 			n++;
 			if (Dungeon.Int(5) == 0){
