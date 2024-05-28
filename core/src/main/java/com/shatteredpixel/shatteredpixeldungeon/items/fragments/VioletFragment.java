@@ -35,7 +35,7 @@ public class VioletFragment extends Fragment {
     {
         levelKnown = true;
         identify();
-        image = ItemSpriteSheet.GREEN;
+        image = ItemSpriteSheet.VIOLET;
     }
 
     @Override
