@@ -352,11 +352,11 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 
 		//30% chance to be cursed
 		//10% chance to be enchanted
-		float effectRoll = Dungeon.Float() + RedFragment.weaponEnchantChance();
+		float effectRoll = Dungeon.Float();
 		if (effectRoll < 0.3f) {
 			enchant(Enchantment.randomCurse());
 			cursed = true;
-		} else if (effectRoll >= 0.9f){
+		} else if (effectRoll >= 1f - RedFragment.equipmentEnchantChance()){
 			enchant();
 		}
 

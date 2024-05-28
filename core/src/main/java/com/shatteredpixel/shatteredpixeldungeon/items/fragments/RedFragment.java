@@ -45,18 +45,18 @@ public class RedFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A primary colored fragment, it can increase the chance of the weapons being enchanted based on this level\n\nEnchantment Chance: " + 100 * weaponEnchantChance() + "%";
+        return "A primary colored fragment, it can increase the chance of the weapons being enchanted based on this level\n\nEnchantment Chance: +" + 100 * equipmentEnchantChance() + "%";
     }
 
-    public static float weaponEnchantChance(){
-        return weaponEnchantChance(fragmentLevel(RedFragment.class));
+    public static float equipmentEnchantChance(){
+        return equipmentEnchantChance(fragmentLevel(RedFragment.class));
     }
 
-    public static float weaponEnchantChance( long level ){
+    public static float equipmentEnchantChance( long level ){
         if (level == -1){
             return 0.0001f;
         } else {
-            return 0.0002f*level;
+            return 0.00002f*level;
         }
     }
 }

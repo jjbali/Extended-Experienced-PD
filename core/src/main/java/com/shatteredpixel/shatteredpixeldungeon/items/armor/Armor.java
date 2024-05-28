@@ -47,6 +47,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.curses.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.glyphs.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.OrangeFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.RedFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfArcana;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -519,7 +520,7 @@ public class Armor extends EquipableItem {
 		if (effectRoll < 0.3f) {
 			inscribe(Glyph.randomCurse());
 			cursed = true;
-		} else if (effectRoll >= 0.85f){
+		} else if (effectRoll >= 1f - RedFragment.equipmentEnchantChance()){
 			inscribe();
 		}
 		tier += Dungeon.cycle * 5;
