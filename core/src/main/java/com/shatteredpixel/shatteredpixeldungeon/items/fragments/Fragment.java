@@ -32,8 +32,12 @@ package com.shatteredpixel.shatteredpixeldungeon.items.fragments;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.Recipe;
+import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 
-public class Fragment extends Item {
+import java.util.ArrayList;
+
+public abstract class Fragment extends Item {
     {
         levelKnown = true;
         identify();
@@ -61,5 +65,61 @@ public class Fragment extends Item {
     @Override
     public String desc() {
         return "A plain fragment. Has no effects, can be used to craft a new fragment.";
+    }
+
+    @Override
+    public boolean isUpgradable() {
+        return false;
+    }
+
+    protected abstract long upgradeEnergyCost();
+
+    public static class PlaceHolder extends Fragment {
+
+        {
+            image = ItemSpriteSheet.SOMETHING;
+        }
+
+        @Override
+        protected long upgradeEnergyCost() {
+            return 0;
+        }
+
+        @Override
+        public boolean isSimilar(Item item) {
+            return item instanceof Fragment;
+        }
+
+        @Override
+        public String info() {
+            return "";
+        }
+
+    }
+
+    public static class UpgradeFragment extends Recipe {
+
+        @Override
+        public boolean testIngredients(ArrayList<Item> ingredients) {
+            return ingredients.size() == 1 && ingredients.get(0) instanceof Fragment;
+        }
+
+        @Override
+        public long cost(ArrayList<Item> ingredients) {
+            return ((Fragment)ingredients.get(0)).upgradeEnergyCost();
+        }
+
+        @Override
+        public Item brew(ArrayList<Item> ingredients) {
+            Item result = ingredients.get(0).duplicate();
+            ingredients.get(0).quantity(0);
+            result.upgrade();
+            return result;
+        }
+
+        @Override
+        public Item sampleOutput(ArrayList<Item> ingredients) {
+            return ingredients.get(0).duplicate().upgrade();
+        }
     }
 }

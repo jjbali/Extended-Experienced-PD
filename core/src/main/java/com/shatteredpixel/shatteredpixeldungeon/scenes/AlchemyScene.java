@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.scenes;
@@ -417,43 +422,47 @@ public class AlchemyScene extends PixelScene {
 		}
 		
 		if (result != null){
-			bubbleEmitter.start(Speck.factory( Speck.BUBBLE ), 0.01f, 100 );
-			smokeEmitter.burst(Speck.factory( Speck.WOOL ), 10 );
-			Sample.INSTANCE.play( Assets.Sounds.PUFF );
+			craftItem(ingredients, result);
+		}
+		
+	}
 
-			long resultQuantity = result.quantity();
-			if (!result.collect()){
-				Dungeon.level.drop(result, Dungeon.hero.pos);
-			}
+	public void craftItem( ArrayList<Item> ingredients, Item result ){
+		bubbleEmitter.start(Speck.factory( Speck.BUBBLE ), 0.01f, 100 );
+		smokeEmitter.burst(Speck.factory( Speck.WOOL ), 10 );
+		Sample.INSTANCE.play( Assets.Sounds.PUFF );
 
-			Statistics.itemsCrafted++;
-			Badges.validateItemsCrafted();
+		long resultQuantity = result.quantity();
+		if (!result.collect()){
+			Dungeon.level.drop(result, Dungeon.hero.pos);
+		}
 
-			try {
-				Dungeon.saveAll();
-			} catch (IOException e) {
-				ShatteredPixelDungeon.reportException(e);
-			}
-			
-			synchronized (inputs) {
-				for (int i = 0; i < inputs.length; i++) {
-					if (inputs[i] != null && inputs[i].item() != null) {
-						Item item = inputs[i].item();
-						if (item.quantity() <= 0) {
-							inputs[i].item(null);
-						} else {
-							inputs[i].slot.updateText();
-						}
+		Statistics.itemsCrafted++;
+		Badges.validateItemsCrafted();
+
+		try {
+			Dungeon.saveAll();
+		} catch (IOException e) {
+			ShatteredPixelDungeon.reportException(e);
+		}
+
+		synchronized (inputs) {
+			for (int i = 0; i < inputs.length; i++) {
+				if (inputs[i] != null && inputs[i].item() != null) {
+					Item item = inputs[i].item();
+					if (item.quantity() <= 0) {
+						inputs[i].item(null);
+					} else {
+						inputs[i].slot.updateText();
 					}
 				}
 			}
-			
-			updateState();
-			//we reset the quantity in case the result was merged into another stack in the backpack
-			result.quantity(resultQuantity);
-			outputs[0].item(result);
 		}
-		
+
+		updateState();
+		//we reset the quantity in case the result was merged into another stack in the backpack
+		result.quantity(resultQuantity);
+		outputs[0].item(result);
 	}
 	
 	public void populate(ArrayList<Item> toFind, Belongings inventory){

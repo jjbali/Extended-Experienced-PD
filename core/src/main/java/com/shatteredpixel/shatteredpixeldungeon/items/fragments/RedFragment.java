@@ -48,6 +48,11 @@ public class RedFragment extends Fragment {
         return "A primary colored fragment, it can increase the chance of the weapons being enchanted based on this level\n\nEnchantment Chance: +" + 100 * equipmentEnchantChance() + "%";
     }
 
+    @Override
+    protected long upgradeEnergyCost() {
+        return 2 + 2 * level();
+    }
+
     public static float equipmentEnchantChance(){
         return equipmentEnchantChance(fragmentLevel(RedFragment.class));
     }

@@ -52,6 +52,11 @@ public class GreenFragment extends Fragment {
         return ringInitialLevel(fragmentLevel(GreenFragment.class));
     }
 
+    @Override
+    protected long upgradeEnergyCost() {
+        return 4 + 2 * level();
+    }
+
     public static float ringInitialLevel( long level ){
         if (level == -1){
             return 0f;

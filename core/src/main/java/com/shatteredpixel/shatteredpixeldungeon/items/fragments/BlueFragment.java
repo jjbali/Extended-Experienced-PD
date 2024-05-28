@@ -49,6 +49,11 @@ public class BlueFragment extends Fragment {
         return "A primary colored fragment, it can increase the level of the dropped weapons based on this level\n\nWeapon's Initial Level: " + weaponInitialLevel();
     }
 
+    @Override
+    protected long upgradeEnergyCost() {
+        return 3 + 2 * level();
+    }
+
     public static float weaponInitialLevel(){
         return weaponInitialLevel(fragmentLevel(BlueFragment.class));
     }

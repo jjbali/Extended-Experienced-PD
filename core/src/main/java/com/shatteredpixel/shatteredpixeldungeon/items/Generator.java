@@ -62,6 +62,13 @@ import com.shatteredpixel.shatteredpixeldungeon.items.food.Pasty;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.PhantomMeat;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.SmallRation;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.StewedMeat;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.BlueFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.Fragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.GreenFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.OrangeFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.RedFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.VioletFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.ChampionModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.CycleModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.DimensionalRiftModule;
@@ -261,6 +268,7 @@ public class Generator {
 		MODULES(0, 0, Item.class),
 		MODULES2(0, 0, Item.class),
 		REMAINS(0, 1, RemainsItem.class),
+		FRAGMENTS(0, 0, Fragment.class),
 
 		GOLD	( 10, 10,   Gold.class );
 
@@ -303,6 +311,16 @@ public class Generator {
 		}
 
 		static {
+			FRAGMENTS.classes = new Class<?>[] {
+					BlueFragment.class,
+					GreenFragment.class,
+					OrangeFragment.class,
+					RedFragment.class,
+					VioletFragment.class,
+					YellowFragment.class
+			};
+			FRAGMENTS.probs = new float[]{ 1, 1, 1, 1, 1, 1};
+
 			TUBES.classes = new Class<?>[] {
 					TubeOfExperience.class,
 					TubeOfPureImmunity.class,

@@ -59,6 +59,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.particles.WindParticle;
 import com.shatteredpixel.shatteredpixeldungeon.items.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.TalismanOfForesight;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.TimekeepersHourglass;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.FragmentCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfStrength;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
@@ -214,6 +215,10 @@ public abstract class Level implements Bundlable {
 			
 			if ( Dungeon.depth == ((Dungeon.seed % 3) + 1)){
 				addItemToSpawn( new StoneOfIntuition() );
+			}
+
+			if ( Dungeon.depth == (((Dungeon.seed+1) % 3) + 1)){
+				addItemToSpawn( new FragmentCatalyst());
 			}
 			
 			if (Dungeon.depth > 1) {
@@ -809,6 +814,14 @@ public abstract class Level implements Bundlable {
 			return null;
 
 		if (match == null){
+			//if we have a trinket catalyst, always return that
+			for (Item i : itemsToSpawn){
+				if (i instanceof FragmentCatalyst){
+					itemsToSpawn.remove(i);
+					return i;
+				}
+			}
+
 			Item item = Random.element(itemsToSpawn);
 			itemsToSpawn.remove(item);
 			return item;

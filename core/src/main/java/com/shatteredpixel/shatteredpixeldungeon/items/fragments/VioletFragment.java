@@ -48,6 +48,11 @@ public class VioletFragment extends Fragment {
         return "A secondary colored fragment, it can multiply the dropped gold based on this level\n\nGold Multiplier: " + goldMulti();
     }
 
+    @Override
+    protected long upgradeEnergyCost() {
+        return 5 + 2 * level();
+    }
+
     public static float goldMulti(){
         return goldMulti(fragmentLevel(VioletFragment.class));
     }

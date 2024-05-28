@@ -44,6 +44,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mimic;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Statue;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Ghost;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.FragmentCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
@@ -430,7 +431,17 @@ public abstract class RegularLevel extends Level {
 
 		for (Item item : itemsToSpawn) {
 			int cell = randomDropCell();
-			drop( item, cell ).type = Heap.Type.HEAP;
+			if (item instanceof FragmentCatalyst){
+				drop( item, cell ).type = Heap.Type.LOCKED_CHEST;
+				int keyCell = randomDropCell();
+				drop( new GoldenKey(Dungeon.depth), keyCell ).type = Heap.Type.HEAP;
+				if (map[keyCell] == Terrain.HIGH_GRASS || map[keyCell] == Terrain.FURROWED_GRASS) {
+					map[keyCell] = Terrain.GRASS;
+					losBlocking[keyCell] = false;
+				}
+			} else {
+				drop( item, cell ).type = Heap.Type.HEAP;
+			}
 			if (map[cell] == Terrain.HIGH_GRASS || map[cell] == Terrain.FURROWED_GRASS) {
 				map[cell] = Terrain.GRASS;
 				losBlocking[cell] = false;

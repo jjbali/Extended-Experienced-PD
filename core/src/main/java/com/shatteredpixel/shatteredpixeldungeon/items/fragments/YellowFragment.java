@@ -48,6 +48,11 @@ public class YellowFragment extends Fragment {
         return "A primary colored fragment, it can increase the streak of the questionnaires based on this level\n\nQuestionnaire's Streak: " + questionnairesStreakAdd();
     }
 
+    @Override
+    protected long upgradeEnergyCost() {
+        return 1 + 2 * level();
+    }
+
     public static float questionnairesStreakAdd(){
         return questionnairesStreakAdd(fragmentLevel(YellowFragment.class));
     }

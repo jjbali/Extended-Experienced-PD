@@ -48,6 +48,11 @@ public class OrangeFragment extends Fragment {
         return "A secondary colored fragment, it can increase the level of the dropped armors based on this level\n\nArmor's Initial Level: " + armorInitialLevel();
     }
 
+    @Override
+    protected long upgradeEnergyCost() {
+        return 4 + 2 * level();
+    }
+
     public static float armorInitialLevel(){
         return armorInitialLevel(fragmentLevel(OrangeFragment.class));
     }
