@@ -217,7 +217,7 @@ public abstract class Level implements Bundlable {
 				addItemToSpawn( new StoneOfIntuition() );
 			}
 
-			if ( Dungeon.depth == (((Dungeon.seed+1) % 3) + 1)){
+			if ( Dungeon.depth % 6 == 0){
 				addItemToSpawn( new FragmentCatalyst());
 			}
 			
