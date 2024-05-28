@@ -215,7 +215,7 @@ public class RectangularItem extends Questionnaire {
                             hero.earnExp(hero.maxExp(), RectangularItem.class);
                             break;
                         case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
-                            int rolls = 50 * (1 + streak_j);
+                            int rolls = 15 * (1 + streak_j);
                             ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(rolls);
                             if (!bonus.isEmpty()) {
                                 for (Item b : bonus) Dungeon.level.drop(b, hero.pos).sprite.drop();
@@ -265,7 +265,7 @@ public class RectangularItem extends Questionnaire {
         return "This item represents your intelligence, it may also give you some rewards.\n\nQuestion: " + BODY + "\nAnswered Correctly: " + totalAnswers_j + "\nStreak: " + streak_j
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (0) Loot Rolls: _(50 * streak)_"
+                + "\n- (0) Loot Rolls: _(15 * streak)_"
                 + "\n- (0) Gold Multiplier: _+50%_";
     }
     private String STREAKS = "STREAKS";

@@ -216,7 +216,7 @@ public class TypingItem extends Questionnaire {
                             hero.earnExp(hero.maxExp() * 2, TypingItem.class);
                             break;
                         case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
-                            int rolls = 400 * (1 + streak_l);
+                            int rolls = 100 * (1 + streak_l);
                             ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(rolls);
                             if (!bonus.isEmpty()) {
                                 for (Item b : bonus) Dungeon.level.drop(b, hero.pos).sprite.drop();
@@ -266,7 +266,7 @@ public class TypingItem extends Questionnaire {
         return "This item represents your memorization, it may also give you some rewards.\n##Needs to view this info again to see the generated ID.##\n\nID: " + ANSWER + "\nAnswered Correctly: " + totalAnswers_l + "\nStreak: " + streak_l
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (0) Loot Rolls: _(400 * streak)_";
+                + "\n- (0) Loot Rolls: _(100 * streak)_";
     }
     private String STREAKS = "STREAKS";
     private String TOTAL_ANSWERS = "TOTAL_ANSWERS";
