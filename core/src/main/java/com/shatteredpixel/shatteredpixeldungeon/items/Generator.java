@@ -890,7 +890,8 @@ public class Generator {
 			cat != Category.WEAPON &&
 			!Arrays.asList(wepTiers).contains(cat) &&
 			!Arrays.asList(misTiers).contains(cat) &&
-			cat != Category.RING) {
+			cat != Category.RING &&
+			cat != Category.FRAGMENTS) {
 			return new ElixirOfMight();
 		}
 		switch (cat) {
