@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts;
@@ -81,22 +86,22 @@ public class Dart extends MissileWeapon {
 	@Override
 	public long min(long lvl) {
 		if (bow != null){
-			return  (tier+3) +                    //4 base
+			return  (tier()+3) +                    //4 base
 					bow.buffedLvl() + lvl; //+1 per level or bow level
 		} else {
-			return  tier +     //1 base, down from 2
-					lvl*tier;    //scaling unchanged
+			return  tier() +     //1 base, down from 2
+					lvl*tier();    //scaling unchanged
 		}
 	}
 
 	@Override
 	public long max(long lvl) {
 		if (bow != null){
-			return  4*(tier+3) +                       //12 base
-                    (tier+2)*bow.buffedLvl() + (tier+1)*lvl; //+3 per bow level, +2 per level (default scaling +2)
+			return  4L*(tier()+3) +                       //12 base
+                    (tier()+2)*bow.buffedLvl() + (tier()+1)*lvl; //+3 per bow level, +2 per level (default scaling +2)
 		} else {
-			return  tier*2 +     //2 base, down from 5
-					2*lvl*tier;  //scaling unchanged
+			return  tier()*2L +     //2 base, down from 5
+					2*lvl*tier();  //scaling unchanged
 		}
 	}
 	

@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee;
@@ -53,15 +58,15 @@ public class Flail extends MeleeWeapon {
 
 	@Override
 	public long max(long lvl) {
-		return  Math.round(8*(tier+1)) +        //40 base, up from 30
-				lvl*Math.round(2f*(tier+1));  //+10 per level, up from +6
+		return  Math.round(8d*(tier()+1)) +        //40 base, up from 30
+				lvl*Math.round(2d*(tier()+1));  //+10 per level, up from +6
 	}
 
-	private static float spinBonus = 1f;
+	private static double spinBonus = 1f;
 
 	@Override
 	public long damageRoll(Char owner) {
-		int dmg = Math.round(super.damageRoll(owner) * spinBonus);
+		long dmg = Math.round(super.damageRoll(owner) * spinBonus);
 		if (spinBonus > 1f) Sample.INSTANCE.play(Assets.Sounds.HIT_STRONG);
 		spinBonus = 1f;
 		return dmg;

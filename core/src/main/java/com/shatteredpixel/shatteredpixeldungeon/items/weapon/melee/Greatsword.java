@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee;
@@ -60,13 +65,13 @@ public class Greatsword extends MeleeWeapon {
 
     @Override
     public long max(long lvl) {
-        return  6*(tier+1) +    //36
-                lvl*(tier+2);   //+7
+        return  6L*(tier()+1) +    //36
+                lvl*(tier()+2);   //+7
     }
 
     @Override
     public String statsInfo() {
-        return Messages.get(this, "stats_desc", 12 + Dungeon.escalatingDepth() * 3);
+        return Messages.get(this, "stats_desc", 9 + Dungeon.escalatingDepth() * 3);
     }
 
     @Override
@@ -173,7 +178,7 @@ public class Greatsword extends MeleeWeapon {
         }
 
         public GuardianKnight() {
-            HP = HT = 12 + Dungeon.escalatingDepth() * 4L;
+            HP = HT = 9 + Dungeon.escalatingDepth() * 4;
             defenseSkill = 4 + Dungeon.escalatingDepth();
         }
 
@@ -199,7 +204,7 @@ public class Greatsword extends MeleeWeapon {
             @Override
             public boolean act() {
                 if (target.isAlive()) {
-                    float regen = 1f / (target.HT / 10f);
+                    float regen = 1f / (target.HT / 150f);
                     if (target.HP > 0) {
                         partialHP += regen;
                         if (partialHP >= 1){

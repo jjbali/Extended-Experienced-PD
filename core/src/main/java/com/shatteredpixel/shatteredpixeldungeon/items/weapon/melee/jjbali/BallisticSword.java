@@ -71,8 +71,8 @@ public class BallisticSword extends JjbaliWeapon {
 
     @Override
     public long max(long lvl) {
-        return  6*(tier+1) +    //70
-                lvl*(tier+6);   //+12
+        return 6L *(tier()+1) +    //70
+                lvl*(tier()+6);   //+12
     }
 
 	@Override

@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles;
@@ -43,14 +48,14 @@ public class Tomahawk extends MissileWeapon {
 
 	@Override
 	public long min(long lvl) {
-		return  Math.round(3f * tier) +   //6 base, down from 8
+		return  Math.round(3d * tier()) +   //6 base, down from 8
 				4 * lvl;                    //scaling unchanged
 	}
 	
 	@Override
 	public long max(long lvl) {
-		return  Math.round(7f * tier) +  //15 base, down from 20
-				(tier*2)*lvl;                 //scaling unchanged
+		return  Math.round(7d * tier()) +  //15 base, down from 20
+				(tier()*2L)*lvl;                 //scaling unchanged
 	}
 	
 	@Override

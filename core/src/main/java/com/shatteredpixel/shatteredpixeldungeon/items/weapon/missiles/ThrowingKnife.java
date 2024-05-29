@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles;
@@ -47,8 +52,8 @@ public class ThrowingKnife extends MissileWeapon {
 	
 	@Override
 	public long max(long lvl) {
-		return  10 * tier +                      //6 base, up from 5
-				(tier == 1 ? 4*lvl : tier*2*lvl); //scaling unchanged
+		return  10L * tier() +                      //6 base, up from 5
+				(tier == 1 ? 4*lvl : tier()*2*lvl); //scaling unchanged
 	}
 
 	@Override

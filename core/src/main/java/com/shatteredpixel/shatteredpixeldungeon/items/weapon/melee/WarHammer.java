@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee;
@@ -49,13 +54,13 @@ public class WarHammer extends MeleeWeapon {
 
 	@Override
 	public long max(long lvl) {
-		return  20*(tier+1) +    //120 base, up from 36
-				5*lvl*(tier+1);   //scaling is 5x
+		return  20L*(tier()+1) +    //120 base, up from 36
+				5*lvl*(tier()+1);   //scaling is 5x
 	}
 
 	@Override
 	public long min(long lvl) {
-		return  tier*12 +  //base
+		return  tier()*12L +  //base
 				lvl*10;    //level scaling
 	}
 

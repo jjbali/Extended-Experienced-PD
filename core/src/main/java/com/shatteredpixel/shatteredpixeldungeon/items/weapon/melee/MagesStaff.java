@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee;
@@ -57,7 +62,6 @@ import com.watabou.utils.Bundle;
 import com.watabou.utils.Random;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MagesStaff extends MeleeWeapon {
 
@@ -82,27 +86,14 @@ public class MagesStaff extends MeleeWeapon {
 		bones = false;
 	}
 
-	@Override
-	public boolean needsAim() {
-		return true;
-	}
-
-	@Override
-	public List<Integer> aimTiles(int target) {
-		if (wand != null) {
-			return wand.aimTiles(target);
-		}
-		return super.aimTiles(target);
-	}
-
 	public MagesStaff() {
 		wand = null;
 	}
 
 	@Override
 	public long max(long lvl) {
-		return  Math.round(3f*(tier+1)) +   //6 base damage, down from 10
-				lvl*(tier+1);               //scaling unaffected
+		return  Math.round(3d*(tier()+1)) +   //6 base damage, down from 10
+				lvl*(tier()+1);               //scaling unaffected
 	}
 
 	public MagesStaff(Wand wand){
@@ -399,10 +390,7 @@ public class MagesStaff extends MeleeWeapon {
 		Emitter emitter = new Emitter();
 		emitter.pos(12.5f, 3);
 		emitter.fillTarget = false;
-		if (wand instanceof WandOfEarthblast)
-			emitter.pour(StaffParticleFactory, 0.05f);
-		else
-			emitter.pour(StaffParticleFactory, 0.1f);
+		emitter.pour(StaffParticleFactory, 0.1f);
 		return emitter;
 	}
 

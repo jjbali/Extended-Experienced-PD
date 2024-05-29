@@ -79,8 +79,8 @@ public class BallisticRapier extends JjbaliWeapon {
     }
     @Override
     public long max(long lvl) {
-        return  5*(tier+1) +    //70
-                lvl*(tier+10);   //+12
+        return 5L *(tier()+1) +    //70
+                lvl*(tier()+10);   //+12
     }
 
 	@Override

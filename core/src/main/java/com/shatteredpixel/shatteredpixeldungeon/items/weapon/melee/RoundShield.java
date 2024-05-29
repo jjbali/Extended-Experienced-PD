@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee;
@@ -46,20 +51,20 @@ public class RoundShield extends MeleeWeapon {
 
 	@Override
 	public long max(long lvl) {
-		return  Math.round(3.5f*(tier+1)) +     //14 base, down from 24
-				lvl*(tier);                   //+3 per level, down from +5
+		return  Math.round(3.5d*(tier()+1)) +     //14 base, down from 24
+				lvl*(tier());                   //+3 per level, down from +5
 	}
 
 	@Override
 	public long defenseFactor( Char owner ) {
-		return (tier+1)+(tier-1)*buffedLvl();
+		return (tier()+1)+(tier()-1)*buffedLvl();
 	}
 	
 	public String statsInfo(){
 		if (isIdentified()){
-			return Messages.get(this, "stats_desc", (tier+1)+(tier-1)*buffedLvl());
+			return Messages.get(this, "stats_desc", (tier()+1)+(tier()-1)*buffedLvl());
 		} else {
-			return Messages.get(this, "typical_stats_desc", (tier+1));
+			return Messages.get(this, "typical_stats_desc", (tier()+1));
 		}
 	}
 

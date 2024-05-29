@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee;
@@ -35,7 +40,6 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Splash;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
-import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Projecting;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.CellSelector;
@@ -123,10 +127,10 @@ public class RunicBlade extends MeleeWeapon {
 
     @Override
     public long max(long lvl) {
-        int i = 5 * (tier) +                    //20 base, down from 30
-                Math.round(lvl * (tier+1)); //+5 per level, up from +6
-        if (!charged) i = 6 * (tier) +
-                Math.round(lvl * (tier + 2));
+        long i = 5L * (tier()) +                    //20 base, down from 30
+                lvl * (tier()+1); //+5 per level, up from +6
+        if (!charged) i = 6L * (tier()) +
+                lvl * (tier() + 2L);
         return i;
     }
 
@@ -178,7 +182,8 @@ public class RunicBlade extends MeleeWeapon {
                     return;
                 }
 
-                final int cell = new RunicMissile().throwPos(curUser, target);
+                final Ballistica shot = new Ballistica( curUser.pos, target, Ballistica.PROJECTILE);
+                final int cell = shot.collisionPos;
 
                 if (target == curUser.pos || cell == curUser.pos) {
                     GLog.i( Messages.get(Wand.class, "self_target") );
@@ -416,20 +421,6 @@ public class RunicBlade extends MeleeWeapon {
     public static class RunicMissile extends Item {
         {
             image = ItemSpriteSheet.RUNIC_SHOT;
-        }
-
-        @Override
-        public int throwPos(Hero user, int dst) {
-
-            boolean projecting = curItem instanceof RunicBlade && ((RunicBlade) curItem).hasEnchant(Projecting.class, user);
-
-            if (projecting
-                    && (Dungeon.level.passable[dst] || Dungeon.level.avoid[dst] || Actor.findChar(dst) != null)
-                    && Dungeon.level.distance(user.pos, dst) <= Math.round(4 * Enchantment.genericProcChanceMultiplier(user))){
-                return dst;
-            } else {
-                return super.throwPos(user, dst);
-            }
         }
     }
 }

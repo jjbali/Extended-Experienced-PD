@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,11 +24,10 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles;
-
-import static com.shatteredpixel.shatteredpixeldungeon.Challenges.DISP_ENEMIES;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Actor;
@@ -34,18 +37,13 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.HeroSubClass;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
-import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
-import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.MagicalHolster;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfSharpshooting;
-import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTeleportation;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Projecting;
-import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.MeleeWeapon;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.darts.Dart;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
@@ -79,19 +77,14 @@ abstract public class MissileWeapon extends Weapon {
 	protected MissileWeapon parent;
 
 	@Override
-	public boolean needsAim() {
-		return true;
-	}
-
-	@Override
 	public long min() {
 		return Math.max(0, min( buffedLvl() + RingOfSharpshooting.levelDamageBonus(Dungeon.hero) ));
 	}
 	
 	@Override
 	public long min(long lvl) {
-		return  3 * tier +                      //base
-				(tier == 1 ? lvl*2 : 3*lvl);      //level scaling
+		return  3L * tier() +                      //base
+				(tier() == 1 ? lvl*2 : 3*lvl);      //level scaling
 	}
 	
 	@Override
@@ -101,8 +94,8 @@ abstract public class MissileWeapon extends Weapon {
 	
 	@Override
 	public long max(long lvl) {
-		return  7 * tier +                      //base
-				(tier == 1 ? 3*lvl : tier*2*lvl); //level scaling
+		return  7L * tier() +                      //base
+				(tier() == 1 ? 3*lvl : tier()*2*lvl); //level scaling
 	}
 	
 	public int STRReq(long lvl){
@@ -247,20 +240,6 @@ abstract public class MissileWeapon extends Weapon {
 			} else {
 				
 				rangedHit( enemy, cell );
-				if (Dungeon.isChallenged(DISP_ENEMIES)) {
-					int oldpos = enemy.pos;
-					if (Random.Float() < 0.2f) {
-						if (ScrollOfTeleportation.teleportChar(enemy)){
-							if (Dungeon.level.heroFOV[oldpos]) {
-								CellEmitter.get( oldpos ).start( Speck.factory( Speck.LIGHT ), 0.2f, 3 );
-							}
-
-							if (enemy instanceof Mob && ((Mob) enemy).state == ((Mob) enemy).HUNTING){
-								((Mob) enemy).state = ((Mob) enemy).WANDERING;
-							}
-						}
-					}
-				}
 
 			}
 		}

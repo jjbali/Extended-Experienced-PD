@@ -68,8 +68,8 @@ public class BallisticGloves extends JjbaliWeapon {
 
     @Override
     public long max(long lvl) {
-        return  7*(tier+1) +    //70
-                lvl*(tier+8);   //+12
+        return 7L *(tier()+1) +    //70
+                lvl*(tier()+8);   //+12
     }
 
 	@Override

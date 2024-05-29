@@ -50,7 +50,6 @@ import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.PixelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.CharSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
-import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.ui.ActionIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.AttackIndicator;
 import com.shatteredpixel.shatteredpixeldungeon.ui.HeroIcon;
@@ -71,19 +70,6 @@ public class MeleeWeapon extends Weapon {
 		super.activate(ch);
 		if (ch instanceof Hero && ((Hero) ch).isClass(HeroClass.DUELIST)){
 			Buff.affect(ch, Charger.class);
-		}
-	}
-
-	public static class EnchantHolder extends MeleeWeapon {
-		{
-			image = ItemSpriteSheet.STONE_ENCHANT;
-		}
-		@Override
-		public String info() {
-			if (enchantment == null) {
-				return "";
-			}
-			return enchantment.desc();
 		}
 	}
 
@@ -170,8 +156,6 @@ public class MeleeWeapon extends Weapon {
 	@Override
 	public boolean doEquip(Hero hero) {
 		if (super.doEquip(hero)){
-			if (this instanceof PreparationAllowed)
-				Buff.detach(hero, Preparation.class);
 			ActionIndicator.refresh();
 			return true;
 		}
@@ -303,14 +287,14 @@ public class MeleeWeapon extends Weapon {
 
 	@Override
 	public long min(long lvl) {
-		return  tier*2 +  //base
+		return  tier()*2L +  //base
 				lvl*2;    //level scaling
 	}
 
 	@Override
 	public long max(long lvl) {
-		return  5*(tier+1) +    //base
-				lvl*(tier+1);   //level scaling
+		return  5L*(tier()+1) +    //base
+				lvl*(tier()+1);   //level scaling
 	}
 
 	public int STRReq(long lvl){
@@ -522,13 +506,13 @@ private static boolean evaluatingTwinUpgrades = false;
 		public boolean act() {
 			if (charges < chargeCap()){
 				if (Regeneration.regenOn()){
-					partialCharge += 1/(20f); // 20 turns per charge
+					partialCharge += 1/(40f-(chargeCap()-charges)); // 40 to 30 turns per charge
 				}
 
 				if (((Hero) target).heroClass == HeroClass.DUELIST &&
 						target.buff(Recharging.class) != null || target.buff(ArtifactRecharge.class) != null){
-					//1 every 1 turn
-					partialCharge += 1;
+					//1 every 5 turns
+					partialCharge += 1/(5f);
 				}
 
 				if (partialCharge >= 1){
@@ -545,9 +529,7 @@ private static boolean evaluatingTwinUpgrades = false;
 				if (Regeneration.regenOn()) {
 					// 80 to 60 turns per charge without talent
 					// up to 53.333 to 40 turns per charge at max talent level
-
-					//this is maybe 1 to 2 turns per charge, even with no talent.
-					secondPartialCharge += secondChargeMultiplier();
+					secondPartialCharge += secondChargeMultiplier() / (40f-(secondChargeCap()-secondCharges));
 				}
 
 				if (secondPartialCharge >= 1) {
@@ -582,7 +564,7 @@ private static boolean evaluatingTwinUpgrades = false;
 		}
 
 		public int chargeCap(){
-			return Math.min(100, 3 + Dungeon.hero.lvl-1);
+			return Math.min(10, 3 + (Dungeon.hero.lvl-1)/3);
 		}
 
 		public int secondChargeCap(){
@@ -642,7 +624,7 @@ private static boolean evaluatingTwinUpgrades = false;
 
 		@Override
 		public boolean usable() {
-			return Dungeon.hero.subClass == HeroSubClass.CHAMPION || Dungeon.hero.subClass == HeroSubClass.KING;
+			return Dungeon.hero.subClass == HeroSubClass.CHAMPION;
 		}
 
 		@Override
@@ -677,7 +659,7 @@ private static boolean evaluatingTwinUpgrades = false;
 
 		@Override
 		public void doAction() {
-			if (!Dungeon.hero.isSubclass(HeroSubClass.CHAMPION) || !Dungeon.hero.isSubclass(HeroSubClass.KING)){
+			if (!Dungeon.hero.isSubclass(HeroSubClass.CHAMPION)){
 				return;
 			}
 

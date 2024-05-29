@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee;
@@ -39,20 +44,20 @@ public class Greatshield extends MeleeWeapon {
 
 	@Override
 	public long max(long lvl) {
-		return  Math.round(3f*(tier+1)) +     //18 base, down from 36
-				lvl*(tier-1);                   //+4 per level, down from +7
+		return  Math.round(3d*(tier()+1)) +     //18 base, down from 36
+				lvl*(tier()-1);                   //+4 per level, down from +7
 	}
 
 	@Override
 	public long defenseFactor( Char owner ) {
-		return (tier+1)+(tier-2)*buffedLvl();    //6 extra defence, plus 3 per level;
+		return (tier()+1)+(tier()-2)*buffedLvl();    //6 extra defence, plus 3 per level;
 	}
 	
 	public String statsInfo(){
 		if (isIdentified()){
-			return Messages.get(this, "stats_desc", (tier+1)+(tier-2)*buffedLvl());
+			return Messages.get(this, "stats_desc", (tier()+1)+(tier()-2)*buffedLvl());
 		} else {
-			return Messages.get(this, "typical_stats_desc", (tier+1));
+			return Messages.get(this, "typical_stats_desc", (tier()+1));
 		}
 	}
 
