@@ -1516,17 +1516,17 @@ public class Hero extends Char {
 		//TODO improve this when I have proper damage source logic
 		if (belongings.armor() != null && belongings.armor().hasGlyph(AntiMagic.class, this)
 				&& AntiMagic.RESISTS.contains(src.getClass())){
-			dmg -= AntiMagic.drRoll((Char) this, (int) belongings.armor().buffedLvl());
+			dmg -= AntiMagic.drRoll(this, (int) belongings.armor().buffedLvl());
 		}
 
 		if ((belongings.weapon() instanceof Greatshield || belongings.weapon() instanceof RoundShield) &&
 				AntiMagic.RESISTS.contains(src.getClass())){
 			shieldDamage(dmg);
-			dmg *= 0.75;
+			dmg *= 0.75d;
 		}
 
 		if (buff(Talent.WarriorFoodImmunity.class) != null){
-			dmg = Math.round(dmg*0.00f);
+			dmg = Math.round(dmg*0.01f);
 		}
 
 		if (perks.contains(Perks.Perk.NO_ONESHOTS) && dmg >= HT && HP == HT){
