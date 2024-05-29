@@ -215,7 +215,7 @@ public class Dungeon {
 	public static float respawn_timer;
 	public static int additionalMobs;
 
-	public static float fireDamage;
+	public static double fireDamage;
 	public static int luck;
 	public static long energy;
 	public static double resetDamage;
@@ -287,7 +287,7 @@ public class Dungeon {
 
 		cycle = 0;
 		Bbat.level = 1;
-		fireDamage = 1;
+		fireDamage = 1d;
 		luck = 1;
 		energy = 0L;
 		respawn_timer = 50;
