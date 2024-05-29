@@ -107,7 +107,7 @@ public class Gold extends Item {
 		quantity = (Dungeon.IntRange( 15 + Dungeon.escalatingDepth() * 3, 30 + Dungeon.escalatingDepth() * 6 ));
 		if (Dungeon.hero.perks.contains(Perks.Perk.MORE_COINS)) quantity *= 5;
 		if (Dungeon.hero.buff(TotemOfFortune.FortuneBuff.class) != null) quantity *= 5;
-		if (RectangularItem.totalAnswers_j > 0) quantity *= 1 + (RectangularItem.totalAnswers_j * 0.5f);
+		if (RectangularItem.totalAnswers_j > 0) quantity *= 1 + (RectangularItem.totalAnswers_j * 0.25f);
 		if (Dungeon.isChallenged(FALL_ECONOMY)) quantity *= 0.1f;
 		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) quantity *= 4;
 		quantity *= VioletFragment.goldMulti();

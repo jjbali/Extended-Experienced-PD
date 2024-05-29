@@ -266,7 +266,7 @@ public class RectangularItem extends Questionnaire {
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
                 + "\n- (0) Loot Rolls: _(15 * streak)_"
-                + "\n- (0) Gold Multiplier: _+50%_";
+                + "\n- (0) Gold Multiplier: _+25%_";
     }
     private String STREAKS = "STREAKS";
     private String TOTAL_ANSWERS = "TOTAL_ANSWERS";
