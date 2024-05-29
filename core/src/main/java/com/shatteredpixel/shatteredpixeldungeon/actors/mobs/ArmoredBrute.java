@@ -63,7 +63,7 @@ public class ArmoredBrute extends Brute {
 	}
 	
 	@Override
-	protected void triggerEnrage () {
+    public void triggerEnrage() {
 		Buff.affect(this, ArmoredRage.class).setShield(HT/2 + 1);
 		sprite.showStatusWithIcon( CharSprite.POSITIVE, Long.toString(HT/2 + 1), FloatingText.SHIELDING );
 		if (Dungeon.level.heroFOV[pos]) {
