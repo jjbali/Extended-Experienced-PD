@@ -94,6 +94,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Unstab
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee.jjbali.BallisticDagger;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.missiles.MissileWeapon;
+import com.shatteredpixel.shatteredpixeldungeon.items.weapon.traits.PreparationAllowed;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Document;
 import com.shatteredpixel.shatteredpixeldungeon.journal.Notes;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
@@ -617,6 +618,9 @@ public class Hero extends Char {
 			dmg = wep.damageRoll( this );
 
 			if (!(wep instanceof MissileWeapon)) dmg += RingOfForce.armedDamageBonus(this);
+			else if (buff(Preparation.class) != null){
+				dmg = Math.round(dmg*0.65d);
+			}
 		} else {
 			dmg = RingOfForce.damageRoll(this);
 			if (RingOfForce.unarmedGetsWeaponAugment(this)){
@@ -918,6 +922,8 @@ public class Hero extends Char {
 
 		if (getCloser( action.dst )) {
 			canSelfTrample = false;
+			if (belongings.weapon instanceof PreparationAllowed)
+				Buff.affect(this, Preparation.class);
 			if (belongings.weapon instanceof Dirk) Buff.affect(this, Preparation.class);
 			if (belongings.weapon instanceof BallisticDagger) Buff.affect(this, Preparation.class);
 			return true;
