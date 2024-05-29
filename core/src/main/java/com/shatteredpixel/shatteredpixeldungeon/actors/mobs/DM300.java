@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
@@ -65,8 +70,8 @@ public class DM300 extends Mob {
 	{
 		spriteClass = DM300Sprite.class;
 
-		HP = HT = 2500L * Dungeon.hero.lvl;
-		EXP = 100;
+		HP = HT = 400L * Dungeon.hero.lvl;
+		EXP = 30;
 		defenseSkill = 15;
 
 		properties.add(Property.BOSS);
@@ -74,24 +79,24 @@ public class DM300 extends Mob {
 		properties.add(Property.LARGE);
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 16000L * Dungeon.hero.lvl;
+                HP = HT = 1600L * Dungeon.hero.lvl;
                 defenseSkill = 60;
-                EXP = 650;
+                EXP = 310;
                 break;
             case 2:
-                HP = HT = 195640L * Dungeon.hero.lvl;
+                HP = HT = 19564L * Dungeon.hero.lvl;
                 defenseSkill = 222;
-                EXP = 7500;
+                EXP = 7000;
                 break;
             case 3:
-                HP = HT = 9000000L * Dungeon.hero.lvl;
+                HP = HT = 900000L * Dungeon.hero.lvl;
                 defenseSkill = 624;
-                EXP = 180000;
+                EXP = 110000;
                 break;
             case 4:
-                HP = HT = 120000000L * Dungeon.hero.lvl;
+                HP = HT = 12000000L * Dungeon.hero.lvl;
                 defenseSkill = 5000;
-                EXP = 20000000;
+                EXP = 2000000;
                 break;
         }
 
@@ -140,7 +145,7 @@ public class DM300 extends Mob {
 	public boolean chargeAnnounced = false;
 
 	private final int MIN_COOLDOWN = 5;
-	private final int MAX_COOLDOWN = 9;
+	private final int MAX_COOLDOWN = 7;
 
 	private int turnsSinceLastAbility = -1;
 	private int abilityCooldown = Random.NormalIntRange(MIN_COOLDOWN, MAX_COOLDOWN);
@@ -403,7 +408,7 @@ public class DM300 extends Mob {
 
 		Ballistica trajectory = new Ballistica(pos, target.pos, Ballistica.STOP_TARGET);
 
-		int gasMulti = 1;
+		int gasMulti = 2;
 
 		for (int i : trajectory.subPath(0, trajectory.dist)){
 			GameScene.add(Blob.seed(i, 20*gasMulti, ToxicGas.class));
@@ -508,12 +513,12 @@ public class DM300 extends Mob {
 		if (dmgTaken > 0) {
 			LockedFloor lock = Dungeon.hero.buff(LockedFloor.class);
 			if (lock != null && !isImmune(src.getClass())){
-				lock.addTime(dmgTaken);
+				lock.addTime(dmgTaken/2f);
 			}
 		}
 
 		long threshold;
-			threshold = HT / 3 * (2 - pylonsActivated);
+		threshold = HT / 4 * (3 - pylonsActivated);
 
 		if (HP < threshold){
 			HP = threshold;
@@ -523,7 +528,7 @@ public class DM300 extends Mob {
 	}
 
 	public int totalPylonsToActivate(){
-		return 2;
+		return 3;
 	}
 
 	@Override
@@ -540,7 +545,7 @@ public class DM300 extends Mob {
 		((CavesBossLevel)Dungeon.level).activatePylon();
 		pylonsActivated++;
 
-		spend(3f);
+		spend(2f);
 		yell(Messages.get(this, "charging"));
 		sprite.showStatus(CharSprite.POSITIVE, Messages.get(this, "invulnerable"));
 		((DM300Sprite)sprite).updateChargeState(true);
@@ -653,7 +658,7 @@ public class DM300 extends Mob {
 				}
 				Dungeon.level.cleanWalls();
 				Dungeon.observe();
-				spend(3f);
+				spend(2f);
 
 				bestpos = pos;
 				for (int i : PathFinder.NEIGHBOURS8){
@@ -702,7 +707,7 @@ public class DM300 extends Mob {
 		@Override
 		public void affectChar(Char ch) {
 			if (!(ch instanceof DM300)){
-				Buff.prolong(ch, Paralysis.class, 3);
+				Buff.prolong(ch, Paralysis.class, 5f);
 				if (ch == Dungeon.hero) {
 					Statistics.bossScores[2] -= 100;
 				}

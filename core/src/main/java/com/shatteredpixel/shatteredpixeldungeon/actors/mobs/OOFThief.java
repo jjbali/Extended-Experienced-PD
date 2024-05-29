@@ -37,17 +37,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.effects.CellEmitter;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
-import com.shatteredpixel.shatteredpixeldungeon.items.InfoBook;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
-import com.shatteredpixel.shatteredpixeldungeon.items.ParallelUniverse;
-import com.shatteredpixel.shatteredpixeldungeon.items.PsycheChest;
-import com.shatteredpixel.shatteredpixeldungeon.items.TicketToArena;
-import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
-import com.shatteredpixel.shatteredpixeldungeon.items.lottery.LotteryItem;
-import com.shatteredpixel.shatteredpixeldungeon.items.modules.DimensionalRiftModule;
-import com.shatteredpixel.shatteredpixeldungeon.items.notebook.Notebook;
-import com.shatteredpixel.shatteredpixeldungeon.items.notebook.NotebookPage;
-import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.Questionnaire;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.BiggerGambleBag;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.Chasm;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
@@ -193,18 +183,13 @@ public class OOFThief extends Mob {
         return true;
     }
 
-	public void triggerEnrage(){
+	protected void triggerEnrage(){
 		HP = 1;
 		Buff.affect(this, AnkhInvulnerability.class, 3f);
 		if (Dungeon.level.heroFOV[pos]) {
 			SpellSprite.show( this, SpellSprite.BERSERK);
 		}
 		hasRaged = true;
-	}
-
-	@Override
-	public boolean isInvulnerable(Class effect) {
-		return super.isInvulnerable(effect) || buff(AnkhInvulnerability.class) != null;
 	}
 
 	private static final int STEAL_COUNT = 3;
@@ -250,10 +235,7 @@ public class OOFThief extends Mob {
 
 		Item toSteal = hero.belongings.randomUnequipped();
 
-		if (toSteal != null && !(toSteal instanceof PsycheChest || toSteal instanceof Bag || toSteal instanceof TicketToArena
-								|| toSteal instanceof InfoBook || toSteal instanceof ParallelUniverse || toSteal instanceof Questionnaire
-								|| toSteal instanceof Notebook || toSteal instanceof NotebookPage || toSteal instanceof LotteryItem
-								|| toSteal instanceof DimensionalRiftModule)) {
+		if (toSteal != null) {
 
 			hero.sprite.showStatus(CharSprite.DEFAULT, "oof");
 			GLog.w( Messages.get(Thief.class, "stole", toSteal.name()) );

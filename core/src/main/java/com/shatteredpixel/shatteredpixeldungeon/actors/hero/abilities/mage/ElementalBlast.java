@@ -1,9 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2024 Evan Debenham
+ *
+ * Experienced Pixel Dungeon
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.hero.abilities.mage;
@@ -78,7 +86,6 @@ public class ElementalBlast extends ArmorAbility {
 		effectTypes.put(WandOfTransfusion.class,    MagicMissile.BLOOD_CONE);
 		effectTypes.put(WandOfCorruption.class,     MagicMissile.SHADOW_CONE);
 		effectTypes.put(WandOfRegrowth.class,       MagicMissile.FOLIAGE_CONE);
-		effectTypes.put(WandOfEarthblast.class, MagicMissile.EARTHBLAST_CONE);
 	}
 
 	private static final HashMap<Class<?extends Wand>, Float> damageFactors = new HashMap<>();
@@ -129,12 +136,6 @@ public class ElementalBlast extends ArmorAbility {
 			wandCls = hero.belongings.getItem(MagesStaff.class).wandClass();
 		}
 
-		boolean isUnstable = false;
-		if (wandCls == WandOfUnstable.class){
-			isUnstable = true;
-			wandCls = Random.element(WandOfUnstable.wands);
-		}
-
 		if (wandCls == null){
 			GLog.w(Messages.get(this, "no_staff"));
 			return;
@@ -170,7 +171,7 @@ public class ElementalBlast extends ArmorAbility {
 			);
 		}
 
-		final float effectMulti = (1f + 0.25f*hero.pointsInTalent(Talent.ELEMENTAL_POWER)) * (isUnstable ? 1.5f : 1f);
+		final float effectMulti = 1f + 0.25f*hero.pointsInTalent(Talent.ELEMENTAL_POWER);
 
 		//cast a ray 2/3 the way, and do effects
 		Class<? extends Wand> finalWandCls = wandCls;

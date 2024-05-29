@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2019 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
@@ -61,7 +66,6 @@ import com.watabou.utils.*;
 
 import java.util.ArrayList;
 
-import static com.shatteredpixel.shatteredpixeldungeon.Challenges.THE_TRUE_FATALITY;
 import static com.shatteredpixel.shatteredpixeldungeon.levels.BlackMimicLevel.mainArena;
 
 public class BlackMimic extends Mob {
@@ -70,7 +74,7 @@ public class BlackMimic extends Mob {
 		//TODO improved sprite
 		spriteClass = MimicSprite.Black.class;
 
-		HP = HT = 5400L * Dungeon.hero.lvl;
+		HP = HT = 900 + Dungeon.hero.lvl*15;
 		EXP = 2000;
 		defenseSkill = 20 + Dungeon.hero.lvl / 2;
 
@@ -81,24 +85,18 @@ public class BlackMimic extends Mob {
 		properties.add(Property.LARGE);
         switch (Dungeon.cycle){
             case 1:
-                EXP = 60000;
+                EXP = 6000;
                 break;
             case 2:
-                EXP = 5000000;
+                EXP = 500000;
                 break;
             case 3:
-                EXP = 250000000;
+                EXP = 25000000;
                 break;
             case 4:
-                EXP = 21000000000L;
+                EXP = 2100000000;
                 break;
         }
-
-		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
-			HP = HT += HT * 0.30f;
-			defenseSkill *= 3;
-			EXP *= 3L;
-		}
 	}
 
 	@Override
@@ -174,7 +172,6 @@ public class BlackMimic extends Mob {
 		}
 	}
 
-	@SuppressWarnings("SuspiciousIndentation")
 	@Override
 	protected boolean act() {
 		GameScene.add(Blob.seed(pos, 0, FallingRocks.class));

@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
@@ -57,7 +62,7 @@ public class Pylon extends Mob {
 	{
 		spriteClass = PylonSprite.class;
 
-		HP = HT = 50L * Dungeon.hero.lvl;
+		HP = HT = 80;
 
 		maxLvl = -2;
 
@@ -115,13 +120,13 @@ public class Pylon extends Mob {
 
 		shockCells.add(pos + PathFinder.CIRCLE8[targetNeighbor]);
 
-		if (Random.Float() < 0.5f && Dungeon.depth > 101){
+		if (Random.Float() < 0.5f && Dungeon.depth > 26){
 			List<Class<? extends Blob>> blobs = Arrays.asList(ToxicGas.class, ConfusionGas.class, Blizzard.class, Inferno.class, Electricity.class, Web.class);
 			GameScene.add(Blob.seed(pos, 500, Random.element(blobs)));
 		}
-
-		shockCells.add(pos + PathFinder.CIRCLE8[(targetNeighbor+3)%8]);
-		shockCells.add(pos + PathFinder.CIRCLE8[(targetNeighbor+5)%8]);
+		shockCells.add(pos + PathFinder.CIRCLE8[(targetNeighbor+2)%8]);
+		shockCells.add(pos + PathFinder.CIRCLE8[(targetNeighbor+4)%8]);
+		shockCells.add(pos + PathFinder.CIRCLE8[(targetNeighbor+6)%8]);
 
 		sprite.flash();
 
@@ -224,7 +229,7 @@ public class Pylon extends Mob {
 
 		LockedFloor lock = Dungeon.hero.buff(LockedFloor.class);
 		if (lock != null && !isImmune(src.getClass())){
-			lock.addTime(dmg);
+			lock.addTime(dmg/2f);
 		}
 		super.damage(dmg, src);
 	}
@@ -232,7 +237,8 @@ public class Pylon extends Mob {
 	@Override
 	public void die(Object cause) {
 		super.die(cause);
-		if (Dungeon.depth == 15) ((CavesBossLevel)Dungeon.level).eliminatePylon();
+		if (Dungeon.depth == 15)
+		((CavesBossLevel)Dungeon.level).eliminatePylon();
 		else ((BlackMimicLevel)Dungeon.level).eliminatePylon();
 	}
 

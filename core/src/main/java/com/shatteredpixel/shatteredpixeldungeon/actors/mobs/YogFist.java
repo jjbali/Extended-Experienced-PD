@@ -1,9 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2024 Evan Debenham
+ *
+ * Experienced Pixel Dungeon
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
@@ -54,7 +62,7 @@ import com.watabou.utils.Random;
 public abstract class YogFist extends Mob {
 
 	{
-		HP = HT = 300L * Dungeon.hero.lvl;
+		HP = HT = 300;
 		defenseSkill = 20;
 
 		viewDistance = Light.DISTANCE;
@@ -69,22 +77,22 @@ public abstract class YogFist extends Mob {
 		properties.add(Property.DEMONIC);
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 3750L * Dungeon.hero.lvl;
+                HP = HT = 3750;
                 defenseSkill = 89;
                 EXP = 150;
                 break;
             case 2:
-                HP = HT = 50000L * Dungeon.hero.lvl;
+                HP = HT = 50000;
                 defenseSkill = 324;
                 EXP = 1800;
                 break;
             case 3:
-                HP = HT = 3000000L * Dungeon.hero.lvl;
+                HP = HT = 3000000;
                 defenseSkill = 1100;
                 EXP = 50000;
                 break;
             case 4:
-                HP = HT = 600000000L * Dungeon.hero.lvl;
+                HP = HT = 600000000;
                 defenseSkill = 16500;
                 EXP = 9000000;
                 break;
@@ -164,7 +172,7 @@ public abstract class YogFist extends Mob {
 
 		LockedFloor lock = Dungeon.hero.buff(LockedFloor.class);
 		if (dmgTaken > 0 && lock != null){
-			lock.addTime(dmgTaken/2f);
+			lock.addTime(dmgTaken/4f);
 		}
 	}
 
