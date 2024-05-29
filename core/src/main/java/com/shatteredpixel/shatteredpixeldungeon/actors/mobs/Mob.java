@@ -138,6 +138,7 @@ public abstract class Mob extends Char {
 
 	protected int target = -1;
 
+	private boolean hasRaged = false;
 	public int defenseSkill = 0;
 
 	public long EXP = 1;
@@ -864,8 +865,6 @@ public abstract class Mob extends Char {
 		}
 		return HP > 0 || deathMarked;
 	}
-
-	@Override
 	public void triggerEnrage(){
 		HP = HT;
 		Buff.affect(this, AnkhInvulnerability.class, 3f);
