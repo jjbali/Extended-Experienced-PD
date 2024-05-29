@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.wands;
@@ -36,13 +41,13 @@ import com.watabou.utils.Random;
 public abstract class DamageWand extends Wand{
 
 	public long min(){
-		return (int) (min(buffedLvl())*(1+ Dungeon.hero.lvl/150d));
+		return Math.round(min(buffedLvl())*(1+ Dungeon.hero.lvl/150d));
 	}
 
 	public abstract long min(long lvl);
 
 	public long max(){
-		return (int) (max(buffedLvl())*(1+ Dungeon.hero.lvl/150d));
+		return Math.round(max(buffedLvl())*(1+ Dungeon.hero.lvl/150d));
 	}
 
 	public abstract long max(long lvl);
