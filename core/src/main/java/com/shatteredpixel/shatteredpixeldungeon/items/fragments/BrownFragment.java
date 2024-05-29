@@ -61,7 +61,7 @@ public class BrownFragment extends Fragment {
         if (level == -1){
             return 0;
         } else {
-            return (int) Math.min(20f, level/5f);
+            return (int) Math.min(20f, level/2f);
         }
     }
 }

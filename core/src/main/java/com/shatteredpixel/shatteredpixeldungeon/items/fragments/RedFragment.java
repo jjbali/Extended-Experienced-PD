@@ -59,9 +59,9 @@ public class RedFragment extends Fragment {
 
     public static float equipmentEnchantChance( long level ){
         if (level == -1){
-            return 0.0001f;
+            return 0.01f;
         } else {
-            return 0.00002f*level;
+            return 0.02f*level;
         }
     }
 }

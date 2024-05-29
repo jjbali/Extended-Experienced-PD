@@ -61,7 +61,7 @@ public class TealFragment extends Fragment {
         if (level == -1){
             return 0;
         } else {
-            return (int) Math.min(100, level/5f);
+            return (int) Math.min(100, level/3f);
         }
     }
 }

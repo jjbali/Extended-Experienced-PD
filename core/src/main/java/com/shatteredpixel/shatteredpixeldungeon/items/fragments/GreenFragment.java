@@ -61,7 +61,7 @@ public class GreenFragment extends Fragment {
         if (level == -1){
             return 0f;
         } else {
-            return level/10f;
+            return level/3f;
         }
     }
 }

@@ -61,7 +61,7 @@ public class YellowFragment extends Fragment {
         if (level == -1){
             return 0f;
         } else {
-            return Math.min(100f, level/20f);
+            return Math.min(100f, level/5f);
         }
     }
 }

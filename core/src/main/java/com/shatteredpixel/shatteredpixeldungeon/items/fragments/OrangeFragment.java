@@ -61,7 +61,7 @@ public class OrangeFragment extends Fragment {
         if (level == -1){
             return 0f;
         } else {
-            return level/20f;
+            return level/5f;
         }
     }
 }

@@ -61,7 +61,7 @@ public class VioletFragment extends Fragment {
         if (level == -1){
             return 0f;
         } else {
-            return 1f + (0.002f * level);
+            return 1f + (0.15f * level);
         }
     }
 }

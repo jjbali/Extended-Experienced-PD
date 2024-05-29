@@ -62,7 +62,7 @@ public class BlueFragment extends Fragment {
         if (level == -1){
             return 0f;
         } else {
-            return level/30f;
+            return level/5f;
         }
     }
 }
