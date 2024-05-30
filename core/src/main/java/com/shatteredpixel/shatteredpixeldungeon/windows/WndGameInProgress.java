@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.windows;
@@ -99,7 +104,11 @@ public class WndGameInProgress extends Window {
 		
 		pos += GAP;
 		statSlot( Messages.get(this, "gold"), info.goldCollected );
-		statSlot( Messages.get(this, "depth"), info.maxDepth );
+		if (info.cycle != 0){
+			statSlot(Messages.get(this, "depth"), (info.maxDepth) + " " + Messages.get(this, "cycle", info.cycle));
+		} else {
+			statSlot(Messages.get(this, "depth"), info.maxDepth);
+		}
 		if (info.daily) {
 			if (info.dailyReplay) {
 				statSlot(Messages.get(this, "replay_for"), "_" + info.customSeed + "_");
