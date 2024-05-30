@@ -127,6 +127,7 @@ public enum Icons {
 	DEPTH_CARVED,
 	CHAL_COUNT,
 	CYCLE_COUNT,
+	REPEAT,
 
 	//icons that appear in the about screen, variable spacing
 	LIBGDX,
@@ -375,6 +376,9 @@ public enum Icons {
 				break;
 			case DEPTH_CARVED:
 				icon.frame( icon.texture.uvRectBySize( 136, 64 + runTypeOfs(), 7, 7 ) );
+				break;
+			case REPEAT:
+				icon.frame( icon.texture.uvRectBySize( 144, 64, 11, 11 ) );
 				break;
 			case CHAL_COUNT:
 				icon.frame( icon.texture.uvRectBySize( 112, 64, 7, 7 ) );

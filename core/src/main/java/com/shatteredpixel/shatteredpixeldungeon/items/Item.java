@@ -213,6 +213,9 @@ public class Item implements Bundlable {
 	public void reset(){
 		keptThoughLostInvent = false;
 	}
+	public boolean keptThroughLostInventory(){
+		return keptThoughLostInvent;
+	}
 
 	public void doThrow( Hero hero ) {
 		GameScene.selectCell(thrower);
