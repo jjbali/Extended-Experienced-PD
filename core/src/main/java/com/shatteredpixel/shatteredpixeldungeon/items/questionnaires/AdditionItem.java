@@ -175,7 +175,7 @@ public class AdditionItem extends Questionnaire {
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(ANSWER)) {
                     Buff.affect(hero, CodeCooldown2.class).set(3);
-                    GLog.h("You answered the question correctly, +1DMG!");
+                    GLog.h("You answered the question correctly!");
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
                         Buff.affect(hero, EnhancedRings.class, 3f);
                     }
@@ -315,7 +315,6 @@ public class AdditionItem extends Questionnaire {
         return "This item represents your intelligence, it may also give you some rewards.\n\nAdd the following: " + CODE + " + " + CODE2 + "\nAnswered Correctly: " + totalAnswers_a + "\nStreak: " + streak_a
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (0) Damage +1"
                 + "\n- (40) Random Shop available [reset if streak >= 40]"
                 + "\n- (100) Storm Bomb available [reset if streak >= 100]";
     }
