@@ -260,13 +260,7 @@ public class Pylon extends Mob {
 	}
 
 	{
-		immunities.add( Paralysis.class );
-		immunities.add( Amok.class );
-		immunities.add( Sleep.class );
-		immunities.add( Terror.class );
-		immunities.add( Dread.class );
-		immunities.add( Vertigo.class );
-		if (Dungeon.depth == 27) immunities.add(Fire.class);
+		if (Dungeon.depth == 28) immunities.add(Fire.class);
 	}
 
 }
