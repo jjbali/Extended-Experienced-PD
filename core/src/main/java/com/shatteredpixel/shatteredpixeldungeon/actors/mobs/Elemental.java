@@ -29,6 +29,8 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
+
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.Statistics;
@@ -48,6 +50,8 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLiquidFlam
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.Embers;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfTransmutation;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfIce;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.CursedWand;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Shocking;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
@@ -193,6 +197,22 @@ public abstract class Elemental extends Mob {
 	public long attackProc( Char enemy, long damage ) {
 		damage = super.attackProc( enemy, damage );
 		meleeProc( enemy, damage );
+
+		if (enemy == hero && hero.belongings.getItem(TotemOfFire.class) != null) {
+			if (this instanceof FrostElemental) {
+				damage *= 1.5f;
+			} else if (this instanceof FireElemental) {
+				damage *= 0f;
+			}
+		}
+
+		if (enemy == hero && hero.belongings.getItem(TotemOfIce.class) != null) {
+			if (this instanceof FrostElemental) {
+				damage *= 0f;
+			} else if (this instanceof FireElemental) {
+				damage *= 1.5f;
+			}
+		}
 		
 		return damage;
 	}
@@ -356,8 +376,8 @@ public abstract class Elemental extends Mob {
 					}
 
 					GLog.n(Messages.get(this, "charging"));
-					spend(GameMath.gate(attackDelay(), (int)Math.ceil(Dungeon.hero.cooldown()), 3*attackDelay()));
-					Dungeon.hero.interrupt();
+					spend(GameMath.gate(attackDelay(), (int)Math.ceil(hero.cooldown()), 3*attackDelay()));
+					hero.interrupt();
 					return true;
 				} else {
 					rangedCooldown = 1;
@@ -543,7 +563,7 @@ public abstract class Elemental extends Mob {
 			
 			for (Char ch : affected) {
 				ch.damage( Math.round( damage * 0.4f ), Shocking.class );
-				if (ch == Dungeon.hero && !ch.isAlive()){
+				if (ch == hero && !ch.isAlive()){
 					Dungeon.fail(this);
 					GLog.n( Messages.capitalize(Messages.get(Char.class, "kill", name())) );
 				}
@@ -563,7 +583,7 @@ public abstract class Elemental extends Mob {
 		@Override
 		protected void rangedProc( Char enemy ) {
 			Buff.affect( enemy, Blindness.class, Blindness.DURATION/2f );
-			if (enemy == Dungeon.hero) {
+			if (enemy == hero) {
 				GameScene.flash(0x80FFFFFF);
 			}
 		}

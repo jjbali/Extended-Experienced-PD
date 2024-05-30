@@ -2344,10 +2344,10 @@ public class Hero extends Char {
 			return true;
 		}
 
-		if (effect == Burning.class && hero.belongings.getItem(TotemOfFire.class) != null) {
+		if (effect == Burning.class && belongings.getItem(TotemOfFire.class) != null) {
 			return true;
 		}
-		if ((effect == Frost.class || effect == Chill.class) && hero.belongings.getItem(TotemOfIce.class) != null) {
+		if ((effect == Frost.class || effect == Chill.class) && belongings.getItem(TotemOfIce.class) != null) {
 			return true;
 		}
 
