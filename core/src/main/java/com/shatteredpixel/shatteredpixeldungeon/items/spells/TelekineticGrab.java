@@ -1,9 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
+ *
+ * Experienced Pixel Dungeon
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.spells;
@@ -38,6 +46,7 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.watabou.noosa.audio.Sample;
 import com.watabou.utils.Callback;
+import com.watabou.utils.PathFinder;
 
 public class TelekineticGrab extends TargetedSpell {
 
@@ -86,27 +95,30 @@ public class TelekineticGrab extends TargetedSpell {
 
 		} else if (Dungeon.level.heaps.get(bolt.collisionPos) != null){
 
-			Heap h = Dungeon.level.heaps.get(bolt.collisionPos);
+			for (int n : PathFinder.NEIGHBOURS9){
+				int cell = bolt.collisionPos + n;
 
-			if (h.type != Heap.Type.HEAP){
-				GLog.w(Messages.get(this, "cant_grab"));
-				h.sprite.drop();
-				return;
-			}
+				Heap h = Dungeon.level.heaps.get(cell);
 
-			while (!h.isEmpty()) {
-				Item item = h.peek();
-				if (item.doPickUp(hero, h.pos)) {
-					h.pickUp();
-					hero.spend(-Item.TIME_TO_PICK_UP); //casting the spell already takes a turn
-					GLog.i( Messages.capitalize(Messages.get(hero, "you_now_have", item.name())) );
-
-				} else {
+				if (h.type != Heap.Type.HEAP){
 					GLog.w(Messages.get(this, "cant_grab"));
 					h.sprite.drop();
-					return;
+					continue;
+				}
+
+				while (!h.isEmpty()) {
+					Item item = h.peek();
+					if (item.doPickUp(hero, h.pos)) {
+						h.pickUp();
+						hero.spend(-Item.TIME_TO_PICK_UP); //casting the spell already takes a turn
+						GLog.i( Messages.capitalize(Messages.get(hero, "you_now_have", item.name())) );
+					} else {
+						GLog.w(Messages.get(this, "cant_grab"));
+						h.sprite.drop();
+					}
 				}
 			}
+
 
 		} else {
 			GLog.w(Messages.get(this, "no_target"));
