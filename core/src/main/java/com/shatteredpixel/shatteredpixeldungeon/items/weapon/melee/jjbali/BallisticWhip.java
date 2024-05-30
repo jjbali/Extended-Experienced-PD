@@ -107,11 +107,11 @@ public class BallisticWhip extends JjbaliWeapon {
 						continue;
 					}
 
-					long dmg = super.proc(attacker, ch, Math.round(damage*1.0f));
+					long dmg = super.proc(attacker, ch, Math.round(damage*1.0d));
 
 					//those not at the center of the blast take less damage
 					if (ch.pos != cell){
-						dmg = Math.round(dmg*0.5f);
+						dmg = Math.round(dmg*0.5d);
 					}
 
 					if (dmg > 0) {

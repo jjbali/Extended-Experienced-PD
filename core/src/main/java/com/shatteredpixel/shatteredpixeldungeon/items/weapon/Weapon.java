@@ -134,13 +134,13 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
                 }
             }
 			if (Dungeon.hero.pointsInTalent(Talent.AMPLIFIER) == 1) {
-				damage += damage * 0.10f;
+				damage += damage * 0.10d;
 			}
 			if (Dungeon.hero.pointsInTalent(Talent.AMPLIFIER) == 2) {
-				damage += damage * 0.65f;
+				damage += damage * 0.65d;
 			}
 			if (Dungeon.hero.pointsInTalent(Talent.AMPLIFIER) == 3) {
-				damage += damage * 1f;
+				damage += damage * 1d;
 			}
         }
 
