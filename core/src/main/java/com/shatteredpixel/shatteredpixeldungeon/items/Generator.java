@@ -69,9 +69,11 @@ import com.shatteredpixel.shatteredpixeldungeon.items.fragments.GreenFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.MagentaFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.OrangeFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.RedFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.RedGlowingFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.TealFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.VioletFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowGlowingFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.ChampionModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.CycleModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.DimensionalRiftModule;
@@ -323,9 +325,11 @@ public class Generator {
 					YellowFragment.class,
 					BrownFragment.class,
 					MagentaFragment.class,
-					TealFragment.class
+					TealFragment.class,
+					RedGlowingFragment.class,
+					YellowGlowingFragment.class
 			};
-			FRAGMENTS.probs = new float[]{ 1, 1, 1, 1, 1, 1, 1, 1, 1};
+			FRAGMENTS.probs = new float[]{ 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
 			TUBES.classes = new Class<?>[] {
 					TubeOfExperience.class,
