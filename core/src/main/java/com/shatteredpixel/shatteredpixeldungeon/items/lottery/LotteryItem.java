@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2020 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.lottery;
@@ -53,7 +58,7 @@ public class LotteryItem extends Item {
         int[] numbers = new int[4];
 
         for (int i = 0; i < 4; i++) {
-            numbers[i] = Random.Int(24) + 1; // Generating random numbers between 1 and 24
+            numbers[i] = Random.Int(10) + 1; // Generating random numbers between 1 and 10
         }
 
         return numbers;
@@ -158,6 +163,6 @@ public class LotteryItem extends Item {
 
     @Override
     public String desc() {
-        return "You have to guess what is the set of numbers. (1-24)";
+        return "You have to guess what is the set of numbers. (1-10)";
     }
 }
