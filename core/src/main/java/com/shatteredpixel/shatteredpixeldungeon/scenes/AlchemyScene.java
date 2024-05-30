@@ -372,6 +372,11 @@ public class AlchemyScene extends PixelScene {
 			}
 
 			@Override
+			public GameAction keyAction() {
+				return SPDAction.JOURNAL;
+			}
+
+			@Override
 			protected String hoverText() {
 				return Messages.titleCase(Document.ALCHEMY_GUIDE.title());
 			}
@@ -416,6 +421,16 @@ public class AlchemyScene extends PixelScene {
 			@Override
 			protected void onClick() {
 				WndEnergizeItem.openItemSelector();
+			}
+
+			@Override
+			public GameAction keyAction() {
+				return SPDAction.TAG_ACTION;
+			}
+
+			@Override
+			protected String hoverText() {
+				return Messages.get(AlchemyScene.class, "energize");
 			}
 		};
 		energyAdd.setRect(energyLeft.right(), energyLeft.top() - (16 - energyLeft.height())/2, 16, 16);
@@ -493,6 +508,8 @@ public class AlchemyScene extends PixelScene {
 	}
 	
 	private void updateState(){
+
+		repeat.enable(false);
 		
 		ArrayList<Item> ingredients = filterInput(Item.class);
 		ArrayList<Recipe> recipes = Recipe.findRecipes(ingredients);
@@ -507,6 +524,8 @@ public class AlchemyScene extends PixelScene {
 				outputs[i].visible = false;
 			}
 		}
+
+		cancel.enable(!ingredients.isEmpty());
 
 		if (recipes.isEmpty()){
 			combines[0].setPos(combines[0].left(), inputs[1].top()+5);
@@ -553,26 +572,30 @@ public class AlchemyScene extends PixelScene {
 		energyAddBlinking = promptToAddEnergy;
 		
 	}
-	
+
 	private void combine( int slot ){
-		
+
 		ArrayList<Item> ingredients = filterInput(Item.class);
 		if (ingredients.isEmpty()) return;
+
+		lastIngredients.clear();
+		for (Item i : ingredients){
+			lastIngredients.add(i.duplicate());
+		}
 
 		ArrayList<Recipe> recipes = Recipe.findRecipes(ingredients);
 		if (recipes.size() <= slot) return;
 
 		Recipe recipe = recipes.get(slot);
-		
+
 		Item result = null;
-		
+
 		if (recipe != null){
 			long cost = recipe.cost(ingredients);
 			if (toolkit != null){
 				cost = toolkit.consumeEnergy(cost);
 			}
 			Dungeon.energy -= cost;
-
 			String energyText = Messages.get(AlchemyScene.class, "energy") + " " + Dungeon.energy;
 			if (toolkit != null){
 				energyText += "+" + toolkit.availableEnergy();
@@ -582,20 +605,62 @@ public class AlchemyScene extends PixelScene {
 					(Camera.main.width - energyLeft.width())/2,
 					Camera.main.height - 8 - energyLeft.height()
 			);
-
 			energyIcon.x = energyLeft.left() - energyIcon.width();
 			align(energyIcon);
-
 			energyAdd.setPos(energyLeft.right(), energyAdd.top());
 			align(energyAdd);
 
 			result = recipe.brew(ingredients);
 		}
-		
+
 		if (result != null){
-			craftItem(ingredients, result);
+			bubbleEmitter.start(Speck.factory( Speck.BUBBLE ), 0.01f, 100 );
+			smokeEmitter.burst(Speck.factory( Speck.WOOL ), 10 );
+			Sample.INSTANCE.play( Assets.Sounds.PUFF );
+			long resultQuantity = result.quantity();
+			if (!result.collect()){
+				Dungeon.level.drop(result, Dungeon.hero.pos);
+			}
+			Statistics.itemsCrafted++;
+			Badges.validateItemsCrafted();
+
+			try {
+				Dungeon.saveAll();
+			} catch (IOException e) {
+				ShatteredPixelDungeon.reportException(e);
+			}
+
+			synchronized (inputs) {
+				for (int i = 0; i < inputs.length; i++) {
+					if (inputs[i] != null && inputs[i].item() != null) {
+						Item item = inputs[i].item();
+						if (item.quantity() <= 0) {
+							inputs[i].item(null);
+						} else {
+							inputs[i].slot.updateText();
+						}
+					}
+				}
+			}
+
+			updateState();
+			//we reset the quantity in case the result was merged into another stack in the backpack
+			result.quantity(resultQuantity);
+			outputs[0].item(result);
 		}
-		
+
+		boolean foundItems = true;
+		for (Item i : lastIngredients){
+			Item found = Dungeon.hero.belongings.getSimilar(i);
+			if (found == null){ //atm no quantity check as items are always loaded individually
+				//currently found can be true if we need, say, 3x of an item but only have 2x of it
+				foundItems = false;
+			}
+		}
+
+		lastRecipe = recipe;
+		repeat.enable(foundItems);
+		cancel.enable(false);
 	}
 
 	public void craftItem( ArrayList<Item> ingredients, Item result ){
@@ -765,6 +830,35 @@ public class AlchemyScene extends PixelScene {
 					}
 					return false;
 				}
+
+
+				@Override
+				//only the first empty button accepts key input
+				public GameAction keyAction() {
+					for (InputButton i : inputs){
+						if (i.item == null || i.item instanceof WndBag.Placeholder) {
+							if (i == InputButton.this) {
+								return SPDAction.INVENTORY;
+							} else {
+								return super.keyAction();
+							}
+						}
+					}
+					return super.keyAction();
+				}
+
+				@Override
+				protected String hoverText() {
+					if (item == null || item instanceof WndBag.Placeholder){
+						return Messages.get(AlchemyScene.class, "add");
+					}
+					return super.hoverText();
+				}
+
+				@Override
+				public GameAction secondaryTooltipAction() {
+					return SPDAction.INVENTORY_SELECTOR;
+				}
 			};
 			slot.enable(true);
 			add( slot );
@@ -818,6 +912,19 @@ public class AlchemyScene extends PixelScene {
 					super.onClick();
 					combine(slot);
 				}
+
+				@Override
+				protected String hoverText() {
+					return "Craft";
+				}
+
+				@Override
+				public GameAction keyAction() {
+					if (slot == 0 && !combines[1].active && !combines[2].active){
+						return SPDAction.TAG_LOOT;
+					}
+					return super.keyAction();
+				}
 			};
 			button.icon(Icons.get(Icons.ARROW));
 			add(button);
@@ -862,6 +969,7 @@ public class AlchemyScene extends PixelScene {
 			}
 
 			layout();
+			active = enabled;
 		}
 
 	}
