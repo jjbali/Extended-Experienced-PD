@@ -47,7 +47,9 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Surprise;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Wound;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.Fragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.RedGlowingFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.TealFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowGlowingFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.DimensionalRiftModule;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.Module;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
@@ -69,6 +71,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.spells.HandyBarricade;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.MagicBridge;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.TelekineticGrab;
 import com.shatteredpixel.shatteredpixeldungeon.items.stones.StoneOfAggression;
+import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfUnification;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.SpiritBow;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.Weapon;
@@ -973,6 +976,14 @@ public abstract class Mob extends Char {
 		if (Dungeon.isChallenged(FALL_ECONOMY) && Random.Int(5) == 0) {
 			GLog.h("The chances of getting the items lost are higher than your luck. Try to kill a mob again.");
 			return;
+		}
+
+		if (Random.Float() >= 1f - YellowGlowingFragment.tieredDropChance()) {
+			Dungeon.level.drop(new TieredCard().upgrade(YellowGlowingFragment.tieredDropLevel()), pos).sprite.drop();
+		}
+
+		if (Random.Float() >= 1f - RedGlowingFragment.moduleDropChance()) {
+			Dungeon.level.drop(new Module().random(RedGlowingFragment.moduleDropQuantity()), pos).sprite.drop();
 		}
 
 		for (int i = 0; i < TealFragment.droppedItems(); i++) {
