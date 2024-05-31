@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.mechanics;
@@ -48,8 +53,8 @@ public final class ShadowCaster {
 			}
 		}
 	}
-	
-	public static void castShadow( int x, int y, boolean[] fieldOfView, boolean[] blocking, int distance ) {
+
+	public static void castShadow( int x, int y, int w, boolean[] fieldOfView, boolean[] blocking, int distance ) {
 		
 		if (distance >= MAX_DISTANCE || distance < 0){
 			distance = MAX_DISTANCE;
@@ -58,18 +63,18 @@ public final class ShadowCaster {
 		BArray.setFalse(fieldOfView);
 
 		//set source cell to true
-		fieldOfView[y * Dungeon.level.width() + x] = true;
+		fieldOfView[y * w + x] = true;
 		
 		//scans octants, clockwise
 		try {
-			scanOctant(distance, fieldOfView, blocking, 1, x, y, 0.0, 1.0, +1, -1, false);
-			scanOctant(distance, fieldOfView, blocking, 1, x, y, 0.0, 1.0, -1, +1, true);
-			scanOctant(distance, fieldOfView, blocking, 1, x, y, 0.0, 1.0, +1, +1, true);
-			scanOctant(distance, fieldOfView, blocking, 1, x, y, 0.0, 1.0, +1, +1, false);
-			scanOctant(distance, fieldOfView, blocking, 1, x, y, 0.0, 1.0, -1, +1, false);
-			scanOctant(distance, fieldOfView, blocking, 1, x, y, 0.0, 1.0, +1, -1, true);
-			scanOctant(distance, fieldOfView, blocking, 1, x, y, 0.0, 1.0, -1, -1, true);
-			scanOctant(distance, fieldOfView, blocking, 1, x, y, 0.0, 1.0, -1, -1, false);
+			scanOctant(distance, fieldOfView, blocking, 1, x, y, w, 0.0, 1.0, +1, -1, false);
+			scanOctant(distance, fieldOfView, blocking, 1, x, y, w, 0.0, 1.0, -1, +1, true);
+			scanOctant(distance, fieldOfView, blocking, 1, x, y, w, 0.0, 1.0, +1, +1, true);
+			scanOctant(distance, fieldOfView, blocking, 1, x, y, w, 0.0, 1.0, +1, +1, false);
+			scanOctant(distance, fieldOfView, blocking, 1, x, y, w, 0.0, 1.0, -1, +1, false);
+			scanOctant(distance, fieldOfView, blocking, 1, x, y, w, 0.0, 1.0, +1, -1, true);
+			scanOctant(distance, fieldOfView, blocking, 1, x, y, w, 0.0, 1.0, -1, -1, true);
+			scanOctant(distance, fieldOfView, blocking, 1, x, y, w, 0.0, 1.0, -1, -1, false);
 		} catch (Exception e){
 			ShatteredPixelDungeon.reportException(e);
 			BArray.setFalse(fieldOfView);
@@ -80,8 +85,8 @@ public final class ShadowCaster {
 	//scans a single 45 degree octant of the FOV.
 	//This can add up to a whole FOV by mirroring in X(mX), Y(mY), and X=Y(mXY)
 	private static void scanOctant(int distance, boolean[] fov, boolean[] blocking, int row,
-	                               int x, int y, double lSlope, double rSlope,
-	                               int mX, int mY, boolean mXY){
+								   int x, int y, int w, double lSlope, double rSlope,
+								   int mX, int mY, boolean mXY){
 		
 		boolean inBlocking = false;
 		int start, end;
@@ -115,11 +120,11 @@ public final class ShadowCaster {
 			                                    (int)Math.ceil((row + 0.5) * rSlope - 0.499));
 			
 			//coordinates of source
-			int cell = x + y*Dungeon.level.width();
+			int cell = x + y*w;
 			
 			//plus coordinates of current cell (including mirroring in x, y, and x=y)
-			if (mXY)    cell += mX*start*Dungeon.level.width() + mY*row;
-			else        cell += mX*start + mY*row*Dungeon.level.width();
+			if (mXY)    cell += mX*start*w + mY*row;
+			else        cell += mX*start + mY*row*w;
 			
 			//for each column in this row, which
 			for (col = start; col <= end; col++){
@@ -139,7 +144,7 @@ public final class ShadowCaster {
 						
 						//start a new scan, 1 row deeper, ending at the left side of current cell
 						if (col != start){
-							scanOctant(distance, fov, blocking, row+1, x, y, lSlope,
+							scanOctant(distance, fov, blocking, row+1, x, y, w, lSlope,
 									//change in x over change in y
 									(col - 0.5) / (row + 0.5),
 									mX, mY, mXY);
@@ -158,7 +163,7 @@ public final class ShadowCaster {
 				}
 				
 				if (!mXY)   cell += mX;
-				else        cell += mX*Dungeon.level.width();
+				else cell += mX*w;
 				
 			}
 			

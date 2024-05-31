@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2019 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.buffs;
@@ -107,8 +112,8 @@ public class RageShield extends Buff {
 		if (target.isAlive()) {
             boolean[] FOV = new boolean[Dungeon.level.length()];
             Point c = Dungeon.level.cellToPoint(target.pos);
-            ShadowCaster.castShadow(c.x, c.y, FOV, Dungeon.level.losBlocking, 8);
-            ArrayList<Char> affected = new ArrayList<>();
+			ShadowCaster.castShadow(c.x, c.y, Dungeon.level.width(), FOV, Dungeon.level.losBlocking, 8);
+			ArrayList<Char> affected = new ArrayList<>();
 
             for (int i = 0; i < FOV.length; i++) {
                 if (FOV[i]) {

@@ -27,55 +27,47 @@
  *
  */
 
-package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.exspawners;
+package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.entrance;
 
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.exspawners.NecromancerSpawner;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
+import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
-import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.Room;
-import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.SpecialRoom;
-import com.watabou.utils.Point;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.PillarsRoom;
+import com.watabou.utils.PathFinder;
 
-public class NecromancerSpawnerRoom extends SpecialRoom {
+public class PillarsEntranceRoom extends PillarsRoom {
+
+	@Override
+	public float[] sizeCatProbs() {
+		return new float[]{3, 1, 0};
+	}
+
+	@Override
+	public boolean isEntrance() {
+		return true;
+	}
+
 	@Override
 	public void paint(Level level) {
+		super.paint(level);
 
-		Painter.fill( level, this, Terrain.WALL );
-		Painter.fill( level, this, 1, Terrain.EMPTY );
+		int entrance;
+		boolean valid;
+		do {
+			entrance = level.pointToCell(random(2));
+			valid = true;
 
-		Point c = center();
-		int cx = c.x;
-		int cy = c.y;
+			for (int i : PathFinder.NEIGHBOURS4){
+				if (i == -level.width()) continue;
+				if (level.map[entrance+i] == Terrain.WALL){
+					valid = false;
+				}
+			}
 
-		Door door = entrance();
-		door.set(Door.Type.UNLOCKED);
+		} while (level.findMob(entrance) != null || level.map[entrance] == Terrain.WALL || !valid);
+		Painter.set( level, entrance, Terrain.ENTRANCE );
 
-		NecromancerSpawner spawner = new NecromancerSpawner();
-		spawner.pos = cx + cy * level.width();
-		level.mobs.add( spawner );
-
-	}
-
-	@Override
-	public boolean connect(Room room) {
-		//cannot connect to entrance, otherwise works normally
-		if (room.isEntrance()) return false;
-		else                              return super.connect(room);
-	}
-
-	@Override
-	public boolean canPlaceTrap(Point p) {
-		return false;
-	}
-
-	@Override
-	public boolean canPlaceWater(Point p) {
-		return false;
-	}
-
-	@Override
-	public boolean canPlaceGrass(Point p) {
-		return false;
+		level.transitions.add(new LevelTransition(level, entrance, LevelTransition.Type.REGULAR_ENTRANCE));
 	}
 }

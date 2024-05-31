@@ -27,55 +27,42 @@
  *
  */
 
-package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.exspawners;
+package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.exit;
 
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.exspawners.NecromancerSpawner;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
+import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.Room;
-import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.SpecialRoom;
-import com.watabou.utils.Point;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.CircleBasinRoom;
 
-public class NecromancerSpawnerRoom extends SpecialRoom {
+public class CircleBasinExitRoom extends CircleBasinRoom {
+
+	@Override
+	public float[] sizeCatProbs() {
+		return new float[]{0, 1, 0};
+	}
+
+	@Override
+	public boolean isExit() {
+		return true;
+	}
+
 	@Override
 	public void paint(Level level) {
+		super.paint(level);
 
-		Painter.fill( level, this, Terrain.WALL );
-		Painter.fill( level, this, 1, Terrain.EMPTY );
+		int exit = level.pointToCell(center());
+		Painter.set( level, exit, Terrain.EXIT );
 
-		Point c = center();
-		int cx = c.x;
-		int cy = c.y;
-
-		Door door = entrance();
-		door.set(Door.Type.UNLOCKED);
-
-		NecromancerSpawner spawner = new NecromancerSpawner();
-		spawner.pos = cx + cy * level.width();
-		level.mobs.add( spawner );
-
+		level.transitions.add(new LevelTransition(level, exit, LevelTransition.Type.REGULAR_EXIT));
 	}
 
 	@Override
 	public boolean connect(Room room) {
-		//cannot connect to entrance, otherwise works normally
-		if (room.isEntrance()) return false;
-		else                              return super.connect(room);
+		//cannot connect to exit, otherwise works normally
+		if (room.isExit())  return false;
+		else                return super.connect(room);
 	}
 
-	@Override
-	public boolean canPlaceTrap(Point p) {
-		return false;
-	}
-
-	@Override
-	public boolean canPlaceWater(Point p) {
-		return false;
-	}
-
-	@Override
-	public boolean canPlaceGrass(Point p) {
-		return false;
-	}
 }

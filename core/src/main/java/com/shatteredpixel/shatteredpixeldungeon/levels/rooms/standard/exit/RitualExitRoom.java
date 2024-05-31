@@ -27,55 +27,25 @@
  *
  */
 
-package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.exspawners;
+package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.exit;
 
-import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.exspawners.NecromancerSpawner;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Level;
 import com.shatteredpixel.shatteredpixeldungeon.levels.Terrain;
+import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.levels.painters.Painter;
-import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.Room;
-import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.SpecialRoom;
+import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.standard.RitualRoom;
 import com.watabou.utils.Point;
 
-public class NecromancerSpawnerRoom extends SpecialRoom {
+public class RitualExitRoom extends RitualRoom {
+
 	@Override
-	public void paint(Level level) {
-
-		Painter.fill( level, this, Terrain.WALL );
-		Painter.fill( level, this, 1, Terrain.EMPTY );
-
-		Point c = center();
-		int cx = c.x;
-		int cy = c.y;
-
-		Door door = entrance();
-		door.set(Door.Type.UNLOCKED);
-
-		NecromancerSpawner spawner = new NecromancerSpawner();
-		spawner.pos = cx + cy * level.width();
-		level.mobs.add( spawner );
-
+	public boolean isExit() {
+		return true;
 	}
 
 	@Override
-	public boolean connect(Room room) {
-		//cannot connect to entrance, otherwise works normally
-		if (room.isEntrance()) return false;
-		else                              return super.connect(room);
-	}
-
-	@Override
-	public boolean canPlaceTrap(Point p) {
-		return false;
-	}
-
-	@Override
-	public boolean canPlaceWater(Point p) {
-		return false;
-	}
-
-	@Override
-	public boolean canPlaceGrass(Point p) {
-		return false;
+	protected void placeloot(Level level, Point p) {
+		Painter.set(level, p, Terrain.EXIT);
+		level.transitions.add(new LevelTransition(level, level.pointToCell(p), LevelTransition.Type.REGULAR_EXIT));
 	}
 }

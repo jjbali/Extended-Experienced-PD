@@ -1336,7 +1336,7 @@ public abstract class Level implements Bundlable {
 			int viewDist = c.viewDistance;
 			if (c instanceof Hero && ((Hero) c).isSubclass(HeroSubClass.SNIPER)) viewDist *= 1.5f;
 			
-			ShadowCaster.castShadow( cx, cy, fieldOfView, blocking, viewDist );
+			ShadowCaster.castShadow( cx, cy, Dungeon.level.width(), fieldOfView, blocking, viewDist );
 		} else {
 			BArray.setFalse(fieldOfView);
 		}
