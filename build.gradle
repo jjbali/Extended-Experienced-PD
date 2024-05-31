@@ -18,8 +18,8 @@ allprojects {
         appName = 'Extended Experienced Pixel Dungeon'
         appPackageName = 'com.jjbali.experiencedpixeldungeon.extended'
 
-        appVersionCode = 540
-        appVersionName = 'EExpPD-10.2.0'
+        appVersionCode = 541
+        appVersionName = 'EExpPD-10.2.1'
 
         appJavaCompatibility = JavaVersion.VERSION_1_8
 
