@@ -256,9 +256,9 @@ public class Generator {
 		
 		SCROLL	( 8, 8, Scroll.class ),
 		STONE   ( 1, 1, Runestone.class),
-		TREASUREBAG(0, 1, TreasureBag.class),
-		EXPOTION(0, 1, ExoticPotion.class),
-		EXSCROLL(0, 1, ExoticScroll.class),
+		TREASUREBAG(0, 0, TreasureBag.class),
+		EXPOTION(0, 0, ExoticPotion.class),
+		EXSCROLL(0, 0, ExoticScroll.class),
 		//new generator, because of potionofdebug.
 		TICKETS (0, 0, TicketToArena.class),
 		SPELLS (0, 0, Spell.class),
