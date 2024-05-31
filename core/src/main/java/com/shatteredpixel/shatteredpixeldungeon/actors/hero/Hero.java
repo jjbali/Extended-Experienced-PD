@@ -1874,9 +1874,6 @@ public class Hero extends Char {
 		this.totalExp += exp;
 		float percent = exp/(float)maxExp();
 
-		RingOfLuck.Wealth buff2 = buff(RingOfLuck.Wealth.class);
-		if (buff2 != null)  buff2.addExp(exp);
-
 		EtherealChains.chainsRecharge chains = buff(EtherealChains.chainsRecharge.class);
 		if (chains != null) chains.gainExp(percent);
 

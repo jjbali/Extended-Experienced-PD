@@ -800,7 +800,7 @@ public class Generator {
 					RingOfSharpshooting.class,
 					RingOfTenacity.class,
 					RingOfLuck.class};
-			RING.probs = new float[]{ 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0 };
+			RING.probs = new float[]{ 2, 2, 0, 2, 2, 2, 2, 2, 2, 2, 2, 0 };
 			
 			ARTIFACT.classes = new Class<?>[]{
 					AlchemistsToolkit.class,
