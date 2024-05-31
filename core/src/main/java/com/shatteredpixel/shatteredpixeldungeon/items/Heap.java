@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items;
@@ -79,12 +84,10 @@ public class Heap implements Bundlable {
 		MIMIC,
 		GOLDEN_MIMIC,
 		CRYSTAL_MIMIC,
-
-		FOR_ITEM_SALE,
 		FOR_ARENA_SALE;
 
 		public boolean forSale(){
-			return this == FOR_ARENA_SALE || this == FOR_SALE || this == FOR_ITEM_SALE;
+			return this == FOR_ARENA_SALE || this == FOR_SALE;
 		}
 	}
 	public Type type = Type.HEAP;
@@ -155,11 +158,6 @@ public class Heap implements Bundlable {
 		}
 		if (type == Type.FOR_SALE) {
 			assert items.peek() != null;
-		}
-		if (type == Type.FOR_ITEM_SALE) {
-			assert items.peek() != null;
-			Item clone = getClone(items.peek());
-			items.addFirst(clone);
 		}
 		Item item = items.removeFirst();
 		if (items.isEmpty()) {
