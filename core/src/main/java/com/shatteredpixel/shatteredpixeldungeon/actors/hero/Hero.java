@@ -1909,13 +1909,13 @@ public class Hero extends Char {
 			}
 		}
 
-		long neededExp = 100;
+		long neededExp = 350;
 		switch (Dungeon.cycle){
-			case 1: neededExp = 200; break;
-			case 2: neededExp = 1250; break;
-			case 3: neededExp = 11750; break;
-			case 4: neededExp = 75000; break;
-			case 5: neededExp = 500000; break;
+			case 1: neededExp = 750; break;
+			case 2: neededExp = 4200; break;
+			case 3: neededExp = 35250; break;
+			case 4: neededExp = 105300; break;
+			case 5: neededExp = 950000; break;
 		}
 
         if (totalExp >= neededExp && grinding){
