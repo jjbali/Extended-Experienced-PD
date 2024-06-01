@@ -123,7 +123,69 @@ public class ThreeOperationQuestionnaire extends Questionnaire {
         }
         if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) == null){
             Buff.affect(hero, RefreshCooldown.class).set(50);
-
+            randomizer = Random.Int(6);
+            switch (randomizer) {
+                case 0:
+                    CODE = Random.Int(100);
+                    CODE2 = Random.Int(100);
+                    CODE3 = Random.Int(100);
+                    CODE4 = Random.Int(100);
+                    ANSWER = String.valueOf(CODE + CODE2 + CODE3 + CODE4);
+                    GLog.h("\n[Type: PLUS x3]");
+                    BODY = "Perform the following operations: " + CODE + " + " + CODE2 + " + " + CODE3 + " + " + CODE4;
+                    type = "PLUS x3";
+                    break;
+                case 1:
+                    CODE = Random.Int(100);
+                    CODE2 = Random.Int(100);
+                    CODE3 = Random.Int(100);
+                    CODE4 = Random.Int(100);
+                    ANSWER = String.valueOf((CODE + CODE2 + CODE3) - CODE4);
+                    GLog.h("\n[Type: PLUS x2 and SUB x1]");
+                    BODY = "Perform the following operations: " + CODE + " + " + CODE2 + " + " + CODE3 + " - " + CODE4;
+                    type = "PLUS x2 and SUB x1";
+                    break;
+                case 2:
+                    CODE = Random.Int(100);
+                    CODE2 = Random.Int(100);
+                    CODE3 = Random.Int(100);
+                    CODE4 = Random.Int(100);
+                    ANSWER = String.valueOf((CODE + CODE2) - CODE3 - CODE4);
+                    GLog.h("\n[Type: PLUS x1 and SUB x2]");
+                    BODY = "Perform the following operations: " + CODE + " + " + CODE2 + " - " + CODE3 + " - " + CODE4;
+                    type = "PLUS x1 and SUB x2]";
+                    break;
+                case 3:
+                    CODE = Random.Int(100);
+                    CODE2 = Random.Int(100);
+                    CODE3 = Random.Int(100);
+                    CODE4 = Random.Int(100);
+                    ANSWER = String.valueOf(CODE - CODE2 - CODE3 - CODE4);
+                    GLog.h("\n[Type: SUB x3]");
+                    BODY = "Perform the following operations: " + CODE + " - " + CODE2 + " - " + CODE3 + " - " + CODE4;
+                    type = "SUB x3";
+                    break;
+                case 4:
+                    CODE = Random.Int(100);
+                    CODE2 = Random.Int(100);
+                    CODE3 = Random.Int(100);
+                    CODE4 = Random.Int(100);
+                    ANSWER = String.valueOf(CODE - (CODE2 + CODE3) - CODE4);
+                    GLog.h("\n[Type: PLUS x1 and SUB x2]");
+                    BODY = "Perform the following operations: " + CODE + " - " + CODE2 + " + " + CODE3 + " - " + CODE4;
+                    type = "PLUS x1 and SUB x2";
+                    break;
+                case 5:
+                    CODE = Random.Int(100);
+                    CODE2 = Random.Int(100);
+                    CODE3 = Random.Int(100);
+                    CODE4 = Random.Int(100);
+                    ANSWER = String.valueOf((CODE + CODE2) - (CODE3 + CODE4));
+                    GLog.h("\n[Type: PLUS x2 and SUB x1]");
+                    BODY = "Perform the following operations: " + CODE + " + " + CODE2 + " - " + CODE3 + " + " + CODE4;
+                    type = "PLUS x2 and SUB x1";
+                    break;
+            }
         }
         else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
             GLog.w(Messages.get(RefreshCooldown.class, "cooldown"));
