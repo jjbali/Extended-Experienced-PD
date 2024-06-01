@@ -39,6 +39,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Healing;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
+import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
@@ -128,7 +129,7 @@ public class TriangularItem extends Questionnaire {
             askCode();
         } else if (action.equals( AC_ANSWER ) && hero.buff(CodeCooldown12.class) != null) {
             GLog.w(Messages.get(this, "cooldown"));
-            GameScene.flash(0xFFFF0000);
+            SpellSprite.show(hero, SpellSprite.COOLDOWN);
         }
         if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) == null){
             Buff.affect(hero, RefreshCooldown.class).set(50);
@@ -155,6 +156,7 @@ public class TriangularItem extends Questionnaire {
         }
         else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
             GLog.w(Messages.get(RefreshCooldown.class, "cooldown"));
+            SpellSprite.show(hero, SpellSprite.COOLDOWN);
         }
     }
 
@@ -185,6 +187,7 @@ public class TriangularItem extends Questionnaire {
                         Dungeon.level.drop(new TieredCard().upgrade(Math.round(4 + totalAnswers_k/4)), curUser.pos).sprite.drop();
                     }
                     GLog.h("You answered the question correctly");
+                    SpellSprite.show(hero, SpellSprite.CORRECT);
                     randomizer = Random.Int(2);
                     switch (randomizer) {
                         case 0:
@@ -210,7 +213,6 @@ public class TriangularItem extends Questionnaire {
                     if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
                         streak_k += 2;
                     }
-                    GameScene.flash(0xFF008000);
                     if (Random.Float() >= 0.95f) {
                         updateQuickslot();
                         hero.earnExp(hero.maxExp(), TriangularItem.class);
@@ -233,8 +235,8 @@ public class TriangularItem extends Questionnaire {
                     InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
                     Game.switchScene( InterlevelScene.class );
                 } else {
-                    GameScene.flash(0xFFFF0000);
                     GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
                     streak_k = 0;
                 }
             }

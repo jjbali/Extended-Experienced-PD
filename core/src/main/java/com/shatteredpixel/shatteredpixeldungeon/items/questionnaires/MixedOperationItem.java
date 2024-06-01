@@ -41,6 +41,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ShieldBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Shopkeeper;
+import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
@@ -124,7 +125,7 @@ public class MixedOperationItem extends Questionnaire {
             askCode();
         } else if (action.equals( AC_ANSWER ) && hero.buff(CodeCooldown7.class) != null) {
             GLog.w(Messages.get(this, "cooldown"));
-            GameScene.flash(0xFFFF0000);
+            SpellSprite.show(hero, SpellSprite.COOLDOWN);
         }
         if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) == null) {
             Buff.affect(hero, RefreshCooldown.class).set(50);
@@ -182,6 +183,7 @@ public class MixedOperationItem extends Questionnaire {
         }
         else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
             GLog.w(Messages.get(RefreshCooldown.class, "cooldown"));
+            SpellSprite.show(hero, SpellSprite.COOLDOWN);
         }
     }
 
@@ -246,8 +248,8 @@ public class MixedOperationItem extends Questionnaire {
                         GLog.h("You may now start answering the questions.");
                     }
                     if (!text.equals("start")) {
-                        GameScene.flash(0xFF008000);
                         GLog.h("You answered the question correctly.");
+                        SpellSprite.show(hero, SpellSprite.CORRECT);
                         if (Random.Float() >= 0.95f) {
                             // 5% of getting an exp
                             updateQuickslot();
@@ -332,8 +334,8 @@ public class MixedOperationItem extends Questionnaire {
                     InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
                     Game.switchScene( InterlevelScene.class );
                 } else {
-                    GameScene.flash(0xFFFF0000);
                     GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
                     streak_f = 0;
                     Shopkeeper.inflation_decrement = 0;
                 }

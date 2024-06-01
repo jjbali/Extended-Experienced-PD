@@ -40,6 +40,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ShieldBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
+import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
@@ -113,7 +114,7 @@ public class SubtractionItem extends Questionnaire {
             askCode();
         } else if (action.equals( AC_ANSWER ) && hero.buff(CodeCooldown5.class) != null) {
             GLog.w(Messages.get(this, "cooldown"));
-            GameScene.flash(0xFFFF0000);
+            SpellSprite.show(hero, SpellSprite.COOLDOWN);
         }
         if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) == null) {
             Buff.affect(hero, RefreshCooldown.class).set(50);
@@ -149,6 +150,7 @@ public class SubtractionItem extends Questionnaire {
         }
         else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
             GLog.w(Messages.get(RefreshCooldown.class, "cooldown"));
+            SpellSprite.show(hero, SpellSprite.COOLDOWN);
         }
     }
 
@@ -159,6 +161,7 @@ public class SubtractionItem extends Questionnaire {
                 if (text.equals(ANSWER)) {
                     Buff.affect(hero, CodeCooldown5.class).set(3);
                     GLog.h("You answered the question correctly, +5HP!");
+                    SpellSprite.show(hero, SpellSprite.CORRECT);
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
                         Buff.affect(hero, EnhancedRings.class, 3f);
                     }
@@ -214,7 +217,6 @@ public class SubtractionItem extends Questionnaire {
                         streak_b += 2;
                     }
                     hero.updateHT(false);
-                    GameScene.flash(0xFF008000);
                     if (Random.Float() >= 0.95f) {
                         // 5% of getting an exp
                         updateQuickslot();
@@ -259,8 +261,8 @@ public class SubtractionItem extends Questionnaire {
                     InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
                     Game.switchScene( InterlevelScene.class );
                 } else {
-                    GameScene.flash(0xFFFF0000);
                     GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
                     streak_b = 0;
                 }
             }

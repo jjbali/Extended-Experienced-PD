@@ -39,6 +39,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Healing;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
+import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
@@ -136,7 +137,7 @@ public class TypingItem extends Questionnaire {
             askCode();
         } else if (action.equals( AC_ANSWER ) && hero.buff(CodeCooldown13.class) != null) {
             GLog.w(Messages.get(this, "cooldown"));
-            GameScene.flash(0xFFFF0000);
+            SpellSprite.show(hero, SpellSprite.COOLDOWN);
         }
         if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) == null){
             Buff.affect(hero, RefreshCooldown.class).set(50);
@@ -158,6 +159,7 @@ public class TypingItem extends Questionnaire {
         }
         else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
             GLog.w(Messages.get(RefreshCooldown.class, "cooldown"));
+            SpellSprite.show(hero, SpellSprite.COOLDOWN);
         }
     }
 
@@ -188,6 +190,7 @@ public class TypingItem extends Questionnaire {
                         Dungeon.level.drop(new TieredCard().upgrade(Math.round(4 + totalAnswers_l/4)), curUser.pos).sprite.drop();
                     }
                     GLog.h("You answered the question correctly");
+                    SpellSprite.show(hero, SpellSprite.CORRECT);
                     if (totalAnswers_l <= 10) {
                         ANSWER = getAlphaNumericString(6);
                     } else if (totalAnswers_l >= 11 && totalAnswers_l <= 30) {
@@ -209,7 +212,6 @@ public class TypingItem extends Questionnaire {
                     if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.MONDAY) {
                         streak_l += 2;
                     }
-                    GameScene.flash(0xFF008000);
                     if (Random.Float() >= 0.95f) {
                         updateQuickslot();
                         hero.earnExp(hero.maxExp(), TypingItem.class);
@@ -232,8 +234,8 @@ public class TypingItem extends Questionnaire {
                     InterlevelScene.mode = InterlevelScene.Mode.DESCEND;
                     Game.switchScene( InterlevelScene.class );
                 } else {
-                    GameScene.flash(0xFFFF0000);
                     GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
                     streak_l = 0;
                 }
             }
