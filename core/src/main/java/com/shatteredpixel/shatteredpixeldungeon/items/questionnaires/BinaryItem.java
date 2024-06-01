@@ -170,53 +170,41 @@ public class BinaryItem extends Questionnaire {
                         streak_i += 2;
                     }
                     GameScene.flash(0xFF008000);
-                    switch (Random.Int(9)) {
-                        case 0:
-                            updateQuickslot();
-                            hero.earnExp(hero.maxExp() * 4, BinaryItem.class);
-                            break;
-                        case 1:
-                            updateQuickslot();
-                            for (int q = 0; q < 20; q++) {
-                                Dungeon.level.drop(Generator.random(Generator.Category.POTION), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 2:
-                            updateQuickslot();
-                            for (int q = 0; q < 20; q++) {
-                                Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 3:
-                            updateQuickslot();
-                            for (int q = 0; q < 20; q++) {
-                                Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 4:
-                            updateQuickslot();
-                            for (int q = 0; q < 20; q++) {
+                    if (Random.Float() >= 0.95f) {
+                        // 5% of getting an exp
+                        updateQuickslot();
+                        hero.earnExp(hero.maxExp() * 4, BinaryItem.class);
+                    } else if (Random.Float() >= 0.8f && Random.Float() < 0.95f) {
+                        // 15% of getting random upgraded weapon
+                        updateQuickslot();
+                        Dungeon.level.drop(Generator.random(Generator.Category.WEAPON).upgrade(streak_i), curUser.pos).sprite.drop();
+                    } else if (Random.Float() >= 0.65f && Random.Float() < 0.8f) {
+                        // 15% of getting random upgraded ring
+                        updateQuickslot();
+                        Dungeon.level.drop(Generator.random(Generator.Category.RING).upgrade(streak_i), curUser.pos).sprite.drop();
+                    } else if (Random.Float() >= 0.50f && Random.Float() < 0.65f) {
+                        // 15% of getting random upgraded wand
+                        updateQuickslot();
+                        Dungeon.level.drop(Generator.random(Generator.Category.WAND).upgrade(streak_i), curUser.pos).sprite.drop();
+                    } else if (Random.Float() >= 0.35f && Random.Float() < 0.50f) {
+                        // 15% of getting random exotic scroll or potion
+                        updateQuickslot();
+                        switch (Random.Int(2)) {
+                            case 0: default:
                                 Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 5:
-                            updateQuickslot();
-                            Buff.affect(hero, RageShield.class).set(hero.HT);
-                            break;
-                        case 6:
-                            updateQuickslot();
-                            Buff.affect(hero, Bless.class, Bless.DURATION * hero.lvl);
-                            break;
-                        case 7:
-                            updateQuickslot();
-                            for (int q = 0; q < 5; q++) {
-                                Dungeon.level.drop(Generator.randomMissile().upgrade(Random.Long(20L * hero.lvl, 60L * hero.lvl)).quantity(1), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 8:
-                            updateQuickslot();
-                            Dungeon.level.drop(Generator.randomWeapon().upgrade(Random.Long(40L * hero.lvl, 120L * hero.lvl)), curUser.pos).sprite.drop();
-                            break;
+                                break;
+                            case 1:
+                                Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), curUser.pos).sprite.drop();
+                                break;
+                        }
+                    } else if (Random.Float() >= 0.05f && Random.Float() < 0.35f) {
+                        // 30% of getting random item
+                        updateQuickslot();
+                        Dungeon.level.drop(Generator.random(), curUser.pos).sprite.drop();
+                    } else {
+                        // 5% of additional streak point
+                        updateQuickslot();
+                        streak_i += 1;
                     }
                 } else if (text.equals("")) {
                     GLog.w("You didn't answer the question.");

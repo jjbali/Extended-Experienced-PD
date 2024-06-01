@@ -209,18 +209,19 @@ public class RectangularItem extends Questionnaire {
                         streak_j += 2;
                     }
                     GameScene.flash(0xFF008000);
-                    switch (Random.Int(9)) {
-                        case 0:
-                            updateQuickslot();
-                            hero.earnExp(hero.maxExp(), RectangularItem.class);
-                            break;
-                        case 1: case 2: case 3: case 4: case 5: case 6: case 7: case 8:
-                            int rolls = 15 * (1 + streak_j);
-                            ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(rolls);
-                            if (!bonus.isEmpty()) {
-                                for (Item b : bonus) Dungeon.level.drop(b, hero.pos).sprite.drop();
-                            }
-                            break;
+                    if (Random.Float() >= 0.95f) {
+                        updateQuickslot();
+                        hero.earnExp(hero.maxExp(), RectangularItem.class);
+                    } else if (Random.Float() >= 0.05f && Random.Float() < 0.95f) {
+                        updateQuickslot();
+                        int rolls = 15 * (1 + streak_j);
+                        ArrayList<Item> bonus = RingOfWealth.tryForBonusDrop(rolls);
+                        if (!bonus.isEmpty()) {
+                            for (Item b : bonus) Dungeon.level.drop(b, hero.pos).sprite.drop();
+                        }
+                    } else {
+                        updateQuickslot();
+                        streak_j += 1;
                     }
                 } else if (text.equals("")) {
                     GLog.w("You didn't answer the question.");

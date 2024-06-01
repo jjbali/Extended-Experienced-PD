@@ -218,51 +218,44 @@ public class MultiplicationItem extends Questionnaire {
                         streak_c += 2;
                     }
                     GameScene.flash(0xFF008000);
-                    switch (Random.Int(9)) {
-                        case 0:
-                            updateQuickslot();
-                            hero.earnExp(hero.maxExp(), MultiplicationItem.class);
-                            break;
-                        case 1:
-                            updateQuickslot();
-                            Dungeon.level.drop(Generator.random(Generator.Category.POTION), curUser.pos).sprite.drop();
-                            Dungeon.level.drop(Generator.random(Generator.Category.POTION), curUser.pos).sprite.drop();
-                            Dungeon.level.drop(Generator.random(Generator.Category.POTION), curUser.pos).sprite.drop();
-                            break;
-                        case 2:
-                            updateQuickslot();
-                            Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), curUser.pos).sprite.drop();
-                            Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), curUser.pos).sprite.drop();
-                            Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), curUser.pos).sprite.drop();
-                            break;
-                        case 3:
-                            updateQuickslot();
-                            Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), curUser.pos).sprite.drop();
-                            Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), curUser.pos).sprite.drop();
-                            Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), curUser.pos).sprite.drop();
-                            break;
-                        case 4:
-                            updateQuickslot();
-                            Dungeon.level.drop(Generator.random(Generator.Category.RING), curUser.pos).sprite.drop();
-                            Dungeon.level.drop(Generator.random(Generator.Category.RING), curUser.pos).sprite.drop();
-                            break;
-                        case 5:
-                            updateQuickslot();
-                            Dungeon.level.drop(Generator.randomArmor(), curUser.pos).sprite.drop();
-                            break;
-                        case 6:
-                            updateQuickslot();
-                            Dungeon.level.drop(Generator.randomArtifact(), curUser.pos).sprite.drop();
-                            break;
-                        case 7:
-                            updateQuickslot();
-                            Dungeon.level.drop(Generator.randomMissile(), curUser.pos).sprite.drop();
-                            break;
-                        case 8:
-                            updateQuickslot();
-                            Dungeon.level.drop(Generator.randomWeapon(), curUser.pos).sprite.drop();
-                            break;
+
+                    if (Random.Float() >= 0.95f) {
+                        // 5% of getting an exp
+                        updateQuickslot();
+                        hero.earnExp(hero.maxExp(), MultiplicationItem.class);
+                    } else if (Random.Float() >= 0.8f && Random.Float() < 0.95f) {
+                        // 15% of getting 3 random potions
+                        updateQuickslot();
+                        for (int i = 0; i < 3; i++) Dungeon.level.drop(Generator.random(Generator.Category.POTION), curUser.pos).sprite.drop();
+                    } else if (Random.Float() >= 0.65f && Random.Float() < 0.8f) {
+                        // 15% of getting 3 random scrolls
+                        updateQuickslot();
+                        for (int i = 0; i < 3; i++) Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), curUser.pos).sprite.drop();
+                    } else if (Random.Float() >= 0.50f && Random.Float() < 0.65f) {
+                        // 15% of getting 3 random treasure bags
+                        updateQuickslot();
+                        for (int i = 0; i < 3; i++) Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), curUser.pos).sprite.drop();
+                    } else if (Random.Float() >= 0.35f && Random.Float() < 0.50f) {
+                        // 15% of getting 3 random exotic scrolls or potions
+                        updateQuickslot();
+                        switch (Random.Int(2)) {
+                            case 0: default:
+                                for (int i = 0; i < 3; i++) Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), curUser.pos).sprite.drop();
+                                break;
+                            case 1:
+                                for (int i = 0; i < 3; i++) Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), curUser.pos).sprite.drop();
+                                break;
+                        }
+                    } else if (Random.Float() >= 0.05f && Random.Float() < 0.35f) {
+                        // 30% of getting 3 random items
+                        updateQuickslot();
+                        for (int i = 0; i < 3; i++) Dungeon.level.drop(Generator.random(), curUser.pos).sprite.drop();
+                    } else {
+                        // 5% of additional streak point
+                        updateQuickslot();
+                        streak_c += 1;
                     }
+
                 } else if (text.equals("")) {
                     GLog.w("You didn't answer the question.");
                 } else if (text.equals("31718")) {

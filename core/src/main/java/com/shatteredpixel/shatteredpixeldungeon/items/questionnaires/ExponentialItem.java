@@ -164,54 +164,41 @@ public class ExponentialItem extends Questionnaire {
                         streak_e += 2;
                     }
                     GameScene.flash(0xFF008000);
-                    switch (Random.Int(9)) {
-                        //TODO something todo with those rewards
-                        case 0:
-                            updateQuickslot();
-                            hero.earnExp(hero.maxExp() * 4, ExponentialItem.class);
-                            break;
-                        case 1:
-                            updateQuickslot();
-                            for (int q = 0; q < 10; q++) {
-                                Dungeon.level.drop(Generator.random(Generator.Category.POTION), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 2:
-                            updateQuickslot();
-                            for (int q = 0; q < 10; q++) {
-                                Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 3:
-                            updateQuickslot();
-                            for (int q = 0; q < 10; q++) {
-                                Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 4:
-                            updateQuickslot();
-                            for (int q = 0; q < 10; q++) {
-                                Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 5:
-                            updateQuickslot();
-                            Buff.affect(hero, Foresight.class, Foresight.DURATION * hero.lvl);
-                            break;
-                        case 6:
-                            updateQuickslot();
-                            Buff.affect(hero, Bless.class, Bless.DURATION * hero.lvl);
-                            break;
-                        case 7:
-                            updateQuickslot();
-                            for (int q = 0; q < 5; q++) {
-                                Dungeon.level.drop(Generator.randomMissile().upgrade(Random.Long(20L * hero.lvl, 60L * hero.lvl)).quantity(1), curUser.pos).sprite.drop();
-                            }
-                            break;
-                        case 8:
-                            updateQuickslot();
-                            Dungeon.level.drop(Generator.randomWeapon().upgrade(Random.Long(40L * hero.lvl, 120L * hero.lvl)), curUser.pos).sprite.drop();
-                            break;
+                    if (Random.Float() >= 0.95f) {
+                        // 5% of getting an exp
+                        updateQuickslot();
+                        hero.earnExp(hero.maxExp() * 5, ExponentialItem.class);
+                    } else if (Random.Float() >= 0.8f && Random.Float() < 0.95f) {
+                        // 15% of getting 10 random potions
+                        updateQuickslot();
+                        for (int i = 0; i < 10; i++) Dungeon.level.drop(Generator.random(Generator.Category.POTION), curUser.pos).sprite.drop();
+                    } else if (Random.Float() >= 0.65f && Random.Float() < 0.8f) {
+                        // 15% of getting 10 random scrolls
+                        updateQuickslot();
+                        for (int i = 0; i < 10; i++) Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), curUser.pos).sprite.drop();
+                    } else if (Random.Float() >= 0.50f && Random.Float() < 0.65f) {
+                        // 15% of getting 10 random treasure bags
+                        updateQuickslot();
+                        for (int i = 0; i < 10; i++) Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), curUser.pos).sprite.drop();
+                    } else if (Random.Float() >= 0.35f && Random.Float() < 0.50f) {
+                        // 15% of getting 10 random exotic scrolls or potions
+                        updateQuickslot();
+                        switch (Random.Int(2)) {
+                            case 0: default:
+                                for (int i = 0; i < 10; i++) Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), curUser.pos).sprite.drop();
+                                break;
+                            case 1:
+                                for (int i = 0; i < 10; i++) Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), curUser.pos).sprite.drop();
+                                break;
+                        }
+                    } else if (Random.Float() >= 0.05f && Random.Float() < 0.35f) {
+                        // 30% of getting 10 random items
+                        updateQuickslot();
+                        for (int i = 0; i < 10; i++) Dungeon.level.drop(Generator.random(), curUser.pos).sprite.drop();
+                    } else {
+                        // 5% of additional streak point
+                        updateQuickslot();
+                        streak_e += 1;
                     }
                 } else if (text.equals("")) {
                     GLog.w("You didn't answer the question.");
