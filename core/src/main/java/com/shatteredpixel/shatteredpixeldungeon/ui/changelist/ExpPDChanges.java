@@ -43,6 +43,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMastery;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.RectangularItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.ThreeOperationQuestionnaire;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TypingItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
@@ -100,21 +101,31 @@ public class ExpPDChanges {
                         + "_-_ 200 Loot Rolls is rewarded."));
         changes.addButton( new ChangeButton(new ItemSprite(new RectangularItem()), "Rectangular Questionnaire Mechanics",
                 "This is just an advantage.\n\n"
-                        + "_-_ +50 Loot Rolls is added."));
+                        + "_-_ +5 Loot Rolls is added."));
         changes.addButton( new ChangeButton(new ItemSprite(new TriangularItem()), "Triangular Questionnaire Mechanics",
                 "This is also an advantage.\n\n"
-                        + "_-_ +50 Loot Rolls is also added."));
+                        + "_-_ +10 Loot Rolls is also added."));
 
         changes = new ChangeInfo("III", false, "");
         changes.hardlight(Window.TITLE_COLOR);
         changeInfos.add(changes);
         changes.addButton( new ChangeButton(new ItemSprite(new TypingItem()), "Memorization Questionnaire",
                 "You'll need some memorization in this questionnaire, it's just a combined string with a desired length.\n\n"
-                        + "_-_ 400 Loot Rolls is rewarded."));
+                        + "_-_ 100 Loot Rolls is rewarded."));
         changes.addButton( new ChangeButton(Icons.get(Icons.DEPTH_TRAPS), "Glitched Branch",
                 "_-_ Gives OP items.\n"
                         + "_-_ Glitched thing.\n"
                         + "_-_ The most powerful fishing rod is also dropped on last level."));
+
+        changes = new ChangeInfo("IV", false, "");
+        changes.hardlight(Window.TITLE_COLOR);
+        changeInfos.add(changes);
+        changes.addButton( new ChangeButton(new ItemSprite(new ThreeOperationQuestionnaire()), "Three Operation Questionnaire",
+                "You'll need to use always the PEMDAS method in this questionnaire."));
+        changes.addButton( new ChangeButton(Icons.get(Icons.MAGNIFY), "Questionnaire Improvements",
+                "_-_ Questionnaires will now show a spell sprites instead of flashing the screen (it's annoying lol)\n"
+                        + "_-_ They now use \"if else\" method instead of \"switch\"\n"
+                        + "_-_ They now give an additional point when the chance is ~5%"));
 
     }
 
