@@ -45,7 +45,7 @@ public class BrownFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A tertiary colored fragment, it can increase the traps based on this level\n\nTraps: " + trapsAdd();
+        return "A tertiary colored fragment, it can increase the traps based on this level\n\nTraps: +" + trapsAdd();
     }
 
     @Override

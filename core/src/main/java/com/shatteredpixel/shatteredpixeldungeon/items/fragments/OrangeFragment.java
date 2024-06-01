@@ -45,7 +45,7 @@ public class OrangeFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A secondary colored fragment, it can increase the level of the dropped armors based on this level\n\nArmor's Initial Level: " + armorInitialLevel();
+        return "A secondary colored fragment, it can increase the level of the dropped armors based on this level\n\nArmor's Initial Level: +" + armorInitialLevel();
     }
 
     @Override

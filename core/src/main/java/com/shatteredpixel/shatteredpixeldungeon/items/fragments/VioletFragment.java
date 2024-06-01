@@ -45,7 +45,7 @@ public class VioletFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A secondary colored fragment, it can multiply the dropped gold based on this level\n\nGold Multiplier: " + goldMulti();
+        return "A secondary colored fragment, it can multiply the dropped gold based on this level\n\nGold Multiplier: x" + goldMulti();
     }
 
     @Override

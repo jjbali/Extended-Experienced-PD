@@ -45,7 +45,7 @@ public class GreenFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A secondary colored fragment, it can increase the level of the dropped rings based on this level\n\nRing's Initial Level: " + ringInitialLevel();
+        return "A secondary colored fragment, it can increase the level of the dropped rings based on this level\n\nRing's Initial Level: +" + ringInitialLevel();
     }
 
     public static float ringInitialLevel(){

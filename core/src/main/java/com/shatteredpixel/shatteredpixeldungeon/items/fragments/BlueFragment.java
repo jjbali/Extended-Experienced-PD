@@ -46,7 +46,7 @@ public class BlueFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A primary colored fragment, it can increase the level of the dropped weapons based on this level\n\nWeapon's Initial Level: " + weaponInitialLevel();
+        return "A primary colored fragment, it can increase the level of the dropped weapons based on this level\n\nWeapon's Initial Level: +" + weaponInitialLevel();
     }
 
     @Override

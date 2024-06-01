@@ -45,7 +45,7 @@ public class YellowFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A primary colored fragment, it can increase the streak of the questionnaires based on this level\n\nQuestionnaire's Streak: " + questionnairesStreakAdd();
+        return "A primary colored fragment, it can increase the streak of the questionnaires based on this level\n\nQuestionnaire's Streak: +" + questionnairesStreakAdd();
     }
 
     @Override

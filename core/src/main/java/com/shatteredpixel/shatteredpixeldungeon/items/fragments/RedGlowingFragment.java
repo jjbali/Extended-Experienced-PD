@@ -52,7 +52,7 @@ public class RedGlowingFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A red glowing fragment, it can drop modules based on this level\n\nModule Drop Chance: " + moduleDropChance() + "\n\nModule Quantity: " + moduleDropQuantity();
+        return "A red glowing fragment, it can drop modules based on this level\n\nModule Drop Chance: " + moduleDropChance() * 100 + "%\n\nModule Quantity: " + moduleDropQuantity();
     }
 
     @Override

@@ -45,7 +45,7 @@ public class TealFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A tertiary colored fragment, it can drop more items based on this level\n\nDropped Items: " + droppedItems();
+        return "A tertiary colored fragment, it can drop more items based on this level\n\nDropped Items: +" + droppedItems();
     }
 
     @Override

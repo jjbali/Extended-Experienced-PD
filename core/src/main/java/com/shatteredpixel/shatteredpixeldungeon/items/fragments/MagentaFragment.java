@@ -45,7 +45,7 @@ public class MagentaFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A tertiary colored fragment, it can add more mobs based on this level\n\nMobs: " + mobsAdd();
+        return "A tertiary colored fragment, it can add more mobs based on this level\n\nMobs: +" + mobsAdd();
     }
 
     @Override

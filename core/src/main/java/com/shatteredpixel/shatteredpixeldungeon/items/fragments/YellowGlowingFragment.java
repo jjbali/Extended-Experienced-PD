@@ -52,7 +52,7 @@ public class YellowGlowingFragment extends Fragment {
 
     @Override
     public String desc() {
-        return "A yellow glowing fragment, it can drop tiered card based on this level\n\nTiered Card Drop Chance: " + tieredDropChance() + "\n\nTiered Card Level: " + tieredDropLevel();
+        return "A yellow glowing fragment, it can drop tiered card based on this level\n\nTiered Card Drop Chance: " + tieredDropChance() * 100 + "%\n\nTiered Card Level: " + tieredDropLevel();
     }
 
     @Override
