@@ -327,7 +327,7 @@ public class Hero extends Char {
 		
 		STR = bundle.getInt( STRENGTH );
 
-		totalExp = bundle.getInt(TOTAL_EXPERIENCE);
+		totalExp = bundle.getLong(TOTAL_EXPERIENCE);
 		grinding = bundle.getBoolean(GRINDING);
 
 
@@ -341,10 +341,10 @@ public class Hero extends Char {
 	public static void preview( GamesInProgress.Info info, Bundle bundle ) {
 		info.level = bundle.getInt( LEVEL );
 		info.str = bundle.getInt( STRENGTH );
-		info.exp = bundle.getInt( EXPERIENCE );
-		info.hp = bundle.getInt( Char.TAG_HP );
-		info.ht = bundle.getInt( Char.TAG_HT );
-		info.shld = bundle.getInt( Char.TAG_SHLD );
+		info.exp = bundle.getLong( EXPERIENCE );
+		info.hp = bundle.getLong( Char.TAG_HP );
+		info.ht = bundle.getLong( Char.TAG_HT );
+		info.shld = bundle.getLong( Char.TAG_SHLD );
 		info.heroClass = bundle.getEnum( CLASS, HeroClass.class );
 		info.subClass = bundle.getEnum( SUBCLASS, HeroSubClass.class );
 		Belongings.preview( info, bundle );
@@ -643,8 +643,8 @@ public class Hero extends Char {
 		}
 
 		dmg += AdditionItem.totalAnswers_a;
-		if (dmg < 0) dmg = Long.MAX_VALUE;
-		return (int)dmg;
+		if (dmg < 0) dmg = 0;
+		return dmg;
 	}
 	
 	@Override
@@ -1386,7 +1386,7 @@ public class Hero extends Char {
 			Buff.affect(this, ElementalStrike.DirectedPowerTracker.class, 1f).enchBoost = 0.5f;
 		}
 
-		if (wep != null) damage = (int) wep.proc(this, enemy, damage);
+		if (wep != null) damage = wep.proc(this, enemy, damage);
 		damage = Talent.onAttackProc(this, enemy, damage);
 
 		damage = Perks.onAttackProc(this, enemy, damage);
@@ -1451,7 +1451,7 @@ public class Hero extends Char {
 		}
 		
 		if (belongings.armor() != null) {
-			damage = (int)belongings.armor().proc( enemy, this, damage );
+			damage = belongings.armor().proc( enemy, this, damage );
 		}
 
 		WandOfLivingEarth.RockArmor rockArmor = buff(WandOfLivingEarth.RockArmor.class);

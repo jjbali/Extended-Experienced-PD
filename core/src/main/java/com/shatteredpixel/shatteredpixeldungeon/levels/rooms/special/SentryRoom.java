@@ -228,7 +228,7 @@ public class SentryRoom extends SpecialRoom {
 			spriteClass = SentrySprite.class;
 
 			properties.add(Property.IMMOVABLE);
-			HT = HP = 9_000_000_000_000_000_000L;
+			HT = HP = 9000000000000000L;
 		}
 
 		private float initialChargeDelay;
@@ -301,16 +301,6 @@ public class SentryRoom extends SpecialRoom {
 		@Override
 		public int attackSkill(Char target) {
 			return 20 + Dungeon.depth * 2;
-		}
-
-		@Override
-		public int defenseSkill( Char enemy ) {
-			return INFINITE_EVASION;
-		}
-
-		@Override
-		public void damage( long dmg, Object src ) {
-			//do nothing
 		}
 
 		@Override
