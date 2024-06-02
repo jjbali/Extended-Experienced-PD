@@ -40,6 +40,7 @@ import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.RefreshCooldown;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.ShieldBuff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
+import com.shatteredpixel.shatteredpixeldungeon.effects.Speck;
 import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
@@ -72,6 +73,7 @@ public class SubtractionItem extends Questionnaire {
 
     private static final String AC_ANSWER = "ANSWER";
     private static final String AC_REFRESH = "REFRESH";
+    private static final String AC_CONVERT = "CONVERT";
 
     private int CODE = Random.Int(100);
     private int CODE2 = Random.Int(100);
@@ -89,6 +91,7 @@ public class SubtractionItem extends Questionnaire {
         actions.add( AC_REFRESH );
         actions.remove( AC_THROW );
         actions.remove( AC_DROP );
+        actions.add( AC_CONVERT );
         return actions;
     }
 
@@ -151,6 +154,14 @@ public class SubtractionItem extends Questionnaire {
         else if (action.equals( AC_REFRESH ) && hero.buff(RefreshCooldown.class) != null) {
             GLog.w(Messages.get(RefreshCooldown.class, "cooldown"));
             SpellSprite.show(hero, SpellSprite.COOLDOWN);
+        }
+        if (action.equals(AC_CONVERT) && Dungeon.energy >= 40) {
+            Dungeon.energy -= 40;
+            hero.sprite.emitter().start( Speck.factory( Speck.UP ), 0.2f, 3 );
+            streak_b += 5;
+            GLog.p("Your energy is now converted into streak.");
+        } else if (action.equals(AC_CONVERT) && Dungeon.energy < 40) {
+            GLog.w("You have no enough energy to convert.");
         }
     }
 
