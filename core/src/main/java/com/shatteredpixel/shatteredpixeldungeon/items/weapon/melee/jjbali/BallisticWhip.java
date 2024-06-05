@@ -66,7 +66,7 @@ import java.util.ArrayList;
 public class BallisticWhip extends JjbaliWeapon {
 
 	{
-		image = ItemSpriteSheet.WHIP;
+		image = ItemSpriteSheet.WHIP_ENERGY;
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1.3f;
 
