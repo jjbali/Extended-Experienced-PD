@@ -63,7 +63,7 @@ public abstract class YogFist extends Mob {
 
 	{
 		HP = HT = 300;
-		defenseSkill = 20;
+		defenseSkill = 20 + Dungeon.hero.STR;
 
 		viewDistance = Light.DISTANCE;
 
@@ -78,22 +78,22 @@ public abstract class YogFist extends Mob {
         switch (Dungeon.cycle){
             case 1:
                 HP = HT = 3750;
-                defenseSkill = 89;
+                defenseSkill = 89 + Dungeon.hero.STR;
                 EXP = 150;
                 break;
             case 2:
                 HP = HT = 50000;
-                defenseSkill = 324;
+                defenseSkill = 324 + Dungeon.hero.STR;
                 EXP = 1800;
                 break;
             case 3:
                 HP = HT = 3000000;
-                defenseSkill = 1100;
+                defenseSkill = 1100 + Dungeon.hero.STR;
                 EXP = 50000;
                 break;
             case 4:
                 HP = HT = 600000000;
-                defenseSkill = 16500;
+                defenseSkill = 16500 + Dungeon.hero.STR;
                 EXP = 9000000;
                 break;
         }

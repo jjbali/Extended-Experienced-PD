@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
@@ -72,7 +77,7 @@ public class Tengu extends Mob {
 		
 		HP = HT = 2000L * Dungeon.hero.lvl;
 		EXP = 75;
-		defenseSkill = 15;
+		defenseSkill = 15 + Dungeon.hero.STR;
 		
 		HUNTING = new Hunting();
 		
@@ -85,22 +90,22 @@ public class Tengu extends Mob {
         switch (Dungeon.cycle){
             case 1:
                 HP = HT = 10000L * Dungeon.hero.lvl;
-                defenseSkill = 43;
+                defenseSkill = 43 + Dungeon.hero.STR;
                 EXP = 210;
                 break;
             case 2:
                 HP = HT = 180000L * Dungeon.hero.lvl;
-                defenseSkill = 210;
+                defenseSkill = 210 + Dungeon.hero.STR;
                 EXP = 4100;
                 break;
             case 3:
                 HP = HT = 6000000L * Dungeon.hero.lvl;
-                defenseSkill = 520;
+                defenseSkill = 520 + Dungeon.hero.STR;
                 EXP = 60000;
                 break;
             case 4:
                 HP = HT = 750000000L * Dungeon.hero.lvl;
-                defenseSkill = 3600;
+                defenseSkill = 3600 + Dungeon.hero.STR;
                 EXP = 75000000;
                 break;
         }

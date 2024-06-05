@@ -64,7 +64,7 @@ public class Goo extends Mob {
 	{
 		HP = HT = 1000L * Dungeon.hero.lvl;
 		EXP = 50;
-		defenseSkill = 8;
+		defenseSkill = 8 + Dungeon.hero.STR;
 		spriteClass = GooSprite.class;
 
 		properties.add(Property.BOSS);
@@ -74,22 +74,22 @@ public class Goo extends Mob {
         switch (Dungeon.cycle){
             case 1:
                 HP = HT = 8000L * Dungeon.hero.lvl;
-                defenseSkill = 36;
+                defenseSkill = 36 + Dungeon.hero.STR;
                 EXP = 120;
                 break;
             case 2:
                 HP = HT = 124500L * Dungeon.hero.lvl;
-                defenseSkill = 170;
+                defenseSkill = 170 + Dungeon.hero.STR;
                 EXP = 1500;
                 break;
             case 3:
                 HP = HT = 1400000L * Dungeon.hero.lvl;
-                defenseSkill = 415;
+                defenseSkill = 415 + Dungeon.hero.STR;
                 EXP = 20000;
                 break;
             case 4:
                 HP = HT = 300000000L * Dungeon.hero.lvl;
-                defenseSkill = 2200;
+                defenseSkill = 2200 + Dungeon.hero.STR;
                 EXP = 20000000;
                 break;
         }

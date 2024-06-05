@@ -1,9 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
  * Copyright (C) 2014-2024 Evan Debenham
+ *
+ * Experienced Pixel Dungeon
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs;
@@ -70,31 +78,31 @@ public class DwarfKing extends Mob {
 	{
 		spriteClass = KingSprite.class;
 
-		HP = HT = 75 * theSubjectConstant();
+		HP = HT = 225 * theSubjectConstant();
 		EXP = 200;
-		defenseSkill = 22;
+		defenseSkill = 22 + Dungeon.hero.STR;
 
 		properties.add(Property.BOSS);
 		properties.add(Property.UNDEAD);
         switch (Dungeon.cycle){
 			case 1:
-				HP = HT = 969 * theSubjectConstant();
-				defenseSkill = 89;
+				HP = HT = 2907 * theSubjectConstant();
+				defenseSkill = 89 + Dungeon.hero.STR;
 				EXP = 725;
 				break;
 			case 2:
-				HP = HT = 15075 * theSubjectConstant();
-				defenseSkill = 324;
+				HP = HT = 45225 * theSubjectConstant();
+				defenseSkill = 324 + Dungeon.hero.STR;
 				EXP = 25000;
 				break;
 			case 3:
-				HP = HT = 475000 * theSubjectConstant();
-				defenseSkill = 780;
+				HP = HT = 1425000 * theSubjectConstant();
+				defenseSkill = 780 + Dungeon.hero.STR;
 				EXP = 400000;
 				break;
 			case 4:
 				HP = HT = 45000000 * theSubjectConstant();
-				defenseSkill = 7000;
+				defenseSkill = 7000 + Dungeon.hero.STR;
 				EXP = 99999999;
 				break;
         }
@@ -196,7 +204,7 @@ public class DwarfKing extends Mob {
 
 		if (phase == 1) {
 
-			if (summonCooldown <= 0 && summonSubject(3)){
+			if (summonCooldown <= 0 && summonSubject(Dungeon.isChallenged(THE_TRUE_FATALITY) ? 2 : 3)){
 				summonsMade++;
 				summonCooldown += Random.NormalIntRange(MIN_COOLDOWN, MAX_COOLDOWN);
 			} else if (summonCooldown > 0){
@@ -237,8 +245,61 @@ public class DwarfKing extends Mob {
 			}
 
 		} else if (phase == 2){
+
+			if (Dungeon.isChallenged(Challenges.THE_TRUE_FATALITY)){
+				//challenge logic
+				if (summonsMade < 6){
+					if (summonsMade == 0) {
+						sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
+						Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
+						yell(Messages.get(this, "wave_1"));
+					}
+					summonSubject(3, DKGhoul.class);
+					summonSubject(3, DKGhoul.class);
+					spend(3 * TICK);
+					summonsMade += 2;
+					return true;
+				} else if (shielding() <= (HT - (HT / theSubjectConstant())*6) && summonsMade < 12){
+					if (summonsMade == 6) {
+						sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
+						Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
+						yell(Messages.get(this, "wave_2"));
+					}
+					summonSubject(3, DKGhoul.class);
+					summonSubject(3, DKGhoul.class);
+					if (summonsMade == 6) {
+						summonSubject(3, DKMonk.class);
+					} else {
+						summonSubject(3, DKWarlock.class);
+					}
+					summonsMade += 3;
+					spend(3*TICK);
+					return true;
+				} else if (shielding() <= (HT - (HT / theSubjectConstant())*12) && summonsMade < 18) {
+					if (summonsMade == 12) {
+						sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
+						Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
+						yell(Messages.get(this, "wave_3"));
+						summonSubject(3, DKWarlock.class);
+						summonSubject(3, DKMonk.class);
+						summonSubject(3, DKGhoul.class);
+						summonSubject(3, DKGhoul.class);
+						summonsMade += 4;
+						spend(3*TICK);
+					} else {
+						summonSubject(3, DKGolem.class);
+						summonSubject(3, DKGolem.class);
+						summonsMade += 2;
+						spend(TICK);
+					}
+					return true;
+				} else {
+					spend(TICK);
+					return true;
+				}
+			} else {
 				//non-challenge logic
-				if (summonsMade < 10) {
+				if (summonsMade < 4) {
 					if (summonsMade == 0) {
 						sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
 						Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
@@ -248,13 +309,13 @@ public class DwarfKing extends Mob {
 					spend(3 * TICK);
 					summonsMade++;
 					return true;
-				} else if (shielding() <= (HT - (HT / theSubjectConstant()) * 4) && summonsMade < 12) {
-					if (summonsMade == 8) {
+				} else if (shielding() <= (HT - (HT / theSubjectConstant()) * 4) && summonsMade < 8) {
+					if (summonsMade == 4) {
 						sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
 						Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
 						yell(Messages.get(this, "wave_2"));
 					}
-					if (summonsMade == 10) {
+					if (summonsMade == 7) {
 						summonSubject(3, Random.Int(2) == 0 ? DKMonk.class : DKWarlock.class);
 					} else {
 						summonSubject(3, DKGhoul.class);
@@ -262,7 +323,7 @@ public class DwarfKing extends Mob {
 					summonsMade++;
 					spend(TICK);
 					return true;
-				} else if (shielding() <= (HT - (HT / theSubjectConstant()) * 8) && summonsMade < 16) {
+				} else if (shielding() <= (HT - (HT / theSubjectConstant()) * 8) && summonsMade < 12) {
 					sprite.centerEmitter().start(Speck.factory(Speck.SCREAM), 0.4f, 2);
 					Sample.INSTANCE.play(Assets.Sounds.CHALLENGE);
 					yell(Messages.get(this, "wave_3"));
@@ -270,17 +331,16 @@ public class DwarfKing extends Mob {
 					summonSubject(4, DKMonk.class);
 					summonSubject(4, DKGhoul.class);
 					summonSubject(4, DKGhoul.class);
-					summonSubject(4, DKGhoul.class);
-					summonSubject(4, DKGhoul.class);
-					summonsMade = 16;
+					summonsMade = 12;
 					spend(TICK);
 					return true;
 				} else {
 					spend(TICK);
 					return true;
 				}
+			}
 		} else if (phase == 3 && buffs(Summoning.class).size() < 4){
-			if (summonSubject(3)) summonsMade++;
+			if (summonSubject(Dungeon.isChallenged(Challenges.THE_TRUE_FATALITY) ? 2 : 3)) summonsMade++;
 		}
 
 		return super.act();

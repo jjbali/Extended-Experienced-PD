@@ -74,7 +74,7 @@ public class BlackMimic extends Mob {
 		//TODO improved sprite
 		spriteClass = MimicSprite.Black.class;
 
-		HP = HT = 900 + Dungeon.hero.lvl*15;
+		HP = HT = 25000 * Dungeon.hero.lvl;
 		EXP = 2000;
 		defenseSkill = 20 + Dungeon.hero.lvl / 2;
 

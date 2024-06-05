@@ -70,32 +70,32 @@ public class DM300 extends Mob {
 	{
 		spriteClass = DM300Sprite.class;
 
-		HP = HT = 400L * Dungeon.hero.lvl;
+		HP = HT = 3500L * Dungeon.hero.lvl;
 		EXP = 30;
-		defenseSkill = 15;
+		defenseSkill = 15 + Dungeon.hero.STR;
 
 		properties.add(Property.BOSS);
 		properties.add(Property.INORGANIC);
 		properties.add(Property.LARGE);
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 1600L * Dungeon.hero.lvl;
-                defenseSkill = 60;
+                HP = HT = 32000L * Dungeon.hero.lvl;
+                defenseSkill = 60 + Dungeon.hero.STR;
                 EXP = 310;
                 break;
             case 2:
-                HP = HT = 19564L * Dungeon.hero.lvl;
-                defenseSkill = 222;
+                HP = HT = 572800L * Dungeon.hero.lvl;
+                defenseSkill = 222 + Dungeon.hero.STR;
                 EXP = 7000;
                 break;
             case 3:
-                HP = HT = 900000L * Dungeon.hero.lvl;
-                defenseSkill = 624;
+                HP = HT = 18575200L * Dungeon.hero.lvl;
+                defenseSkill = 624 + Dungeon.hero.STR;
                 EXP = 110000;
                 break;
             case 4:
-                HP = HT = 12000000L * Dungeon.hero.lvl;
-                defenseSkill = 5000;
+                HP = HT = 1200000000L * Dungeon.hero.lvl;
+                defenseSkill = 5000 + Dungeon.hero.STR;
                 EXP = 2000000;
                 break;
         }
