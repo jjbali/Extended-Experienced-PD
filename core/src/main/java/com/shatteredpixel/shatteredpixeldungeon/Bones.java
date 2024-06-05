@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon;
@@ -82,17 +87,13 @@ public class Bones {
 	private static Item pickItem(Hero hero){
 		Item item = null;
 
-		//seeded runs always leave gold
+		//seeded runs don't leave items
 		//This is to prevent using specific seeds to transport items to regular runs
 		if (!Dungeon.customSeedText.isEmpty()){
-			if (Dungeon.gold > 15000) {
-				return new Gold( Random.NormalIntRange( 500, 1500000 ) );
-			} else {
-				return new Gold( 5000 );
-			}
+			return null;
 		}
 
-		if (Dungeon.Int(2) != 0) {
+		if (Dungeon.Int(3) != 0) {
 			switch (Dungeon.Int(7)) {
 				case 0:
 					item = hero.belongings.weapon;
@@ -119,45 +120,32 @@ public class Bones {
 					item = Dungeon.quickslot.randomNonePlaceholder();
 					break;
 			}
-			if (item != null && item.tagged)
-				return item;
-			else if (item == null || !item.bones) {
+			if (item == null || !item.bones) {
 				return pickItem(hero);
 			}
 		} else {
 
 			Iterator<Item> iterator = hero.belongings.backpack.iterator();
-			Iterator<Item> taggedIterator = hero.belongings.iterator();
 			Item curItem;
 			ArrayList<Item> items = new ArrayList<>();
-			ArrayList<Item> taggedItems = new ArrayList<>();
 			while (iterator.hasNext()){
 				curItem = iterator.next();
-				if (curItem.bones)
+				if (curItem.bones) {
 					items.add(curItem);
-			}
-			while (taggedIterator.hasNext()){
-				curItem = taggedIterator.next();
-				if (curItem.tagged)
-					taggedItems.add(curItem);
+				}
 			}
 
-			if (taggedItems.size() > 0){
-				depth = 1;
-				item = taggedItems.size() > 1 ? Random.element(taggedItems) : taggedItems.get(0);
-				if (item != null)
-					item.tagged = false;
-			} else if (Random.Int(3) < items.size()) {
+			//if there are few items, there is an increasingly high chance of leaving nothing
+			if (Dungeon.Int(3) < items.size()) {
 				item = Random.element(items);
 				if (item.stackable){
 					item.quantity(Dungeon.NormalLongRange(1, (item.quantity() + 1) / 2));
+					if (item.quantity() > 3){
+						item.quantity(3);
+					}
 				}
 			} else {
-				if (Dungeon.gold > 15000) {
-					return new Gold( Random.NormalIntRange( 500, 1500000 ) );
-				} else {
-					return new Gold( 5000 );
-				}
+				item = null;
 			}
 		}
 		
