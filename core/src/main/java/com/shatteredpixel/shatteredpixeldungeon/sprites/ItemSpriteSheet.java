@@ -972,7 +972,7 @@ public class ItemSpriteSheet {
 		assignItemRect(SABER_ENERGY				, 13, 15);
 		assignItemRect(CROSSBOW_ENERGY				, 15, 15);
 		assignItemRect(QUARTERSTAFF_ENERGY				, 16, 16);
-		assignItemRect(QUARTERSTAFF_ENERGY				, 14, 14);
+		assignItemRect(WHIP_ENERGY				, 14, 14);
 	}
 
 	private static final int NEW_POTIONS		=			xy(1, 43);  //16 slots
