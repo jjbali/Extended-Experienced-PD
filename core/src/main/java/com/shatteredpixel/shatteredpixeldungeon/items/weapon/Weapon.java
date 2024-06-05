@@ -300,14 +300,16 @@ abstract public class Weapon extends KindOfWeapon implements EquipableItem.Tiera
 			case 0:
 				return tier;
 			case 1:
-				return tier+1;
+				return tier+10;
 			case 2:
-				return Math.round(tier*1.5f);
+				return Math.round(tier*6.5f);
 			case 3:
-				return Math.round((tier+2)*2f);
+				return Math.round((tier+20)*8f);
 			case 4:
+				return Math.round((tier*10+75)*21f);
+			case 5:
 			default:
-				return Math.round((tier+4)*3f);
+				return Math.round((tier*55+850)*150f);
 		}
 	}
 
