@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.ui;
@@ -40,8 +45,8 @@ public class HealthBar extends Component {
 	private ColorBlock Shld;
 	private ColorBlock Hp;
 	
-	private float health;
-	private float shield;
+	private double health;
+	private double shield;
 	
 	@Override
 	protected void createChildren() {
@@ -68,24 +73,24 @@ public class HealthBar extends Component {
 		//logic here rounds up to the nearest pixel
 		float pixelWidth = width;
 		if (camera() != null) pixelWidth *= camera().zoom;
-		Shld.size( width * (float)Math.ceil(shield * pixelWidth)/pixelWidth, height );
-		Hp.size( width * (float)Math.ceil(health * pixelWidth)/pixelWidth, height );
+		Shld.size( (float)(width * Math.ceil(shield * pixelWidth)/pixelWidth), height );
+		Hp.size( (float)(width * Math.ceil(health * pixelWidth)/pixelWidth), height );
 	}
 	
-	public void level( float value ) {
+	public void level( double value ) {
 		level( value, 0f );
 	}
 
-	public void level( float health, float shield ){
+	public void level( double health, double shield ){
 		this.health = health;
 		this.shield = shield;
 		layout();
 	}
 
 	public void level(Char c){
-		float health = c.HP;
-		float shield = c.shielding();
-		float max = Math.max(health+shield, c.HT);
+		double health = c.HP;
+		double shield = c.shielding();
+		double max = Math.max(health+shield, c.HT);
 
 		level(health/max, (health+shield)/max);
 	}
