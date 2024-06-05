@@ -130,7 +130,7 @@ public class IdealBag extends TreasureBag {
 
     public static class OsmirdiumShield extends FlavourBuff {
 
-        public static final float DURATION	= 8.99f;
+        public static final float DURATION	= 12.55f;
 
         {
             type = buffType.POSITIVE;
