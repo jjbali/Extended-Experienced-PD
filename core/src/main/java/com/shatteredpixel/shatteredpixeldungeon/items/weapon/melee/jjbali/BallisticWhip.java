@@ -70,7 +70,7 @@ public class BallisticWhip extends JjbaliWeapon {
 		hitSound = Assets.Sounds.HIT;
 		hitSoundPitch = 1.3f;
 
-		DLY = 1.5f;
+		DLY = 0.9f;
 	}
 
 	@Override
