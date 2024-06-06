@@ -46,6 +46,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.RingOfWealth;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
+import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -196,6 +197,12 @@ public class TriangularItem extends Questionnaire {
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR_II) >= 3 && Random.Int(10) == 0){
                         updateQuickslot();
                         Dungeon.level.drop(new TieredCard().upgrade(Math.round(4 + totalAnswers_k/4)), curUser.pos).sprite.drop();
+                    }
+                    if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR_III) >= 2) {
+                        updateQuickslot();
+                        for (Wand wand: hero.belongings.getAllItems(Wand.class)){
+                            wand.gainCharge(1f + s);
+                        }
                     }
                     GLog.h("You answered the question correctly");
                     SpellSprite.show(hero, SpellSprite.CORRECT);

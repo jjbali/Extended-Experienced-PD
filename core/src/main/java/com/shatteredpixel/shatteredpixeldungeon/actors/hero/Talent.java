@@ -49,6 +49,18 @@ import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.ClothArmor;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.HornOfPlenty;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.BinaryItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisibilityItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.ExponentialItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MixedOperationItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.OddEvenItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.RectangularItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.SubtractionItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TypingItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.rings.Ring;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfRecharging;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
@@ -173,6 +185,7 @@ public enum Talent {
 	SCROLL_COLLECTOR(162, 3), POTION_COLLECTOR(161, 3), TREASUREBAG_COLLECTOR(163, 2),
 	//unversal T3
 	HANDIFUL_EXPERIENCE(164, 3), AMPLIFIER(165, 3), QUESTIONNAIRE_SUPERVISOR_II(166, 3),
+	QUESTIONNAIRE_SUPERVISOR_III(167, 2),
 	//Ratmogrify T4
 	RATSISTANCE(215, 4), RATLOMACY(216, 4), RATFORCEMENTS(217, 4);
 
@@ -686,6 +699,13 @@ public enum Talent {
 			}
 		}
 
+		if (hero.pointsInTalent(QUESTIONNAIRE_SUPERVISOR_III) >= 1 && enemy.alignment == Char.Alignment.ENEMY) {
+			dmg *= 1d + (0.001f * (AdditionItem.streak_a + SubtractionItem.streak_b + MultiplicationItem.streak_c +
+									DivisionItem.streak_d + ExponentialItem.streak_e + MixedOperationItem.streak_f +
+									OddEvenItem.streak_g + DivisibilityItem.streak_h + BinaryItem.streak_i +
+									RectangularItem.streak_j + TriangularItem.streak_k + TypingItem.streak_l) );
+		}
+
 		return dmg;
 	}
 
@@ -837,37 +857,37 @@ public enum Talent {
 		//tier 3
 		switch (cls){
 			case BERSERKER: default:
-				Collections.addAll(tierTalents, ENDLESS_RAGE, DEATHLESS_FURY, ENRAGED_CATALYST);
+				Collections.addAll(tierTalents, ENDLESS_RAGE, DEATHLESS_FURY, ENRAGED_CATALYST, QUESTIONNAIRE_SUPERVISOR_III);
 				break;
 			case GLADIATOR:
-				Collections.addAll(tierTalents, CLEAVE, LETHAL_DEFENSE, ENHANCED_COMBO);
+				Collections.addAll(tierTalents, CLEAVE, LETHAL_DEFENSE, ENHANCED_COMBO, QUESTIONNAIRE_SUPERVISOR_III);
 				break;
 			case BATTLEMAGE:
-				Collections.addAll(tierTalents, EMPOWERED_STRIKE, MYSTICAL_CHARGE, EXCESS_CHARGE);
+				Collections.addAll(tierTalents, EMPOWERED_STRIKE, MYSTICAL_CHARGE, EXCESS_CHARGE, QUESTIONNAIRE_SUPERVISOR_III);
 				break;
 			case WARLOCK:
-				Collections.addAll(tierTalents, SOUL_EATER, SOUL_SIPHON, NECROMANCERS_MINIONS);
+				Collections.addAll(tierTalents, SOUL_EATER, SOUL_SIPHON, NECROMANCERS_MINIONS, QUESTIONNAIRE_SUPERVISOR_III);
 				break;
 			case ASSASSIN:
-				Collections.addAll(tierTalents, ENHANCED_LETHALITY, ASSASSINS_REACH, BOUNTY_HUNTER);
+				Collections.addAll(tierTalents, ENHANCED_LETHALITY, ASSASSINS_REACH, BOUNTY_HUNTER, QUESTIONNAIRE_SUPERVISOR_III);
 				break;
 			case FREERUNNER:
-				Collections.addAll(tierTalents, EVASIVE_ARMOR, PROJECTILE_MOMENTUM, SPEEDY_STEALTH);
+				Collections.addAll(tierTalents, EVASIVE_ARMOR, PROJECTILE_MOMENTUM, SPEEDY_STEALTH, QUESTIONNAIRE_SUPERVISOR_III);
 				break;
 			case SNIPER:
-				Collections.addAll(tierTalents, FARSIGHT, SHARED_ENCHANTMENT, SHARED_UPGRADES);
+				Collections.addAll(tierTalents, FARSIGHT, SHARED_ENCHANTMENT, SHARED_UPGRADES, QUESTIONNAIRE_SUPERVISOR_III);
 				break;
 			case WARDEN:
-				Collections.addAll(tierTalents, DURABLE_TIPS, BARKSKIN, SHIELDING_DEW);
+				Collections.addAll(tierTalents, DURABLE_TIPS, BARKSKIN, SHIELDING_DEW, QUESTIONNAIRE_SUPERVISOR_III);
 				break;
 			case CHAMPION:
-				Collections.addAll(tierTalents, SECONDARY_CHARGE, TWIN_UPGRADES, COMBINED_LETHALITY);
+				Collections.addAll(tierTalents, SECONDARY_CHARGE, TWIN_UPGRADES, COMBINED_LETHALITY, QUESTIONNAIRE_SUPERVISOR_III);
 				break;
 			case MONK:
-				Collections.addAll(tierTalents, UNENCUMBERED_SPIRIT, MONASTIC_VIGOR, COMBINED_ENERGY);
+				Collections.addAll(tierTalents, UNENCUMBERED_SPIRIT, MONASTIC_VIGOR, COMBINED_ENERGY, QUESTIONNAIRE_SUPERVISOR_III);
 				break;
 			case KING:
-				Collections.addAll(tierTalents, CLEAVE, EXCESS_CHARGE, SOUL_SIPHON, ENHANCED_LETHALITY, SECONDARY_CHARGE);
+				Collections.addAll(tierTalents, CLEAVE, SOUL_SIPHON, ENHANCED_LETHALITY, SECONDARY_CHARGE, QUESTIONNAIRE_SUPERVISOR_III);
 				break;
 		}
 		for (Talent talent : tierTalents){

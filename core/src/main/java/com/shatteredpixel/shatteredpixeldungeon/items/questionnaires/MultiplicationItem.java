@@ -46,6 +46,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
+import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
@@ -224,6 +225,12 @@ public class MultiplicationItem extends Questionnaire {
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR_II) >= 3 && Random.Int(10) == 0){
                         updateQuickslot();
                         Dungeon.level.drop(new TieredCard().upgrade(Math.round(4 + totalAnswers_c/4)), curUser.pos).sprite.drop();
+                    }
+                    if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR_III) >= 2) {
+                        updateQuickslot();
+                        for (Wand wand: hero.belongings.getAllItems(Wand.class)){
+                            wand.gainCharge(1f + s);
+                        }
                     }
                     totalAnswers_c += 1;
                     streak_c += 1 + YellowFragment.questionnairesStreakAdd();
