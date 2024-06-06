@@ -172,7 +172,7 @@ public class BallisticWhip extends JjbaliWeapon {
 
 		ConeAOE cone = new ConeAOE(aim,
 				dist,
-				45,
+				360,
 				Ballistica.STOP_SOLID | Ballistica.STOP_TARGET);
 
 		for (Ballistica ray : cone.outerRays){
