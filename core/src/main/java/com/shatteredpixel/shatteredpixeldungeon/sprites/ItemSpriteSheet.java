@@ -962,6 +962,7 @@ public class ItemSpriteSheet {
 	public static final int CROSSBOW_ENERGY			= ENERGY_WEP+8;
 	public static final int QUARTERSTAFF_ENERGY			= ENERGY_WEP+9;
 	public static final int WHIP_ENERGY			= ENERGY_WEP+10;
+	public static final int BOW_ENERGY			= ENERGY_WEP+11;
 	static{
 		assignItemRect(WORN_SHORTSWORD_ENERGY	, 13, 13);
 		assignItemRect(DAGGER_ENERGY			, 12, 13);
@@ -973,6 +974,7 @@ public class ItemSpriteSheet {
 		assignItemRect(CROSSBOW_ENERGY				, 15, 15);
 		assignItemRect(QUARTERSTAFF_ENERGY				, 16, 16);
 		assignItemRect(WHIP_ENERGY				, 14, 14);
+		assignItemRect(WHIP_ENERGY				, 16, 16);
 	}
 
 	private static final int NEW_POTIONS		=			xy(1, 43);  //16 slots
