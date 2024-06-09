@@ -110,12 +110,12 @@ public class DM300 extends Mob {
 	@Override
 	public long damageRoll() {
         switch (Dungeon.cycle) {
-            case 1: return Random.NormalIntRange(67, 86);
-            case 2: return Random.NormalIntRange(340, 445);
-            case 3: return Random.NormalIntRange(1500, 1943);
-            case 4: return Random.NormalIntRange(47000, 84000);
+            case 1: return Random.NormalIntRange(500, 1000);
+            case 2: return Random.NormalIntRange(5000, 10000);
+            case 3: return Random.NormalIntRange(50000, 100000);
+            case 4: return Random.NormalIntRange(150000, 200000);
         }
-		return Random.NormalIntRange( 15, 25 );
+		return Random.NormalIntRange( 100, 200 );
 	}
 
 	@Override
@@ -144,8 +144,8 @@ public class DM300 extends Mob {
 	public boolean supercharged = false;
 	public boolean chargeAnnounced = false;
 
-	private final int MIN_COOLDOWN = 5;
-	private final int MAX_COOLDOWN = 7;
+	private final int MIN_COOLDOWN = 2;
+	private final int MAX_COOLDOWN = 5;
 
 	private int turnsSinceLastAbility = -1;
 	private int abilityCooldown = Random.NormalIntRange(MIN_COOLDOWN, MAX_COOLDOWN);
@@ -528,7 +528,7 @@ public class DM300 extends Mob {
 	}
 
 	public int totalPylonsToActivate(){
-		return 3;
+		return 4;
 	}
 
 	@Override
