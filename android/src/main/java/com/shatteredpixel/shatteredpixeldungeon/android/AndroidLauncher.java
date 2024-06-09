@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.android;
@@ -53,11 +58,11 @@ import com.watabou.noosa.Game;
 import com.watabou.utils.FileUtils;
 
 public class AndroidLauncher extends AndroidApplication {
-	
+
 	public static AndroidApplication instance;
-	
+
 	private static AndroidPlatformSupport support;
-	
+
 	@SuppressLint("SetTextI18n")
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
@@ -67,14 +72,12 @@ public class AndroidLauncher extends AndroidApplication {
 			GdxNativesLoader.load();
 			FreeType.initFreeType();
 		} catch (Exception e){
-			AndroidMissingNativesHandler.errorMsg = e.getMessage();
+			AndroidMissingNativesHandler.error = e;
 			Intent intent = new Intent(this, AndroidMissingNativesHandler.class);
 			startActivity(intent);
 			finish();
 			return;
 		}
-
-		//getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
 
 		new UCEHandler.Builder(this).setUCEHEnabled(true).build();
 
@@ -112,14 +115,14 @@ public class AndroidLauncher extends AndroidApplication {
 		} else {
 			instance = this;
 		}
-		
+
 		//set desired orientation (if it exists) before initializing the app.
 		if (SPDSettings.landscape() != null) {
 			instance.setRequestedOrientation( SPDSettings.landscape() ?
 					ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE :
 					ActivityInfo.SCREEN_ORIENTATION_SENSOR_PORTRAIT );
 		}
-		
+
 		AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
 		config.depth = 0;
 		if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.ICE_CREAM_SANDWICH_MR1) {
@@ -128,19 +131,22 @@ public class AndroidLauncher extends AndroidApplication {
 			config.g = 6;
 			config.b = 5;
 		}
-		
+
+		//we manage this ourselves
+		config.useImmersiveMode = false;
+
 		config.useCompass = false;
 		config.useAccelerometer = false;
-		
+
 		if (support == null) support = new AndroidPlatformSupport();
 		else                 support.reloadGenerators();
-		
+
 		support.updateSystemUI();
 
 		Button.longClick = ViewConfiguration.getLongPressTimeout()/1000f;
-		
+
 		initialize(new ShatteredPixelDungeon(support), config);
-		
+
 	}
 
 	@Override
@@ -171,7 +177,7 @@ public class AndroidLauncher extends AndroidApplication {
 		super.onWindowFocusChanged(hasFocus);
 		support.updateSystemUI();
 	}
-	
+
 	@Override
 	public void onMultiWindowModeChanged(boolean isInMultiWindowMode) {
 		super.onMultiWindowModeChanged(isInMultiWindowMode);
