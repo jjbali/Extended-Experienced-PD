@@ -243,11 +243,11 @@ public class Eye extends Mob {
 			}
 
 			if (hit( this, ch, true )) {
-                long dmg = Random.NormalIntRange(30, 50);
+                long dmg = Random.NormalIntRange(500, 1000);
                 switch (Dungeon.cycle){
-                    case 1: dmg = Random.NormalIntRange(168, 231); break;
-                    case 2: dmg = Random.NormalIntRange(510, 824); break;
-                    case 3: dmg = Random.NormalIntRange(3750, 5200); break;
+                    case 1: dmg = Random.NormalIntRange(1500, 2500); break;
+                    case 2: dmg = Random.NormalIntRange(3000, 5000); break;
+                    case 3: dmg = Random.NormalIntRange(10000, 15000); break;
                     case 4: dmg = Random.NormalIntRange(200000, 560000); break;
                 }
 				dmg = Math.round(dmg * AscensionChallenge.statModifier(this));

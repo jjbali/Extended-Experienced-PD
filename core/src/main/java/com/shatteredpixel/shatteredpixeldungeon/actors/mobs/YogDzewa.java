@@ -281,11 +281,11 @@ public class YogDzewa extends Mob {
 					}
 
 					if (hit( this, ch, true )) {
-						int dmg = Random.NormalIntRange(20, 30);
+						int dmg = Random.NormalIntRange(500, 1500);
 						switch (Dungeon.cycle){
-							case 1: dmg = Random.NormalIntRange(120, 175); break;
-							case 2: dmg = Random.NormalIntRange(370, 502); break;
-							case 3: dmg = Random.NormalIntRange(2650, 4000); break;
+							case 1: dmg = Random.NormalIntRange(2000, 8000); break;
+							case 2: dmg = Random.NormalIntRange(8500, 17800); break;
+							case 3: dmg = Random.NormalIntRange(17800, 75000); break;
 							case 4: dmg = Random.NormalIntRange(179000, 320000); break;
 						}
 						if (Random.Int(3) == 0) {
@@ -311,7 +311,7 @@ public class YogDzewa extends Mob {
 
 			if (abilityCooldown <= 0){
 
-				long beams = 1 + (HT - HP)/(HT / 5 * 2);
+				long beams = 8;
 				HashSet<Integer> affectedCells = new HashSet<>();
 				for (int i = 0; i < beams; i++){
 
@@ -562,10 +562,10 @@ public class YogDzewa extends Mob {
 
 		sprite.parent.add(new Beam.HealthRay(sprite.center(), DungeonTilemap.raisedTileCenterToWorld(target.pos)));
 
-		HP += amount;
+		HP += amount * 3;
 
 		if (sprite.visible){
-			sprite.showStatus(CharSprite.POSITIVE, "+%dHP", amount);
+			sprite.showStatus(CharSprite.POSITIVE, "+%dHP", amount * 3);
 			sprite.emitter().burst(Speck.factory(Speck.HEALING), 50);
 		}
 	}
