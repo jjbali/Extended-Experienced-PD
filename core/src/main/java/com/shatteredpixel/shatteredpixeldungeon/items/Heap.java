@@ -139,7 +139,6 @@ public class Heap implements Bundlable {
 		}
 		sprite.link();
 		sprite.drop();
-		updateSubicon();
 	}
 	
 	public Heap setHauntedIfCursed(){
@@ -176,7 +175,6 @@ public class Heap implements Bundlable {
 		} else if (sprite != null) {
 			sprite.view(this).place( pos );
 		}
-
 		updateSubicon();
 		return item;
 	}
@@ -548,13 +546,17 @@ public class Heap implements Bundlable {
 
 			} else subicon.visible = false;
 
-			if (i.quantity() > 1 && !isContainerType()) {
+			if (i.quantity() > 1 && !isContainerType() && !(i instanceof Gold)) {
 
 				quantityDisplay.visible = true;
-				quantityDisplay.scale.set(0.65f);
+				quantityDisplay.scale.set(0.45f);
 
 
-				quantityDisplay.text("x" + i.quantity());
+				if (i.quantity > 10) {
+					quantityDisplay.text("x10+");
+				} else {
+					quantityDisplay.text("x" + i.quantity());
+				}
 				quantityDisplay.measure();
 
 				quantityDisplay.point(sprite.point());
@@ -569,7 +571,7 @@ public class Heap implements Bundlable {
 
 			if (items.size() > 1) {
 				heapSize.visible = true;
-				heapSize.scale.set(0.65f);
+				heapSize.scale.set(0.45f);
 
 				heapSize.text((items.size() - 1) + "+");
 				heapSize.measure();
@@ -591,9 +593,13 @@ public class Heap implements Bundlable {
 			if ((trueLvl != 0 || buffedLvl != 0) && !isContainerType()) {
 
 				itemLvl.visible = true;
-				itemLvl.scale.set(0.65f);
+				itemLvl.scale.set(0.45f);
 
-				itemLvl.text(Messages.format(ItemSlot.TXT_LEVEL, buffedLvl));
+				if (trueLvl < 11 || buffedLvl < 11) {
+					itemLvl.text(Messages.format(ItemSlot.TXT_LEVEL, buffedLvl));
+				} else {
+					itemLvl.text(">+10");
+				}
 				itemLvl.measure();
 				if (trueLvl == buffedLvl || buffedLvl <= 0) {
 					if (buffedLvl > 0) {
