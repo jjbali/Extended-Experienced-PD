@@ -101,12 +101,12 @@ public class BlackMimic extends Mob {
 
 	@Override
 	public long damageRoll() {
-		return Random.NormalLongRange( Dungeon.hero.HT / 4, Dungeon.hero.HT / 3 );
+		return Random.NormalLongRange( 250 * Dungeon.hero.HT, 500 * Dungeon.hero.HT );
 	}
 
 	@Override
 	public int attackSkill( Char target ) {
-		return 20 + Math.round(Dungeon.hero.lvl / 1.33f);
+		return 600 * Math.round(Dungeon.hero.lvl / 1.05f);
 	}
 
 	@Override
@@ -123,7 +123,7 @@ public class BlackMimic extends Mob {
 	private int abilityCooldown = Random.NormalIntRange(MIN_COOLDOWN, MAX_COOLDOWN);
 
 	private static final int MIN_COOLDOWN = 1;
-	private static final int MAX_COOLDOWN = 6;
+	private static final int MAX_COOLDOWN = 4;
 
 	private int lastAbility = 0;
 	private static final int NONE = 0;
