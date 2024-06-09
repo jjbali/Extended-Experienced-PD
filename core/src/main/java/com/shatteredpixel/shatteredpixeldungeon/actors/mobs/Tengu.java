@@ -120,12 +120,12 @@ public class Tengu extends Mob {
 	@Override
 	public long damageRoll() {
         switch (Dungeon.cycle) {
-            case 1: return Random.NormalIntRange(42, 60);
-            case 2: return Random.NormalIntRange(225, 312);
-            case 3: return Random.NormalIntRange(750, 1000);
-            case 4: return Random.NormalIntRange(14000, 23000);
+            case 1: return Random.NormalIntRange(100, 200);
+            case 2: return Random.NormalIntRange(500, 1000);
+            case 3: return Random.NormalIntRange(5000, 10000);
+            case 4: return Random.NormalIntRange(75000, 150000);
         }
-		return Random.NormalIntRange( 6, 12 );
+		return Random.NormalIntRange( 50, 100 );
 	}
 	
 	@Override
