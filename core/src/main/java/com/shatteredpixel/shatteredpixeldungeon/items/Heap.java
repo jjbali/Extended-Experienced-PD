@@ -592,7 +592,7 @@ public class Heap implements Bundlable {
 			long buffedLvl = i.buffedLvl();
 			if ((trueLvl != 0 || buffedLvl != 0) && !isContainerType()) {
 
-				itemLvl.visible = true;
+				itemLvl.visible = i.isIdentified();
 				itemLvl.scale.set(0.45f);
 
 				if (trueLvl < 11 || buffedLvl < 11) {
