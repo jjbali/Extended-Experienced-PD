@@ -114,23 +114,23 @@ public class Goo extends Mob {
 	public long damageRoll() {
 		int min = 1;
 
-		int max = (HP*2 <= HT) ? 12 : 8;
+		int max = (HP*2 <= HT) ? 24 : 16;
         switch (Dungeon.cycle){
             case 1:
                 min = 30;
-                max = (HP*2 <= HT) ? 64 : 48;
+                max = (HP*2 <= HT) ? 128 : 96;
                 break;
             case 2:
                 min = 190;
-                max = (HP*2 <= HT) ? 289 : 224;
+                max = (HP*2 <= HT) ? 578 : 448;
                 break;
             case 3:
                 min = 550;
-                max = (HP*2 <= HT) ? 934 : 731;
+                max = (HP*2 <= HT) ? 1868 : 1462;
                 break;
             case 4:
                 min = 8000;
-                max = (HP*2 <= HT) ? 26000 : 11000;
+                max = (HP*2 <= HT) ? 52000 : 22000;
                 break;
         }
 
