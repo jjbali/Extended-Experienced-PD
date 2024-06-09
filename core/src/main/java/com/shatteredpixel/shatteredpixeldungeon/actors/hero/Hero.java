@@ -793,7 +793,7 @@ public class Hero extends Char {
 		BuffIndicator.refreshBoss();
 
 		for ( Heap heap : Dungeon.level.heaps.valueList() ) {
-			heap.updateSubicon();
+			if (heap.seen && heap.sprite != null) heap.updateSubicon();
 		}
 
 		if (paralysed > 0) {

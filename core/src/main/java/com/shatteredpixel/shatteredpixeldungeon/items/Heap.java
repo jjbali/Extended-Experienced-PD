@@ -486,7 +486,7 @@ public class Heap implements Bundlable {
 		forSaleIndicator.copy(new ItemSprite(ItemSpriteSheet.GOLD));
 	}
 
-	private void killSubicons() {
+	public void killSubicons() {
 		subicon.kill();
 		quantityDisplay.kill();
 		heapSize.kill();

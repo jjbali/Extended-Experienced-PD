@@ -929,6 +929,7 @@ public class GameScene extends PixelScene {
 		if (scene != null) {
 			scene.addDiscardedSprite( heap );
 		}
+		heap.killSubicons();
 	}
 	
 	public static void add( Mob mob ) {
