@@ -121,12 +121,12 @@ public class DwarfKing extends Mob {
 	@Override
 	public long damageRoll() {
         switch (Dungeon.cycle) {
-            case 1: return Random.NormalIntRange(71, 83);
-            case 2: return Random.NormalIntRange(297, 455);
-            case 3: return Random.NormalIntRange(2000, 2800);
-            case 4: return Random.NormalIntRange(90000, 250000);
+            case 1: return Random.NormalIntRange(1000, 6000);
+            case 2: return Random.NormalIntRange(10000, 45000);
+            case 3: return Random.NormalIntRange(50000, 90000);
+            case 4: return Random.NormalIntRange(125000, 750000);
         }
-		return Random.NormalIntRange( 15, 25 );
+		return Random.NormalIntRange( 150, 750 );
 	}
 
 	@Override
@@ -156,8 +156,8 @@ public class DwarfKing extends Mob {
 
 	private float summonCooldown = 0;
 	private float abilityCooldown = 0;
-	private final int MIN_COOLDOWN = 10;
-	private final int MAX_COOLDOWN = 14;
+	private final int MIN_COOLDOWN = 3;
+	private final int MAX_COOLDOWN = 8;
 
 	private int lastAbility = 0;
 	private static final int NONE = 0;
