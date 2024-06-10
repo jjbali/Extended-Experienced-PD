@@ -30,6 +30,7 @@
 package com.shatteredpixel.shatteredpixeldungeon.items;
 
 import static com.shatteredpixel.shatteredpixeldungeon.Challenges.FALL_ECONOMY;
+import static com.shatteredpixel.shatteredpixeldungeon.Modifiers.FORGOTTEN_GOLD;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
@@ -108,9 +109,10 @@ public class Gold extends Item {
 		if (Dungeon.hero.perks.contains(Perks.Perk.MORE_COINS)) quantity *= 5;
 		if (Dungeon.hero.buff(TotemOfFortune.FortuneBuff.class) != null) quantity *= 5;
 		if (RectangularItem.totalAnswers_j > 0) quantity *= 1 + (RectangularItem.totalAnswers_j * 0.25f);
-		if (Dungeon.isChallenged(FALL_ECONOMY)) quantity *= 0.1f;
 		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) quantity *= 4;
 		quantity *= VioletFragment.goldMulti();
+		if (Dungeon.isChallenged(FALL_ECONOMY)) quantity *= 0.1f;
+		if (Dungeon.isModified(FORGOTTEN_GOLD)) quantity *= 0.1f;
 		return this;
 	}
 

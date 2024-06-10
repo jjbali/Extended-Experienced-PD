@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs;
@@ -29,6 +34,7 @@ import static com.shatteredpixel.shatteredpixeldungeon.Challenges.FALL_ECONOMY;
 
 import com.shatteredpixel.shatteredpixeldungeon.Badges;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
+import com.shatteredpixel.shatteredpixeldungeon.Modifiers;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.Statistics;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
@@ -157,6 +163,7 @@ if (sprite != null) {
 		if (Dungeon.hero.belongings.getItem(TotemOfFortune.class) != null) i /= 2;
 		if (Dungeon.isChallenged(FALL_ECONOMY)) i *= Random.Int(3, 10) + 1;
 		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) i -= i * 0.1f;
+		if (Dungeon.isModified(Modifiers.FORGOTTEN_GOLD)) i *= 0.3f;
 		return i;
 	}
 

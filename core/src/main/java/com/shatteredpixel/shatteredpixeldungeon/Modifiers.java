@@ -41,6 +41,7 @@ public class Modifiers {
 	public static final int BLINDNESS			= 8;
 	public static final int FEW_ITEMS = 16;
 	public static final int PRELUDE = 32;
+	public static final int FORGOTTEN_GOLD = 64;
 	public static final int MAX_VALUE           = 512;
 
 	public static final String[] NAME_IDS = {
@@ -49,7 +50,8 @@ public class Modifiers {
 			"lethal_potions",
 			"blind",
 			"few_items",
-			"prelude"
+			"prelude",
+			"forgotten_gold"
 	};
 
 	public static final int[] MASKS = {
@@ -58,7 +60,8 @@ public class Modifiers {
 			LETHAL_POTIONS,
 			BLINDNESS,
 			FEW_ITEMS,
-			PRELUDE
+			PRELUDE,
+			FORGOTTEN_GOLD
 	};
 
     public static int activeModifiers(){
