@@ -233,13 +233,13 @@ public class Generator {
 
 
     public enum Category {
-		WEAPON	( 2, 2, MeleeWeapon.class),
+		WEAPON	( 3, 1, MeleeWeapon.class),
 		WEP_T1	( 0, 0, MeleeWeapon.class),
 		WEP_T2	( 0, 0, MeleeWeapon.class),
 		WEP_T3	( 0, 0, MeleeWeapon.class),
 		WEP_T4	( 0, 0, MeleeWeapon.class),
 		WEP_T5	( 0, 0, MeleeWeapon.class),
-		WEP_JJBALI	( 1, 0, MeleeWeapon.class),
+		WEP_JJBALI	( 0, 1, MeleeWeapon.class),
 		ARMOR	( 2, 1, Armor.class ),
 		MISSILE ( 1, 2, MissileWeapon.class ),
 		MIS_T1  ( 0, 0, MissileWeapon.class ),
