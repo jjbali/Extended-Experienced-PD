@@ -494,12 +494,11 @@ public abstract class Level implements Bundlable {
 
 		Mob m = Reflection.newInstance(mobsToSpawn.remove(0));
 		ChampionEnemy.rollForChampion(m);
+		assert m != null;
 		if (Dungeon.isModified(FIFTYPERCENTMOREHP) || Dungeon.level.feeling == Feeling.INFINITY) {
-			assert m != null;
 			m.HP = m.HT *= 1.5f;
 		}
 		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
-			assert m != null;
 			m.HP = m.HT *= Dungeon.NormalIntRange(1, 10) + 1;
 			Buff.affect(m, Overload.class, Integer.MAX_VALUE);
 			Buff.affect(m, LifeLink.class, Integer.MAX_VALUE);
@@ -514,12 +513,10 @@ public abstract class Level implements Bundlable {
 			} else {
 				Buff.affect(m, Stamina.class, Integer.MAX_VALUE);
 			}
-			assert m != null;
 			m.state = m.WANDERING;
 		}
 
 		if (Dungeon.branch == Dungeon.DIMENSIONAL) {
-			assert m != null;
 			Buff.affect(m, AnkhInvulnerability.class, 10f);
 			m.HP = m.HT *= Dungeon.NormalIntRange(10, 50);
 			ChampionEnemy.rollForChampion(m);
@@ -527,6 +524,11 @@ public abstract class Level implements Bundlable {
 			m.defenseSkill *= 10;
 			m.EXP *= 10;
 			m.state = m.WANDERING;
+		}
+
+		if (Dungeon.isModified(Modifiers.PRELUDE)) {
+			m.state = m.WANDERING;
+			m.beckon(Dungeon.hero.pos);
 		}
 
 		return m;
