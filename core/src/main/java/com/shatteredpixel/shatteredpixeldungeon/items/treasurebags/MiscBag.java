@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2020 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.treasurebags;
@@ -92,7 +97,7 @@ public class MiscBag extends TreasureBag {
         );
         int amount = Random.Int(5, 10);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 3.5f;
-        if (BinaryItem.streak_i >= 20) amount *= 10f;
+        if (BinaryItem.streak_i >= 20) amount *= 2.5f;
         items.add(Reflection.newInstance(Random.element(normal)).quantity(amount));
         return items;
     }

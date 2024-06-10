@@ -49,7 +49,7 @@ public class BurntBag extends TreasureBag {
         ArrayList<Item> items = new ArrayList<>();
         int amount = Random.Int(0, 7);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 1.5f;
-        if (BinaryItem.streak_i >= 20) amount *= 10f;
+        if (BinaryItem.streak_i >= 20) amount *= 2.5f;
         for(int i = 0; i < amount; i++) {
             if (Dungeon.Int(2) == 0)
                 items.add(new ChargrilledMeat());

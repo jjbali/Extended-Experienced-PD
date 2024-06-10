@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2020 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.treasurebags;
@@ -52,7 +57,7 @@ public class QualityBag extends TreasureBag {
         ArrayList<Item> items = new ArrayList<>();
         int amount = 1;
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG) && Random.Int(2) == 0) amount = 2;
-        if (BinaryItem.streak_i >= 20) amount *= 10f;
+        if (BinaryItem.streak_i >= 20) amount *= 2.5f;
         for (int i = 0; i < amount; i++) {
             Weapon wep = Generator.randomWeapon(Dungeon.depth + 1);
             wep.cursed = false;

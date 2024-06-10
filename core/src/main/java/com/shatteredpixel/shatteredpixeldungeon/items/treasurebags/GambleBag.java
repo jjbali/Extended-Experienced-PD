@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2020 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.treasurebags;
@@ -44,7 +49,7 @@ public class GambleBag extends TreasureBag {
         ArrayList<Item> items = new ArrayList<>();
         int amount = Random.Int(0, 15);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 1.5f;
-        if (BinaryItem.streak_i >= 20) amount *= 10f;
+        if (BinaryItem.streak_i >= 20) amount *= 2.5f;
         for(int i = 0; i < amount; i++) items.add(Generator.random());
         for (Item item: items){
             if (item.stackable && Random.Float() < 0.33f) item.quantity(item.quantity()+1);

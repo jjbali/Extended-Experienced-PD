@@ -270,7 +270,7 @@ public class BinaryItem extends Questionnaire {
         return "This item represents your intelligence, it may also give you some rewards.\n\nConvert to Binary: " + CODE + "\nAnswered Correctly: " + totalAnswers_i + "\nStreak: " + streak_i
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
                 + "\n\n_Streak Pass List:_"
-                + "\n- (20) Loot Amount in TBs: +1000%";
+                + "\n- (20) Loot Amount in TBs: +250%";
     }
     private String STREAKS = "STREAKS";
     private String TOTAL_ANSWERS = "TOTAL_ANSWERS";
