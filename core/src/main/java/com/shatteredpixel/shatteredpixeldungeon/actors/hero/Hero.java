@@ -639,7 +639,11 @@ public class Hero extends Char {
 
 		if (heroClass == HeroClass.DUELIST
 				&& (buff(Recharging.class) != null || buff(ArtifactRecharge.class) != null)){
-			dmg = Math.round(dmg * 1.08f);
+			dmg = Math.round(dmg * 1.08d);
+		}
+
+		if (Dungeon.isModified(Modifiers.FATALITY) && Random.Float() <= 0.15f) {
+			dmg = Math.round(dmg * 0.1d);
 		}
 
 		dmg += AdditionItem.totalAnswers_a;
