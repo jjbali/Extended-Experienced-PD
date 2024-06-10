@@ -372,7 +372,8 @@ public class ThreeOperationQuestionnaire extends Questionnaire {
     public String desc() {
         return "This item represents your intelligence, it may also give you some rewards.\n\n" + "Body: " + BODY + "\nType: " + type + "\nAnswered Correctly: " + totalAnswers_m + "\nStreak: " + streak_m
                 + "\n\n_Streaks resets at zero when wrong answer is entered._"
-                + "\n\n_Streak Pass List:_";
+                + "\n\n_Streak Pass List:_"
+                + "\n_-_ SoU (x3 + streak/5)";
     }
     private String STREAKS = "STREAKS";
     private String TOTAL_ANSWERS = "TOTAL_ANSWERS";
