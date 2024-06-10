@@ -30,6 +30,8 @@
 package com.shatteredpixel.shatteredpixeldungeon.levels;
 
 
+import static com.shatteredpixel.shatteredpixeldungeon.Modifiers.FEW_ITEMS;
+
 import com.shatteredpixel.shatteredpixeldungeon.Bones;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.Statistics;
@@ -373,6 +375,10 @@ public abstract class RegularLevel extends Level {
 
 		if (feeling == Feeling.LARGE){
 			nItems *= 2;
+		}
+
+		if (Dungeon.isModified(FEW_ITEMS)) {
+			nItems = Random.IntRange(2, 5) + 1;
 		}
 		
 		for (int i=0; i < nItems; i++) {
