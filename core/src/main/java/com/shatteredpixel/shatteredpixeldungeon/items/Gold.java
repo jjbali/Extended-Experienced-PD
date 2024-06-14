@@ -105,7 +105,7 @@ public class Gold extends Item {
 	
 	@Override
 	public Item random() {
-		quantity = (Dungeon.IntRange( 15 + Dungeon.escalatingDepth() * 3, 30 + Dungeon.escalatingDepth() * 6 ));
+		quantity = (Dungeon.IntRange( 16 + Dungeon.escalatingDepth() * 3, 31 + Dungeon.escalatingDepth() * 6 ));
 		if (Dungeon.hero.perks.contains(Perks.Perk.MORE_COINS)) quantity *= 5;
 		if (Dungeon.hero.buff(TotemOfFortune.FortuneBuff.class) != null) quantity *= 5;
 		if (RectangularItem.totalAnswers_j > 0) quantity *= 1 + (RectangularItem.totalAnswers_j * 0.25f);
