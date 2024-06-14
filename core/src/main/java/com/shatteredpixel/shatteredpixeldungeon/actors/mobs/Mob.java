@@ -1108,10 +1108,8 @@ public abstract class Mob extends Char {
 
 		if (buff(ArenaLevel.ArenaBuff.class) != null){
 			Item gold = new Gold().random();
-			gold.quantity(Math.round(gold.quantity()*0.65f));
+			gold.quantity(Math.round(gold.quantity()*1.1f));
 			gold.doPickUp(Dungeon.hero, Dungeon.hero.pos, 0);
-			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			if (Random.Float() < 0.2f) Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 			if (Dungeon.Int(6) == 0) {
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
@@ -1123,22 +1121,24 @@ public abstract class Mob extends Char {
 		}
 
 		if (buff(SecondArenaLevel.SecondArenaBuff.class) != null){
-			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
+			Item gold = new Gold().random();
+			gold.quantity(Math.round(gold.quantity()*1.3f));
+			gold.doPickUp(Dungeon.hero, Dungeon.hero.pos, 0);
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			Dungeon.level.drop(new SpyGlass(), pos).sprite.drop();
 			if (Dungeon.Int(6) == 0) {
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			} else {
-				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
+				gold.doPickUp(Dungeon.hero, Dungeon.hero.pos, 0);
 			}
 			if (Random.Float() < 0.2f) Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 		}
 
 		if (buff(ThirdArenaLevel.ThirdArenaBuff.class) != null){
-			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
+			Item gold = new Gold().random();
+			gold.quantity(Math.round(gold.quantity()*1.5f));
+			gold.doPickUp(Dungeon.hero, Dungeon.hero.pos, 0);
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
@@ -1148,14 +1148,15 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			} else {
-				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
+				gold.doPickUp(Dungeon.hero, Dungeon.hero.pos, 0);
 			}
 			if (Random.Float() < 0.2f) Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 		}
 
 		if (buff(FourthArenaLevel.FourthArenaBuff.class) != null){
-			Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
+			Item gold = new Gold().random();
+			gold.quantity(Math.round(gold.quantity()*1.7f));
+			gold.doPickUp(Dungeon.hero, Dungeon.hero.pos, 0);
 			Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG).random(), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG).random(), pos).sprite.drop();
 			Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION).random(), pos).sprite.drop();
@@ -1168,8 +1169,7 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 				Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			} else {
-				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
-				Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
+				gold.doPickUp(Dungeon.hero, Dungeon.hero.pos, 0);
 			}
 			if (Random.Float() < 0.2f) Dungeon.level.drop(RingOfWealth.genConsumableDrop(-5), pos).sprite.drop();
 		}
@@ -1186,7 +1186,9 @@ public abstract class Mob extends Char {
 				Dungeon.level.drop(new DimensionalRiftModule(), pos).sprite.drop();
 				GLog.h("Dimensional Rift Module has been dropped");
 			}
-			if (Random.Float() < 0.4f) Dungeon.level.drop(new Gold().random(), pos).sprite.drop();
+			Item gold = new Gold().random();
+			gold.quantity(Math.round(gold.quantity()*1.9f));
+			if (Random.Float() < 0.4f) gold.doPickUp(Dungeon.hero, Dungeon.hero.pos, 0);
 			if (Random.Float() < 0.4f) Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			if (Random.Float() < 0.1f) Dungeon.level.drop(Generator.randomWeapon(), pos).sprite.drop();
 			if (Random.Float() < 0.1f) Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), pos).sprite.drop();
