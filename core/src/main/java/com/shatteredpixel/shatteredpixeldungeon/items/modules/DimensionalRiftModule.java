@@ -125,7 +125,7 @@ public class DimensionalRiftModule extends Module {
 
     @Override
     public long value() {
-        return 1500 * quantity * Dungeon.depth * hero.lvl;
+        return 750 * quantity * Dungeon.depth * hero.lvl;
     }
 
     @Override
