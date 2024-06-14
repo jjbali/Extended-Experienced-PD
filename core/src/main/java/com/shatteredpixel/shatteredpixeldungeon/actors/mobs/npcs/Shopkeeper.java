@@ -161,7 +161,7 @@ if (sprite != null) {
 		if (Dungeon.isChallenged(COND_INFLATION)) i += i * inflation_increment;
 		if (MixedOperationItem.streak_f > 0) i -= i * inflation_decrement;
 		if (Dungeon.hero.belongings.getItem(TotemOfFortune.class) != null) i /= 2;
-		if (Dungeon.isChallenged(FALL_ECONOMY)) i *= Random.Int(3, 10) + 1;
+		if (Dungeon.isChallenged(FALL_ECONOMY)) i *= Random.Int(5, 10) + 1;
 		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) i -= i * 0.1f;
 		if (Dungeon.isModified(Modifiers.FORGOTTEN_GOLD)) i *= 0.3f;
 		return i;

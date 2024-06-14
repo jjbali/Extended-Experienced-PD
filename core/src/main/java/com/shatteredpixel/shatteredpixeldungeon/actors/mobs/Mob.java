@@ -973,7 +973,7 @@ public abstract class Mob extends Char {
 
 	public void rollToDropLoot(){
 
-		if (Dungeon.isChallenged(FALL_ECONOMY) && Random.Int(5) == 0) {
+		if (Dungeon.isChallenged(FALL_ECONOMY) && Random.Int(3) == 0) {
 			GLog.h("The chances of getting the items lost are higher than your luck. Try to kill a mob again.");
 			return;
 		}

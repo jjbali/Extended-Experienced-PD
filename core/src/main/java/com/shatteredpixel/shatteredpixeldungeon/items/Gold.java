@@ -111,7 +111,7 @@ public class Gold extends Item {
 		if (RectangularItem.totalAnswers_j > 0) quantity *= 1 + (RectangularItem.totalAnswers_j * 0.25f);
 		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) quantity *= 4;
 		quantity *= VioletFragment.goldMulti();
-		if (Dungeon.isChallenged(FALL_ECONOMY)) quantity *= 0.1f;
+		if (Dungeon.isChallenged(FALL_ECONOMY)) quantity *= 0.05f;
 		if (Dungeon.isModified(FORGOTTEN_GOLD)) quantity *= 0.1f;
 		return this;
 	}
