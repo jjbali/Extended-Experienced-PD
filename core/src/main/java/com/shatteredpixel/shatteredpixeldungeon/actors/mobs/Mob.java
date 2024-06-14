@@ -1176,8 +1176,6 @@ public abstract class Mob extends Char {
 
 		if (buff(RewardBoostModule.RewardBoost2.class) != null){
 			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
-			Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 			if (Random.Float() < 0.2f) Dungeon.level.drop(Generator.random(), pos).sprite.drop();
 		}
 
