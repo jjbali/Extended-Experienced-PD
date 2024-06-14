@@ -29,27 +29,273 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.items.questionnaires;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
+
+import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.EnhancedRings;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Healing;
+import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
+import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
+import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.PotionOfDebug;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
+import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
+import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
+import com.shatteredpixel.shatteredpixeldungeon.scenes.InterlevelScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
+import com.shatteredpixel.shatteredpixeldungeon.utils.GLog;
 import com.shatteredpixel.shatteredpixeldungeon.windows.WndBetterOptions;
+import com.shatteredpixel.shatteredpixeldungeon.windows.WndTextInput;
+import com.watabou.noosa.Game;
 import com.watabou.noosa.Image;
+import com.watabou.utils.Bundle;
+import com.watabou.utils.Random;
 
 import org.graalvm.compiler.core.common.type.ArithmeticOpTable;
 
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 public class Questionnaire extends Item {
     GregorianCalendar gregcal = new GregorianCalendar();
+    public static String[] options = {"Addition", "Subtraction", "Division", "Multiplication",
+                                      "Binary", "Divisibility", "Guess The Number"};
+    public static long points_gathered = 0;
+    private static int CODE = Random.Int(10000);
+    private static int CODE2 = Random.Int(10000);
+    private static int CODE3 = Random.Int(10000);
+    private static int CODE4 = Random.Int(10000);
+    private static String ANSWER = null;
+    static int points_added = 0;
 
-    private void askCodeMulti() {
-        GameScene.show( new PotionOfDebug.WndBetterOptions("Pick A Questionnaire", "Please pick a questionnaire", "Addition",
-                                                            "Subtraction", "Multiplication", "Division") {
+    public static void askCodeMulti() {
+        GameScene.show( new PotionOfDebug.WndBetterOptions("Pick A Questionnaire", "Please pick a questionnaire", options.clone() ) {
             @Override
             protected void onSelect( int index ) {
-
+                if (index == 0) {
+                    points_added = Random.Int(20, 70) + 1;
+                    ANSWER = String.valueOf(CODE + CODE2);
+                    addition();
+                } else if (index == 1) {
+                    points_added = Random.Int(25, 80) + 1;
+                    ANSWER = String.valueOf(CODE - CODE2);
+                    subtraction();
+                } else if (index == 2) {
+                    points_added = Random.Int(20, 60) + 1;
+                    CODE = Random.Int(10000);
+                    CODE2 = Random.Int(100);
+                    ANSWER = String.valueOf(CODE / CODE2);
+                    division();
+                } else if (index == 3) {
+                    points_added = Random.Int(120, 500) + 1;
+                    ANSWER = String.valueOf(CODE * CODE2);
+                    multiplication();
+                } else if (index == 4) {
+                    points_added = Random.Int(500, 1000) + 1;
+                    ANSWER = Integer.toBinaryString(CODE);
+                    binary();
+                } else if (index == 5) {
+                    points_added = Random.Int(15, 35) + 1;
+                    ANSWER = CODE % CODE2 == 0 ? "true" : "false";
+                    divisibility();
+                } else if (index == 6) {
+                    points_added = Random.Int(1000, 5000) + 1;
+                    CODE = Random.Int(100) + 1;
+                    ANSWER = String.valueOf(CODE);
+                    guess_the_g();
+                }
             }
         } );
+    }
+
+    private static void addition() {
+        GameScene.show(new WndTextInput( "Input Answer","Add the following: " + CODE + " + " + CODE2, "", 10, false, "Done", "Cancel" ) {
+            @Override
+            public void onSelect( boolean positive, String text ) {
+                if (text.equals(ANSWER)) {
+                    GLog.h("You answered the question correctly! +" + points_added + " points!");
+                    SpellSprite.show(hero, SpellSprite.CORRECT);
+                    points_gathered += points_added;
+                    CODE = Random.Int(10000);
+                    CODE2 = Random.Int(10000);
+                } else if (text.equals("")) {
+                    GLog.w("You didn't answer the question.");
+                } else {
+                    GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
+                }
+            }
+
+            @Override
+            public void onBackPressed() {
+                GLog.w("You didn't answer the question.");
+                this.hide();
+            }
+        } );
+    }
+    private static void subtraction() {
+        GameScene.show(new WndTextInput( "Input Answer","Subtract the following: " + CODE + " - " + CODE2, "", 10, false, "Done", "Cancel" ) {
+            @Override
+            public void onSelect( boolean positive, String text ) {
+                if (text.equals(ANSWER)) {
+                    GLog.h("You answered the question correctly! +" + points_added + " points!");
+                    SpellSprite.show(hero, SpellSprite.CORRECT);
+                    points_gathered += points_added;
+                    CODE = Random.Int(10000);
+                    CODE2 = Random.Int(10000);
+                } else if (text.equals("")) {
+                    GLog.w("You didn't answer the question.");
+                } else {
+                    GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
+                }
+            }
+
+            @Override
+            public void onBackPressed() {
+                GLog.w("You didn't answer the question.");
+                this.hide();
+            }
+        } );
+    }
+    private static void division() {
+        GameScene.show(new WndTextInput( "Input Answer","Divide the following: " + CODE + " / " + CODE2, "", 10, false, "Done", "Cancel" ) {
+            @Override
+            public void onSelect( boolean positive, String text ) {
+                if (text.equals(ANSWER)) {
+                    GLog.h("You answered the question correctly! +" + points_added + " points!");
+                    SpellSprite.show(hero, SpellSprite.CORRECT);
+                    points_gathered += points_added;
+                    CODE = Random.Int(10000);
+                    CODE2 = Random.Int(10000);
+                } else if (text.equals("")) {
+                    GLog.w("You didn't answer the question.");
+                } else {
+                    GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
+                }
+            }
+
+            @Override
+            public void onBackPressed() {
+                GLog.w("You didn't answer the question.");
+                this.hide();
+            }
+        } );
+    }
+    private static void multiplication() {
+        GameScene.show(new WndTextInput( "Input Answer","Multiply the following: " + CODE + " * " + CODE2, "", 10, false, "Done", "Cancel" ) {
+            @Override
+            public void onSelect( boolean positive, String text ) {
+                if (text.equals(ANSWER)) {
+                    GLog.h("You answered the question correctly! +" + points_added + " points!");
+                    SpellSprite.show(hero, SpellSprite.CORRECT);
+                    points_gathered += points_added;
+                    CODE = Random.Int(10000);
+                    CODE2 = Random.Int(10000);
+                } else if (text.equals("")) {
+                    GLog.w("You didn't answer the question.");
+                } else {
+                    GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
+                }
+            }
+
+            @Override
+            public void onBackPressed() {
+                GLog.w("You didn't answer the question.");
+                this.hide();
+            }
+        } );
+    }
+    private static void binary() {
+        GameScene.show(new WndTextInput( "Input Answer","Convert to Binary: " + CODE, "", 100, false, "Done", "Cancel" ) {
+            @Override
+            public void onSelect( boolean positive, String text ) {
+                if (text.equals(ANSWER)) {
+                    GLog.h("You answered the question correctly! +" + points_added + " points!");
+                    SpellSprite.show(hero, SpellSprite.CORRECT);
+                    points_gathered += points_added;
+                    CODE = Random.Int(10000);
+                } else if (text.equals("")) {
+                    GLog.w("You didn't answer the question.");
+                } else {
+                    GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
+                }
+            }
+
+            @Override
+            public void onBackPressed() {
+                GLog.w("You didn't answer the question.");
+                this.hide();
+            }
+        } );
+    }
+    private static void divisibility() {
+        GameScene.show(new WndTextInput( "Input Answer","True or False: " + CODE + " is divisible by " + CODE2, "", 100, false, "Done", "Cancel" ) {
+            @Override
+            public void onSelect( boolean positive, String text ) {
+                if (text.equals(ANSWER)) {
+                    GLog.h("You answered the question correctly! +" + points_added + " points!");
+                    SpellSprite.show(hero, SpellSprite.CORRECT);
+                    points_gathered += points_added;
+                    CODE = Random.Int(10000);
+                    CODE2 = Random.Int(10000);
+                } else if (text.equals("")) {
+                    GLog.w("You didn't answer the question.");
+                } else {
+                    GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
+                }
+            }
+
+            @Override
+            public void onBackPressed() {
+                GLog.w("You didn't answer the question.");
+                this.hide();
+            }
+        } );
+    }
+    private static void guess_the_g() {
+        GameScene.show(new WndTextInput( "Input Answer","Guess the Number (1 - 100)", "", 100, false, "Done", "Cancel" ) {
+            @Override
+            public void onSelect( boolean positive, String text ) {
+                if (text.equals(ANSWER)) {
+                    GLog.h("You answered the question correctly! +" + points_added + " points!");
+                    SpellSprite.show(hero, SpellSprite.CORRECT);
+                    points_gathered += points_added;
+                    CODE = Random.Int(10000);
+                } else if (text.equals("")) {
+                    GLog.w("You didn't answer the question.");
+                } else {
+                    GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
+                }
+            }
+
+            @Override
+            public void onBackPressed() {
+                GLog.w("You didn't answer the question.");
+                this.hide();
+            }
+        } );
+    }
+    private String POINTS = "POINTS_GATHERED";
+    @Override
+    public void storeInBundle( Bundle bundle ) {
+        super.storeInBundle( bundle );
+        bundle.put( POINTS, points_gathered );
+    }
+
+    @Override
+    public void restoreFromBundle( Bundle bundle ) {
+        super.restoreFromBundle( bundle );
+        points_gathered = bundle.getInt( POINTS );
     }
 }

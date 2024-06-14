@@ -80,6 +80,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionIte
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.ExponentialItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MixedOperationItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.OddEvenItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.ParallelUniverse;
@@ -215,6 +216,7 @@ public enum HeroClass {
 		new TriangularItem().collect();
 		new TypingItem().collect();
 		new ThreeOperationQuestionnaire().collect();
+		new MultiItem().collect();
 		new ParallelUniverse().collect();
 		//new DictBook().collect();
 		new ExtendedDictBook().collect();

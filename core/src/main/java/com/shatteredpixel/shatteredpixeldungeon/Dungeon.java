@@ -49,6 +49,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.Exponential
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MixedOperationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.OddEvenItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.Questionnaire;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.RectangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.SubtractionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
@@ -323,6 +324,7 @@ public class Dungeon {
 
 		Shopkeeper.inflation_increment = 0f;
 		OddEvenItem.score_multi = 1f;
+		Questionnaire.points_gathered = 0;
 
 		Scroll.scroll_uses = 0;
 		Potion.potion_uses = 0;
