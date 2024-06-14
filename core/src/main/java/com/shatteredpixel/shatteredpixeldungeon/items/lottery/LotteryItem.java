@@ -33,6 +33,7 @@ import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
+import com.shatteredpixel.shatteredpixeldungeon.items.modules.Module;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSprite;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
@@ -52,7 +53,7 @@ public class LotteryItem extends Item {
     }
 
     private static final String AC_ANSWER = "ANSWER";
-    private String ANSWER = Arrays.toString(generateLotteryNumbers());
+    private String ANSWER = String.valueOf(Math.round((Random.Int(100) + 1) - Dungeon.hero.STR/30));
 
     private static int[] generateLotteryNumbers() {
         int[] numbers = new int[4];
@@ -94,48 +95,60 @@ public class LotteryItem extends Item {
     }
 
     private void askCode() {
-        GameScene.show(new WndTextInput( "Input Answer","Format: [_a_, _b_, _c_, _d_]", "", 30, false, "Done", "Cancel" ) {
+        GameScene.show(new WndTextInput( "Input Answer","Try to guess the number. As you failed to guess, the number changes everytime.", "", 30, false, "Done", "Cancel" ) {
             @Override
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(ANSWER)) {
-                    GLog.h("You give the set correctly.");
-                    ANSWER = Arrays.toString(generateLotteryNumbers());
+                    GLog.h("You guessed the number correctly.");
+                    ANSWER = String.valueOf(Math.round((Random.Int(100) + 1) - Dungeon.hero.STR/30));
                     GameScene.flash(0xFF008000);
-                    switch (Random.Int(6)) {
+                    switch (Random.Int(8)) {
                         case 0:
                             updateQuickslot();
-                            for (int i = 0; i < 50; i++) {
+                            for (int i = 0; i < 25; i++) {
                                 Dungeon.level.drop(Generator.random(Generator.Category.EXPOTION), curUser.pos).sprite.drop();
                             }
                             break;
                         case 1:
                             updateQuickslot();
-                            for (int i = 0; i < 50; i++) {
+                            for (int i = 0; i < 25; i++) {
                                 Dungeon.level.drop(Generator.random(Generator.Category.POTION), curUser.pos).sprite.drop();
                             }
                             break;
                         case 2:
                             updateQuickslot();
-                            for (int i = 0; i < 50; i++) {
+                            for (int i = 0; i < 25; i++) {
                                 Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), curUser.pos).sprite.drop();
                             }
                             break;
                         case 3:
                             updateQuickslot();
-                            for (int i = 0; i < 50; i++) {
+                            for (int i = 0; i < 25; i++) {
                                 Dungeon.level.drop(Generator.random(Generator.Category.EXSCROLL), curUser.pos).sprite.drop();
                             }
                             break;
                         case 4:
                             updateQuickslot();
-                            for (int i = 0; i < 50; i++) {
-                                Dungeon.level.drop(Generator.random(Generator.Category.DARTS), curUser.pos).sprite.drop();
+                            for (int i = 0; i < 25; i++) {
+                                Dungeon.level.drop(Generator.random(Generator.Category.TUBES), curUser.pos).sprite.drop();
                             }
                             break;
                         case 5:
                             updateQuickslot();
+                            for (int i = 0; i < 25; i++) {
+                                Dungeon.level.drop(Generator.random(Generator.Category.SEED), curUser.pos).sprite.drop();
+                            }
+                            break;
+                        case 6:
+                            updateQuickslot();
+                            for (int i = 0; i < 25; i++) {
+                                Dungeon.level.drop(new Module().random(), curUser.pos).sprite.drop();
+                            }
+                            break;
+                        case 7:
+                            updateQuickslot();
                             for (int i = 0; i < 10; i++) {
-                                Dungeon.level.drop(Generator.random(Generator.Category.WEAPON), curUser.pos).sprite.drop();
+                                Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), curUser.pos).sprite.drop();
                             }
                             break;
                     }
@@ -143,8 +156,8 @@ public class LotteryItem extends Item {
                     GLog.w("You didn't answer the question.");
                 } else {
                     GameScene.flash(0xFFFF0000);
-                    GLog.w("The set of numbers are: " + ANSWER + ", try again.");
-                    ANSWER = Arrays.toString(generateLotteryNumbers());
+                    GLog.w("The number is: " + ANSWER + ", try again.");
+                    ANSWER = String.valueOf(Math.round((Random.Int(100) + 1) - Dungeon.hero.STR/30));
                 }
             }
 
@@ -163,6 +176,6 @@ public class LotteryItem extends Item {
 
     @Override
     public String desc() {
-        return "You have to guess what is the set of numbers. (1-10)";
+        return "You have to guess what is the number (1-100), the number you will guess decreases when you have enough power to wield tools";
     }
 }
