@@ -42,6 +42,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.PotionOfDebug;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
+import com.shatteredpixel.shatteredpixeldungeon.items.modules.Module;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
@@ -297,5 +298,48 @@ public class Questionnaire extends Item {
     public void restoreFromBundle( Bundle bundle ) {
         super.restoreFromBundle( bundle );
         points_gathered = bundle.getInt( POINTS );
+    }
+
+    public static String[] shop = {"150000 Gold (500)", "500000 Gold (1000)", "Item (250)",
+                                    "Module (300)"};
+    public static void askShop() {
+        GameScene.show( new PotionOfDebug.WndBetterOptions("Points Shop", "Spend your points here!", shop.clone() ) {
+            @Override
+            protected void onSelect( int index ) {
+
+                if (index == 0) {
+                    if (points_gathered >= 500) {
+                        Dungeon.gold += 150000;
+                        points_gathered -= 500;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 1) {
+                    if (points_gathered >= 1000) {
+                        Dungeon.gold += 500000;
+                        points_gathered -= 1000;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 2) {
+                    if (points_gathered >= 250) {
+                        Dungeon.level.drop(Generator.random(), hero.pos).sprite.drop();
+                        points_gathered -= 250;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 3) {
+                    if (points_gathered >= 300) {
+                        Dungeon.level.drop(new Module().random(), hero.pos).sprite.drop();
+                        points_gathered -= 300;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                }
+
+            }
+
+        } );
+
     }
 }

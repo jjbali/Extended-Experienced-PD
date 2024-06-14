@@ -71,6 +71,7 @@ public class MultiItem extends Questionnaire {
     }
 
     private static final String AC_ANSWER = "ANSWER";
+    private static final String AC_SHOP = "SHOP";
 
     @Override
     public ArrayList<String> actions(Hero hero ) {
