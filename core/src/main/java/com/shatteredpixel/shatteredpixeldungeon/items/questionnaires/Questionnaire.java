@@ -114,6 +114,12 @@ public class Questionnaire extends Item {
                     guess_the_g();
                 }
             }
+
+            @Override
+            public void onBackPressed() {
+                GLog.w("You didn't select any questionnaire.");
+                this.hide();
+            }
         } );
     }
 
@@ -407,7 +413,12 @@ public class Questionnaire extends Item {
                         GLog.w("You have no enough points");
                     }
                 }
+                GameScene.show( this );
+            }
 
+            @Override
+            public void onBackPressed() {
+                this.hide();
             }
 
         } );
