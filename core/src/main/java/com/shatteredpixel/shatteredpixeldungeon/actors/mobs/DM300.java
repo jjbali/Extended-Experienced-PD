@@ -528,7 +528,7 @@ public class DM300 extends Mob {
 	}
 
 	public int totalPylonsToActivate(){
-		return 4;
+		return 3;
 	}
 
 	@Override
