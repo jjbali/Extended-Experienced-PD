@@ -325,6 +325,8 @@ public class Dungeon {
 		Shopkeeper.inflation_increment = 0f;
 		OddEvenItem.score_multi = 1f;
 		Questionnaire.points_gathered = 0;
+		Shopkeeper.points_decrement = 0f;
+		Shopkeeper.inflation_decrement = 0f;
 
 		Scroll.scroll_uses = 0;
 		Potion.potion_uses = 0;
