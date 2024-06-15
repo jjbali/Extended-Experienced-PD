@@ -32,17 +32,20 @@ package com.shatteredpixel.shatteredpixeldungeon.items.questionnaires;
 import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
 
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
+import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.AnkhInvulnerability;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Barrier;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Buff;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.EnhancedRings;
 import com.shatteredpixel.shatteredpixeldungeon.actors.buffs.Healing;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Talent;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Shopkeeper;
 import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.PotionOfDebug;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.Module;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfHealing;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.levels.features.LevelTransition;
@@ -301,7 +304,12 @@ public class Questionnaire extends Item {
     }
 
     public static String[] shop = {"150000 Gold (500)", "500000 Gold (1000)", "Item (250)",
-                                    "Module (300)"};
+                                    "Module (300)", "-1% Discount (250)", "Immortality (1000)",
+            // Things getting harder here...
+                                    "Heal (150)", "Scroll (50)", "Potion (55)",
+
+                                    "+5 Energy (20)", "+20 Energy (80)", "Wand (90)",
+                                    "Treasure Bag (200)"};
     public static void askShop() {
         GameScene.show( new PotionOfDebug.WndBetterOptions("Points Shop", "Spend your points here!", shop.clone() ) {
             @Override
@@ -332,6 +340,69 @@ public class Questionnaire extends Item {
                     if (points_gathered >= 300) {
                         Dungeon.level.drop(new Module().random(), hero.pos).sprite.drop();
                         points_gathered -= 300;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 4) {
+                    if (points_gathered >= 250) {
+                        Shopkeeper.points_decrement += 0.01f;
+                        points_gathered -= 250;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 5) {
+                    if (points_gathered >= 1000) {
+                        Buff.affect(hero, AnkhInvulnerability.class, 15f);
+                        points_gathered -= 1000;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 6) {
+                    if (points_gathered >= 150) {
+                        PotionOfHealing.heal(hero);
+                        points_gathered -= 150;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 7) {
+                    if (points_gathered >= 50) {
+                        Dungeon.level.drop(Generator.random(Generator.Category.SCROLL), hero.pos).sprite.drop();
+                        points_gathered -= 50;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 8) {
+                    if (points_gathered >= 55) {
+                        Dungeon.level.drop(Generator.random(Generator.Category.POTION), hero.pos).sprite.drop();
+                        points_gathered -= 55;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 9) {
+                    if (points_gathered >= 20) {
+                        Dungeon.energy += 5;
+                        points_gathered -= 20;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 10) {
+                    if (points_gathered >= 80) {
+                        Dungeon.energy += 20;
+                        points_gathered -= 80;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 11) {
+                    if (points_gathered >= 90) {
+                        Dungeon.level.drop(Generator.random(Generator.Category.WAND), hero.pos).sprite.drop();
+                        points_gathered -= 90;
+                    } else {
+                        GLog.w("You have no enough points");
+                    }
+                } else if (index == 12) {
+                    if (points_gathered >= 200) {
+                        Dungeon.level.drop(Generator.random(Generator.Category.TREASUREBAG), hero.pos).sprite.drop();
+                        points_gathered -= 200;
                     } else {
                         GLog.w("You have no enough points");
                     }

@@ -82,6 +82,7 @@ public class Shopkeeper extends NPC {
 	public static int MAX_BUYBACK_HISTORY = 3;
 	public static float inflation_increment = 0f;
 	public static float inflation_decrement = 0f;
+	public static float points_decrement = 0f;
 	public ArrayList<Item> buybackItems = new ArrayList<>();
 
 	@Override
@@ -160,6 +161,7 @@ if (sprite != null) {
 		if (item.wereOofed) i *= 5;
 		if (Dungeon.isChallenged(COND_INFLATION)) i += i * inflation_increment;
 		if (MixedOperationItem.streak_f > 0) i -= i * inflation_decrement;
+		if (points_decrement > 0) i -= i * points_decrement;
 		if (Dungeon.hero.belongings.getItem(TotemOfFortune.class) != null) i /= 2;
 		if (Dungeon.isChallenged(FALL_ECONOMY)) i *= Random.Int(5, 10) + 1;
 		if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.TUESDAY) i -= i * 0.1f;
@@ -281,6 +283,7 @@ if (sprite != null) {
 	public static String BUYBACK_ITEMS = "buyback_items";
 	public static String INFL = "inflation";
 	public static String DEFL = "deflation";
+	public static String POIN = "pointsede";
 
 	@Override
 	public void storeInBundle(Bundle bundle) {
@@ -288,6 +291,7 @@ if (sprite != null) {
 		bundle.put(BUYBACK_ITEMS, buybackItems);
 		bundle.put(INFL, inflation_increment);
 		bundle.put(DEFL, inflation_decrement);
+		bundle.put(POIN, points_decrement);
 	}
 
 	@Override
@@ -301,5 +305,6 @@ if (sprite != null) {
 		}
 		inflation_increment = bundle.getFloat(INFL);
 		inflation_decrement = bundle.getFloat(DEFL);
+		points_decrement = bundle.getFloat(POIN);
 	}
 }

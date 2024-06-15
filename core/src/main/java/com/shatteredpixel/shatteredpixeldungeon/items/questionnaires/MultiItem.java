@@ -79,6 +79,7 @@ public class MultiItem extends Questionnaire {
         actions.add( AC_ANSWER );
         actions.remove( AC_THROW );
         actions.remove( AC_DROP );
+        actions.add( AC_SHOP );
         return actions;
     }
 
@@ -97,6 +98,9 @@ public class MultiItem extends Questionnaire {
         super.execute( hero, action );
         if (action.equals( AC_ANSWER )) {
             Questionnaire.askCodeMulti();
+        }
+        if (action.equals( AC_SHOP )) {
+            Questionnaire.askShop();
         }
     }
 
