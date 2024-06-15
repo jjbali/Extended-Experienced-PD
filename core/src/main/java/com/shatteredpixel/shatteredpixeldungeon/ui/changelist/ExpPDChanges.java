@@ -42,6 +42,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.food.Cheese;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs.ElixirOfMight;
 import com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic.PotionOfMastery;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.RectangularItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.ThreeOperationQuestionnaire;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.TriangularItem;
@@ -126,6 +127,17 @@ public class ExpPDChanges {
                 "_-_ Questionnaires will now show a spell sprites instead of flashing the screen (it's annoying lol)\n"
                         + "_-_ They now use \"if else\" method instead of \"switch\"\n"
                         + "_-_ They now give an additional point when the chance is ~5%"));
+
+        changes = new ChangeInfo("V", false, "");
+        changes.hardlight(Window.TITLE_COLOR);
+        changeInfos.add(changes);
+        changes.addButton( new ChangeButton(new ItemSprite(new MultiItem()), "Optional Questionnaire",
+                "Instructions:\n" +
+                        "Choose an operation or gamemode\n" +
+                        "Answer the following questions on your chosen operation or gamemode\n" +
+                        "Any wrong answer will not reduce anything\n" +
+                        "Points awarded are based on the chosen operation or gamemode\n" +
+                        "Points collected can be converted into gold or items. You may redeem it to questionnaire itself."));
 
     }
 
