@@ -344,7 +344,7 @@ public class Questionnaire extends Item {
                     }
                 } else if (index == 3) {
                     if (points_gathered >= 300) {
-                        Dungeon.level.drop(new Module().random(), hero.pos).sprite.drop();
+                        Dungeon.level.drop(new Module().random(1), hero.pos).sprite.drop();
                         points_gathered -= 300;
                     } else {
                         GLog.w("You have no enough points");
