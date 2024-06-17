@@ -151,8 +151,8 @@ public class BallisticBow extends Weapon {
 		String info = desc();
 		
 		info += "\n\n" + Messages.get( BallisticBow.class, "stats",
-				Math.round(augment.damageFactor(min())),
-				Math.round(augment.damageFactor(max())),
+				augment.damageFactor(min()),
+				augment.damageFactor(max()),
 				STRReq());
 		
 		if (STRReq() > Dungeon.hero.STR()) {
