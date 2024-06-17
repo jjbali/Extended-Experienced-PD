@@ -137,7 +137,8 @@ public class ExpPDChanges {
                         "Answer the following questions on your chosen operation or gamemode\n" +
                         "Any wrong answer will not reduce anything\n" +
                         "Points awarded are based on the chosen operation or gamemode\n" +
-                        "Points collected can be converted into gold or items. You may redeem it to questionnaire itself."));
+                        "Points collected can be converted into gold or items. You may redeem it to questionnaire itself.\n\n" +
+                        "_You can now get 5000 points from quests! Finish it to buy more things at the shop!_"));
 
     }
 
