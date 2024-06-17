@@ -413,7 +413,6 @@ public class Questionnaire extends Item {
                         GLog.w("You have no enough points");
                     }
                 }
-                GameScene.show( this );
             }
 
             @Override
