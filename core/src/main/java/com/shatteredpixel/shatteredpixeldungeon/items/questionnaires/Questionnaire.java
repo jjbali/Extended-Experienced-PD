@@ -104,7 +104,9 @@ public class Questionnaire extends Item {
                     ANSWER = Integer.toBinaryString(CODE);
                     binary();
                 } else if (index == 5) {
-                    points_added = Random.Int(15, 35) + 1;
+                    points_added = Random.Int(25, 45) + 1;
+                    CODE = Random.Int(Integer.MAX_VALUE);
+                    CODE2 = Random.Int(100) + 1;
                     ANSWER = CODE % CODE2 == 0 ? "true" : "false";
                     divisibility();
                 } else if (index == 6) {
