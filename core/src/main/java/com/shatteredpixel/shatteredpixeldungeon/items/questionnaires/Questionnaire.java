@@ -68,7 +68,7 @@ import java.util.GregorianCalendar;
 public class Questionnaire extends Item {
     GregorianCalendar gregcal = new GregorianCalendar();
     public static String[] options = {"Addition", "Subtraction", "Division", "Multiplication",
-                                      "Binary", "Divisibility", "Guess The Number"};
+                                      "Binary", "Divisibility", "Guess The Number", "Modulo"};
     public static long points_gathered = 0;
     private static int CODE = Random.Int(10000);
     private static int CODE2 = Random.Int(10000);
@@ -114,6 +114,12 @@ public class Questionnaire extends Item {
                     CODE = Random.Int(100) + 1;
                     ANSWER = String.valueOf(CODE);
                     guess_the_g();
+                } else if (index == 7) {
+                    points_added = Random.Int(15, 25) + 1;
+                    CODE = Random.Int(Integer.MAX_VALUE);
+                    CODE2 = Random.Int(100) + 1;
+                    ANSWER = String.valueOf(CODE % CODE2);
+                    modulo();
                 }
             }
 
@@ -257,8 +263,6 @@ public class Questionnaire extends Item {
                     GLog.h("You answered the question correctly! +" + points_added + " points!");
                     SpellSprite.show(hero, SpellSprite.CORRECT);
                     points_gathered += points_added;
-                    CODE = Random.Int(10000);
-                    CODE2 = Random.Int(10000);
                 } else if (text.equals("")) {
                     GLog.w("You didn't answer the question.");
                 } else {
@@ -283,6 +287,29 @@ public class Questionnaire extends Item {
                     SpellSprite.show(hero, SpellSprite.CORRECT);
                     points_gathered += points_added;
                     CODE = Random.Int(10000);
+                } else if (text.equals("")) {
+                    GLog.w("You didn't answer the question.");
+                } else {
+                    GLog.w("That answer is not equals as the given, try again.");
+                    SpellSprite.show(hero, SpellSprite.INCORRECT);
+                }
+            }
+
+            @Override
+            public void onBackPressed() {
+                GLog.w("You didn't answer the question.");
+                this.hide();
+            }
+        } );
+    }
+    private static void modulo() {
+        GameScene.show(new WndTextInput( "Input Answer","Find the remainder: " + CODE + " is divided continuously by " + CODE2, "", 100, false, "Done", "Cancel" ) {
+            @Override
+            public void onSelect( boolean positive, String text ) {
+                if (text.equals(ANSWER)) {
+                    GLog.h("You answered the question correctly! +" + points_added + " points!");
+                    SpellSprite.show(hero, SpellSprite.CORRECT);
+                    points_gathered += points_added;
                 } else if (text.equals("")) {
                     GLog.w("You didn't answer the question.");
                 } else {
