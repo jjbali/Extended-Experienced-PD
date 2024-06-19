@@ -339,7 +339,7 @@ public class Questionnaire extends Item {
     }
 
     public static String[] shop = {"150000 Gold (500)", "500000 Gold (1000)", "Item (250)",
-                                    "Module (300)", "-1% Discount (250)", "Immortality (1000)",
+                                    "Module (300)", "-0.1% Discount (250)", "Immortality (1000)",
             // Things getting harder here...
                                     "Heal (150)", "Scroll (50)", "Potion (55)",
 
@@ -380,7 +380,7 @@ public class Questionnaire extends Item {
                     }
                 } else if (index == 4) {
                     if (points_gathered >= 250) {
-                        Shopkeeper.points_decrement += 0.01f;
+                        Shopkeeper.points_decrement += 0.001f;
                         points_gathered -= 250;
                     } else {
                         GLog.w("You have no enough points");
