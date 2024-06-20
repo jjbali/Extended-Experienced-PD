@@ -220,8 +220,8 @@ public enum HeroClass {
 		new ParallelUniverse().collect();
 		//new DictBook().collect();
 		new ExtendedDictBook().collect();
-		new Notebook().collect();
-		new NotebookHolder().collect();
+		//new Notebook().collect();
+		//new NotebookHolder().collect();
 		new LotteryItem().collect();
 		new InfoBook().collect();
 		if (Dungeon.isChallenged(THE_TRUE_FATALITY)) {
