@@ -647,6 +647,9 @@ public class Hero extends Char {
 		}
 
 		dmg += AdditionItem.totalAnswers_a;
+		if (Dungeon.isChallenged(Challenges.THE_TRUE_FATALITY)) {
+			dmg *= 1d + (0.0001d * Statistics.enemiesSlain);
+		}
 		if (dmg < 0) dmg = 0;
 		return dmg;
 	}
