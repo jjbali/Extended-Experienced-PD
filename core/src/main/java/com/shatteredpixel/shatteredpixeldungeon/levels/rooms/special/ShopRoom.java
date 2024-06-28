@@ -29,9 +29,12 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special;
 
+import static com.shatteredpixel.shatteredpixeldungeon.Dungeon.hero;
+
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.ShatteredPixelDungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Belongings;
+import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Elemental;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.Mob;
 import com.shatteredpixel.shatteredpixeldungeon.actors.mobs.npcs.Shopkeeper;
 import com.shatteredpixel.shatteredpixeldungeon.items.*;
@@ -39,11 +42,16 @@ import com.shatteredpixel.shatteredpixeldungeon.items.bags.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.bombs.StormBomb;
 import com.shatteredpixel.shatteredpixeldungeon.items.fishingrods.*;
 import com.shatteredpixel.shatteredpixeldungeon.items.food.Cheese;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.FragmentCatalyst;
 import com.shatteredpixel.shatteredpixeldungeon.items.modules.DimensionalRiftModule;
+import com.shatteredpixel.shatteredpixeldungeon.items.modules.ExpBoostModule;
+import com.shatteredpixel.shatteredpixeldungeon.items.modules.Module;
 import com.shatteredpixel.shatteredpixeldungeon.items.notebook.Notebook;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.AdditionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.Metamorph;
+import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfExperience;
+import com.shatteredpixel.shatteredpixeldungeon.items.totem.TotemOfFire;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.AlchemyBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.BiggerGambleBag;
 import com.shatteredpixel.shatteredpixeldungeon.items.treasurebags.GambleBag;
@@ -67,12 +75,12 @@ public class ShopRoom extends SpecialRoom {
 	
 	@Override
 	public int minWidth() {
-		return Math.max(7, (int)(Math.sqrt(itemCount())+3));
+		return Math.max(9, (int)(Math.sqrt(itemCount())+3));
 	}
 	
 	@Override
 	public int minHeight() {
-		return Math.max(7, (int)(Math.sqrt(itemCount())+3));
+		return Math.max(9, (int)(Math.sqrt(itemCount())+3));
 	}
 
 	public int itemCount(){
@@ -202,56 +210,86 @@ public class ShopRoom extends SpecialRoom {
 		ArrayList<Item> itemsToSpawn = new ArrayList<>();
 
 		switch (Dungeon.cycle){
-			case 0: itemsToSpawn.add(new BasicFishingRod().upgrade(Random.Int(2, 15))); break;
-			case 1: itemsToSpawn.add(new GoldenFishingRod().upgrade(Random.Int(2, 15))); break;
-			case 2: itemsToSpawn.add(new NeutroniumFishingRod().upgrade(Random.Int(2, 15))); break;
-			case 3: itemsToSpawn.add(new AvaritiaFishingRod().upgrade(Random.Int(2, 15))); break;
-			case 4: default: itemsToSpawn.add(new ChaosFishingRod().upgrade(Random.Int(2, 15))); break;
+			case 0: itemsToSpawn.add(new BasicFishingRod().upgrade(Random.Int(2, 5))); break;
+			case 1: itemsToSpawn.add(new GoldenFishingRod().upgrade(Random.Int(2, 5))); break;
+			case 2: itemsToSpawn.add(new NeutroniumFishingRod().upgrade(Random.Int(2, 5))); break;
+			case 3: itemsToSpawn.add(new AvaritiaFishingRod().upgrade(Random.Int(2, 5))); break;
+			case 4: default: itemsToSpawn.add(new ChaosFishingRod().upgrade(Random.Int(2, 5))); break;
 		}
-		itemsToSpawn.add(new GambleBag());
-		itemsToSpawn.add(new BiggerGambleBag());
-		itemsToSpawn.add(new AlchemyBag());
-		itemsToSpawn.add(new QualityBag());
-		itemsToSpawn.add(new SpellBag());
-		itemsToSpawn.add(new TippedDartBag());
-		itemsToSpawn.add(new ScrollBag());
-		itemsToSpawn.add(new PotionBag());
-		itemsToSpawn.add(new Ankh());
-		itemsToSpawn.add(new DimensionalRiftModule());
-		itemsToSpawn.add(Generator.randomWeapon());
-		itemsToSpawn.add(Generator.randomMissile());
-		itemsToSpawn.add(Generator.randomArtifact());
-		itemsToSpawn.add(Generator.randomArmor());
-		itemsToSpawn.add(Generator.random(Generator.Category.POTION));
-		itemsToSpawn.add(Generator.random(Generator.Category.SCROLL));
-		itemsToSpawn.add(Generator.random(Generator.Category.STONE));
-		itemsToSpawn.add(Generator.random(Generator.Category.STONE));
+
+		itemsToSpawn.add( Generator.random(Generator.Category.SCROLL) );
+		itemsToSpawn.add( Generator.random(Generator.Category.EXSCROLL) );
+		itemsToSpawn.add( Generator.random(Generator.Category.POTION) );
+		itemsToSpawn.add( Generator.random(Generator.Category.EXPOTION) );
+		itemsToSpawn.add( Generator.randomMissile() );
+		itemsToSpawn.add( Generator.randomArtifact() );
+		itemsToSpawn.add( Generator.randomArmor() );
+		itemsToSpawn.add( new Ankh() );
+		itemsToSpawn.add( Generator.random(Generator.Category.FOOD) );
+		itemsToSpawn.add( Generator.random(Generator.Category.FOOD) );
+		itemsToSpawn.add( Generator.random(Generator.Category.TREASUREBAG) );
+		itemsToSpawn.add( Generator.random(Generator.Category.TREASUREBAG) );
+		itemsToSpawn.add( Generator.random(Generator.Category.WEAPON) );
+		itemsToSpawn.add( Generator.random(Generator.Category.WEAPON) );
+		itemsToSpawn.add( new Module().random(1) );
+		itemsToSpawn.add( Generator.random(Generator.Category.STONE) );
+		itemsToSpawn.add( Generator.random(Generator.Category.ARTIFACT) );
 		itemsToSpawn.add(Generator.random(Generator.Category.RING));
 		itemsToSpawn.add(Generator.random(Generator.Category.RING));
-		if (Dungeon.Int(5) == 0) itemsToSpawn.add(new Metamorph());
+		itemsToSpawn.add( new RandomItemTicket() );
+		itemsToSpawn.add( new DimensionalRiftModule() );
+
 		if (MultiplicationItem.streak_c >= 20) {
 			itemsToSpawn.add(new TicketToArena());
 			itemsToSpawn.add(new TicketToSecondArena());
 			itemsToSpawn.add(new TicketToThirdArena());
 			itemsToSpawn.add(new TicketToFourthArena());
 		}
-		itemsToSpawn.add(new RandomItemTicket());
 
-		if (Dungeon.depth == 2) {
-			//note added in the first shop
-			itemsToSpawn.add(new VelvetPouch());
-			itemsToSpawn.add(new ScrollHolder());
-			itemsToSpawn.add(new PotionBandolier());
-			itemsToSpawn.add(new MagicalHolster());
-			itemsToSpawn.add(new TreasureHolder());
-			itemsToSpawn.add(new CheeseCheest());
-			itemsToSpawn.add(new Notebook());
-			itemsToSpawn.add(new NotebookHolder());
+		if ( Random.Int(10) == 0 ) {
+			itemsToSpawn.add( new Metamorph() );
 		}
 
-		if (Dungeon.Int(250) == 0) {
-			itemsToSpawn.add( new Cheese());
+		if ( Random.Int(250) == 0 ) {
+			itemsToSpawn.add( new Cheese() );
 		}
+
+		if ( Random.Int(600) == 0 ) {
+			itemsToSpawn.add( new ExpBoostModule() );
+		}
+
+		if ( Random.Int(450) == 0 ) {
+			itemsToSpawn.add( new FragmentCatalyst() );
+		}
+
+		if ( Random.Int(10) == 0 ) {
+			itemsToSpawn.add( Generator.random(Generator.Category.TUBES) );
+		}
+
+			if (hero.belongings.getItem(VelvetPouch.class) == null) {
+				itemsToSpawn.add(new VelvetPouch());
+			}
+			if (hero.belongings.getItem(ScrollHolder.class) == null) {
+				itemsToSpawn.add(new ScrollHolder());
+			}
+			if (hero.belongings.getItem(PotionBandolier.class) == null) {
+				itemsToSpawn.add(new PotionBandolier());
+			}
+			if (hero.belongings.getItem(MagicalHolster.class) == null) {
+				itemsToSpawn.add(new MagicalHolster());
+			}
+			if (hero.belongings.getItem(TreasureHolder.class) == null) {
+				itemsToSpawn.add(new TreasureHolder());
+			}
+			if (hero.belongings.getItem(CheeseCheest.class) == null) {
+				itemsToSpawn.add(new CheeseCheest());
+			}
+			if (hero.belongings.getItem(Notebook.class) == null) {
+				itemsToSpawn.add(new Notebook());
+			}
+			if (hero.belongings.getItem(NotebookHolder.class) == null) {
+				itemsToSpawn.add(new NotebookHolder());
+			}
 
 		if (Dungeon.Int(20) == 0) {
 			itemsToSpawn.add( Generator.random(Generator.Category.WEP_JJBALI) );
@@ -259,10 +297,6 @@ public class ShopRoom extends SpecialRoom {
 
 		if (AdditionItem.streak_a >= 100) {
 			itemsToSpawn.add(new StormBomb());
-		}
-
-		if (Dungeon.Int(10) == 0) {
-			itemsToSpawn.add(Generator.random(Generator.Category.TUBES).quantity(Random.Int(1, 5) + 1));
 		}
 
 		if (!Dungeon.oofedItems.isEmpty()) {
