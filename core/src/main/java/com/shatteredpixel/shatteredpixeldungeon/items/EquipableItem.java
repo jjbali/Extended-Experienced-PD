@@ -44,6 +44,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle
 import com.shatteredpixel.shatteredpixeldungeon.items.armor.Armor;
 import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
 import com.shatteredpixel.shatteredpixeldungeon.items.journal.Guidebook;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.Questionnaire;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.ScrollOfUpgrade;
 import com.shatteredpixel.shatteredpixeldungeon.items.scrolls.exotic.ScrollOfEnchantment;
 import com.shatteredpixel.shatteredpixeldungeon.items.spells.ArcaneCatalyst;
@@ -138,7 +139,7 @@ public abstract class EquipableItem extends Item {
 				GLog.w( Messages.get(this, "unequip_first"));
 			} else if (curItem instanceof Artifact) {
 				curItem.detach(curUser.belongings.backpack);
-				Dungeon.level.drop(new ArcaneCatalyst().quantity(Random.Int(3, 20)), curUser.pos).sprite.drop();
+				Dungeon.level.drop(new ArcaneCatalyst().quantity(Random.Int(3, 10)), curUser.pos).sprite.drop();
 				if (Random.Float() < 0.15f) {
 					Dungeon.level.drop(new ScrollOfUpgrade().quantity(1), curUser.pos).sprite.drop();
 				}
@@ -150,6 +151,7 @@ public abstract class EquipableItem extends Item {
 
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
 				curUser.sprite.operate(curUser.pos);
+				Questionnaire.points_gathered += Random.Int(2, 4) + 1;
 			} else if (curItem instanceof MissileWeapon) {
 				curItem.detach(curUser.belongings.backpack);
 				if (Random.Float() < 0.15f) {
@@ -165,10 +167,12 @@ public abstract class EquipableItem extends Item {
 
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
 				curUser.sprite.operate(curUser.pos);
+				Questionnaire.points_gathered += Random.Int(1, 2) + 1;
 			} else {
 				curItem.detach(curUser.belongings.backpack);
 				if (curItem.level() > 0) {
 					Dungeon.level.drop(new ScrollOfUpgrade().quantity(curItem.level()), curUser.pos).sprite.drop();
+					Dungeon.gold += Dungeon.NormalIntRange(500, 1000) * (Math.pow(0.5d, curItem.level()));
 				} else {
 					Dungeon.gold += Dungeon.NormalIntRange(500, 1000);
 				}
@@ -180,6 +184,7 @@ public abstract class EquipableItem extends Item {
 
 				Sample.INSTANCE.play(Assets.Sounds.DRINK);
 				curUser.sprite.operate(curUser.pos);
+				Questionnaire.points_gathered += Random.Int(1, 3) + 1;
 			}
 			GameScene.show(new WndBag(Dungeon.hero.belongings.backpack));
 		} else if (action.equals( AC_UPGRADE )) {
