@@ -47,6 +47,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.Divisibilit
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.DivisionItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.ExponentialItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MixedOperationItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.ModuloItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.OddEvenItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.Questionnaire;
@@ -310,6 +311,7 @@ public class Dungeon {
 		TriangularItem.streak_k = 0;
 		TypingItem.streak_l = 0;
 		ThreeOperationQuestionnaire.streak_m = 0;
+		ModuloItem.streak_n = 0;
 
 		AdditionItem.totalAnswers_a= 0;
 		SubtractionItem.totalAnswers_b = 0;
@@ -324,6 +326,7 @@ public class Dungeon {
 		TriangularItem.totalAnswers_k = 0;
 		TypingItem.totalAnswers_l = 0;
 		ThreeOperationQuestionnaire.totalAnswers_m = 0;
+		ModuloItem.totalAnswers_n = 0;
 
 		Shopkeeper.inflation_increment = 0f;
 		OddEvenItem.score_multi = 1f;

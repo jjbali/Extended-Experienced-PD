@@ -1055,6 +1055,7 @@ public class ItemSpriteSheet {
 	public static final int TRIANGULAR			= QUESTIONNAIRES+10;
 	public static final int TYPING			= QUESTIONNAIRES+11;
 	public static final int THREE_OP			= QUESTIONNAIRES+12;
+	public static final int MODULO			= QUESTIONNAIRES+13;
 	static{
 		for (int i = QUESTIONNAIRES; i < QUESTIONNAIRES+100; i++)
 			assignItemRect(i, 16, 16);
