@@ -107,6 +107,6 @@ public class QualityBag extends TreasureBag {
 
     @Override
     public long value() {
-        return 8500 * quantity;
+        return 12500 * quantity;
     }
 }
