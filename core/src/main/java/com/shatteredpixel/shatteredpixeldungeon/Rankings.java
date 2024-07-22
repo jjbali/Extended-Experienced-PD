@@ -42,6 +42,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.Generator;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.ExponentialItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MixedOperationItem;
+import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.ModuloItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.MultiplicationItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.OddEvenItem;
 import com.shatteredpixel.shatteredpixeldungeon.items.questionnaires.RectangularItem;
@@ -73,7 +74,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum Rankings {
-	
+
 	INSTANCE;
 	
 	public static final int TABLE_SIZE	= 11;
@@ -215,7 +216,7 @@ public enum Rankings {
 											+ ExponentialItem.totalAnswers_e + RectangularItem.totalAnswers_j
 											+ BinaryItem.totalAnswers_i + DivisibilityItem.totalAnswers_h
 											+ TriangularItem.totalAnswers_k + TypingItem.totalAnswers_l
-											+ ThreeOperationQuestionnaire.totalAnswers_m;
+											+ ThreeOperationQuestionnaire.totalAnswers_m + ModuloItem.totalAnswers_n;
 
 			Statistics.totalBossScore = 0;
 			for (int i : Statistics.bossScores){
@@ -235,7 +236,7 @@ public enum Rankings {
 					+ ExponentialItem.streak_e + RectangularItem.streak_j
 					+ BinaryItem.streak_i + DivisibilityItem.streak_h
 					+ TriangularItem.streak_k + TypingItem.streak_l
-					+ ThreeOperationQuestionnaire.streak_m);
+					+ ThreeOperationQuestionnaire.streak_m + ModuloItem.streak_n);
 			if (Statistics.gameWon)         Statistics.winMultiplier += 0.7f;
 			if (Statistics.ascended)        Statistics.winMultiplier += 0.3f;
 
