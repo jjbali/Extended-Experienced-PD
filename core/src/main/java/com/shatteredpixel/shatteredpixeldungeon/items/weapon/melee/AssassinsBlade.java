@@ -50,7 +50,7 @@ public class AssassinsBlade extends MeleeWeapon {
 
 	@Override
 	public long max(long lvl) {
-		return  5L*(tier()+1) +    //25 base, down from 30
+		return  4L*(tier()+1) +    //25 base, down from 30
 				lvl*(tier()+2);   //+6
 	}
 

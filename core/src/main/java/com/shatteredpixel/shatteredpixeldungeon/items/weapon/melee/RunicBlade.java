@@ -127,9 +127,9 @@ public class RunicBlade extends MeleeWeapon {
 
     @Override
     public long max(long lvl) {
-        long i = 5L * (tier()) +                    //20 base, down from 30
+        long i = 4L * (tier()) +                    //20 base, down from 30
                 lvl * (tier()+1); //+5 per level, up from +6
-        if (!charged) i = 6L * (tier()) +
+        if (!charged) i = 5L * (tier()) +
                 lvl * (tier() + 2L);
         return i;
     }
