@@ -83,7 +83,7 @@ public class OddEvenItem extends Questionnaire {
     public static int streak_g = 0;
     public int t = totalAnswers_g;
     public static int s = streak_g;
-    public static float score_multi = 1f;
+    public static float score_multi = 0f;
 
 
 

@@ -229,7 +229,7 @@ public enum Rankings {
 			}
 
 			Statistics.winMultiplier = 1f;
-			Statistics.streakMultiplier = 1f;
+			Statistics.streakMultiplier = 0f;
 			if (Statistics.gameWon) 		Statistics.streakMultiplier += 0.001f * (AdditionItem.streak_a + SubtractionItem.streak_b
 					+ MultiplicationItem.streak_c + DivisionItem.streak_d
 					+ MixedOperationItem.streak_f + OddEvenItem.streak_g
