@@ -58,7 +58,7 @@ public class Gloves extends MeleeWeapon {
 			return  (long)(3d*(tier()+1)) +    //6 base, down from 10
 					lvl*tier() + Dungeon.hero.buff(AttackBuff.class).stack;
 		}
-		return  Math.round(2.5d*(tier()+1)) +     //5 base, down from 10
+		return  Math.round(2d*(tier()+1)) +     //5 base, down from 10
 				lvl*Math.round(0.5d*(tier()+1));  //+1 per level, down from +2
 	}
 

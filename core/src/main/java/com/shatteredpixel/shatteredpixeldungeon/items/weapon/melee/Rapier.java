@@ -60,7 +60,7 @@ public class Rapier extends MeleeWeapon {
 
 	@Override
 	public long max(long lvl) {
-		return  4L*(tier()+1) +    //8 base, down from 10
+		return  3L*(tier()+1) +    //8 base, down from 10
 				lvl*(tier()+1);   //scaling unchanged
 	}
 
