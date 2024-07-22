@@ -201,14 +201,14 @@ public class BallisticBow extends Weapon {
 	public long min(long lvl) {
 		long dmg = (long) ((4 * (Math.pow(1.25f, Dungeon.hero.lvl))) + 2*RingOfSharpshooting.levelDamageBonus(Dungeon.hero)
 						+ (curseInfusionBonus ? 1 + Dungeon.hero.lvl/25 : 0));
-		return Math.max(0, dmg);
+		return Math.min(5000000000L, Math.max(0, dmg));
 	}
 	
 	@Override
 	public long max(long lvl) {
 		long dmg = (long) ((12 * (Math.pow(1.25f, Dungeon.hero.lvl))) + 3*RingOfSharpshooting.levelDamageBonus(Dungeon.hero)
 						+ (curseInfusionBonus ? 2 + Dungeon.hero.lvl/10 : 0));
-		return Math.max(0, dmg);
+		return Math.min(500000000000L, Math.max(0, dmg));
 	}
 
 	@Override
