@@ -264,7 +264,7 @@ public enum Rankings {
 		Statistics.totalScore = Statistics.progressScore + Statistics.treasureScore + Statistics.exploreScore
 					+ Statistics.totalBossScore + Statistics.totalQuestScore + Statistics.answeredQuestions;
 
-		Statistics.totalScore *= Statistics.winMultiplier * Statistics.chalMultiplier * Statistics.cycleMultiplier * Statistics.streakMultiplier * OddEvenItem.score_multi;
+		Statistics.totalScore *= Statistics.winMultiplier + Statistics.chalMultiplier + Statistics.cycleMultiplier + Statistics.streakMultiplier + OddEvenItem.score_multi;
 		//if (gregcal.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY) Statistics.totalScore *= 5;
 
 		return Statistics.totalScore;
