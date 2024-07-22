@@ -224,22 +224,22 @@ public abstract class Level implements Bundlable {
 			if (Dungeon.depth > 1) {
 				//50% chance of getting a level feeling
 				//~7.15% chance for each feeling
-				switch (Random.Int( 18 )) {
-					case 0:
+				switch (Random.Int( 25 )) {
+					case 0: case 9:
 						feeling = Feeling.CHASM;
 						break;
-					case 1:
+					case 1: case 10:
 						feeling = Feeling.WATER;
 						break;
-					case 2:
+					case 2: case 11:
 						feeling = Feeling.GRASS;
 						break;
-					case 3:
+					case 3: case 12:
 						feeling = Feeling.DARK;
 						addItemToSpawn(new Torch());
 						viewDistance = Math.round(viewDistance/2f);
 						break;
-					case 4:
+					case 4: case 13:
 						feeling = Feeling.LARGE;
 						addItemToSpawn(Generator.random(Generator.Category.FOOD));
 						//add a second torch to help with the larger floor
@@ -247,10 +247,10 @@ public abstract class Level implements Bundlable {
 							addItemToSpawn( new Torch() );
 						}
 						break;
-					case 5:
+					case 5: case 14:
 						feeling = Feeling.TRAPS;
 						break;
-					case 6:
+					case 6: case 15:
 						feeling = Feeling.SECRETS;
 						break;
 					case 7:
