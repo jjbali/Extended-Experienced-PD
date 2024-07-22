@@ -146,33 +146,33 @@ public class Bestiary {
 			default:
 				return;
 			case 1: case 2: case 3: case 4:
-				if (Random.Float() < 0.05f) rotation.add(Thief.class);
-				if (Random.Float() < 0.05f) rotation.add(Skeleton.class);
-				if (Random.Float() < 0.05f) rotation.add(Necromancer.class);
-				if (Random.Float() < 0.05f) rotation.add(DM100.class);
+				if (Random.Float() < 0.025f) rotation.add(Thief.class);
+				if (Random.Float() < 0.025f) rotation.add(Skeleton.class);
+				if (Random.Float() < 0.025f) rotation.add(Necromancer.class);
+				if (Random.Float() < 0.025f) rotation.add(DM100.class);
 				return;
 
 			// Prison
 			case 6: case 7: case 8: case 9:
-				if (Random.Float() < 0.05f) rotation.add(Bat.class);
-				if (Random.Float() < 0.05f) rotation.add(Brute.class);
-				if (Random.Float() < 0.05f) rotation.add(Shaman.random());
-				if (Random.Float() < 0.05f) rotation.add(DM200.class);
+				if (Random.Float() < 0.025f) rotation.add(Bat.class);
+				if (Random.Float() < 0.025f) rotation.add(Brute.class);
+				if (Random.Float() < 0.025f) rotation.add(Shaman.random());
+				if (Random.Float() < 0.025f) rotation.add(DM200.class);
 				return;
 
 			// Caves
 			case 11: case 12: case 13: case 14:
-				if (Random.Float() < 0.05f) rotation.add(Ghoul.class);
-				if (Random.Float() < 0.05f) rotation.add(Elemental.random());
-				if (Random.Float() < 0.05f) rotation.add(Golem.class);
-				if (Random.Float() < 0.05f) rotation.add(Monk.class);
+				if (Random.Float() < 0.025f) rotation.add(Ghoul.class);
+				if (Random.Float() < 0.025f) rotation.add(Elemental.random());
+				if (Random.Float() < 0.025f) rotation.add(Golem.class);
+				if (Random.Float() < 0.025f) rotation.add(Monk.class);
 				return;
 
 			// City
 			case 16: case 17: case 18: case 19:
-				if (Random.Float() < 0.05f) rotation.add(Succubus.class);
-				if (Random.Float() < 0.05f) rotation.add(Scorpio.class);
-				if (Random.Float() < 0.05f) rotation.add(RipperDemon.class);
+				if (Random.Float() < 0.025f) rotation.add(Succubus.class);
+				if (Random.Float() < 0.025f) rotation.add(Scorpio.class);
+				if (Random.Float() < 0.025f) rotation.add(RipperDemon.class);
 				return;
 		}
 	}
