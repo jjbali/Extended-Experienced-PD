@@ -58,8 +58,8 @@ public class Spear extends MeleeWeapon {
 
 	@Override
 	public long max(long lvl) {
-		return  Math.round(8d*(tier()+1)) +    //24 base, up from 18
-				lvl*Math.round(1.66d*(tier()+2)); //+6.64 per level, up from +4
+		return  Math.round(7d*(tier()+1)) +    //24 base, up from 18
+				lvl*Math.round(1.44d*(tier()+2)); //+6.64 per level, up from +4
 	}
 
 	@Override

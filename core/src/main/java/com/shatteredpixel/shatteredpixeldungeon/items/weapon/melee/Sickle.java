@@ -57,7 +57,7 @@ public class Sickle extends MeleeWeapon {
 
 	@Override
 	public long max(long lvl) {
-		return  Math.round(6.67d*(tier()+1)) +    //20 base, up from 15
+		return  Math.round(5.67d*(tier()+1)) +    //20 base, up from 15
 				lvl*(tier()+1);                   //scaling unchanged
 	}
 

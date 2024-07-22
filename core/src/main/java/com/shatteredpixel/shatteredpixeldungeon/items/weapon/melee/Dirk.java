@@ -51,7 +51,7 @@ public class Dirk extends MeleeWeapon implements PreparationAllowed {
 
 	@Override
 	public long max(long lvl) {
-		return (long) (7d*(tier()) +    //14 base, down from 18
+		return (long) (6d*(tier()) +    //14 base, down from 18
 						lvl*(tier()*0.75f));   //scaling down to 1.5
 	}
 	
