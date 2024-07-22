@@ -146,7 +146,7 @@ public class ThreeOperationQuestionnaire extends Questionnaire {
                     CODE4 = Random.Int(100);
                     ANSWER = String.valueOf((CODE + CODE2 + CODE3) - CODE4);
                     GLog.h("\n[Type: PLUS x2 and SUB x1]");
-                    BODY = "Perform the following operations: " + CODE + " + " + CODE2 + " + " + CODE3 + " - " + CODE4;
+                    BODY = "Perform the following operations: (" + CODE + " + " + CODE2 + " + " + CODE3 + ") - " + CODE4;
                     type = "PLUS x2 and SUB x1";
                     break;
                 case 2:
@@ -156,7 +156,7 @@ public class ThreeOperationQuestionnaire extends Questionnaire {
                     CODE4 = Random.Int(100);
                     ANSWER = String.valueOf((CODE + CODE2) - CODE3 - CODE4);
                     GLog.h("\n[Type: PLUS x1 and SUB x2]");
-                    BODY = "Perform the following operations: " + CODE + " + " + CODE2 + " - " + CODE3 + " - " + CODE4;
+                    BODY = "Perform the following operations: (" + CODE + " + " + CODE2 + ") - " + CODE3 + " - " + CODE4;
                     type = "PLUS x1 and SUB x2]";
                     break;
                 case 3:
@@ -176,7 +176,7 @@ public class ThreeOperationQuestionnaire extends Questionnaire {
                     CODE4 = Random.Int(100);
                     ANSWER = String.valueOf(CODE - (CODE2 + CODE3) - CODE4);
                     GLog.h("\n[Type: PLUS x1 and SUB x2]");
-                    BODY = "Perform the following operations: " + CODE + " - " + CODE2 + " + " + CODE3 + " - " + CODE4;
+                    BODY = "Perform the following operations: " + CODE + " - (" + CODE2 + " + " + CODE3 + ") - " + CODE4;
                     type = "PLUS x1 and SUB x2";
                     break;
                 case 5:
@@ -186,7 +186,7 @@ public class ThreeOperationQuestionnaire extends Questionnaire {
                     CODE4 = Random.Int(100);
                     ANSWER = String.valueOf((CODE + CODE2) - (CODE3 + CODE4));
                     GLog.h("\n[Type: PLUS x2 and SUB x1]");
-                    BODY = "Perform the following operations: " + CODE + " + " + CODE2 + " - " + CODE3 + " + " + CODE4;
+                    BODY = "Perform the following operations: (" + CODE + " + " + CODE2 + ") - (" + CODE3 + " + " + CODE4 + ")";
                     type = "PLUS x2 and SUB x1";
                     break;
             }
@@ -229,7 +229,7 @@ public class ThreeOperationQuestionnaire extends Questionnaire {
                             CODE4 = Random.Int(100);
                             ANSWER = String.valueOf((CODE + CODE2 + CODE3) - CODE4);
                             GLog.h("\n[Type: PLUS x2 and SUB x1]");
-                            BODY = "Perform the following operations: " + CODE + " + " + CODE2 + " + " + CODE3 + " - " + CODE4;
+                            BODY = "Perform the following operations: (" + CODE + " + " + CODE2 + " + " + CODE3 + ") - " + CODE4;
                             type = "PLUS x2 and SUB x1";
                             break;
                         case 2:
@@ -239,7 +239,7 @@ public class ThreeOperationQuestionnaire extends Questionnaire {
                             CODE4 = Random.Int(100);
                             ANSWER = String.valueOf((CODE + CODE2) - CODE3 - CODE4);
                             GLog.h("\n[Type: PLUS x1 and SUB x2]");
-                            BODY = "Perform the following operations: " + CODE + " + " + CODE2 + " - " + CODE3 + " - " + CODE4;
+                            BODY = "Perform the following operations: (" + CODE + " + " + CODE2 + ") - " + CODE3 + " - " + CODE4;
                             type = "PLUS x1 and SUB x2]";
                             break;
                         case 3:
@@ -259,7 +259,7 @@ public class ThreeOperationQuestionnaire extends Questionnaire {
                             CODE4 = Random.Int(100);
                             ANSWER = String.valueOf(CODE - (CODE2 + CODE3) - CODE4);
                             GLog.h("\n[Type: PLUS x1 and SUB x2]");
-                            BODY = "Perform the following operations: " + CODE + " - " + CODE2 + " + " + CODE3 + " - " + CODE4;
+                            BODY = "Perform the following operations: " + CODE + " - (" + CODE2 + " + " + CODE3 + ") - " + CODE4;
                             type = "PLUS x1 and SUB x2";
                             break;
                         case 5:
@@ -269,7 +269,7 @@ public class ThreeOperationQuestionnaire extends Questionnaire {
                             CODE4 = Random.Int(100);
                             ANSWER = String.valueOf((CODE + CODE2) - (CODE3 + CODE4));
                             GLog.h("\n[Type: PLUS x2 and SUB x1]");
-                            BODY = "Perform the following operations: " + CODE + " + " + CODE2 + " - " + CODE3 + " + " + CODE4;
+                            BODY = "Perform the following operations: (" + CODE + " + " + CODE2 + ") - (" + CODE3 + " + " + CODE4 + ")";
                             type = "PLUS x2 and SUB x1";
                             break;
                     }
