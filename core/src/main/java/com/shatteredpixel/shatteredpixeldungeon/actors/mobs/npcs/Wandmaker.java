@@ -465,7 +465,9 @@ public class Wandmaker extends NPC {
 				PsycheChest.questDepth = -1;
 				
 			}
-			rooms.add(new NecromancerSpawnerRoom());
+			if (Dungeon.depth == 9) {
+				rooms.add(new NecromancerSpawnerRoom());
+			}
 			return rooms;
 		}
 		
