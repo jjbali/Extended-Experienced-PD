@@ -95,7 +95,7 @@ public class TelekineticGrab extends TargetedSpell {
 
 		} else if (Dungeon.level.heaps.get(bolt.collisionPos) != null){
 
-			for (int n : PathFinder.NEIGHBOURS9){
+			for (int n : PathFinder.NEIGHBOURS25){
 				int cell = bolt.collisionPos + n;
 
 				Heap h = Dungeon.level.heaps.get(cell);
@@ -132,16 +132,16 @@ public class TelekineticGrab extends TargetedSpell {
 	@Override
 	public long value() {
 		//prices of ingredients, divided by output quantity, rounds down
-		return (int)((10 + 40) * (quantity/6f));
+		return (int)((50 + 40) * (quantity/2f));
 	}
 
 	public static class Recipe extends com.shatteredpixel.shatteredpixeldungeon.items.Recipe.SimpleRecipe {
 
 		{
-			inputs =  new Class[]{LiquidMetal.class, ArcaneCatalyst.class};
-			inQuantity = new int[]{10, 1};
+			inputs =  new Class[]{ArcaneCatalyst.class};
+			inQuantity = new int[]{3};
 
-			cost = 2;
+			cost = 5;
 
 			output = TelekineticGrab.class;
 			outQuantity = 6;
