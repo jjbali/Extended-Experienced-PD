@@ -1,4 +1,5 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
@@ -7,6 +8,9 @@
  *
  * Experienced Pixel Dungeon
  * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.buffs;
@@ -65,7 +70,7 @@ public class Combo extends Buff implements ActionIndicator.Action {
 
 	public int count = 0;
 	private float comboTime = 0f;
-	private float initialComboTime = 5f;
+	private float initialComboTime = 8f;
 
 	@Override
 	public int icon() {
@@ -95,7 +100,7 @@ public class Combo extends Buff implements ActionIndicator.Action {
 	public void hit( Char enemy ) {
 
 		count++;
-		comboTime = 5f;
+		comboTime = 8f;
 
 		if (!enemy.isAlive() || (enemy.buff(Corruption.class) != null && enemy.HP == enemy.HT)){
 			if (((Hero)target).subClass == HeroSubClass.GLADIATOR)
