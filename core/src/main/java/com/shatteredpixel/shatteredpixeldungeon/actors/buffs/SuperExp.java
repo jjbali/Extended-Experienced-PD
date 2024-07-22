@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.actors.buffs;
@@ -39,8 +44,10 @@ public class SuperExp extends Buff {
 		type = buffType.POSITIVE;
 	}
 
+	public static final float DURATION = 500f;
+	protected float left;
+
 	public float multiplier = 1f;
-	public static final String MULTIPLIER = "multiplier";
 	@Override
 	public int icon() {
 		return BuffIndicator.UPGRADE;
@@ -54,29 +61,46 @@ public class SuperExp extends Buff {
 	public float expfactor(){
 		return multiplier;
 	}
+	public void set( float duration ) {
+		this.left = duration;
+	}
 
 	@Override
 	public boolean act() {
-		multiplier += 0.001f;
-		spend(1f);
+		multiplier += 0.005f;
+		spend(TICK);
+		left -= TICK;
+		if (left <= 0){
+			detach();
+		}
 		return true;
 	}
 
+
+	@Override
+	public float iconFadePercent() {
+		return Math.max(0, (left - visualcooldown()) / DURATION);
+	}
+
+	private static final String LEFT	= "left";
+	public static final String MULTIPLIER = "multiplier";
 	@Override
 	public void storeInBundle(Bundle bundle) {
 		super.storeInBundle(bundle);
 		bundle.put(MULTIPLIER, multiplier);
+		bundle.put( LEFT, left );
 	}
 
 	@Override
 	public void restoreFromBundle(Bundle bundle) {
 		super.restoreFromBundle(bundle);
 		multiplier = bundle.getFloat(MULTIPLIER);
+		left = bundle.getFloat( LEFT );
 	}
 
 	@Override
 	public String desc() {
-		return Messages.get(this, "desc", (int)(100*(multiplier-1)));
+		return Messages.get(this, "desc", (int)(100*(multiplier-1)), (int)(left));
 	}
 
 }

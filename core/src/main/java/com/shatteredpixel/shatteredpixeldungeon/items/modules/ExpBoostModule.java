@@ -55,7 +55,7 @@ public class ExpBoostModule extends Module {
     public void execute( Hero hero, String action ) {
         super.execute(hero, action);
         if (action.equals(AC_USE)) {
-            Buff.affect(hero, SuperExp.class);
+            Buff.affect(hero, SuperExp.class).set(500f);
             detach(hero.belongings.backpack);
         }
     }
