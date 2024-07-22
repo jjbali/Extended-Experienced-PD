@@ -44,7 +44,7 @@ public class Greatshield extends MeleeWeapon {
 
 	@Override
 	public long max(long lvl) {
-		return  Math.round(3d*(tier()+1)) +     //18 base, down from 36
+		return  Math.round(2.5d*(tier()+1)) +     //18 base, down from 36
 				lvl*(tier()-1);                   //+4 per level, down from +7
 	}
 

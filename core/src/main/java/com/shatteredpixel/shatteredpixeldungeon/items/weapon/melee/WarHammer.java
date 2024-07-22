@@ -49,12 +49,12 @@ public class WarHammer extends MeleeWeapon {
 
 		internalTier = tier = 5;
 		ACC = 1.20f; //20% boost to accuracy
-        DLY = 3;
+        DLY = 2.5f;
 	}
 
 	@Override
 	public long max(long lvl) {
-		return  20L*(tier()+1) +    //120 base, up from 36
+		return  16L*(tier()+1) +    //120 base, up from 36
 				5*lvl*(tier()+1);   //scaling is 5x
 	}
 
