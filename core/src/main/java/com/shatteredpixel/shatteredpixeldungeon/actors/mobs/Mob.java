@@ -46,6 +46,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.SpellSprite;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Surprise;
 import com.shatteredpixel.shatteredpixeldungeon.effects.Wound;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
+import com.shatteredpixel.shatteredpixeldungeon.items.fragments.BlueGlowingFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.Fragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.RedGlowingFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.TealFragment;
@@ -917,6 +918,9 @@ public abstract class Mob extends Char {
 				if (hero.buff(SuperExp.class) != null){
 					EXP *= hero.buff(SuperExp.class).expfactor();
 				}
+
+				new BlueGlowingFragment();
+				EXP += EXP * BlueGlowingFragment.expBoost();
 
 				if (hero.pointsInTalent(Talent.HANDIFUL_EXPERIENCE) >= 1){
 					EXP *= 1 + (0.1f * hero.pointsInTalent(Talent.HANDIFUL_EXPERIENCE));
