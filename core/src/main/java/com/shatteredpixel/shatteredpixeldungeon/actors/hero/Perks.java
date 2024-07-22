@@ -221,9 +221,9 @@ public class Perks {
     }
 
     public static int nextPerkLevel(){
-        int num = 3;
+        int num = 10;
         for (int i = 0; i < Dungeon.hero.perks.size(); i++){
-            num += 3 + i;
+            num += 10 + i;
         }
         return num;
     }
