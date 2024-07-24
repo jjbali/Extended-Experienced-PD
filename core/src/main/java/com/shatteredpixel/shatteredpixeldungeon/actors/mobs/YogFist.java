@@ -62,7 +62,7 @@ import com.watabou.utils.Random;
 public abstract class YogFist extends Mob {
 
 	{
-		HP = HT = 300;
+		HP = HT = 1500L * Dungeon.hero.STR;
 		defenseSkill = 20 + Dungeon.hero.STR;
 
 		viewDistance = Light.DISTANCE;
@@ -77,22 +77,22 @@ public abstract class YogFist extends Mob {
 		properties.add(Property.DEMONIC);
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 3750;
+                HP = HT = 83750L * Dungeon.hero.STR;
                 defenseSkill = 89 + Dungeon.hero.STR;
                 EXP = 150;
                 break;
             case 2:
-                HP = HT = 50000;
+                HP = HT = 9950000L * Dungeon.hero.STR;
                 defenseSkill = 324 + Dungeon.hero.STR;
                 EXP = 1800;
                 break;
             case 3:
-                HP = HT = 3000000;
+                HP = HT = 153000000L * Dungeon.hero.STR;
                 defenseSkill = 1100 + Dungeon.hero.STR;
                 EXP = 50000;
                 break;
             case 4:
-                HP = HT = 600000000;
+                HP = HT = 45600000000L * Dungeon.hero.STR;
                 defenseSkill = 16500 + Dungeon.hero.STR;
                 EXP = 9000000;
                 break;

@@ -75,7 +75,7 @@ public class Tengu extends Mob {
 	{
 		spriteClass = TenguSprite.class;
 		
-		HP = HT = 2000L * Dungeon.hero.lvl;
+		HP = HT = 3000L * Dungeon.hero.lvl;
 		EXP = 75;
 		defenseSkill = 15 + Dungeon.hero.STR;
 		
@@ -89,22 +89,22 @@ public class Tengu extends Mob {
 
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 10000L * Dungeon.hero.lvl;
+                HP = HT = 19000L * Dungeon.hero.lvl;
                 defenseSkill = 43 + Dungeon.hero.STR;
                 EXP = 210;
                 break;
             case 2:
-                HP = HT = 180000L * Dungeon.hero.lvl;
+                HP = HT = 570000L * Dungeon.hero.lvl;
                 defenseSkill = 210 + Dungeon.hero.STR;
                 EXP = 4100;
                 break;
             case 3:
-                HP = HT = 6000000L * Dungeon.hero.lvl;
+                HP = HT = 25000000L * Dungeon.hero.lvl;
                 defenseSkill = 520 + Dungeon.hero.STR;
                 EXP = 60000;
                 break;
             case 4:
-                HP = HT = 750000000L * Dungeon.hero.lvl;
+                HP = HT = 7590000000L * Dungeon.hero.lvl;
                 defenseSkill = 3600 + Dungeon.hero.STR;
                 EXP = 75000000;
                 break;

@@ -65,7 +65,7 @@ public class YogDzewa extends Mob {
 	{
 		spriteClass = YogSprite.class;
 
-		HP = HT = 4500L * Dungeon.hero.lvl;
+		HP = HT = 15000L * Dungeon.hero.lvl;
 
 		EXP = 50;
 
@@ -79,22 +79,22 @@ public class YogDzewa extends Mob {
 		properties.add(Property.DEMONIC);
         switch (Dungeon.cycle){
             case 1:
-                HP = HT = 130000L * Dungeon.hero.lvl;
+                HP = HT = 9500000L * Dungeon.hero.lvl;
                 defenseSkill = 0;
                 EXP = 15000;
                 break;
             case 2:
-                HP = HT = 1800000L * Dungeon.hero.lvl;
+                HP = HT = 85800000L * Dungeon.hero.lvl;
                 defenseSkill = 0;
                 EXP = 1250000;
                 break;
             case 3:
-                HP = HT = 120000000L * Dungeon.hero.lvl;
+                HP = HT = 7520000000L * Dungeon.hero.lvl;
                 defenseSkill = 0;
                 EXP = 20000000;
                 break;
             case 4:
-                HP = HT = 20000000000L * Dungeon.hero.lvl;
+                HP = HT = 990000000000L * Dungeon.hero.lvl;
                 defenseSkill = 0;
                 EXP = 15000000000L;
                 break;
