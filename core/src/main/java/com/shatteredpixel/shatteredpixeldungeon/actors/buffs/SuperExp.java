@@ -72,6 +72,7 @@ public class SuperExp extends Buff {
 		left -= TICK;
 		if (left <= 0){
 			detach();
+			multiplier = 1f;
 		}
 		return true;
 	}
