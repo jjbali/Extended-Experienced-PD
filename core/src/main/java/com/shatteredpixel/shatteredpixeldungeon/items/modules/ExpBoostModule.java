@@ -84,6 +84,6 @@ public class ExpBoostModule extends Module {
 
     @Override
     public String desc() {
-        return "This module gives you a permanent and increasing exp boost overtime.";
+        return "This module gives you a temporary and increasing exp boost overtime.";
     }
 }
