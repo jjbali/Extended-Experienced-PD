@@ -1,12 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2023 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
  *
  * Experienced Pixel Dungeon
- * Copyright (C) 2019-2020 Trashbox Bobylev
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.potions.elixirs;
@@ -86,29 +91,29 @@ public class ElixirOfUltimatum extends Elixir {
 	public void apply( Hero hero ) {
 		identify();
 
-		Buff.affect(hero, Adrenaline.class, 350f * hero.lvl);
-		Buff.prolong(hero, AnkhInvulnerability.class, 10f * hero.lvl);
-		Buff.affect(hero, ArcaneArmor.class).set(963L * hero.lvl, Integer.MAX_VALUE);
-		Buff.affect(hero, ArtifactRecharge.class).set(745f * hero.lvl);
-		Buff.affect(hero, Barrier.class).setShield(850L * hero.lvl);
-		Buff.affect(hero, Bless.class, 1000f * hero.lvl);
-		Buff.affect(hero, BlobImmunity.class, 950f * hero.lvl);
-		Buff.affect(hero, CorrosiveImbue.class).set(750f * hero.lvl);
-		Buff.affect(hero, DamageEnhance.class).set(2L * hero.lvl, 450L * hero.lvl);
-		Buff.affect(hero, FireImbue.class).set(850f * hero.lvl);
-		Buff.affect(hero, Foresight.class, 75f * hero.lvl);
-		Buff.affect(hero, FrostImbue.class, 850f * hero.lvl);
-		Buff.affect(hero, Light.class, 850f * hero.lvl);
-		Buff.affect(hero, PhysicalEmpower.class).set((Random.Int(1, 10) + 1) * hero.lvl, 200 * hero.lvl);
-		Buff.affect(hero, PrismaticGuard.class).set(hero.HT);
-		Buff.affect(hero, RageShield.class).set(500 * hero.lvl);
-		Buff.affect(hero, Recharging.class, 1000f * hero.lvl);
+		Buff.affect(hero, Adrenaline.class, 200f * hero.lvl);
+		Buff.prolong(hero, AnkhInvulnerability.class, 6f * hero.lvl);
+		Buff.affect(hero, ArcaneArmor.class).set(450L * hero.lvl, Integer.MAX_VALUE);
+		Buff.affect(hero, ArtifactRecharge.class).set(600f * hero.lvl);
+		Buff.affect(hero, Barrier.class).setShield(750L * hero.lvl);
+		Buff.affect(hero, Bless.class, 780f * hero.lvl);
+		Buff.affect(hero, BlobImmunity.class, 850f * hero.lvl);
+		Buff.affect(hero, CorrosiveImbue.class).set(450f * hero.lvl);
+		Buff.affect(hero, DamageEnhance.class).set(2L * hero.lvl, 320L * hero.lvl);
+		Buff.affect(hero, FireImbue.class).set(550f * hero.lvl);
+		Buff.affect(hero, Foresight.class, 45f * hero.lvl);
+		Buff.affect(hero, FrostImbue.class, 320f * hero.lvl);
+		Buff.affect(hero, Light.class, 650f * hero.lvl);
+		Buff.affect(hero, PhysicalEmpower.class).set((Random.Int(1, 10) + 1) * hero.lvl, 150 * hero.lvl);
+		Buff.affect(hero, PrismaticGuard.class).set((long) (hero.HT/1.2));
+		Buff.affect(hero, RageShield.class).set(350 * hero.lvl);
+		Buff.affect(hero, Recharging.class, 750f * hero.lvl);
 		Buff.affect(hero, WellFed.class).reset();
-		Buff.affect(hero, PotionOfCleansing.Cleanse.class, 260f * hero.lvl);
-		for (int i = 0; i < 50; i++) {
+		Buff.affect(hero, PotionOfCleansing.Cleanse.class, 200f * hero.lvl);
+		for (int i = 0; i < 40; i++) {
 			hero.STR++;
 		}
-		hero.sprite.showStatusWithIcon(CharSprite.POSITIVE, "50", FloatingText.STRENGTH);
+		hero.sprite.showStatusWithIcon(CharSprite.POSITIVE, "40", FloatingText.STRENGTH);
 		Badges.validateStrengthAttained();
 		Badges.validateDuelistUnlock();
 
@@ -150,7 +155,7 @@ public class ElixirOfUltimatum extends Elixir {
 
 		@Override
 		public long cost(ArrayList<Item> ingredients) {
-			return 1000;
+			return Math.min(10000, 15 * Dungeon.hero.lvl);
 		}
 
 		@Override
@@ -166,7 +171,7 @@ public class ElixirOfUltimatum extends Elixir {
 
 		@Override
 		public Item sampleOutput(ArrayList<Item> ingredients) {
-			return new ElixirOfUltimatum().quantity(5);
+			return new ElixirOfUltimatum().quantity(3);
 		}
 		
 	}
