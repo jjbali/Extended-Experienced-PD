@@ -623,6 +623,7 @@ public abstract class Char extends Actor {
 		if ( buff( Haste.class ) != null) speed *= 3f;
 		if ( buff( Dread.class ) != null) speed *= 2f;
 		if ( buff( TubeOfGodspeed.Godspeed.class ) != null) speed *= 5f;
+		if ( buff( Levitation.class) != null ) speed *= 1.1f;
 		return speed;
 	}
 
