@@ -217,6 +217,10 @@ public class ShopRoom extends SpecialRoom {
 			case 4: default: itemsToSpawn.add(new ChaosFishingRod().upgrade(Random.Int(2, 5))); break;
 		}
 
+		for (int i = 0; i < 2; i++) itemsToSpawn.add(new GambleBag());
+		for (int i = 0; i < 2; i++) itemsToSpawn.add(new BiggerGambleBag());
+		for (int i = 0; i < 2; i++) itemsToSpawn.add(new QualityBag());
+
 		itemsToSpawn.add( Generator.random(Generator.Category.SCROLL) );
 		itemsToSpawn.add( Generator.random(Generator.Category.EXSCROLL) );
 		itemsToSpawn.add( Generator.random(Generator.Category.POTION) );
