@@ -52,7 +52,7 @@ public class LiminalArmor extends Armor {
 	@Override
 	public Item upgrade() {
 		hero.earnExp((long) Math.pow(2L * hero.lvl, 1.2d), LiminalArmor.class);
-		hero.HT *= 1.2d;
+		hero.HT *= 1.02d;
 		if (hero.buff(Barrier.class) != null) {
 			Buff.affect(hero, Barrier.class).incShield(20L * hero.lvl);
 		} else {
