@@ -719,13 +719,14 @@ public class Generator {
 					MailArmor.class,
 					ScaleArmor.class,
 					PlateArmor.class,
+					LiminalArmor.class,
 					WarriorArmor.class,
 					MageArmor.class,
 					RogueArmor.class,
 					HuntressArmor.class,
 					DuelistArmor.class
 			};
-			ARMOR.probs = new float[]{ 1, 1, 1, 1, 1, 0, 0, 0, 0, 0 };
+			ARMOR.probs = new float[]{ 8, 6, 5, 3, 2, 1, 0, 0, 0, 0, 0 };
 			
 			//see Generator.randomMissile
 			MISSILE.classes = new Class<?>[]{};
