@@ -40,6 +40,7 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.MagicMissile;
 import com.shatteredpixel.shatteredpixeldungeon.items.Heap;
 import com.shatteredpixel.shatteredpixeldungeon.items.Item;
 import com.shatteredpixel.shatteredpixeldungeon.items.LiquidMetal;
+import com.shatteredpixel.shatteredpixeldungeon.items.potions.PotionOfLevitation;
 import com.shatteredpixel.shatteredpixeldungeon.mechanics.Ballistica;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
@@ -138,13 +139,13 @@ public class TelekineticGrab extends TargetedSpell {
 	public static class Recipe extends com.shatteredpixel.shatteredpixeldungeon.items.Recipe.SimpleRecipe {
 
 		{
-			inputs =  new Class[]{ArcaneCatalyst.class, ArcaneCatalyst.class, ArcaneCatalyst.class};
+			inputs =  new Class[]{ArcaneCatalyst.class, PotionOfLevitation.class};
 			inQuantity = new int[]{1, 1, 1};
 
 			cost = 5;
 
 			output = TelekineticGrab.class;
-			outQuantity = 6;
+			outQuantity = 8;
 		}
 
 	}
