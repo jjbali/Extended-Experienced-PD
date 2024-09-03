@@ -358,7 +358,7 @@ public class DimensionalLevel extends Level {
 						counter.countUp(Actor.TICK);
 						int power = (int) counter.count();
 						if (power >= 1) {
-							for (int i = 0; i < 1 + power; i++){
+							for (int i = 0; i < 2; i++){
 								Buff.affect(mob, Longsword.HolyExpEffect.class).stacks++;
 							}
 							Buff.affect(mob, Stamina.class, power * 3);
