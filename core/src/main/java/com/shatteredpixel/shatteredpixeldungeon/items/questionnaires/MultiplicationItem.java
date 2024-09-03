@@ -172,7 +172,7 @@ public class MultiplicationItem extends Questionnaire {
             public void onSelect( boolean positive, String text ) {
                 if (text.equals(ANSWER)) {
                     Buff.affect(hero, CodeCooldown3.class).set(3);
-                    if (streak_c % 10 == 0 && streak_c > 0) {
+                    if (totalAnswers_c % 10 == 0 && totalAnswers_c > 0) {
                         GLog.h("You answered the question correctly, +1STR!");
                     } else {
                         GLog.h("You answered the question correctly!");
