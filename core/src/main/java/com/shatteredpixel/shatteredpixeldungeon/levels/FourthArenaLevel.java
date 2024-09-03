@@ -382,7 +382,7 @@ public class FourthArenaLevel extends Level {
 						timerBasis = 50f + power / 2f;
 
 						if (power >= 50){
-							for (int i = 0; i < Math.min(250, power); i++){
+							for (int i = 0; i < Math.min(5, power); i++){
 								Buff.affect(mob, Longsword.HolyExpEffect.class).stacks++;
 							}
 						}

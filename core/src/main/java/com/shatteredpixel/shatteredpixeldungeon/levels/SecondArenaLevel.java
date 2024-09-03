@@ -396,7 +396,7 @@ public class SecondArenaLevel extends Level {
 						timerBasis = 15f + power / 2f;
 
 						if (power >= 0){
-							for (int i = 0; i < Math.min(100, power); i++){
+							for (int i = 0; i < Math.min(3, power); i++){
 								Buff.affect(mob, Longsword.HolyExpEffect.class).stacks++;
 							}
 						}
