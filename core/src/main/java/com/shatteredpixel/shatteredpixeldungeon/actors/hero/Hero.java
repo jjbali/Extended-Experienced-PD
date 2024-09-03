@@ -1990,7 +1990,7 @@ public class Hero extends Char {
 	}
 	
 	public static long maxExp( long lvl ){
-		long max = (long) Math.pow(10L + (lvl * 8L),1.5d);
+		long max = (long) Math.pow(7L + (lvl * 4L),1.25d);
 		if (hero != null && hero.belongings.getItem(TotemOfArgumentation.class) != null) max *= 0.9f;
 		return max;
 	}
