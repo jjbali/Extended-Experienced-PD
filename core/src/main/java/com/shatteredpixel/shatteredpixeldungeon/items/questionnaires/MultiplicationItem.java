@@ -177,6 +177,7 @@ public class MultiplicationItem extends Questionnaire {
                     } else {
                         GLog.h("You answered the question correctly!");
                     }
+                    hero.earnExp(5L * hero.lvl, null);
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
                         Buff.affect(hero, EnhancedRings.class, 3f);
                     }

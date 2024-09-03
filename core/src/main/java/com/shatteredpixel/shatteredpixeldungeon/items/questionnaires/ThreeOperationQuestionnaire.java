@@ -281,6 +281,7 @@ public class ThreeOperationQuestionnaire extends Questionnaire {
                     if (!text.equals("start")) {
                         Buff.affect(hero, CodeCooldown14.class).set(3);
                         GLog.h("You answered the question correctly!");
+                        hero.earnExp(5L * hero.lvl, null);
                         SpellSprite.show(hero, SpellSprite.CORRECT);
                         if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
                             Buff.affect(hero, EnhancedRings.class, 3f);

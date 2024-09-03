@@ -261,6 +261,7 @@ public class MixedOperationItem extends Questionnaire {
                     }
                     if (!text.equals("start")) {
                         GLog.h("You answered the question correctly.");
+                        hero.earnExp(5L * hero.lvl, null);
                         SpellSprite.show(hero, SpellSprite.CORRECT);
                         if (Random.Float() >= 0.95f) {
                             // 5% of getting an exp

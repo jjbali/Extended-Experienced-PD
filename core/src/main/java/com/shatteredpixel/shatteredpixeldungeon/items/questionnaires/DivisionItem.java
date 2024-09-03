@@ -173,6 +173,7 @@ public class DivisionItem extends Questionnaire {
                 if (text.equals(ANSWER)) {
                     Buff.affect(hero, CodeCooldown4.class).set(3);
                     GLog.h("You answered the question correctly, +1ACC!");
+                    hero.earnExp(5L * hero.lvl, null);
                     SpellSprite.show(hero, SpellSprite.CORRECT);
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
                         Buff.affect(hero, EnhancedRings.class, 3f);

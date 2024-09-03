@@ -177,6 +177,7 @@ public class ExponentialItem extends Questionnaire {
 
                     Buff.affect(hero, CodeCooldown6.class).set(3);
                     GLog.h("You answered the question correctly.");
+                    hero.earnExp(5L * hero.lvl, null);
                     SpellSprite.show(hero, SpellSprite.CORRECT);
                     CODE = Random.Int(10) + 1;
                     CODE2 = Random.Int(10) + 1;

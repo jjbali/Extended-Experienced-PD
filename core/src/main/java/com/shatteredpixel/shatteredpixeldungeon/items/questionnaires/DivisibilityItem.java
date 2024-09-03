@@ -153,6 +153,7 @@ public class DivisibilityItem extends Questionnaire {
                 if (text.equals(ANSWER)) {
                     Buff.affect(hero, CodeCooldown9.class).set(3);
                     GLog.h("You answered the question correctly.");
+                    hero.earnExp(5L * hero.lvl, null);
                     SpellSprite.show(hero, SpellSprite.CORRECT);
                     CODE = Random.Int(Integer.MAX_VALUE);
                     CODE2 = Random.Int(10) + 1;

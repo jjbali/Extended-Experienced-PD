@@ -208,6 +208,7 @@ public class TypingItem extends Questionnaire {
                         }
                     }
                     GLog.h("You answered the question correctly");
+                    hero.earnExp(15L * hero.lvl, null);
                     SpellSprite.show(hero, SpellSprite.CORRECT);
                     if (totalAnswers_l <= 10) {
                         ANSWER = getAlphaNumericString(6);

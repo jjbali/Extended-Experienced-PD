@@ -55,6 +55,7 @@ import com.shatteredpixel.shatteredpixeldungeon.items.artifacts.Artifact;
 import com.shatteredpixel.shatteredpixeldungeon.items.bags.Bag;
 import com.shatteredpixel.shatteredpixeldungeon.items.fragments.YellowFragment;
 import com.shatteredpixel.shatteredpixeldungeon.items.quest.KingBlade;
+import com.shatteredpixel.shatteredpixeldungeon.items.test_tubes.TubeOfExperience;
 import com.shatteredpixel.shatteredpixeldungeon.items.tieredcards.TieredCard;
 import com.shatteredpixel.shatteredpixeldungeon.items.wands.Wand;
 import com.shatteredpixel.shatteredpixeldungeon.items.weapon.enchantments.Unstable;
@@ -190,6 +191,7 @@ public class AdditionItem extends Questionnaire {
                 if (text.equals(ANSWER)) {
                     Buff.affect(hero, CodeCooldown2.class).set(3);
                     GLog.h("You answered the question correctly!");
+                    hero.earnExp(5L * hero.lvl, null);
                     SpellSprite.show(hero, SpellSprite.CORRECT);
                     if (hero.pointsInTalent(Talent.QUESTIONNAIRE_SUPERVISOR) >= 1){
                         Buff.affect(hero, EnhancedRings.class, 3f);

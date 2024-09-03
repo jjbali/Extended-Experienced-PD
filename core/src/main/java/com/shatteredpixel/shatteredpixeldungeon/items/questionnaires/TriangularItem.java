@@ -205,6 +205,7 @@ public class TriangularItem extends Questionnaire {
                         }
                     }
                     GLog.h("You answered the question correctly");
+                    hero.earnExp(5L * hero.lvl, null);
                     SpellSprite.show(hero, SpellSprite.CORRECT);
                     randomizer = Random.Int(2);
                     switch (randomizer) {
