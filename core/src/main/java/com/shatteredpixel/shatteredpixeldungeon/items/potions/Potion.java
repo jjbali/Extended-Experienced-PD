@@ -452,7 +452,7 @@ public class Potion extends Item {
 	
 	@Override
 	public long value() {
-		return 30 * quantity;
+		return 32 * quantity;
 	}
 
 	@Override
