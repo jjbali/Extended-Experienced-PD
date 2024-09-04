@@ -47,7 +47,7 @@ public class BiggerGambleBag extends TreasureBag {
     @Override
     protected ArrayList<Item> items() {
         ArrayList<Item> items = new ArrayList<>();
-        int amount = Dungeon.IntRange(5, 30);
+        int amount = Dungeon.IntRange(10, 40);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 1.5f;
         if (BinaryItem.streak_i >= 20) amount *= 2.5f;
         for(int i = 0; i < amount; i++) items.add(Generator.random());

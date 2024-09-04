@@ -55,8 +55,8 @@ public class QualityBag extends TreasureBag {
     @Override
     protected ArrayList<Item> items() {
         ArrayList<Item> items = new ArrayList<>();
-        int amount = 1;
-        if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG) && Random.Int(2) == 0) amount = 2;
+        int amount = 2;
+        if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG) && Random.Int(2) == 0) amount = 3;
         if (BinaryItem.streak_i >= 20) amount *= 2.5f;
         for (int i = 0; i < amount; i++) {
             Weapon wep = Generator.randomWeapon(Dungeon.depth + 1);
