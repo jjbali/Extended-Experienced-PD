@@ -50,7 +50,7 @@ public class PotionOfExperience extends Potion {
 	@Override
 	public void apply( Hero hero ) {
 		identify();
-		float duration = Bless.DURATION;
+		float duration = 40f;
 		if (hero.perks.contains(Perks.Perk.POTIONS)) duration *= 2;
 		Buff.prolong(hero, Bless.class, duration);
 		new Flare( 6, 32 ).color(0xFFFF00, true).show( curUser.sprite, 2f );
