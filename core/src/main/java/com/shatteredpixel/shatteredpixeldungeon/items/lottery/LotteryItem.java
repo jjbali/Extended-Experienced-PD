@@ -53,7 +53,7 @@ public class LotteryItem extends Item {
     }
 
     private static final String AC_ANSWER = "ANSWER";
-    private String ANSWER = String.valueOf(Math.round((Random.Int(100) + 1) - Dungeon.hero.STR/30));
+    private String ANSWER = String.valueOf(Math.round((Random.Int(100) + 1) - Math.round(Dungeon.hero.STR/30)));
 
     private static int[] generateLotteryNumbers() {
         int[] numbers = new int[4];
