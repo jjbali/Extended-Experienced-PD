@@ -101,17 +101,20 @@ public class PotionBag extends TreasureBag {
                 PotionOfStamina.class,
                 PotionOfStormClouds.class
         );
-        int amount = Random.Int(2, 6);
+        int amount = Random.Int(1, 7);
         if (Dungeon.hero.perks.contains(Perks.Perk.MORE_BAG)) amount *= 3.5f;
         if (BinaryItem.streak_i >= 20) amount *= 2.5f;
-        items.add(Reflection.newInstance(Random.element(normal)).quantity(amount));
-        items.add(Reflection.newInstance(Random.element(exotic)).quantity(amount));
+        int type = Random.Int(1, 3);
+        for (int i = 0; i < type; i++) {
+            items.add(Reflection.newInstance(Random.element(normal)).quantity(amount));
+            items.add(Reflection.newInstance(Random.element(exotic)).quantity(amount));
+        }
         return items;
     }
 
     @Override
     public long value() {
-        return 1500 * quantity;
+        return 1750 * quantity;
     }
 
 
