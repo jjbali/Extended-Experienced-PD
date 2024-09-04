@@ -1,9 +1,16 @@
 /*
+ *
  * Pixel Dungeon
  * Copyright (C) 2012-2015 Oleg Dolya
  *
  * Shattered Pixel Dungeon
- * Copyright (C) 2014-2022 Evan Debenham
+ * Copyright (C) 2014-2024 Evan Debenham
+ *
+ * Experienced Pixel Dungeon
+ * Copyright (C) 2019-2024 Trashbox Bobylev
+ *
+ * Extended Experienced Pixel Dungeon
+ * Copyright (C) 2023-2024 John Nollas
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -17,6 +24,7 @@
  *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
  */
 
 package com.shatteredpixel.shatteredpixeldungeon.items.potions.exotic;
@@ -37,7 +45,7 @@ public class PotionOfHolyFuror extends ExoticPotion {
 	public void apply( Hero hero ) {
 		identify();
 
-		Buff.prolong(hero, Overload.class, 200f);
+		Buff.prolong(hero, Overload.class, 250f);
 
 		new Flare( 6, 32 ).color(0xFFFF00, true).show( curUser.sprite, 4f );
 	}
